@@ -2,13 +2,13 @@
 global $ttfmake_section_data, $ttfmake_sections;
 
 // Default to sidebar right if a section type has not been specified.
-$section_type = ( isset( $ttfmake_section_data['section-type'] ) ) ? $ttfmake_section_data['section-type'] : 'wsuwpsidebarright';
+$section_type = ( isset( $ttfmake_section_data['section-type'] ) ) ? $ttfmake_section_data['section-type'] : 'faiswsuwpsidebarright';
 
-if ( 'wsuwpsidebarright' === $section_type || 'wsuwpsidebarleft' === $section_type || 'wsuwpthirds' === $section_type ) {
+if ( 'faiswsuwpsidebarright' === $section_type || 'faiswsuwpsidebarleft' === $section_type || 'faiswsuwpthirds' === $section_type ) {
 	$section_layout = ( isset( $ttfmake_section_data['section-layout'] ) ) ? $ttfmake_section_data['section-layout'] : 'side-right';
-} elseif ( 'wsuwphalves' === $section_type ) {
+} elseif ( 'faiswsuwphalves' === $section_type ) {
 	$section_layout = 'halves';
-} elseif ( 'wsuwpquarters' === $section_type ) {
+} elseif ( 'faiswsuwpquarters' === $section_type ) {
 	$section_layout = 'quarters';
 } else {
 	$section_layout = 'single';
@@ -16,16 +16,16 @@ if ( 'wsuwpsidebarright' === $section_type || 'wsuwpsidebarleft' === $section_ty
 
 // Provide a list matching the number of columns to the selected section type.
 $section_type_columns = array(
-	'wsuwpsidebarright' => 2,
-	'wsuwpsidebarleft'  => 2,
-	'wsuwpthirds'       => 3,
-	'wsuwphalves'       => 2,
-	'wsuwpquarters'     => 4,
-	'wsuwpsingle'       => 1,
+	'faiswsuwpsidebarright' => 2,
+	'faiswsuwpsidebarleft'  => 2,
+	'faiswsuwpthirds'       => 3,
+	'faiswsuwphalves'       => 2,
+	'faiswsuwpquarters'     => 4,
+	'faiswsuwpsingle'       => 1,
 );
 
 // Retrieve data for the column being output.
-$data_columns = spine_get_column_data( $ttfmake_section_data, $section_type_columns[ $section_type ] );
+$data_columns = fais_spine_get_column_data( $ttfmake_section_data, $section_type_columns[ $section_type ] );
 
 // Assume by default that the section has no wrapper.
 $section_has_wrapper = false;
@@ -110,7 +110,7 @@ if ( '' === $section_id ) {
 					$column_background = '';
 				}
 				?>
-				<div style="<?php echo $column_background; ?>" class="column <?php echo $column_count[ $count ]; $count++; ?> <?php if ( isset( $column['column-classes'] ) ) : echo esc_attr( $column['column-classes'] ); endif; ?>">
+				<div style="<?php echo $column_background; ?>" class="<?php echo $column['column-type'] ?> <?php echo $column_count[ $count ]; $count++; ?> <?php if ( isset( $column['column-classes'] ) ) : echo esc_attr( $column['column-classes'] ); endif; ?>">
 
 					<?php if ( '' !== $column['title'] ) : ?>
 						<?php $header_level = in_array( $column['header-level'], array( 'h2', 'h3', 'h4' ) ) ? $column['header-level'] : 'h2'; ?>
