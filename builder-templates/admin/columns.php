@@ -4,7 +4,7 @@ spine_load_section_header();
 
 global $ttfmake_section_data, $ttfmake_is_js_template;
 
-if ( in_array( $ttfmake_section_data['section']['id'], array( 'faiswsuwphalves', 'faiswsuwpsidebarright', 'faiswsuwpsidebarleft' ) ) ) {
+if ( in_array( $ttfmake_section_data['section']['id'], array( 'faiswsuwphalves', 'faiswsuwpsidebarright', 'faiswsuwpsidebarleft' ), true ) ) {
 	$wsuwp_range = 2;
 } elseif ( 'faiswsuwpthirds' === $ttfmake_section_data['section']['id'] ) {
 	$wsuwp_range = 3;
@@ -111,11 +111,11 @@ $section_order  = ( ! empty( $ttfmake_section_data['data']['columns-order'] ) ) 
 				<?php
 				fais_spine_output_builder_section_layout( $section_name, $ttfmake_section_data );
 				fais_spine_output_builder_section_classes( $section_name, $ttfmake_section_data );
-				
+
 				fais_spine_output_builder_section_wrapper( $section_name, $ttfmake_section_data );
 				fais_spine_output_builder_section_label( $section_name, $ttfmake_section_data );
 				fais_spine_output_builder_section_background( $section_name, $ttfmake_section_data );
-				
+
 				do_action( 'spine_output_builder_section', $section_name, $ttfmake_section_data, 'columns' );
 				?>
 			</div>
