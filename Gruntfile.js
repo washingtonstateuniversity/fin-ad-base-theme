@@ -11,7 +11,15 @@ module.exports = function(grunt) {
                 dest: 'tmp-style.css'
             }
         },
-
+        watch: {
+            files: [
+                "css/**/*",
+                "builder-templates/**/*",
+                "inc/**/*",
+                "functions.php"
+            ],
+            tasks: ["concat", "postcss", "csslint", "clean", "phpcs"]
+        },
         postcss: {
             options: {
                 map: true,
@@ -86,8 +94,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks( "grunt-contrib-concat" );
     grunt.loadNpmTasks( "grunt-contrib-csslint" );
     grunt.loadNpmTasks( "grunt-contrib-clean" );
+    grunt.loadNpmTasks( "grunt-contrib-watch" );
     grunt.loadNpmTasks( "grunt-phpcs" );
 
     // Default task(s).
-    grunt.registerTask('default', ['concat', 'postcss', 'csslint', 'clean']);
+    grunt.registerTask("default", ["concat", "postcss", "csslint", "clean"]);
 };
