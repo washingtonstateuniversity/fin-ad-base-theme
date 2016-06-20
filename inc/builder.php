@@ -9,17 +9,6 @@ class fais_Spine_Builder_Custom  {
 	 */
 	public function __construct() {
 
-		// This is pulled from the Make theme. We should keep it updated as upstream changes are pulled in.
-		//define( 'TTFMAKE_VERSION', '1.3.2' );
-
-		// Include extra functions from Make that are not part of the builder, but are required.
-		//include_once( 'builder-custom/extras.php' );
-
-		// Include the actual core builder files from the Make theme.
-		if ( is_admin() ) {
-			//require get_template_directory() . '/inc/builder/core/base.php';
-		}
-
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ), 10 );
 		add_action( 'admin_init', array( $this, 'remove_extra_make' ), 13 );
 		add_action( 'admin_init', array( $this, 'remove_builder_sections' ), 13 );
