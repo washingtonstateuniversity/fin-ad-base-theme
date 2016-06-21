@@ -37,7 +37,7 @@ $section_order  = ( ! empty( $ttfmake_section_data['data']['columns-order'] ) ) 
 			$content  = ( isset( $ttfmake_section_data['data']['columns'][ $i ]['content'] ) ) ? $ttfmake_section_data['data']['columns'][ $i ]['content'] : '';
 			$visible  = ( isset( $ttfmake_section_data['data']['columns'][ $i ]['toggle'] ) ) ? $ttfmake_section_data['data']['columns'][ $i ]['toggle'] : 'visible';
 
-			if ( ! in_array( $visible, array( 'visible', 'invisible' ) ) ) {
+			if ( ! in_array( $visible, array( 'visible', 'invisible' ), true ) ) {
 				$visible = 'visible';
 			}
 

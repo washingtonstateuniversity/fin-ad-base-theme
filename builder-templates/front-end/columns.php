@@ -27,12 +27,13 @@ $section_type_columns = array(
 // Retrieve data for the column being output.
 $data_columns = fais_spine_get_column_data( $ttfmake_section_data, $section_type_columns[ $section_type ] );
 
-// Assume by default that the section has no wrapper.
-$section_has_wrapper = false;
-
 // Sections can have ids (provided by outside forces other than this theme), classes, and wrappers with classes.
 $section_classes         = ( isset( $ttfmake_section_data['section-classes'] ) ) ? $ttfmake_section_data['section-classes'] : '';
 $section_wrapper_classes = ( isset( $ttfmake_section_data['section-wrapper'] ) ) ? $ttfmake_section_data['section-wrapper'] : '';
+
+// make sure we have the var ahead of .=
+$section_wrapper_html = '';
+
 
 // If a child theme or plugin has declared a section ID, we handle that.
 // This may be supported in the parent theme one day.
@@ -66,13 +67,6 @@ if ( $section_background || $section_mobile_background ) {
 }
 
 if ( $section_has_wrapper ) {
-	$section_wrapper_html = '<div';
-
-	if ( '' !== $section_id ) {
-		$section_wrapper_html .= ' id="' . esc_attr( $section_id ) . '"';
-	}
-
-	$section_wrapper_html .= ' class="section-wrapper ' . esc_attr( $section_wrapper_classes ) . '"';
 
 	if ( $section_background ) {
 		$section_wrapper_html .= ' data-background="' . esc_url( $section_background ) . '"';
@@ -81,10 +75,6 @@ if ( $section_has_wrapper ) {
 	if ( $section_mobile_background ) {
 		$section_wrapper_html .= ' data-background-mobile="' . esc_url( $section_mobile_background ) . '"';
 	}
-
-	$section_wrapper_html .= '>';
-
-	echo $section_wrapper_html;
 
 	// Reset section_id so that the default is built for the section.
 	$section_id = '';
@@ -97,7 +87,7 @@ if ( '' === $section_id ) {
 	$section_id = sanitize_key( $section_id );
 }
 ?>
-	<section id="<?php echo esc_attr( $section_id ); ?>" class="row <?php echo esc_attr( $section_layout ); ?> <?php echo esc_attr( $section_classes ); ?>">
+	<section id="<?php echo esc_attr( $section_id ); ?>" <?php echo $section_wrapper_html; ?> class="<?php echo esc_attr( $section_wrapper_classes ); ?><?php echo esc_attr( $section_layout ); ?> <?php echo esc_attr( $section_classes ); ?>">
 		<?php
 		if ( ! empty( $data_columns ) ) {
 			// We output the column's number as part of a class and need to track count.
@@ -113,7 +103,7 @@ if ( '' === $section_id ) {
 				<div style="<?php echo $column_background; ?>" class="<?php echo $column['column-type'] ?> <?php echo $column_count[ $count ]; $count++; ?> <?php if ( isset( $column['column-classes'] ) ) : echo esc_attr( $column['column-classes'] ); endif; ?>">
 
 					<?php if ( '' !== $column['title'] ) : ?>
-						<?php $header_level = in_array( $column['header-level'], array( 'h2', 'h3', 'h4' ) ) ? $column['header-level'] : 'h2'; ?>
+						<?php $header_level = in_array( $column['header-level'], array( 'h2', 'h3', 'h4' ), true ) ? $column['header-level'] : 'h2'; ?>
 						<header>
 							<<?php echo $header_level; ?>><?php echo apply_filters( 'the_title', $column['title'] ); ?></<?php echo $header_level; ?>>
 						</header>
@@ -130,6 +120,3 @@ if ( '' === $section_id ) {
 		?>
 	</section>
 <?php
-if ( $section_has_wrapper ) {
-	echo '</div>';
-}

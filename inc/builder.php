@@ -2,19 +2,18 @@
 /**
  * Class Spine_Builder_Custom
  */
-class fais_Spine_Builder_Custom  {
+class FaisSpineBuilderCustom
+{
 
 	/**
 	 * Add hooks, start up custom builder components.
 	 */
 	public function __construct() {
-
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ), 10 );
 		add_action( 'admin_init', array( $this, 'remove_extra_make' ), 13 );
 		add_action( 'admin_init', array( $this, 'remove_builder_sections' ), 13 );
 		add_action( 'admin_init', array( $this, 'add_builder_sections' ), 14 );
-		
-		
+
 		add_filter( 'make_insert_post_data_sections', array( $this, 'set_section_meta' ), 13, 1 );
 	}
 
@@ -25,7 +24,7 @@ class fais_Spine_Builder_Custom  {
 		global $pagenow;
 
 		// Only load resources if they are needed on the current page
-		if ( ! in_array( $hook_suffix, array( 'post.php', 'post-new.php' ) ) || ! ttfmake_post_type_supports_builder( get_post_type() )	) {
+		if ( ! in_array( $hook_suffix, array( 'post.php', 'post-new.php' ), true ) || ! ttfmake_post_type_supports_builder( get_post_type() )	) {
 			return;
 		}
 
@@ -47,7 +46,7 @@ class fais_Spine_Builder_Custom  {
 	public function set_section_meta( $sections ) {
 		$section_types = wp_list_pluck( $sections, 'section-type' );
 
-		if ( in_array( 'banner', $section_types ) ) {
+		if ( in_array( 'banner', $section_types, true ) ) {
 			update_post_meta( get_the_ID(), '_has_builder_banner', 1 );
 		} else {
 			delete_post_meta( get_the_ID(), '_has_builder_banner' );
@@ -74,12 +73,12 @@ class fais_Spine_Builder_Custom  {
 		ttfmake_remove_section( 'gallery' );
 		ttfmake_remove_section( 'banner' );
 		ttfmake_remove_section( 'blank' );
-		
+
 		ttfmake_remove_section( 'wsuwpsingle' );
 		ttfmake_remove_section( 'wsuwphalves' );
 		ttfmake_remove_section( 'wsuwpsidebarleft' );
 		ttfmake_remove_section( 'wsuwpsidebarright' );
-		
+
 		ttfmake_remove_section( 'wsuwpthirds' );
 		ttfmake_remove_section( 'wsuwpquarters' );
 		ttfmake_remove_section( 'wsuwpheader' );
@@ -90,6 +89,7 @@ class fais_Spine_Builder_Custom  {
 	 * Add the custom sections used in our implementation of the page builder.
 	 */
 	public function add_builder_sections() {
+
 		ttfmake_add_section(
 			'faiswsuwpsingle',
 			'Single',
@@ -99,7 +99,7 @@ class fais_Spine_Builder_Custom  {
 			'admin/columns',
 			'front-end/columns',
 			200,
-			'builder-templates/'
+			get_stylesheet_directory() . '/builder-templates/'
 		);
 
 		ttfmake_add_section(
@@ -111,7 +111,7 @@ class fais_Spine_Builder_Custom  {
 			'admin/columns',
 			'front-end/columns',
 			500,
-			'builder-templates/'
+			get_stylesheet_directory() . '/builder-templates/'
 		);
 
 		ttfmake_add_section(
@@ -123,7 +123,7 @@ class fais_Spine_Builder_Custom  {
 			'admin/columns',
 			'front-end/columns',
 			300,
-			'builder-templates/'
+			get_stylesheet_directory() . '/builder-templates/'
 		);
 
 		ttfmake_add_section(
@@ -135,7 +135,7 @@ class fais_Spine_Builder_Custom  {
 			'admin/columns',
 			'front-end/columns',
 			400,
-			'builder-templates/'
+			get_stylesheet_directory() . '/builder-templates/'
 		);
 
 		ttfmake_add_section(
@@ -147,7 +147,7 @@ class fais_Spine_Builder_Custom  {
 			'admin/columns',
 			'front-end/columns',
 			600,
-			'builder-templates'
+			get_stylesheet_directory() . '/builder-templates'
 		);
 
 		ttfmake_add_section(
@@ -159,7 +159,7 @@ class fais_Spine_Builder_Custom  {
 			'admin/columns',
 			'front-end/columns',
 			700,
-			'builder-templates'
+			get_stylesheet_directory() . '/builder-templates'
 		);
 
 		ttfmake_add_section(
@@ -171,7 +171,7 @@ class fais_Spine_Builder_Custom  {
 			'admin/h1-header',
 			'front-end/h1-header',
 			100,
-			'builder-templates'
+			get_stylesheet_directory() . '/builder-templates'
 		);
 
 		ttfmake_add_section(
@@ -183,7 +183,7 @@ class fais_Spine_Builder_Custom  {
 			'admin/banner',
 			'front-end/banner',
 			800,
-			'builder-templates'
+			get_stylesheet_directory() . '/builder-templates'
 		);
 
 	}
@@ -227,7 +227,7 @@ class fais_Spine_Builder_Custom  {
 	 * @return string
 	 */
 	public function clean_header_element( $header_element ) {
-		if ( in_array( $header_element, array( 'h1', 'h2', 'h3', 'h4' ) ) ) {
+		if ( in_array( $header_element, array( 'h1', 'h2', 'h3', 'h4' ), true ) ) {
 			return $header_element;
 		}
 
@@ -345,7 +345,7 @@ class fais_Spine_Builder_Custom  {
 		$clean_data = array();
 
 		if ( isset( $data['columns-number'] ) ) {
-			if ( in_array( $data['columns-number'], range( 1, 4 ) ) ) {
+			if ( in_array( $data['columns-number'], range( 1, 4 ), true ) ) {
 				$clean_data['columns-number'] = $data['columns-number'];
 			}
 		}
@@ -383,7 +383,7 @@ class fais_Spine_Builder_Custom  {
 				}
 
 				if ( isset( $item['toggle'] ) ) {
-					if ( in_array( $item['toggle'], array( 'visible', 'invisible' ) ) ) {
+					if ( in_array( $item['toggle'], array( 'visible', 'invisible' ), true ) ) {
 						$clean_data['columns'][ $id ]['toggle'] = $item['toggle'];
 					}
 				}
@@ -451,7 +451,7 @@ class fais_Spine_Builder_Custom  {
 		$clean_data['hide-dots']   = ( isset( $data['hide-dots'] ) && 1 === (int) $data['hide-dots'] ) ? 1 : 0;
 		$clean_data['autoplay']    = ( isset( $data['autoplay'] ) && 1 === (int) $data['autoplay'] ) ? 1 : 0;
 
-		if ( isset( $data['transition'] ) && in_array( $data['transition'], array( 'fade', 'scrollHorz', 'none' ) ) ) {
+		if ( isset( $data['transition'] ) && in_array( $data['transition'], array( 'fade', 'scrollHorz', 'none' ), true ) ) {
 			$clean_data['transition'] = $data['transition'];
 		}
 
@@ -463,7 +463,7 @@ class fais_Spine_Builder_Custom  {
 			$clean_data['height'] = absint( $data['height'] );
 		}
 
-		if ( isset( $data['responsive'] ) && in_array( $data['responsive'], array( 'aspect', 'balanced' ) ) ) {
+		if ( isset( $data['responsive'] ) && in_array( $data['responsive'], array( 'aspect', 'balanced' ), true ) ) {
 			$clean_data['responsive'] = $data['responsive'];
 		}
 
@@ -488,10 +488,10 @@ class fais_Spine_Builder_Custom  {
 					$clean_data['banner-slides'][ $id ]['image-id'] = ttfmake_sanitize_image_id( $slide['image-id'] );
 				}
 
-				$clean_data['banner-slides'][ $id ]['alignment'] = ( isset( $slide['alignment'] ) && in_array( $slide['alignment'], array( 'none', 'left', 'right' ) ) ) ? $slide['alignment'] : 'none';
+				$clean_data['banner-slides'][ $id ]['alignment'] = ( isset( $slide['alignment'] ) && in_array( $slide['alignment'], array( 'none', 'left', 'right' ), true ) ) ? $slide['alignment'] : 'none';
 
 				if ( isset( $slide['state'] ) ) {
-					$clean_data['banner-slides'][ $id ]['state'] = ( in_array( $slide['state'], array( 'open', 'closed' ) ) ) ? $slide['state'] : 'open';
+					$clean_data['banner-slides'][ $id ]['state'] = ( in_array( $slide['state'], array( 'open', 'closed' ), true ) ) ? $slide['state'] : 'open';
 				}
 
 				if ( isset( $slide['spine_slide_url'] ) ) {
@@ -534,7 +534,7 @@ class fais_Spine_Builder_Custom  {
 	}
 }
 
-new fais_Spine_Builder_Custom();
+new FaisSpineBuilderCustom();
 
 
 /**
@@ -724,21 +724,21 @@ function fais_spine_output_builder_column_type( $column_name, $section_data, $co
 function fais_spine_output_builder_section_layout( $section_name, $ttfmake_section_data ) {
 	if ( 'wsuwpthirds' === $ttfmake_section_data['section']['id'] ) {
 		$options = array( 'thirds', 'triptych' );
-		if ( isset( $ttfmake_section_data['data']['section-layout'] ) && in_array( $ttfmake_section_data['data']['section-layout'], $options ) ) {
+		if ( isset( $ttfmake_section_data['data']['section-layout'] ) && in_array( $ttfmake_section_data['data']['section-layout'], $options, true ) ) {
 			$current = $ttfmake_section_data['data']['section-layout'];
 		} else {
 			$current = 'thirds';
 		}
 	} elseif ( 'wsuwpsidebarleft' === $ttfmake_section_data['section']['id'] ) {
 		$options = array( 'side-left', 'margin-left' );
-		if ( isset( $ttfmake_section_data['data']['section-layout'] ) && in_array( $ttfmake_section_data['data']['section-layout'], $options ) ) {
+		if ( isset( $ttfmake_section_data['data']['section-layout'] ) && in_array( $ttfmake_section_data['data']['section-layout'], $options, true ) ) {
 			$current = $ttfmake_section_data['data']['section-layout'];
 		} else {
 			$current = 'side-left';
 		}
 	} elseif ( 'wsuwpsidebarright' === $ttfmake_section_data['section']['id'] ) {
 		$options = array( 'side-right', 'margin-right' );
-		if ( isset( $ttfmake_section_data['data']['section-layout'] ) && in_array( $ttfmake_section_data['data']['section-layout'], $options ) ) {
+		if ( isset( $ttfmake_section_data['data']['section-layout'] ) && in_array( $ttfmake_section_data['data']['section-layout'], $options, true ) ) {
 			$current = $ttfmake_section_data['data']['section-layout'];
 		} else {
 			$current = 'side-right';
@@ -748,12 +748,12 @@ function fais_spine_output_builder_section_layout( $section_name, $ttfmake_secti
 	}
 
 	?>
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 	<div class="wsuwp-builder-meta">
 	<label for="<?php echo $section_name; ?>[section-layout]">Section Layout:</label>
 	<select id="<?php echo $section_name; ?>[section-layout]" name="<?php echo $section_name; ?>[section-layout]"
