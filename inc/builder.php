@@ -2,7 +2,7 @@
 /**
  * Class Spine_Builder_Custom
  */
-class FaisSpineBuilderCustom
+class Fais_Spine_Builder_Custom
 {
 
 	/**
@@ -534,7 +534,7 @@ class FaisSpineBuilderCustom
 	}
 }
 
-new FaisSpineBuilderCustom();
+new Fais_Spine_Builder_Custom();
 
 
 /**
