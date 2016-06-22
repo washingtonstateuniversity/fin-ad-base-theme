@@ -36,12 +36,10 @@ add_action( 'wp_enqueue_scripts', 'fais_customizer_enqueue_scripts', 20 );
  * Enqueue the styles and scripts used inside the Customizer.
  */
 function fais_customizer_enqueue_scripts() {
-	global $wp_scripts;
 	wp_enqueue_style( 'flexwork-devices', get_stylesheet_directory_uri() . '/TempAssests/css/flexwork-devices.css' );
 
 	wp_enqueue_script( 'flexibility', get_stylesheet_directory_uri() . '/TempAssests/js/flexibility.js', array( 'jquery' ), spine_get_script_version(), true );
 	wp_script_add_data( 'flexibility', 'conditional', 'lte IE 10' );
-
 }
 
 
