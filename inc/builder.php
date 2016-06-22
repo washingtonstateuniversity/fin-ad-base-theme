@@ -9,7 +9,7 @@ class Fais_Spine_Builder_Custom
 	 * Add hooks, start up custom builder components.
 	 */
 	public function __construct() {
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ), 10 );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ), 13 );
 		add_action( 'admin_init', array( $this, 'remove_extra_make' ), 13 );
 		add_action( 'admin_init', array( $this, 'remove_builder_sections' ), 13 );
 		add_action( 'admin_init', array( $this, 'add_builder_sections' ), 14 );
@@ -21,18 +21,13 @@ class Fais_Spine_Builder_Custom
 	 * Enqueue the scripts and styles used with the page builder.
 	 */
 	public function enqueue_scripts( $hook_suffix ) {
-		global $pagenow;
-
 		// Only load resources if they are needed on the current page
 		if ( ! in_array( $hook_suffix, array( 'post.php', 'post-new.php' ), true ) || ! ttfmake_post_type_supports_builder( get_post_type() )	) {
 			return;
 		}
 
-		wp_enqueue_script( 'ttfmake-admin-edit-page', get_template_directory_uri() . '/inc/builder-custom/js/edit-page.js', array( 'jquery' ), spine_get_script_version(), true );
-		wp_enqueue_script( 'wsuwp-builder-actions', get_template_directory_uri() . '/builder-templates/js/builder-actions.js', array( 'jquery' ), spine_get_script_version(), true );
-		wp_enqueue_script( 'wsuwp-builder-two-columns', get_template_directory_uri() . '/builder-templates/js/two-columns.js', array(), spine_get_script_version(), true );
-
-		wp_localize_script( 'ttfmake-admin-edit-page', 'ttfmakeEditPageData', array( 'pageNow' => esc_js( $pagenow ) ) );
+		wp_dequeue_script('ttfmake-admin-edit-page');
+		wp_enqueue_script( 'fais-ttfmake-admin-edit-page', get_stylesheet_directory_uri() . '/inc/builder-custom/js/edit-page.js', array( 'jquery' ), spine_get_script_version(), true );
 	}
 
 	/**
@@ -415,6 +410,10 @@ class Fais_Spine_Builder_Custom
 			$clean_data['section-wrapper'] = $this->clean_classes( $data['section-wrapper'] );
 		}
 
+		if ( isset( $data['section-flextype'] ) ) {
+			$clean_data['section-flextype'] = $this->clean_classes( $data['section-flextype'] );
+		}
+
 		if ( isset( $data['section-layout'] ) ) {
 			$clean_data['section-layout'] = $this->clean_classes( $data['section-layout'] );
 		}
@@ -531,6 +530,181 @@ class Fais_Spine_Builder_Custom
 		$clean_data = apply_filters( 'spine_builder_save_banner', $clean_data, $data );
 
 		return $clean_data;
+	}
+
+	public function build_flexwork_sectional_inputs( $section_class_str = '' ) {
+		//'flex-row wrap-reverse justify-start content-start items-start pad-airy-TB round-wide-L round-no-at-414'
+		$setion_flex_options = [
+			'area_type' => [ 'flex-row' => 'flex-row', 'flex-column' => 'flex-column', 'row-reverse' => 'row-reverse', 'column-reverse' => 'column-reverse' ],
+			'wrapping' => [ 'wrap' => 'wrap', 'nowrap' => 'nowrap', 'wrap-reverse' => 'wrap-reverse' ],
+			'content_justification' => [ 'justify-start' => 'justify-start', 'justify-end' => 'justify-end', 'justify-center' => 'justify-center', 'justify-between' => 'justify-between', 'justify-around' => 'justify-around' ],
+			'content_alignment' => [ 'content-start' => 'content-start', 'content-end' => 'content-end', 'content-center' => 'content-center', 'content-between' => 'content-between', 'content-around' => 'content-around', 'content-stretch' => 'content-stretch' ],
+			'items_positioning' => [ 'items-start' => 'items-start', 'items-end' => 'items-end', 'items-center' => 'items-center', 'items-baseline' => 'items-baseline', 'items-stretch' => 'items-stretch' ],
+			'pad' => [
+				'type' => [ '_' => 'inherited', 'airy' => 'airy (2em)', 'tight' => 'tight (1em)', 'no' => 'remove (0em)' ],
+				'position' => [ 'all' => 'All', 'L' => 'Left', 'R' => 'Right', 'T' => 'Top', 'B' => 'Bottom', 'LR' => 'Flanks/Sides', 'TB' => 'Ends/Head-foot' ],
+			],
+			'round' => [
+				'type' => [ '_' => 'inherited', 'wide' => 'wide (2em)', 'tight' => 'tight (1em)', 'mini' => 'mini (0.5em)', 'no' => 'remove (0em)' ],
+				'position' => [ 'all' => 'All', 'L' => 'Left Side', 'R' => 'Right Side', 'T' => 'Top', 'B' => 'Bottom', 'TL' => 'Top Left', 'BL' => 'Bottom Left', 'TR' => 'Top Right', 'BR' => 'Bottom Right' ],
+			],
+		];
+		$at_sizes = [ '320' => '320', '360' => '360', '375' => '375', '384' => '384', '390' => '390', '400' => '400', '414' => '414', '480' => '480', '568' => '568', '600' => '600', '640' => '640', '667' => '667', '695' => '695', '720' => '720', '736' => '736', '768' => '768', '800' => '800', '960' => '960', '1024' => '1024', '1280' => '1280', '1366' => '1366', '1440' => '1440' ];
+
+		$flex_used = [
+			'area_type' => '',
+			'wrapping' => '',
+			'content_justification' => '',
+			'content_alignment' => '',
+			'items_positioning' => '',
+			'pad' => '',
+			'round' => '',
+			'at-sizes' => [],
+		 ];
+		$section_classes = explode( ' ', $section_class_str );
+		//for now just get them in the right spot
+		foreach ( $section_classes as $k => $class ) { // loop over class list
+			foreach ( $setion_flex_options as $key => $item ) { // loop through options
+				foreach ( $item as $subkey => $subitem ) { // loop though options values for match
+					if( 0 === strpos( $class, $key ) ){ // if the key matches first then kick into the sub arrays
+						foreach ( $subitem as $partkey => $partoptions ) {
+							if ( false !== strpos( $class, $partkey ) ) {
+								if ( false !== strpos( $class, '-at-' ) ) {
+									$flex_used['at-sizes'][] = $class;
+									break 3;
+								} else {
+									$flex_used[ $key ] = $class;
+									break 3;
+								}
+							}
+						}
+					}elseif( !is_array($subitem)) {
+						if ( false !== strpos( $class, $subitem ) ) {
+							if ( false !== strpos( $class, '-at-' ) ) {
+								$flex_used['at-sizes'][] = $class;
+								break 2;
+							} else {
+								$flex_used[ $key ] = $class;
+								break 2;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		//var_dump( $flex_used );
+
+		?>
+		<h3>Flexwork class builder</h3>
+			<button id="start_add_fw_class">Add New Class</button>
+
+			<label for="flexwork-type">type:</label>
+				<select id="flexwork-type">
+					<?php
+					foreach ( $setion_flex_options as $key => $option ) {
+						echo '<option value="' . $key . '"">' . $key . '</option>';
+					}
+					?>
+				</select>
+			</label>
+
+			<label for="flexwork-area_type">type:</label>
+				<select id="flexwork-area_type">
+					<?php
+					foreach ( $setion_flex_options['area_type'] as $key => $option ) {
+						echo '<option value="' . $key . '"">' . $key . '</option>';
+					}
+					?>
+				</select>
+			</label>
+			<label for="flexwork-wrapping">type:</label>
+				<select id="flexwork-wrapping">
+					<?php
+					foreach ( $setion_flex_options['wrapping'] as $key => $option ) {
+						echo '<option value="' . $key . '"">' . $key . '</option>';
+					}
+					?>
+				</select>
+			</label>
+			<label for="flexwork-content_justification">type:</label>
+				<select id="flexwork-content_justification">
+					<?php
+					foreach ( $setion_flex_options['content_justification'] as $key => $option ) {
+						echo '<option value="' . $key . '"">' . $key . '</option>';
+					}
+					?>
+				</select>
+			</label>
+
+			<label for="flexwork-content_alignment">type:</label>
+				<select id="flexwork-content_alignment">
+					<?php
+					foreach ( $setion_flex_options['content_alignment'] as $key => $option ) {
+						echo '<option value="' . $key . '"">' . $key . '</option>';
+					}
+					?>
+				</select>
+			</label>
+
+			<label for="flexwork-items_positioning">type:</label>
+				<select id="flexwork-items_positioning">
+					<?php
+					foreach ( $setion_flex_options['items_positioning'] as $key => $option ) {
+						echo '<option value="' . $key . '"">' . $key . '</option>';
+					}
+					?>
+				</select>
+			</label>
+
+			<label for="flexwork-pad">type:</label>
+				<select id="flexwork-pad-type">
+					<?php
+					foreach ( $setion_flex_options['pad']['type'] as $key => $option ) {
+						echo '<option value="' . $key . '"">' . $key . '</option>';
+					}
+					?>
+				</select>
+				<select id="flexwork-pad-position">
+					<?php
+					foreach ( $setion_flex_options['pad']['position'] as $key => $option ) {
+						echo '<option value="' . $key . '"">' . $key . '</option>';
+					}
+					?>
+				</select>
+			</label>
+
+			<label for="flexwork-round">type:</label>
+				<select id="flexwork-round-type">
+					<?php
+					foreach ( $setion_flex_options['round']['type'] as $key => $option ) {
+						echo '<option value="' . $key . '"">' . $key . '</option>';
+					}
+					?>
+				</select>
+				<select id="flexwork-round-position">
+					<?php
+					foreach ( $setion_flex_options['round']['position'] as $key => $option ) {
+						echo '<option value="' . $key . '"">' . $key . '</option>';
+					}
+					?>
+				</select>
+			</label>
+			<button id="fw_class_at">@</button>
+			<label for="flexwork-at-sizes">type:</label>
+				<select id="flexwork-at-sizes">
+					<?php
+					foreach ( $at_sizes as $key => $option ) {
+						echo '<option value="' . $key . '"">' . $key . '</option>';
+					}
+					?>
+				</select>
+			</label>
+
+		<?php
+
+
+		return "<input type='text' value='TEST'/>";
 	}
 }
 
@@ -748,12 +922,6 @@ function fais_spine_output_builder_section_layout( $section_name, $ttfmake_secti
 	}
 
 	?>
-
-
-
-
-
-
 	<div class="wsuwp-builder-meta">
 	<label for="<?php echo $section_name; ?>[section-layout]">Section Layout:</label>
 	<select id="<?php echo $section_name; ?>[section-layout]" name="<?php echo $section_name; ?>[section-layout]"
@@ -769,6 +937,40 @@ function fais_spine_output_builder_section_layout( $section_name, $ttfmake_secti
 			target="_blank">grid layout documentation</a> for more information on section layouts.</p>
 	</div><?php
 }
+
+
+/**
+ * Output the input field for selection flex type and header levels used in column configuration.
+ *
+ * @param string $column_name
+ * @param array $section_data
+ * @param int $column
+ */
+function fais_spine_output_builder_section_flextree( $section_name, $ttfmake_section_data ) {
+	if ( isset( $ttfmake_section_data['data']['section-flextype'] ) ) {
+		$current = $ttfmake_section_data['data']['section-flextype'];
+	} else {
+		$current = "";
+	}
+
+	?>
+
+
+
+	<div class="wsuwp-builder-meta">
+
+<?php echo Fais_Spine_Builder_Custom::build_flexwork_sectional_inputs( 'flex-row wrap-reverse justify-start content-start items-start pad-airy-TB round-wide-L round-no-at-414 column-at-960 pad-no-L-at-414' ); ?>
+
+		<h3>Flexwork section classes</h3>
+		<input type="text" value="<?php $current?>" />
+		<p><b>Note:</b> Editing this edit by hand with out the builder is only advised if you are familar with css and the framework of Flexwork</p>
+	</div>
+	<?php
+}
+
+
+
+
 
 /**
  * Output an input field to capture background images.
