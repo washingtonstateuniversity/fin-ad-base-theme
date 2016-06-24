@@ -851,7 +851,7 @@ class Fais_Spine_Builder_Custom
 						<option value="">Select</option>
 						<?php
 						foreach ( $setion_flex_options['order'] as $key => $option ) {
-							echo '<option value="' . $key . '"">' . $key . '</option>';
+							echo '<option value="order-' . $key . '"">' . $key . '</option>';
 						}
 						?>
 					</select>
