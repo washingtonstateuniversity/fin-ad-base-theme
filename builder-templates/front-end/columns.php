@@ -14,6 +14,23 @@ if ( 'faiswsuwpsidebarright' === $section_type || 'faiswsuwpsidebarleft' === $se
 	$section_layout = 'single';
 }
 
+
+	if( 'faiswsuwphalves' === $section_type ){
+		$column_size_defaults=[1=>"fourths-2",2=>"fourths-2"];
+	} elseif ( 'faiswsuwpsidebarright' === $section_type ) {
+		$column_size_defaults=[1=>"fifths-3",2=>"fifths-2"];
+	} elseif ( 'faiswsuwpsidebarleft' === $section_type ) {
+		$column_size_defaults=[1=>"fifths-2",2=>"fifths-3"];
+	} elseif ( 'faiswsuwpthirds' === $section_type ) {
+		$column_size_defaults=[1=>"thirds-1",2=>"thirds-1",3=>"thirds-1"];
+	} elseif ( 'faiswsuwpquarters' === $section_type ) {
+		$column_size_defaults=[1=>"fourths-1",2=>"fourths-1",3=>"fourths-1",4=>"fourths-1"];
+	} else {
+		$column_size_defaults=[1=>"fourths-4"];
+	}
+
+
+
 // Provide a list matching the number of columns to the selected section type.
 $section_type_columns = array(
 	'faiswsuwpsidebarright' => 2,
@@ -30,6 +47,9 @@ $data_columns = fais_spine_get_column_data( $ttfmake_section_data, $section_type
 // Sections can have ids (provided by outside forces other than this theme), classes, and wrappers with classes.
 $section_classes         = ( isset( $ttfmake_section_data['section-classes'] ) ) ? $ttfmake_section_data['section-classes'] : '';
 $section_wrapper_classes = ( isset( $ttfmake_section_data['section-wrapper'] ) ) ? $ttfmake_section_data['section-wrapper'] : '';
+$section_flextype = ( isset( $ttfmake_section_data['section-flextype'] ) ) ? $ttfmake_section_data['section-flextype'] : '';
+
+$section_wrapper_classes = $section_flextype . ' ' . $section_wrapper_classes;
 
 // make sure we have the var ahead of .=
 $section_wrapper_html = '';
@@ -86,13 +106,14 @@ if ( '' === $section_id ) {
 } else {
 	$section_id = sanitize_key( $section_id );
 }
+
 ?>
-	<section id="<?php echo esc_attr( $section_id ); ?>" <?php echo $section_wrapper_html; ?> class="<?php echo esc_attr( $section_wrapper_classes ); ?><?php echo esc_attr( $section_layout ); ?> <?php echo esc_attr( $section_classes ); ?>">
+	<section id="<?php echo esc_attr( $section_id ); ?>" <?php echo $section_wrapper_html; ?> data-type="<?=$section_type; ?>" class="<?php echo esc_attr( $section_wrapper_classes ); ?><?php echo esc_attr( $section_layout ); ?> <?php echo esc_attr( $section_classes ); ?>">
 		<?php
+		var_dump($column_size_defaults);
 		if ( ! empty( $data_columns ) ) {
-			// We output the column's number as part of a class and need to track count.
-			$column_count = array( 'one', 'two', 'three', 'four' );
-			$count = 0;
+
+			$count = 1;
 			foreach ( $data_columns as $column ) {
 				if ( isset( $column['column-background-image'] ) && ! empty( $column['column-background-image'] ) ) {
 					$column_background = "background-image:url('" . esc_url( $column['column-background-image'] ) ."');";
@@ -100,7 +121,7 @@ if ( '' === $section_id ) {
 					$column_background = '';
 				}
 				?>
-				<div style="<?php echo $column_background; ?>" class="<?php echo $column['column-type'] ?> <?php echo $column_count[ $count ]; $count++; ?> <?php if ( isset( $column['column-classes'] ) ) : echo esc_attr( $column['column-classes'] ); endif; ?>">
+				<div style="<?php echo $column_background; ?>" class="<?php echo $column['column-type'] ?> <?php echo $column_size_defaults[ $count ]; $count++; ?> <?php if ( isset( $column['column-classes'] ) ) : echo esc_attr( $column['column-classes'] ); endif; ?>">
 
 					<?php if ( '' !== $column['title'] ) : ?>
 						<?php $header_level = in_array( $column['header-level'], array( 'h2', 'h3', 'h4' ), true ) ? $column['header-level'] : 'h2'; ?>

@@ -28,6 +28,13 @@ class Fais_Spine_Builder_Custom
 
 		wp_dequeue_script('ttfmake-admin-edit-page');
 		wp_enqueue_script( 'fais-ttfmake-admin-edit-page', get_stylesheet_directory_uri() . '/inc/builder-custom/js/edit-page.js', array( 'jquery' ), spine_get_script_version(), true );
+
+		wp_enqueue_style( 'flexwork-devices', get_stylesheet_directory_uri() . '/TempAssests/css/flexwork-devices.css' );
+
+		wp_enqueue_script( 'flexibility', get_stylesheet_directory_uri() . '/TempAssests/js/flexibility.js', array( 'jquery' ), spine_get_script_version(), true );
+		wp_script_add_data( 'flexibility', 'conditional', 'lte IE 10' );
+
+
 	}
 
 	/**
@@ -532,7 +539,7 @@ class Fais_Spine_Builder_Custom
 		return $clean_data;
 	}
 
-	public function build_flexwork_sectional_inputs( $section_class_str = '' ) {
+	public function build_flexwork_sectional_inputs( $field_name, $section_class_str = '' ) {
 		//'flex-row wrap-reverse justify-start content-start items-start pad-airy-TB round-wide-L round-no-at-414'
 		$setion_flex_options = [
 			'area_type' => [ 'flex-row' => 'flex-row', 'flex-column' => 'flex-column', 'row-reverse' => 'row-reverse', 'column-reverse' => 'column-reverse' ],
@@ -542,11 +549,11 @@ class Fais_Spine_Builder_Custom
 			'items_positioning' => [ 'items-start' => 'items-start', 'items-end' => 'items-end', 'items-center' => 'items-center', 'items-baseline' => 'items-baseline', 'items-stretch' => 'items-stretch' ],
 			'pad' => [
 				'type' => [ '_' => 'inherited', 'airy' => 'airy (2em)', 'tight' => 'tight (1em)', 'no' => 'remove (0em)' ],
-				'position' => [ 'all' => 'All', 'L' => 'Left', 'R' => 'Right', 'T' => 'Top', 'B' => 'Bottom', 'LR' => 'Flanks/Sides', 'TB' => 'Ends/Head-foot' ],
+				'position' => [ '_' => 'All', 'L' => 'Left', 'R' => 'Right', 'T' => 'Top', 'B' => 'Bottom', 'LR' => 'Flanks/Sides', 'TB' => 'Ends/Head-foot' ],
 			],
 			'round' => [
 				'type' => [ '_' => 'inherited', 'wide' => 'wide (2em)', 'tight' => 'tight (1em)', 'mini' => 'mini (0.5em)', 'no' => 'remove (0em)' ],
-				'position' => [ 'all' => 'All', 'L' => 'Left Side', 'R' => 'Right Side', 'T' => 'Top', 'B' => 'Bottom', 'TL' => 'Top Left', 'BL' => 'Bottom Left', 'TR' => 'Top Right', 'BR' => 'Bottom Right' ],
+				'position' => [ '_' => 'All', 'L' => 'Left Side', 'R' => 'Right Side', 'T' => 'Top', 'B' => 'Bottom', 'TL' => 'Top Left', 'BL' => 'Bottom Left', 'TR' => 'Top Right', 'BR' => 'Bottom Right' ],
 			],
 		];
 		$at_sizes = [ '320' => '320', '360' => '360', '375' => '375', '384' => '384', '390' => '390', '400' => '400', '414' => '414', '480' => '480', '568' => '568', '600' => '600', '640' => '640', '667' => '667', '695' => '695', '720' => '720', '736' => '736', '768' => '768', '800' => '800', '960' => '960', '1024' => '1024', '1280' => '1280', '1366' => '1366', '1440' => '1440' ];
@@ -596,115 +603,133 @@ class Fais_Spine_Builder_Custom
 		//var_dump( $flex_used );
 
 		?>
-		<h3>Flexwork class builder</h3>
-			<button id="start_add_fw_class">Add New Class</button>
+		<style>
+		.flex-attr-area{
+			display:inline-block;
+			float:left;
+		}
+		#start_add_fw_class{
+			float:right;
+		}
+		</style>
+		<h3>Flexwork class builder <button id="start_add_fw_class">Add New Class</button></br></h3>
 
-			<label for="flexwork-type">type:</label>
-				<select id="flexwork-type">
-					<?php
-					foreach ( $setion_flex_options as $key => $option ) {
-						echo '<option value="' . $key . '"">' . $key . '</option>';
-					}
-					?>
-				</select>
-			</label>
+			<div class="fw-builder">
+				<div  id="flexwork-type" class="flex-attr-area">type:<br/>
+					<select id="flexwork-area_type-select" class="flex-builder-selector fb-type-chooser">
+						<option value="">Select</option>
+						<?php
+						foreach ( $setion_flex_options as $key => $option ) {
+							echo '<option value="' . $key . '"">' . $key . '</option>';
+						}
+						?>
+					</select>
+				</div>
+				<div  id="flexwork-area_type" class="flex-attr-area">area type:<br/>
+					<select id="flexwork-area_type-select" class="flex-builder-selector fb-type">
+						<option value="">Select</option>
+						<?php
+						foreach ( $setion_flex_options['area_type'] as $key => $option ) {
+							echo '<option value="' . $key . '"">' . $option . '</option>';
+						}
+						?>
+					</select>
+				</div>
+				<div  id="flexwork-wrapping" class="flex-attr-area">wrapping:<br/>
+					<select id="flexwork-wrapping-select" class="flex-builder-selector fb-type">
+						<option value="">Select</option>
+						<?php
+						foreach ( $setion_flex_options['wrapping'] as $key => $option ) {
+							echo '<option value="' . $key . '"">' . $option . '</option>';
+						}
+						?>
+					</select>
+				</div>
+				<div  id="flexwork-content_justification" class="flex-attr-area">content justification:<br/>
+					<select id="flexwork-content_justification-select" class="flex-builder-selector fb-type">
+						<option value="">Select</option>
+						<?php
+						foreach ( $setion_flex_options['content_justification'] as $key => $option ) {
+							echo '<option value="' . $key . '"">' . $option . '</option>';
+						}
+						?>
+					</select>
+				</div>
+				<div  id="flexwork-content_alignment" class="flex-attr-area">content alignment:<br/>
+					<select id="flexwork-content_alignment-select" class="flex-builder-selector fb-type">
+						<option value="">Select</option>
+						<?php
+						foreach ( $setion_flex_options['content_alignment'] as $key => $option ) {
+							echo '<option value="' . $key . '"">' . $option . '</option>';
+						}
+						?>
+					</select>
+				</div>
+				<div  id="flexwork-items_positioning" class="flex-attr-area">items position:<br/>
+					<select id="flexwork-items_positioning-select" class="flex-builder-selector fb-type">
+						<option value="">Select</option>
+						<?php
+						foreach ( $setion_flex_options['items_positioning'] as $key => $option ) {
+							echo '<option value="' . $key . '"">' . $option . '</option>';
+						}
+						?>
+					</select>
+				</div>
+				<div  id="flexwork-pad" class="flex-attr-area">padding:<br/>
+					<select id="flexwork-pad-type-select" class="flex-builder-selector fb-type fb-with-child">
+						<option value="">Select</option>
+						<?php
+						foreach ( $setion_flex_options['pad']['type'] as $key => $option ) {
+							echo '<option value="' . $key . '"">' . $option . '</option>';
+						}
+						?>
+					</select>
+					<select id="flexwork-pad-position-select" class="flex-builder-selector fb-type fb-with-child">
+						<option value="">Select</option>
+						<?php
+						foreach ( $setion_flex_options['pad']['position'] as $key => $option ) {
+							echo '<option value="' . $key . '"">' . $option . '</option>';
+						}
+						?>
+					</select>
+				</div>
+				<div  id="flexwork-round" class="flex-attr-area">rounding:<br/>
+					<select id="flexwork-round-type-select" class="flex-builder-selector fb-type fb-with-child">
+						<option value="">Select</option>
+						<?php
+						foreach ( $setion_flex_options['round']['type'] as $key => $option ) {
+							echo '<option value="' . $key . '"">' . $option . '</option>';
+						}
+						?>
+					</select>
+					<select id="flexwork-round-position-select" class="flex-builder-selector fb-type fb-with-child">
+						<option value="">Select</option>
+						<?php
+						foreach ( $setion_flex_options['round']['position'] as $key => $option ) {
+							echo '<option value="' . $key . '"">' . $option . '</option>';
+						}
+						?>
+					</select>
+				</div>
+				<button id="fw_class_at">@</button>
 
-			<label for="flexwork-area_type">type:</label>
-				<select id="flexwork-area_type">
-					<?php
-					foreach ( $setion_flex_options['area_type'] as $key => $option ) {
-						echo '<option value="' . $key . '"">' . $key . '</option>';
-					}
-					?>
-				</select>
-			</label>
-			<label for="flexwork-wrapping">type:</label>
-				<select id="flexwork-wrapping">
-					<?php
-					foreach ( $setion_flex_options['wrapping'] as $key => $option ) {
-						echo '<option value="' . $key . '"">' . $key . '</option>';
-					}
-					?>
-				</select>
-			</label>
-			<label for="flexwork-content_justification">type:</label>
-				<select id="flexwork-content_justification">
-					<?php
-					foreach ( $setion_flex_options['content_justification'] as $key => $option ) {
-						echo '<option value="' . $key . '"">' . $key . '</option>';
-					}
-					?>
-				</select>
-			</label>
-
-			<label for="flexwork-content_alignment">type:</label>
-				<select id="flexwork-content_alignment">
-					<?php
-					foreach ( $setion_flex_options['content_alignment'] as $key => $option ) {
-						echo '<option value="' . $key . '"">' . $key . '</option>';
-					}
-					?>
-				</select>
-			</label>
-
-			<label for="flexwork-items_positioning">type:</label>
-				<select id="flexwork-items_positioning">
-					<?php
-					foreach ( $setion_flex_options['items_positioning'] as $key => $option ) {
-						echo '<option value="' . $key . '"">' . $key . '</option>';
-					}
-					?>
-				</select>
-			</label>
-
-			<label for="flexwork-pad">type:</label>
-				<select id="flexwork-pad-type">
-					<?php
-					foreach ( $setion_flex_options['pad']['type'] as $key => $option ) {
-						echo '<option value="' . $key . '"">' . $key . '</option>';
-					}
-					?>
-				</select>
-				<select id="flexwork-pad-position">
-					<?php
-					foreach ( $setion_flex_options['pad']['position'] as $key => $option ) {
-						echo '<option value="' . $key . '"">' . $key . '</option>';
-					}
-					?>
-				</select>
-			</label>
-
-			<label for="flexwork-round">type:</label>
-				<select id="flexwork-round-type">
-					<?php
-					foreach ( $setion_flex_options['round']['type'] as $key => $option ) {
-						echo '<option value="' . $key . '"">' . $key . '</option>';
-					}
-					?>
-				</select>
-				<select id="flexwork-round-position">
-					<?php
-					foreach ( $setion_flex_options['round']['position'] as $key => $option ) {
-						echo '<option value="' . $key . '"">' . $key . '</option>';
-					}
-					?>
-				</select>
-			</label>
-			<button id="fw_class_at">@</button>
-			<label for="flexwork-at-sizes">type:</label>
-				<select id="flexwork-at-sizes">
-					<?php
-					foreach ( $at_sizes as $key => $option ) {
-						echo '<option value="' . $key . '"">' . $key . '</option>';
-					}
-					?>
-				</select>
-			</label>
+				<div  id="flexwork-at-sizes" class="flex-attr-area">at size:<br/>
+					<select id="flexwork-at-sizes-select" class="flex-builder-selector fb-type fb-with-child">
+						<option value="">Select</option>
+						<?php
+						foreach ( $at_sizes as $key => $option ) {
+							echo '<option value="at-' . $key . '"">' . $option . '</option>';
+						}
+						?>
+					</select>
+				</div>
+				<button id="fw_add_class">+ add</button>
+			</div>
 
 		<?php
 
 
-		return "<input type='text' value='TEST'/>";
+		return "<input type='text' id='fexwork-classes' name='" . $field_name . "' class='full-width' value='" . $section_class_str . "'/>";
 	}
 }
 
@@ -947,10 +972,10 @@ function fais_spine_output_builder_section_layout( $section_name, $ttfmake_secti
  * @param int $column
  */
 function fais_spine_output_builder_section_flextree( $section_name, $ttfmake_section_data ) {
-	if ( isset( $ttfmake_section_data['data']['section-flextype'] ) ) {
+	if ( isset( $ttfmake_section_data['data']['section-flextype'] ) && "" !== $ttfmake_section_data['data']['section-flextype'] ) {
 		$current = $ttfmake_section_data['data']['section-flextype'];
 	} else {
-		$current = "";
+		$current = "flex-row";
 	}
 
 	?>
@@ -959,7 +984,7 @@ function fais_spine_output_builder_section_flextree( $section_name, $ttfmake_sec
 
 	<div class="wsuwp-builder-meta">
 
-<?php echo Fais_Spine_Builder_Custom::build_flexwork_sectional_inputs( 'flex-row wrap-reverse justify-start content-start items-start pad-airy-TB round-wide-L round-no-at-414 column-at-960 pad-no-L-at-414' ); ?>
+<?php echo Fais_Spine_Builder_Custom::build_flexwork_sectional_inputs( $section_name."[section-flextype]", $current ); ?>
 
 		<h3>Flexwork section classes</h3>
 		<input type="text" value="<?php $current?>" />
