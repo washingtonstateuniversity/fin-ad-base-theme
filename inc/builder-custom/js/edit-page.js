@@ -83,7 +83,7 @@
 
 		bindEvents: function() {
 			var self = this;
-				$(".ttfmake-section-faiswsuwpsidebarright").each(function(idn,val){
+				/*$(".ttfmake-section-faiswsuwpsidebarright").each(function(idn,val){
 					//$(this).find(".wsuwp-spine-halves-stage").addClass("flex-row");
 					$(this).find(".wsuwp-spine-builder-column-position-1").addClass("grid-part fifths-3");
 					$(this).find(".wsuwp-spine-builder-column-position-2").addClass("grid-part fifths-2");
@@ -94,22 +94,22 @@
 					//$(this).find(".wsuwp-spine-halves-stage").addClass("flex-row");
 					$(this).find(".wsuwp-spine-builder-column-position-1").addClass("grid-part fifths-2");
 					$(this).find(".wsuwp-spine-builder-column-position-2").addClass("grid-part fifths-3");
-				});
+				});*/
 
 
-				$(".ttfmake-section").each(function(){
+				$(".ttfmake-section-body > .spine-builder-overlay").each(function(){
 					var _selection = $(this);
 
 					_selection.find(".fw-builder").hide();
 					_selection.find(".fb-type").closest(".flex-attr-area").hide();
-					_selection.find("#fw_add_class").hide();
+					_selection.find(".fw_add_class").hide();
 
-					_selection.find('#start_add_fw_class').show();
-					_selection.find('#start_add_fw_class').on("click", function(e){
+					_selection.find('.start_add_fw_class').show();
+					_selection.find('.start_add_fw_class').on("click", function(e){
 						e.preventDefault();
 						_selection.find(".fb-type").find(":selected").attr("selected",false).removeAttr("selected");
 						_selection.find(".fb-type").closest(".flex-attr-area").hide();
-						_selection.find('#flexwork-type').show();
+						_selection.find('.flexwork-type').show();
 						_selection.find(".fw-builder").show();
 					});
 
@@ -118,18 +118,18 @@
 						if( $(this).is(".fb-type-chooser") ){
 							_selection.find(".fb-type").closest(".flex-attr-area").hide();
 						}
-						_selection.find("#flexwork-"+val).show();
+						_selection.find(".flexwork-"+val).show();
 
-						_selection.find("#fw_class_at").show();
-						_selection.find("#fw_add_class").show();
+						_selection.find(".fw_class_at").show();
+						_selection.find(".fw_add_class").show();
 					});
-					_selection.find("#fw_class_at").on("click", function(e){
+					_selection.find(".fw_class_at").on("click", function(e){
 						e.preventDefault();
-						_selection.find("#flexwork-at-sizes").show();
+						_selection.find(".flexwork-at-sizes").show();
 					});
 
 
-					_selection.find("#fw_add_class").on("click", function(e){
+					_selection.find(".fw_add_class").on("click", function(e){
 						e.preventDefault();
 						var tar = $(this);
 						var _class = " ";
@@ -144,23 +144,92 @@
 								_class += (" " !== _class ? "-":" ") + val;
 							}
 						});
-						_selection.find("#fexwork-classes").val( _selection.find("#fexwork-classes").val() + _class );
+						_selection.find(".fexwork-classes").val( _selection.find(".fexwork-classes").val() + _class );
 						self.flexSectionChange( tar.closest(".ttfmake-section").find(".wsuwp-spine-halves-stage"), function(){
-							tar.closest(".ttfmake-section").find(".wsuwp-spine-halves-stage").addClass( _selection.find("#fexwork-classes").val() );
+							tar.closest(".ttfmake-section").find(".wsuwp-spine-halves-stage").addClass( _selection.find(".fexwork-classes").val() );
 						});
 						_selection.find(".fb-type-chooser").find(":selected").attr("selected",false).removeAttr("selected");
 						_selection.find(".fb-type").find(":selected").attr("selected",false).removeAttr("selected");
 						_selection.find(".fb-type").closest(".flex-attr-area").hide();
-						_selection.find("#fw_add_class").hide();
-						_selection.find("#fw_class_at").hide();
+						_selection.find(".fw_add_class").hide();
+						_selection.find(".fw_class_at").hide();
 						_selection.find(".fw-builder").hide();
 
 					});
 
-					_selection.find("#fexwork-classes").on("change", function(){
+					_selection.find(".fexwork-classes").on("change", function(){
 						var tar = $(this);
 						self.flexSectionChange( tar.closest(".ttfmake-section").find(".wsuwp-spine-halves-stage"), function(){
-							tar.closest(".ttfmake-section").find(".wsuwp-spine-halves-stage").addClass( _selection.find("#fexwork-classes").val() );
+							tar.closest(".ttfmake-section").find(".wsuwp-spine-halves-stage").addClass( _selection.find(".fexwork-classes").val() );
+						});
+					});
+
+				});
+
+				$(".wsuwp-spine-builder-column").each(function(){
+					var _selection = $(this);
+
+					_selection.find(".fw-builder").hide();
+					_selection.find(".fb-type").closest(".flex-attr-area").hide();
+					_selection.find(".fw_add_class").hide();
+
+					_selection.find('.start_add_fw_class').show();
+					_selection.find('.start_add_fw_class').on("click", function(e){
+						e.preventDefault();
+						_selection.find(".fb-type").find(":selected").attr("selected",false).removeAttr("selected");
+						_selection.find(".fb-type").closest(".flex-attr-area").hide();
+						_selection.find('.flexwork-type').show();
+						_selection.find(".fw-builder").show();
+					});
+
+					_selection.find("select.flex-builder-selector").on("change", function(){
+						var val = $(this).val();
+						if( $(this).is(".fb-type-chooser") ){
+							_selection.find(".fb-type").closest(".flex-attr-area").hide();
+						}
+						_selection.find(".flexwork-"+val).show();
+
+						_selection.find(".fw_class_at").show();
+						_selection.find(".fw_add_class").show();
+					});
+					_selection.find(".fw_class_at").on("click", function(e){
+						e.preventDefault();
+						_selection.find(".flexwork-at-sizes").show();
+					});
+
+
+					_selection.find(".fw_add_class").on("click", function(e){
+						e.preventDefault();
+						var tar = $(this);
+						var _class = " ";
+						var type_val = _selection.find(".fb-type-chooser").val();
+						if( "pad" === type_val || "round" === type_val ){
+							_class += type_val;
+						}
+
+						_selection.find(".fw-builder select.fb-type:visible").each(function(){
+							var val = $(this).val();
+							if( "_" !== val && "" !== val ){
+								_class += (" " !== _class ? "-":" ") + val;
+							}
+						});
+						_selection.find(".fexwork-classes").val( _selection.find(".fexwork-classes").val() + _class );
+						self.flexSectionChange( tar.closest(".wsuwp-spine-builder-column"), function(){
+							tar.closest(".wsuwp-spine-builder-column").addClass( _selection.find(".fexwork-classes").val() );
+						});
+						_selection.find(".fb-type-chooser").find(":selected").attr("selected",false).removeAttr("selected");
+						_selection.find(".fb-type").find(":selected").attr("selected",false).removeAttr("selected");
+						_selection.find(".fb-type").closest(".flex-attr-area").hide();
+						_selection.find(".fw_add_class").hide();
+						_selection.find(".fw_class_at").hide();
+						_selection.find(".fw-builder").hide();
+
+					});
+
+					_selection.find(".fexwork-classes").on("change", function(){
+						var tar = $(this);
+						self.flexSectionChange( tar.closest(".wsuwp-spine-builder-column"), function(){
+							tar.closest(".wsuwp-spine-builder-column").addClass( _selection.find("#fexwork-classes").val() );
 						});
 					});
 

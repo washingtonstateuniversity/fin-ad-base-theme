@@ -110,7 +110,7 @@ if ( '' === $section_id ) {
 ?>
 	<section id="<?php echo esc_attr( $section_id ); ?>" <?php echo $section_wrapper_html; ?> data-type="<?=$section_type; ?>" class="<?php echo esc_attr( $section_wrapper_classes ); ?><?php echo esc_attr( $section_layout ); ?> <?php echo esc_attr( $section_classes ); ?>">
 		<?php
-		var_dump($column_size_defaults);
+
 		if ( ! empty( $data_columns ) ) {
 
 			$count = 1;
