@@ -10,9 +10,9 @@ spine_load_section_header();
 		<a href="#" class="spine-builder-column-configure"><span>Configure this column</span></a>
 		<div class="ttfmake-titlewrap">
 			<input placeholder="<?php esc_attr_e( 'Enter title here' ); ?>" type="text" name="<?php echo $section_name; ?>[title]" class="ttfmake-title ttfmake-section-header-title-input" value="<?php
-			if ( isset( $ttfmake_section_data['data']['title'] ) ) {
-				echo esc_attr( htmlspecialchars( $ttfmake_section_data['data']['title'] ) );
-			} ?>" autocomplete="off" />
+	if ( isset( $ttfmake_section_data['data']['title'] ) ) {
+		echo esc_attr( htmlspecialchars( $ttfmake_section_data['data']['title'] ) );
+	} ?>" autocomplete="off" />
 		</div>
 	</div>
 
@@ -33,11 +33,11 @@ spine_load_section_header();
        class="ttfmake-section-state"
        name="<?php echo $section_name; ?>[state]"
        value="<?php
-if ( isset( $ttfmake_section_data['data']['state'] ) ) {
-	echo esc_attr( $ttfmake_section_data['data']['state'] );
-} else {
-	echo 'open';
-} ?>" />
+		if ( isset( $ttfmake_section_data['data']['state'] ) ) {
+			echo esc_attr( $ttfmake_section_data['data']['state'] );
+		} else {
+			echo 'open';
+		} ?>" />
 </div>
 <div class="spine-builder-overlay">
 	<div class="spine-builder-overlay-wrapper">
@@ -46,15 +46,15 @@ if ( isset( $ttfmake_section_data['data']['state'] ) ) {
 			<div class="spine-builder-overlay-close">Done</div>
 		</div>
 		<div class="spine-builder-overlay-body">
-			<?php
-			fais_spine_output_builder_section_layout( $section_name, $ttfmake_section_data );
-			fais_spine_output_builder_section_classes( $section_name, $ttfmake_section_data );
-			fais_spine_output_builder_section_wrapper( $section_name, $ttfmake_section_data );
-			fais_spine_output_builder_section_label( $section_name, $ttfmake_section_data );
-			fais_spine_output_builder_section_background( $section_name, $ttfmake_section_data );
+    <?php
+	fais_spine_output_builder_section_layout( $section_name, $ttfmake_section_data );
+	fais_spine_output_builder_section_classes( $section_name, $ttfmake_section_data );
+	fais_spine_output_builder_section_wrapper( $section_name, $ttfmake_section_data );
+	fais_spine_output_builder_section_label( $section_name, $ttfmake_section_data );
+	fais_spine_output_builder_section_background( $section_name, $ttfmake_section_data );
 
-			do_action( 'spine_output_builder_section', $section_name, $ttfmake_section_data, 'h1-header' );
-			?>
+	do_action( 'spine_output_builder_section', $section_name, $ttfmake_section_data, 'h1-header' );
+	?>
 		</div>
 	</div>
 </div>

@@ -26,14 +26,13 @@ class Fais_Spine_Builder_Custom
 			return;
 		}
 
-		wp_dequeue_script('ttfmake-admin-edit-page');
+		wp_dequeue_script( 'ttfmake-admin-edit-page' );
 		wp_enqueue_script( 'fais-ttfmake-admin-edit-page', get_stylesheet_directory_uri() . '/inc/builder-custom/js/edit-page.js', array( 'jquery' ), spine_get_script_version(), true );
 
 		wp_enqueue_style( 'flexwork-devices', get_stylesheet_directory_uri() . '/TempAssests/css/flexwork-devices.css' );
 
 		wp_enqueue_script( 'flexibility', get_stylesheet_directory_uri() . '/TempAssests/js/flexibility.js', array( 'jquery' ), spine_get_script_version(), true );
 		wp_script_add_data( 'flexibility', 'conditional', 'lte IE 10' );
-
 
 	}
 
@@ -573,7 +572,7 @@ class Fais_Spine_Builder_Custom
 		foreach ( $section_classes as $k => $class ) { // loop over class list
 			foreach ( $setion_flex_options as $key => $item ) { // loop through options
 				foreach ( $item as $subkey => $subitem ) { // loop though options values for match
-					if( 0 === strpos( $class, $key ) ){ // if the key matches first then kick into the sub arrays
+					if ( 0 === strpos( $class, $key ) ) { // if the key matches first then kick into the sub arrays
 						foreach ( $subitem as $partkey => $partoptions ) {
 							if ( false !== strpos( $class, $partkey ) ) {
 								if ( false !== strpos( $class, '-at-' ) ) {
@@ -585,7 +584,7 @@ class Fais_Spine_Builder_Custom
 								}
 							}
 						}
-					}elseif( !is_array($subitem)) {
+					} elseif ( ! is_array( $subitem ) ) {
 						if ( false !== strpos( $class, $subitem ) ) {
 							if ( false !== strpos( $class, '-at-' ) ) {
 								$flex_used['at-sizes'][] = $class;
@@ -727,8 +726,6 @@ class Fais_Spine_Builder_Custom
 			</div>
 
 		<?php
-
-
 		return "<input type='text' name='" . $field_name . "' class='fexwork-classes full-width' value='" . $section_class_str . "'/>";
 	}
 	public function build_flexwork_column_inputs( $field_name, $column_class_str = '' ) {
@@ -737,14 +734,14 @@ class Fais_Spine_Builder_Custom
 			'width' => [
 				'thirds' => [ '1' => '1', '2' => '2', '3' => '3' ],
 				'fourths' => [ '1' => '1', '2' => '2', '3' => '3', '4' => '4' ],
-				'fifths' => [ '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5'=>'5' ],
-				'sixths' => [ '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5'=>'5', '6'=>'6' ],
-				'eigths' => [ '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5'=>'5', '6'=>'6', '7'=>'7', '8'=>'8' ],
-				'ninths' => [ '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5'=>'5', '6'=>'6', '7'=>'7', '8'=>'8', '9'=>'9' ],
-				'tenths' => [ '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5'=>'5', '6'=>'6', '7'=>'7', '8'=>'8', '9'=>'9', '10'=>'10' ],
-				'twelfths' => [ '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5'=>'5', '6'=>'6', '7'=>'7', '8'=>'8', '9'=>'9', '10'=>'10', '11','11', '12'=>'12' ],
+				'fifths' => [ '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5' ],
+				'sixths' => [ '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6' ],
+				'eigths' => [ '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8' ],
+				'ninths' => [ '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9' ],
+				'tenths' => [ '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10' ],
+				'twelfths' => [ '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10', '11','11', '12' => '12' ],
 			],
-			'order' => [ '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5'=>'5', '6'=>'6', '7'=>'7', '8'=>'8', '9'=>'9', '10'=>'10', '11','11', '12'=>'12' ],
+			'order' => [ '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10', '11','11', '12' => '12' ],
 			'pad' => [
 				'type' => [ '_' => 'inherited', 'airy' => 'airy (2em)', 'tight' => 'tight (1em)', 'no' => 'remove (0em)' ],
 				'position' => [ '_' => 'All', 'L' => 'Left', 'R' => 'Right', 'T' => 'Top', 'B' => 'Bottom', 'LR' => 'Flanks/Sides', 'TB' => 'Ends/Head-foot' ],
@@ -768,7 +765,7 @@ class Fais_Spine_Builder_Custom
 		foreach ( $column_classes as $k => $class ) { // loop over class list
 			foreach ( $setion_flex_options as $key => $item ) { // loop through options
 				foreach ( $item as $subkey => $subitem ) { // loop though options values for match
-					if( 0 === strpos( $class, $key ) ){ // if the key matches first then kick into the sub arrays
+					if ( 0 === strpos( $class, $key ) ) { // if the key matches first then kick into the sub arrays
 						foreach ( $subitem as $partkey => $partoptions ) {
 							if ( false !== strpos( $class, $partkey ) ) {
 								if ( false !== strpos( $class, '-at-' ) ) {
@@ -780,7 +777,7 @@ class Fais_Spine_Builder_Custom
 								}
 							}
 						}
-					}elseif( !is_array($subitem)) {
+					} elseif ( ! is_array( $subitem ) ) {
 						if ( false !== strpos( $class, $subitem ) ) {
 							if ( false !== strpos( $class, '-at-' ) ) {
 								$flex_used['at-sizes'][] = $class;
@@ -908,8 +905,6 @@ class Fais_Spine_Builder_Custom
 			</div>
 
 		<?php
-
-
 		return "<input type='text' name='" . $field_name . "' class='fexwork-classes full-width' value='" . $column_class_str . "'/>";
 	}
 }
@@ -1071,7 +1066,27 @@ function fais_spine_output_builder_column_classes( $column_name, $section_data, 
  * @param int $column
  */
 function fais_spine_output_builder_column_type( $column_name, $section_data, $column = false ) {
-	$column_type_default = 'flex-row';
+	$section_type = $section_data['section']['id'];
+
+	$column_type_default = 'flex-row grid-part';
+
+	if ( 'faiswsuwphalves' === $section_type ) {
+		$column_size_defaults = [ 1 => 'fourths-2', 2 => ' fourths-2' ];
+	} elseif ( 'faiswsuwpsidebarright' === $section_type ) {
+		$column_size_defaults = [ 1 => 'fifths-3', 2 => 'fifths-2' ];
+	} elseif ( 'faiswsuwpsidebarleft' === $section_type ) {
+		$column_size_defaults = [ 1 => 'fifths-2', 2 => 'fifths-3' ];
+	} elseif ( 'faiswsuwpthirds' === $section_type ) {
+		$column_size_defaults = [ 1 => 'thirds-1',2 => 'thirds-1', 3 => 'thirds-1' ];
+	} elseif ( 'faiswsuwpquarters' === $section_type ) {
+		$column_size_defaults = [ 1 => 'fourths-1', 2 => 'fourths-1', 3 => 'fourths-1', 4 => 'fourths-1' ];
+	} else {
+		$column_size_defaults = [ 1 => 'fourths-4' ];
+	}
+	if ( false !== $column  ) {
+		$column_type_default += $column_size_defaults[ $column ];
+	}
+
 	if ( $column ) {
 		$column_type = ( isset( $section_data['data']['columns'][ $column ]['column-type'] ) ) ? $section_data['data']['columns'][ $column ]['column-type'] : '';
 	} else {
@@ -1080,7 +1095,7 @@ function fais_spine_output_builder_column_type( $column_name, $section_data, $co
 
 	?>
 	<div class="wsuwp-builder-meta">
-		<?php echo Fais_Spine_Builder_Custom::build_flexwork_column_inputs( $column."[column-type]", $column_type ); ?>
+		<?php echo Fais_Spine_Builder_Custom::build_flexwork_column_inputs( $column.'[column-type]', $column_type ); ?>
 	</div>
 	<?php
 }
@@ -1146,10 +1161,10 @@ function fais_spine_output_builder_section_layout( $section_name, $ttfmake_secti
  * @param int $column
  */
 function fais_spine_output_builder_section_flextree( $section_name, $ttfmake_section_data ) {
-	if ( isset( $ttfmake_section_data['data']['section-flextype'] ) && "" !== $ttfmake_section_data['data']['section-flextype'] ) {
+	if ( isset( $ttfmake_section_data['data']['section-flextype'] ) && '' !== $ttfmake_section_data['data']['section-flextype'] ) {
 		$current = $ttfmake_section_data['data']['section-flextype'];
 	} else {
-		$current = "flex-row";
+		$current = 'flex-row';
 	}
 
 	?>
@@ -1158,7 +1173,7 @@ function fais_spine_output_builder_section_flextree( $section_name, $ttfmake_sec
 
 	<div class="wsuwp-builder-meta">
 
-<?php echo Fais_Spine_Builder_Custom::build_flexwork_sectional_inputs( $section_name."[section-flextype]", $current ); ?>
+<?php echo Fais_Spine_Builder_Custom::build_flexwork_sectional_inputs( $section_name.'[section-flextype]', $current ); ?>
 
 		<h3>Flexwork section classes</h3>
 		<input type="text" value="<?php $current?>" />

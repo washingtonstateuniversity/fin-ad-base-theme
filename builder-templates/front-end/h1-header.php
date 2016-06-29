@@ -74,9 +74,9 @@ if ( '' === $section_id ) {
 ?>
 <section id="<?php echo esc_attr( $section_id ); ?>" class="row single h1-header <?php echo esc_attr( $section_classes ); ?>">
 	<div style="<?php echo $column_background; ?>" class="column one <?php echo esc_attr( $column_classes ); ?>">
-		<?php if ( ! empty( $ttfmake_section_data['title'] ) ) : ?>
+    <?php if ( ! empty( $ttfmake_section_data['title'] ) ) : ?>
 			<<?php echo $header_level; ?>><?php echo apply_filters( 'the_title', $ttfmake_section_data['title'] ); ?></<?php echo $header_level; ?>>
-		<?php endif; ?>
+    <?php endif; ?>
 	</div>
 </section>
 <?php

@@ -14,19 +14,19 @@ if ( in_array( $ttfmake_section_data['section']['id'], array( 'faiswsuwphalves',
 	$wsuwp_range = 1;
 }
 
-	if( 'faiswsuwphalves' === $ttfmake_section_data['section']['id'] ){
-		$column_size_defaults=[1=>"fourths-2",2=>"fourths-2"];
-	} elseif ( 'faiswsuwpsidebarright' === $ttfmake_section_data['section']['id'] ) {
-		$column_size_defaults=[1=>"fifths-3",2=>"fifths-2"];
-	} elseif ( 'faiswsuwpsidebarleft' === $ttfmake_section_data['section']['id'] ) {
-		$column_size_defaults=[1=>"fifths-2",2=>"fifths-3"];
-	} elseif ( 'faiswsuwpthirds' === $ttfmake_section_data['section']['id'] ) {
-		$column_size_defaults=[1=>"thirds-1",2=>"thirds-1",3=>"thirds-1"];
-	} elseif ( 'faiswsuwpquarters' === $ttfmake_section_data['section']['id'] ) {
-		$column_size_defaults=[1=>"fourths-1",2=>"fourths-1",3=>"fourths-1",4=>"fourths-1"];
-	} else {
-		$column_size_defaults=[1=>"fourths-4"];
-	}
+if ( 'faiswsuwphalves' === $ttfmake_section_data['section']['id'] ) {
+	$column_size_defaults = [ 1 => 'fourths-2',2 => 'fourths-2' ];
+} elseif ( 'faiswsuwpsidebarright' === $ttfmake_section_data['section']['id'] ) {
+	$column_size_defaults = [ 1 => 'fifths-3',2 => 'fifths-2' ];
+} elseif ( 'faiswsuwpsidebarleft' === $ttfmake_section_data['section']['id'] ) {
+	$column_size_defaults = [ 1 => 'fifths-2',2 => 'fifths-3' ];
+} elseif ( 'faiswsuwpthirds' === $ttfmake_section_data['section']['id'] ) {
+	$column_size_defaults = [ 1 => 'thirds-1',2 => 'thirds-1',3 => 'thirds-1' ];
+} elseif ( 'faiswsuwpquarters' === $ttfmake_section_data['section']['id'] ) {
+	$column_size_defaults = [ 1 => 'fourths-1',2 => 'fourths-1',3 => 'fourths-1',4 => 'fourths-1' ];
+} else {
+	$column_size_defaults = [ 1 => 'fourths-4' ];
+}
 
 
 $section_flextype = ( isset( $ttfmake_section_data['data']['section-flextype'] ) ) ? $ttfmake_section_data['data']['section-flextype'] : 'flex-row';
@@ -69,7 +69,7 @@ $section_order  = ( ! empty( $ttfmake_section_data['data']['columns-order'] ) ) 
     content: "Column area";
     position: absolute;
     top: -20px;
-    left: -1px;
+    left: calc( 50% - 44px);
     background: #a8a8a8;
     color: #fff;
     padding: 5px 10px;
@@ -80,27 +80,27 @@ $section_order  = ( ! empty( $ttfmake_section_data['data']['columns-order'] ) ) 
 
 </style>
 	<div class="wsuwp-spine-halves-stage <?php echo $section_flextype ?>">
-		<?php $j = 1; foreach ( $section_order as $key => $i ) : ?>
-			<?php
-			$column_name = $section_name . '[columns][' . $i . ']';
-			$title    = ( isset( $ttfmake_section_data['data']['columns'][ $i ]['title'] ) ) ? $ttfmake_section_data['data']['columns'][ $i ]['title'] : '';
-			$content  = ( isset( $ttfmake_section_data['data']['columns'][ $i ]['content'] ) ) ? $ttfmake_section_data['data']['columns'][ $i ]['content'] : '';
-			$visible  = ( isset( $ttfmake_section_data['data']['columns'][ $i ]['toggle'] ) ) ? $ttfmake_section_data['data']['columns'][ $i ]['toggle'] : 'visible';
+    <?php $j = 1; foreach ( $section_order as $key => $i ) : ?>
+    <?php
+	$column_name = $section_name . '[columns][' . $i . ']';
+	$title    = ( isset( $ttfmake_section_data['data']['columns'][ $i ]['title'] ) ) ? $ttfmake_section_data['data']['columns'][ $i ]['title'] : '';
+	$content  = ( isset( $ttfmake_section_data['data']['columns'][ $i ]['content'] ) ) ? $ttfmake_section_data['data']['columns'][ $i ]['content'] : '';
+	$visible  = ( isset( $ttfmake_section_data['data']['columns'][ $i ]['toggle'] ) ) ? $ttfmake_section_data['data']['columns'][ $i ]['toggle'] : 'visible';
 
-			$column_flextype  = ( isset( $ttfmake_section_data['data']['columns'][ $i ]['column_flextype'] ) ) ? $ttfmake_section_data['data']['columns'][ $i ]['column_flextype'] : $column_size_defaults[$i];
+	$column_flextype  = ( isset( $ttfmake_section_data['data']['columns'][ $i ]['column_flextype'] ) ) ? $ttfmake_section_data['data']['columns'][ $i ]['column_flextype'] : $column_size_defaults[ $i ];
 
-			if ( ! in_array( $visible, array( 'visible', 'invisible' ), true ) ) {
-				$visible = 'visible';
-			}
+	if ( ! in_array( $visible, array( 'visible', 'invisible' ), true ) ) {
+		$visible = 'visible';
+	}
 
-			if ( 'invisible' === $visible ) {
-				$column_style = 'style="display: none;"';
-				$toggle_class = 'wsuwp-toggle-closed';
-			} else {
-				$column_style = '';
-				$toggle_class = '';
-			}
-			?>
+	if ( 'invisible' === $visible ) {
+		$column_style = 'style="display: none;"';
+		$toggle_class = 'wsuwp-toggle-closed';
+	} else {
+		$column_style = '';
+		$toggle_class = '';
+	}
+	?>
 			<div class="wsuwp-spine-builder-column wsuwp-spine-builder-column-position-<?php echo $j; ?> <?php echo $column_flextype?>" data-id="<?php echo $i; ?>">
 				<div title="<?php esc_attr_e( 'Drag-and-drop this column into place', 'ttfmake' ); ?>" class="ttfmake-sortable-handle">
 					<div class="sortable-background">
@@ -127,9 +127,9 @@ $section_order  = ( ! empty( $ttfmake_section_data['data']['columns-order'] ) ) 
 				);
 
 				if ( true === $ttfmake_is_js_template ) : ?>
-					<?php ttfmake_get_builder_base()->wp_editor( '', 'ttfmakeeditortextcolumn' . $i . 'temp', $editor_settings ); ?>
+        <?php ttfmake_get_builder_base()->wp_editor( '', 'ttfmakeeditortextcolumn' . $i . 'temp', $editor_settings ); ?>
 				<?php else : ?>
-					<?php ttfmake_get_builder_base()->wp_editor( $content, 'ttfmakeeditortext' . $ttfmake_section_data['data']['id'] . $i, $editor_settings ); ?>
+        <?php ttfmake_get_builder_base()->wp_editor( $content, 'ttfmakeeditortext' . $ttfmake_section_data['data']['id'] . $i, $editor_settings ); ?>
 				<?php endif; ?>
 				</div>
 				<div class="spine-builder-column-overlay">
@@ -139,17 +139,17 @@ $section_order  = ( ! empty( $ttfmake_section_data['data']['columns-order'] ) ) 
 							<div class="spine-builder-column-overlay-close">Done</div>
 						</div>
 						<div class="spine-builder-overlay-body">
-							<?php
-							fais_spine_output_builder_column_type( $column_name, $ttfmake_section_data, $j );
-							fais_spine_output_builder_column_classes( $column_name, $ttfmake_section_data, $j );
-							?>
+        <?php
+		fais_spine_output_builder_column_type( $column_name, $ttfmake_section_data, $j );
+		fais_spine_output_builder_column_classes( $column_name, $ttfmake_section_data, $j );
+		?>
 						</div>
 					</div>
 				</div>
 			</div>
-			<?php
-			$j++;
-		endforeach; ?>
+    <?php
+	$j++;
+	endforeach; ?>
 	</div>
 
 	<div class="clear"></div>
