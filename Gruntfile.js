@@ -86,7 +86,15 @@ module.exports = function(grunt) {
                 bin: "vendor/bin/phpcs --extensions=php --ignore=\"*/vendor/*,*/node_modules/*\"",
                 standard: "phpcs.ruleset.xml"
             }
-        }
+        },
+		phpcbf: {
+			options: {
+				bin: "vendor/bin/phpcbf --extensions=php --ignore=\"*/vendor/*,*/node_modules/*\"",
+			},
+			files: {
+			src:'./'
+			}
+		},
 
     });
 
@@ -96,6 +104,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks( "grunt-contrib-clean" );
     grunt.loadNpmTasks( "grunt-contrib-watch" );
     grunt.loadNpmTasks( "grunt-phpcs" );
+	grunt.loadNpmTasks( 'grunt-phpcbf' );
 
     // Default task(s).
     grunt.registerTask("default", ["concat", "postcss", "csslint", "clean"]);
