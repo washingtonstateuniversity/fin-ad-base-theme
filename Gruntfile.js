@@ -90,6 +90,7 @@ module.exports = function(grunt) {
 		phpcbf: {
 			options: {
 				bin: "vendor/bin/phpcbf --extensions=php --ignore=\"*/vendor/*,*/node_modules/*\"",
+                standard: "phpcs.ruleset.xml"
 			},
 			files: {
 			src:'./'
