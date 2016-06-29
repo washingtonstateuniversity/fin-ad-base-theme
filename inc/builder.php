@@ -1015,7 +1015,7 @@ function fais_spine_output_builder_section_label( $section_name, $ttfmake_sectio
  * @param int $column
  */
 function fais_spine_output_builder_column_classes( $column_name, $section_data, $column = false ) {
-	$header_level_default = ( 'wsuwpheader' === $section_data['section']['id'] ) ? 'h1' : 'h2';
+	$header_level_default = ( 'faiswsuwpheader' === $section_data['section']['id'] ) ? 'h1' : 'h2';
 	if ( $column ) {
 		$column_classes = ( isset( $section_data['data']['columns'][ $column ]['column-classes'] ) ) ? $section_data['data']['columns'][ $column ]['column-classes'] : '';
 		$header_level   = ( isset( $section_data['data']['columns'][ $column ]['header-level'] ) ) ? $section_data['data']['columns'][ $column ]['header-level'] : $header_level_default;
