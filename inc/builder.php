@@ -302,10 +302,6 @@ class Fais_Spine_Builder_Custom
 			$clean_data['section-classes'] = $this->clean_classes( $data['section-classes'] );
 		}
 
-		if ( isset( $data['section-wrapper'] ) ) {
-			$clean_data['section-wrapper'] = $this->clean_classes( $data['section-wrapper'] );
-		}
-
 		if ( isset( $data['column-classes'] ) ) {
 			$clean_data['column-classes'] = $this->clean_classes( $data['column-classes'] );
 		}
@@ -412,16 +408,12 @@ class Fais_Spine_Builder_Custom
 			$clean_data['section-classes'] = $this->clean_classes( $data['section-classes'] );
 		}
 
-		if ( isset( $data['section-wrapper'] ) ) {
-			$clean_data['section-wrapper'] = $this->clean_classes( $data['section-wrapper'] );
-		}
-
 		if ( isset( $data['section-flextype'] ) ) {
 			$clean_data['section-flextype'] = $this->clean_classes( $data['section-flextype'] );
 		}
 
-		if ( isset( $data['section-layout'] ) ) {
-			$clean_data['section-layout'] = $this->clean_classes( $data['section-layout'] );
+		if ( isset( $data['section-attr'] ) ) {
+			$clean_data['section-attr'] = $this->clean_classes( $data['section-attr'] );
 		}
 
 		if ( isset( $data['label'] ) ) {
@@ -511,10 +503,6 @@ class Fais_Spine_Builder_Custom
 
 		if ( isset( $data['section-classes'] ) ) {
 			$clean_data['section-classes'] = $this->clean_classes( $data['section-classes'] );
-		}
-
-		if ( isset( $data['section-wrapper'] ) ) {
-			$clean_data['section-wrapper'] = $this->clean_classes( $data['section-wrapper'] );
 		}
 
 		if ( isset( $data['column-classes'] ) ) {
@@ -947,26 +935,6 @@ function fais_spine_get_column_data( $section_data, $columns_number = 2 ) {
 	return $columns_array;
 }
 
-/**
- * Output the input field for section wrapper that is shared amongst admin templates.
- *
- * @param string $section_name Current section being displayed.
- * @param array $ttfmake_section_data Data associated with the section.
- */
-function fais_spine_output_builder_section_wrapper( $section_name, $ttfmake_section_data ) {
-	?>
-	<div class="wsuwp-builder-meta">
-		<label for="<?php echo $section_name; ?>[section-wrapper]">Section Wrapper:</label><input type="text"
-		id="<?php echo $section_name; ?>[section-wrapper]" class="wsuwp-builder-section-wrapper widefat"
-		name="<?php echo $section_name; ?>[section-wrapper]" value="<?php
-		if ( isset( $ttfmake_section_data['data']['section-wrapper'] ) ) {
-			echo esc_attr( $ttfmake_section_data['data']['section-wrapper'] );
-		} ?>"/>
-		<p class="description">Enter space delimited class names here to output a <code>div</code> element around this
-			<code>section</code> with those class names applied.</p>
-	</div>
-	<?php
-}
 
 /**
  * Output the input field for section classes that is shared amongst admin templates.
@@ -1065,15 +1033,11 @@ function fais_spine_output_builder_column_classes( $column_name, $section_data, 
  * @param array $section_data
  * @param int $column
  */
-function fais_spine_output_builder_column_type( $column_name, $section_data, $column = false ) {
-
-	$section_type = $section_data['data']['section-type'];
-	$column_order = false;
-	$columns_order = $section_data['data']['columns-order'];
-	foreach ( $columns_order as $order => $id ) {
-		if ( $column === (int) $id ) {
-			$column_order = $order + 1;
-		}
+function fais_spine_output_builder_column_type( $column_name, $section_data, $column = false, $column_order = false ) {
+	//var_dump( $section_data );
+	$section_type = false;
+	if ( isset( $section_data['data']['section-type'] ) ) {
+		$section_type = $section_data['data']['section-type'];
 	}
 
 	$column_type_default = 'flex-row grid-part ';
@@ -1110,58 +1074,6 @@ function fais_spine_output_builder_column_type( $column_name, $section_data, $co
 }
 
 
-
-/**
- * Output a selection tool for the type of layout a section should have. This allows classes
- * to be assigned for various multi column layouts.
- *
- * @param string $section_name         Current section being displayed.
- * @param array  $ttfmake_section_data Data associated with the section.
- */
-function fais_spine_output_builder_section_layout( $section_name, $ttfmake_section_data ) {
-	if ( 'wsuwpthirds' === $ttfmake_section_data['section']['id'] ) {
-		$options = array( 'thirds', 'triptych' );
-		if ( isset( $ttfmake_section_data['data']['section-layout'] ) && in_array( $ttfmake_section_data['data']['section-layout'], $options, true ) ) {
-			$current = $ttfmake_section_data['data']['section-layout'];
-		} else {
-			$current = 'thirds';
-		}
-	} elseif ( 'wsuwpsidebarleft' === $ttfmake_section_data['section']['id'] ) {
-		$options = array( 'side-left', 'margin-left' );
-		if ( isset( $ttfmake_section_data['data']['section-layout'] ) && in_array( $ttfmake_section_data['data']['section-layout'], $options, true ) ) {
-			$current = $ttfmake_section_data['data']['section-layout'];
-		} else {
-			$current = 'side-left';
-		}
-	} elseif ( 'wsuwpsidebarright' === $ttfmake_section_data['section']['id'] ) {
-		$options = array( 'side-right', 'margin-right' );
-		if ( isset( $ttfmake_section_data['data']['section-layout'] ) && in_array( $ttfmake_section_data['data']['section-layout'], $options, true ) ) {
-			$current = $ttfmake_section_data['data']['section-layout'];
-		} else {
-			$current = 'side-right';
-		}
-	} else {
-		return;
-	}
-
-	?>
-	<div class="wsuwp-builder-meta">
-	<label for="<?php echo $section_name; ?>[section-layout]">Section Layout:</label>
-	<select id="<?php echo $section_name; ?>[section-layout]" name="<?php echo $section_name; ?>[section-layout]"
-	        value="<?php if ( isset( $ttfmake_section_data['data']['section-layout'] ) ) { echo esc_attr( $ttfmake_section_data['data']['section-layout'] ); } ?>">
-	<?php
-	foreach ( $options as $option ) {
-		echo '<option value="' . $option . '" ' . selected( $option, $current, false ) . '">' . $option . '</option>';
-	}
-	?>
-	</select>
-	<p class="description">See the WSU Spine <a
-			href="https://github.com/washingtonstateuniversity/WSU-spine/wiki/II.2.-Page:-Size,-Layouts,-and-Grids"
-			target="_blank">grid layout documentation</a> for more information on section layouts.</p>
-	</div><?php
-}
-
-
 /**
  * Output the input field for selection flex type and header levels used in column configuration.
  *
@@ -1173,7 +1085,13 @@ function fais_spine_output_builder_section_flextree( $section_name, $ttfmake_sec
 	if ( isset( $ttfmake_section_data['data']['section-flextype'] ) && '' !== $ttfmake_section_data['data']['section-flextype'] ) {
 		$current = $ttfmake_section_data['data']['section-flextype'];
 	} else {
-		$current = 'flex-row';
+		$current = 'flex-row items-start';
+	}
+
+	if ( isset( $ttfmake_section_data['data']['section-attr'] ) && '' !== $ttfmake_section_data['data']['section-attr'] ) {
+		$current_attr = $ttfmake_section_data['data']['section-attr'];
+	} else {
+		$current_attr = '';
 	}
 
 	?>
@@ -1181,13 +1099,17 @@ function fais_spine_output_builder_section_flextree( $section_name, $ttfmake_sec
 
 
 	<div class="wsuwp-builder-meta">
-
 		<?php echo Fais_Spine_Builder_Custom::build_flexwork_sectional_inputs( $section_name.'[section-flextype]', $current ); ?>
-
-		<h3>Flexwork section classes</h3>
-		<input type="text" value="<?php $current?>" />
 		<p><b>Note:</b> Editing this edit by hand with out the builder is only advised if you are familar with css and the framework of Flexwork</p>
 	</div>
+	<div class="wsuwp-builder-meta">
+	<h3>Section Attribute area</h3>
+		<input type="text" name="<?php echo $section_name?>[section-attr]" value="<?php echo $current_attr ?>" placeholder="use this with great caution"/>
+
+		<p><b>Note:</b> You're adding attributes like <code>data-FOO="bar"</code> to the block's html tag.</p>
+	</div>
+
+
 	<?php
 }
 

@@ -4,16 +4,6 @@ global $ttfmake_section_data, $ttfmake_sections;
 // Default to sidebar right if a section type has not been specified.
 $section_type = ( isset( $ttfmake_section_data['section-type'] ) ) ? $ttfmake_section_data['section-type'] : 'faiswsuwpsidebarright';
 
-if ( 'faiswsuwpsidebarright' === $section_type || 'faiswsuwpsidebarleft' === $section_type || 'faiswsuwpthirds' === $section_type ) {
-	$section_layout = ( isset( $ttfmake_section_data['section-layout'] ) ) ? $ttfmake_section_data['section-layout'] : 'side-right';
-} elseif ( 'faiswsuwphalves' === $section_type ) {
-	$section_layout = 'halves';
-} elseif ( 'faiswsuwpquarters' === $section_type ) {
-	$section_layout = 'quarters';
-} else {
-	$section_layout = 'single';
-}
-
 if ( 'faiswsuwphalves' === $section_type ) {
 	$column_size_defaults = [ 1 => 'fourths-2', 2 => ' fourths-2' ];
 } elseif ( 'faiswsuwpsidebarright' === $section_type ) {
@@ -41,12 +31,13 @@ $section_type_columns = array(
 // Retrieve data for the column being output.
 $data_columns = fais_spine_get_column_data( $ttfmake_section_data, $section_type_columns[ $section_type ] );
 
-// Sections can have ids (provided by outside forces other than this theme), classes, and wrappers with classes.
+// Sections can have ids (provided by outside forces other than this theme) and classes.
+
+$section_attr         = ( isset( $ttfmake_section_data['section-attr'] ) ) ? $ttfmake_section_data['section-attr'] : '';
 $section_classes         = ( isset( $ttfmake_section_data['section-classes'] ) ) ? $ttfmake_section_data['section-classes'] : '';
-$section_wrapper_classes = ( isset( $ttfmake_section_data['section-wrapper'] ) ) ? $ttfmake_section_data['section-wrapper'] : '';
 $section_flextype = ( isset( $ttfmake_section_data['section-flextype'] ) ) ? $ttfmake_section_data['section-flextype'] : '';
 
-$section_wrapper_classes = $section_flextype . ' ' . $section_wrapper_classes;
+$section_classes = $section_flextype . ' ' . $section_classes;
 
 // make sure we have the var ahead of .=
 $section_wrapper_html = '';
@@ -72,18 +63,11 @@ if ( isset( $ttfmake_section_data['background-mobile-img'] ) && ! empty( $ttfmak
 	$section_mobile_background = false;
 }
 
-// If a section has wrapper classes assigned, assume it (obviously) needs a wrapper.
-if ( '' !== $section_wrapper_classes ) {
-	$section_has_wrapper = true;
-}
 
 // If a background image has been assigned, a wrapper is required.
 if ( $section_background || $section_mobile_background ) {
-	$section_has_wrapper = true;
-	$section_wrapper_classes .= ' section-wrapper-has-background';
-}
 
-if ( $section_has_wrapper ) {
+	$section_classes .= ' section-wrapper-has-background';
 
 	if ( $section_background ) {
 		$section_wrapper_html .= ' data-background="' . esc_url( $section_background ) . '"';
@@ -105,7 +89,7 @@ if ( '' === $section_id ) {
 }
 
 ?>
-	<section id="<?php echo esc_attr( $section_id ); ?>" <?php echo $section_wrapper_html; ?> data-type="<?php echo $section_type; ?>" class="<?php echo esc_attr( $section_wrapper_classes ); ?><?php echo esc_attr( $section_layout ); ?> <?php echo esc_attr( $section_classes ); ?>">
+	<section id="<?php echo esc_attr( $section_id ); ?>" <?php echo $section_wrapper_html; ?> data-type="<?php echo $section_type; ?>" class=" <?php echo esc_attr( $section_classes ); ?>" <?php echo esc_attr( $section_attr ); ?>>
     <?php
 
 	if ( ! empty( $data_columns ) ) {
