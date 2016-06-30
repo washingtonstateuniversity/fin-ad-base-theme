@@ -118,7 +118,7 @@ if ( '' === $section_id ) {
 				$column_background = '';
 			}
 			?>
-         <div style="<?php echo $column_background; ?>" class="<?php echo $column['column-type'] ?> <?php echo $column_size_defaults[ $count ]; $count++; ?> <?php if ( isset( $column['column-classes'] ) ) : echo esc_attr( $column['column-classes'] );
+         <div style="<?php echo $column_background; ?>" class="<?php echo $column['column-type']; ?> <?php $count++; ?> <?php if ( isset( $column['column-classes'] ) ) : echo esc_attr( $column['column-classes'] );
 		endif; ?>">
 
         <?php if ( '' !== $column['title'] ) : ?>

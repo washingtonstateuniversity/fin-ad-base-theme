@@ -18,7 +18,7 @@ module.exports = function(grunt) {
                 "inc/**/*",
                 "functions.php"
             ],
-            tasks: ["concat", "postcss", "csslint", "clean", "phpcs"]
+            tasks: ["concat", "postcss", "csslint", "clean", "phpcbf", "phpcs"]
         },
         postcss: {
             options: {

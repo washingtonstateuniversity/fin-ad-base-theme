@@ -761,11 +761,12 @@ class Fais_Spine_Builder_Custom
 			'at-sizes' => [],
 		 ];
 		$column_classes = explode( ' ', $column_class_str );
+
 		//for now just get them in the right spot
 		foreach ( $column_classes as $k => $class ) { // loop over class list
 			foreach ( $setion_flex_options as $key => $item ) { // loop through options
 				foreach ( $item as $subkey => $subitem ) { // loop though options values for match
-					if ( 0 === strpos( $class, $key ) ) { // if the key matches first then kick into the sub arrays
+					if ( is_array( $subitem ) && 0 === strpos( $class, $key ) ) { // if the key matches first then kick into the sub arrays
 						foreach ( $subitem as $partkey => $partoptions ) {
 							if ( false !== strpos( $class, $partkey ) ) {
 								if ( false !== strpos( $class, '-at-' ) ) {
@@ -805,7 +806,6 @@ class Fais_Spine_Builder_Custom
 		}
 		</style>
 		<h3>Flexwork class builder <button class="start_add_fw_class">Add New Class</button></br></h3>
-
 			<div class="fw-builder">
 				<div class="flexwork-type flex-attr-area">type:<br/>
 					<select class="flexwork-type-select flex-builder-selector fb-type-chooser">
@@ -1066,9 +1066,17 @@ function fais_spine_output_builder_column_classes( $column_name, $section_data, 
  * @param int $column
  */
 function fais_spine_output_builder_column_type( $column_name, $section_data, $column = false ) {
-	$section_type = $section_data['section']['id'];
 
-	$column_type_default = 'flex-row grid-part';
+	$section_type = $section_data['data']['section-type'];
+	$column_order = false;
+	$columns_order = $section_data['data']['columns-order'];
+	foreach ( $columns_order as $order => $id ) {
+		if ( $column === (int) $id ) {
+			$column_order = $order + 1;
+		}
+	}
+
+	$column_type_default = 'flex-row grid-part ';
 
 	if ( 'faiswsuwphalves' === $section_type ) {
 		$column_size_defaults = [ 1 => 'fourths-2', 2 => ' fourths-2' ];
@@ -1083,19 +1091,20 @@ function fais_spine_output_builder_column_type( $column_name, $section_data, $co
 	} else {
 		$column_size_defaults = [ 1 => 'fourths-4' ];
 	}
-	if ( false !== $column  ) {
-		$column_type_default += $column_size_defaults[ $column ];
+
+	if ( false !== $column && false !== $column_order && isset( $column_size_defaults[ $column_order ] ) ) {
+		$column_type_default .= $column_size_defaults[ $column_order ] .'  order-' . $column_order;
 	}
 
 	if ( $column ) {
-		$column_type = ( isset( $section_data['data']['columns'][ $column ]['column-type'] ) ) ? $section_data['data']['columns'][ $column ]['column-type'] : '';
+		$column_type = ( isset( $section_data['data']['columns'][ $column ]['column-type'] ) && '' !== $section_data['data']['columns'][ $column ]['column-type'] ) ? $section_data['data']['columns'][ $column ]['column-type'] : $column_type_default;
 	} else {
-		$column_type = ( isset( $section_data['data']['column-type'] ) ) ? $section_data['data']['column-type'] : '';
+		$column_type = ( isset( $section_data['data']['column-type'] ) && '' !== $section_data['data']['column-type'] ) ? $section_data['data']['column-type'] : $column_type_default;
 	}
 
 	?>
 	<div class="wsuwp-builder-meta">
-		<?php echo Fais_Spine_Builder_Custom::build_flexwork_column_inputs( $column.'[column-type]', $column_type ); ?>
+		<?php echo Fais_Spine_Builder_Custom::build_flexwork_column_inputs( $column_name.'[column-type]', $column_type ); ?>
 	</div>
 	<?php
 }
@@ -1173,7 +1182,7 @@ function fais_spine_output_builder_section_flextree( $section_name, $ttfmake_sec
 
 	<div class="wsuwp-builder-meta">
 
-<?php echo Fais_Spine_Builder_Custom::build_flexwork_sectional_inputs( $section_name.'[section-flextype]', $current ); ?>
+		<?php echo Fais_Spine_Builder_Custom::build_flexwork_sectional_inputs( $section_name.'[section-flextype]', $current ); ?>
 
 		<h3>Flexwork section classes</h3>
 		<input type="text" value="<?php $current?>" />
