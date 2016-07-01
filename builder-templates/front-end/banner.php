@@ -24,22 +24,22 @@ $slider_ratio = ( $slider_height / 960 ) * 100;
     <?php
 	// Maintain aspect ratio
 	if ( 'aspect' === $responsive ) : ?>
-	#builder-section-<?php echo esc_attr( $ttfmake_section_data['id'] ); ?>,
+
     #builder-section-<?php echo esc_attr( $ttfmake_section_data['id'] ); ?> .builder-banner-slide {
      padding-bottom: <?php echo $slider_ratio; ?>%;
     }
     <?php
 	// Balanced
 	else : ?>
-	#builder-section-<?php echo esc_attr( $ttfmake_section_data['id'] ); ?>
+
 	#builder-section-<?php echo esc_attr( $ttfmake_section_data['id'] ); ?> .builder-banner-slide {
 		padding-bottom: <?php echo $slider_height; ?>px;
-	}
-	@media screen and (min-width: 600px) and (max-width: 960px) {
+    }
+    @media screen and (min-width: 600px) and (max-width: 960px) {
 		#builder-section-<?php echo esc_attr( $ttfmake_section_data['id'] ); ?> .builder-banner-slide {
 			padding-bottom: <?php echo $slider_ratio; ?>%;
-		}
-	}
+        }
+    }
     <?php endif; ?>
 </style>
 <?php
@@ -67,7 +67,7 @@ if ( $section_background || $section_mobile_background ) {
 		$section_wrapper_html .= ' id="' . esc_attr( $section_id ) . '"';
 	}
 
-	$section_wrapper_html .= ' class="row single builder-section section-wrapper ' . esc_attr( $section_classes ) . ' '.esc_attr( ttfmake_builder_get_banner_class( $ttfmake_section_data, $ttfmake_sections ) ).'"';
+	$section_wrapper_html .= ' class=" builder-section section-wrapper ' . esc_attr( $section_classes ) . ' '.esc_attr( ttfmake_builder_get_banner_class( $ttfmake_section_data, $ttfmake_sections ) ).'"';
 
 	if ( $section_background ) {
 		$section_wrapper_html .= ' data-background="' . esc_url( $section_background ) . '"';
@@ -88,12 +88,12 @@ if ( '' === $section_id ) {
 	$section_id = sanitize_key( $section_id );
 }
 ?>
-<section id="<?php echo esc_attr( $section_id ); ?>" <?php echo $section_wrapper_html; ?> class="  ">
+<section id="<?php echo esc_attr( $section_id ); ?>" <?php echo $section_wrapper_html; ?> class="full-width  ">
 	<div class="column one <?php echo esc_attr( $column_classes ); ?>">
     <?php if ( ! empty( $ttfmake_section_data['title'] ) ) : ?>
-			<header>
+            <header>
 				<h2><?php echo apply_filters( 'the_title', $ttfmake_section_data['title'] ); ?></h2>
-			</header>
+            </header>
     <?php endif; ?>
 
 		<div class="builder-section-content<?php echo ( $is_slider ) ? ' cycle-slideshow' : ''; ?>"<?php echo ( $is_slider ) ? ttfmake_builder_get_banner_slider_atts( $ttfmake_section_data ) : ''; ?>>
@@ -101,32 +101,32 @@ if ( '' === $section_id ) {
 				<div class="builder-banner-slide<?php echo ttfmake_builder_banner_slide_class( $slide ); echo ( 0 == $i++ ) ? ' first-slide' : ''; ?>" style="<?php echo ttfmake_builder_banner_slide_style( $slide, $ttfmake_section_data ); ?>">
         <?php if ( ! empty( $slide['slide-url'] ) ) : ?><a href="<?php echo esc_url( $slide['slide-url'] ); ?>"><?php
 		endif; ?>
-					<div class="builder-banner-content">
+                    <div class="builder-banner-content">
         <?php if ( ! empty( $slide['slide-title'] ) ) : ?>
-						<div class="builder-banner-inner-title">
+                        <div class="builder-banner-inner-title">
 							<span class="builder-banner-slide-title"><?php echo esc_html( $slide['slide-title'] ); ?></span>
-						</div>
+                        </div>
         <?php endif; ?>
-						<div class="builder-banner-inner-content">
+                        <div class="builder-banner-inner-content">
         <?php ttfmake_get_builder_save()->the_builder_content( $slide['content'] ); ?>
-						</div>
-					</div>
+                        </div>
+                    </div>
         <?php if ( 0 !== absint( $slide['darken'] ) ) : ?>
-						<div class="builder-banner-overlay"></div>
+                        <div class="builder-banner-overlay"></div>
         <?php endif; ?>
         <?php if ( ! empty( $slide['slide-url'] ) ) : ?></a><?php
 		endif; ?>
-				</div>
+                </div>
     <?php endforeach;
 	endif; ?>
     <?php if ( $is_slider && false === (bool) $ttfmake_section_data['hide-dots'] ) : ?>
-				<div class="cycle-pager"></div>
+                <div class="cycle-pager"></div>
     <?php endif; ?>
     <?php if ( $is_slider && false === (bool) $ttfmake_section_data['hide-arrows'] ) : ?>
-				<div class="cycle-prev"></div>
-				<div class="cycle-next"></div>
+                <div class="cycle-prev"></div>
+                <div class="cycle-next"></div>
     <?php endif; ?>
-		</div>
-	</div>
+        </div>
+    </div>
 </section>
 <?php
