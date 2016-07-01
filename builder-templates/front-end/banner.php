@@ -24,12 +24,14 @@ $slider_ratio = ( $slider_height / 960 ) * 100;
     <?php
 	// Maintain aspect ratio
 	if ( 'aspect' === $responsive ) : ?>
+	#builder-section-<?php echo esc_attr( $ttfmake_section_data['id'] ); ?>,
     #builder-section-<?php echo esc_attr( $ttfmake_section_data['id'] ); ?> .builder-banner-slide {
      padding-bottom: <?php echo $slider_ratio; ?>%;
     }
     <?php
 	// Balanced
 	else : ?>
+	#builder-section-<?php echo esc_attr( $ttfmake_section_data['id'] ); ?>
 	#builder-section-<?php echo esc_attr( $ttfmake_section_data['id'] ); ?> .builder-banner-slide {
 		padding-bottom: <?php echo $slider_height; ?>px;
 	}
