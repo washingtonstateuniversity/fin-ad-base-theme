@@ -22,9 +22,11 @@ spine_load_section_header();
 				<div class="spine-builder-overlay-title">Configure Column</div>
 				<div class="spine-builder-column-overlay-close">Done</div>
 			</div>
+
 			<div class="spine-builder-overlay-body">
 				<?php
-				spine_output_builder_column_classes( $section_name, $ttfmake_section_data );
+				fais_spine_output_builder_column_type( $section_name, $ttfmake_section_data, 0, 0 );
+				fais_spine_output_builder_column_classes( $section_name, $ttfmake_section_data );
 				?>
 			</div>
 		</div>

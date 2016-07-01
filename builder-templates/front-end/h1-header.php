@@ -52,8 +52,8 @@ if ( '' === $section_id ) {
 	$section_id = sanitize_key( $section_id );
 }
 ?>
-<section id="<?php echo esc_attr( $section_id ); ?>" <?php echo $section_attr; ?> <?php echo $section_wrapper_html; ?> class="row single h1-header <?php echo esc_attr( $section_classes ); ?>">
-	<div style="<?php echo $column_background; ?>" class="column one <?php echo esc_attr( $column_classes ); ?>">
+<section id="<?php echo esc_attr( $section_id ); ?>" <?php echo stripslashes( $section_attr ); ?> <?php echo $section_wrapper_html; ?> class="flex-row h1-header <?php echo esc_attr( $section_classes ); ?>">
+	<div style="<?php echo $column_background; ?>" class="fourths-4 <?php echo esc_attr( $column_classes ); ?>">
     <?php if ( ! empty( $ttfmake_section_data['title'] ) ) : ?>
 			<<?php echo $header_level; ?>><?php echo apply_filters( 'the_title', $ttfmake_section_data['title'] ); ?></<?php echo $header_level; ?>>
     <?php endif; ?>

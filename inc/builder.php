@@ -83,7 +83,7 @@ class Fais_Spine_Builder_Custom
 		ttfmake_remove_section( 'wsuwpthirds' );
 		ttfmake_remove_section( 'wsuwpquarters' );
 		ttfmake_remove_section( 'wsuwpheader' );
-		ttfmake_remove_section( 'banner' );
+		/*ttfmake_remove_section( 'banner' );*/
 	}
 
 	/**
@@ -176,8 +176,8 @@ class Fais_Spine_Builder_Custom
 		);
 
 		ttfmake_add_section(
-			'faisbanner',
-			_x( 'Banner', 'section name', 'make' ),
+			'banner',
+			_x( 'banner', 'section name', 'make' ),
 			get_template_directory_uri() . '/inc/builder/sections/css/images/banner.png',
 			__( 'Display multiple types of content in a banner or a slider.', 'make' ),
 			array( $this, 'save_banner' ),
@@ -185,7 +185,7 @@ class Fais_Spine_Builder_Custom
 			'front-end/banner',
 			800,
 			get_stylesheet_directory() . '/builder-templates'
-		);
+		);/**/
 
 	}
 
@@ -234,6 +234,18 @@ class Fais_Spine_Builder_Custom
 
 		return 'h2';
 	}
+
+	/**
+	 * Clean a attribute set for tags.
+	 *
+	 * @param string $header_element
+	 *
+	 * @return string
+	 */
+	public function clean_attr( $attr_str ) {
+		return addslashes( $attr_str );
+	}
+
 
 	/**
 	 * Allow phrasing tags to be added in title areas via the kses allowed HTML filter.
@@ -300,6 +312,14 @@ class Fais_Spine_Builder_Custom
 
 		if ( isset( $data['section-classes'] ) ) {
 			$clean_data['section-classes'] = $this->clean_classes( $data['section-classes'] );
+		}
+
+		if ( isset( $data['section-flextype'] ) ) {
+			$clean_data['section-flextype'] = $this->clean_classes( $data['section-flextype'] );
+		}
+
+		if ( isset( $data['section-attr'] ) ) {
+			$clean_data['section-attr'] = $this->clean_attr( $data['section-attr'] );
 		}
 
 		if ( isset( $data['column-classes'] ) ) {
@@ -413,7 +433,7 @@ class Fais_Spine_Builder_Custom
 		}
 
 		if ( isset( $data['section-attr'] ) ) {
-			$clean_data['section-attr'] = $this->clean_classes( $data['section-attr'] );
+			$clean_data['section-attr'] = $this->clean_attr( $data['section-attr'] );
 		}
 
 		if ( isset( $data['label'] ) ) {
@@ -499,6 +519,14 @@ class Fais_Spine_Builder_Custom
 					$clean_data['banner-slides'][ $id ]['slide-title'] = sanitize_text_field( $slide['spine_slide_title'] );
 				}
 			}
+		}
+
+		if ( isset( $data['section-flextype'] ) ) {
+			$clean_data['section-flextype'] = $this->clean_classes( $data['section-flextype'] );
+		}
+
+		if ( isset( $data['section-attr'] ) ) {
+			$clean_data['section-attr'] = $this->clean_attr( $data['section-attr'] );
 		}
 
 		if ( isset( $data['section-classes'] ) ) {
@@ -680,7 +708,7 @@ class Fais_Spine_Builder_Custom
 						?>
 					</select>
 				</div>
-				<div class="flexwork-roundflex-attr-area">rounding:<br/>
+				<div class="flexwork-round flex-attr-area">rounding:<br/>
 					<select class="flexwork-round-type-select flex-builder-selector fb-type fb-with-child">
 						<option value="">Select</option>
 						<?php
@@ -1093,7 +1121,6 @@ function fais_spine_output_builder_section_flextree( $section_name, $ttfmake_sec
 	} else {
 		$current_attr = '';
 	}
-
 	?>
 
 
@@ -1104,7 +1131,7 @@ function fais_spine_output_builder_section_flextree( $section_name, $ttfmake_sec
 	</div>
 	<div class="wsuwp-builder-meta">
 	<h3>Section Attribute area</h3>
-		<input type="text" name="<?php echo $section_name?>[section-attr]" value="<?php echo $current_attr ?>" placeholder="use this with great caution"/>
+		<textarea name="<?php echo $section_name?>[section-attr]" placeholder="use this with great caution" style="margin-top: 0px;margin-bottom: 0px;height: 30px;width: 100%;"><?php echo stripslashes( $current_attr ) ?></textarea>
 
 		<p><b>Note:</b> You're adding attributes like <code>data-FOO="bar"</code> to the block's html tag.</p>
 	</div>
