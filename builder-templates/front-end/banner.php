@@ -1,6 +1,6 @@
 <?php
 global $ttfmake_section_data, $ttfmake_sections;
-
+$section_wrapper_html = '';
 // Sections can have ids (provided by outside forces other than this theme) and classes.
 $section_classes         = ( isset( $ttfmake_section_data['section-classes'] ) ) ? $ttfmake_section_data['section-classes'] : '';
 
