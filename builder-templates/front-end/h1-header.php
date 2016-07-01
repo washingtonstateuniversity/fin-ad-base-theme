@@ -1,6 +1,6 @@
 <?php
 global $ttfmake_section_data;
-
+$section_wrapper_html = '';
 // Sections can have ids (provided by outside forces other than this theme) and classes.
 $section_classes         = ( isset( $ttfmake_section_data['section-classes'] ) ) ? $ttfmake_section_data['section-classes'] : '';
 $section_attr         = ( isset( $ttfmake_section_data['section-attr'] ) ) ? $ttfmake_section_data['section-attr'] : '';
@@ -29,7 +29,6 @@ if ( isset( $ttfmake_section_data['background-mobile-img'] ) && ! empty( $ttfmak
 
 if ( $section_background || $section_mobile_background ) {
 	$section_classes .= ' section-wrapper-has-background';
-	$section_wrapper_html = '';
 
 	if ( '' !== $section_id ) {
 		$section_wrapper_html .= ' id="' . esc_attr( $section_id ) . '"';
