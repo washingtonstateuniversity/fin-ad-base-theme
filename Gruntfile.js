@@ -64,7 +64,7 @@ module.exports = function(grunt) {
                     "text-indent": 2,
                     "display-property-grouping": 2,
                     "shorthand": 2,
-                    "empty-rules": 2,
+                    "empty-rules": false,
                     "vendor-prefix": 2,
                     "zero-units": 2
                 }
