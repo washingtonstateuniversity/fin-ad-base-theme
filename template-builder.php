@@ -12,7 +12,7 @@ get_header();
 			<?php get_template_part( 'parts/headers' ); ?>
 			<?php get_template_part( 'parts/featured-images' ); ?>
 
-			<div id="page-<?php the_ID(); ?>" <?php post_class( 'flex-row' ); ?>>
+			<div id="page-<?php the_ID(); ?>" <?php post_class( ); ?>>
 				<?php
 
 				/**

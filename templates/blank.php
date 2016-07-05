@@ -11,7 +11,7 @@
 
 <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
-	<div id="page-<?php the_ID(); ?>" <?php post_class( 'flex-row' ); ?>>
+	<div id="page-<?php the_ID(); ?>" <?php post_class(); ?>>
 		<?php the_content(); ?>
 	</div><!-- #post -->
 
