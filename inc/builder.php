@@ -1068,7 +1068,7 @@ function fais_spine_output_builder_column_type( $column_name, $section_data, $co
 		$section_type = $section_data['data']['section-type'];
 	}
 
-	$column_type_default = 'flex-row grid-part ';
+	$column_type_default = 'flex-column  grid-part ';
 
 	if ( 'faiswsuwphalves' === $section_type ) {
 		$column_size_defaults = [ 1 => 'fourths-2', 2 => ' fourths-2' ];
