@@ -88,6 +88,7 @@ class Fais_Spine_Builder_Custom
 
 	/**
 	 * Add the custom sections used in our implementation of the page builder.
+	 * removes the partent spine for the matching blocks using the newer gridding
 	 */
 	public function add_builder_sections() {
 
@@ -238,7 +239,7 @@ class Fais_Spine_Builder_Custom
 	/**
 	 * Clean a attribute set for tags.
 	 *
-	 * @param string $header_element
+	 * @param string $attr_str
 	 *
 	 * @return string
 	 */
