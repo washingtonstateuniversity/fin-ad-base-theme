@@ -15,6 +15,9 @@ body {
 	font-size:10;
 	color:#292929;
 }
+section{
+	z-index: 1;
+}
 #jacket{
 	background: transparent url('https://dl.dropboxusercontent.com/s/jp7yv2rtuxk6rxx/second-bk-3.png') bottom center no-repeat;
 	background-size: contain;
@@ -65,7 +68,6 @@ a.button.contact:before{
 a.button.docment:before{
 	content: "\f07c";
 }
-
 
 #homepage_header {
 	padding-top: 35%;
@@ -161,10 +163,6 @@ div#main h1{
     margin-bottom: 10;
 }
 
-#binder div#side_left, #binder  div#side_right {
-
-}
-
 div#side_right {
 	background: rgba(136, 136, 136, 0.45);
 	color: #4A4A4A;
@@ -209,24 +207,24 @@ div#side_right h4{
 	background: rgba(186,186,186,0.45);
 }
 #new_home_page h3{
-font-size: 2em;
-font-weight: 600;
-border-bottom: 1px solid;
-margin-bottom: 5px;
+	font-size: 2em;
+	font-weight: 600;
+	border-bottom: 1px solid;
+	margin-bottom: 5px;
 }
 #new_home_page h4{
-font-size: 1.7em;
-font-weight: 400;
-font-style: italic;
-margin-bottom: 5px;
-padding: 0;
-border-bottom: 4px solid;
+	font-size: 1.7em;
+	font-weight: 400;
+	font-style: italic;
+	margin-bottom: 5px;
+	padding: 0;
+	border-bottom: 4px solid;
 }
 .news-highlight-img{
 	display: inline-block;
-/*float: left;*/
-margin-right: 10;
-margin-bottom: 7px;
+	/*float: left;*/
+	margin-right: 10;
+	margin-bottom: 7px;
 }
 
 #new_home_page p{
