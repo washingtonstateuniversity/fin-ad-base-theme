@@ -1,7 +1,7 @@
 <?php
 //PSR-1/2 -ish
 
-add_action( 'init', 'spine_load_builder_module_custom', 10 );
+add_action( 'init', 'spine_load_builder_module_custom', 99 );
 /**
 * Allow our version of Make's builder tool to be disabled at the
 * platform or WordPress installation level.
@@ -75,6 +75,5 @@ add_action( 'after_setup_theme', 'finAdBaseTheme' );
 * @return \WSU_FinAd_BaseTheme
 */
 function finAdBaseTheme() {
-
 	return WSU_FinAd_BaseTheme::getInstance();
 }

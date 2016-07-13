@@ -191,6 +191,17 @@ class Fais_Spine_Builder_Custom
 	}
 
 	/**
+	 * Sanitizes a string to only return numbers.
+	 *
+	 * @since  1.0.0.
+	 *
+	 * @param  string    $id    The section ID.
+	 * @return string           The sanitized ID.
+	 */
+	public static function clean_section_id( $id ) {
+		return preg_replace( '/[^0-9]/', '', $id );
+	}
+	/**
 	 * Clean a passed input value of arbitrary classes.
 	 *
 	 * @param string $classes A string of arbitrary classes from a text input.
@@ -319,6 +330,10 @@ class Fais_Spine_Builder_Custom
 			$clean_data['section-flextype'] = $this->clean_classes( $data['section-flextype'] );
 		}
 
+		if ( isset( $data['section-position'] ) ) {
+			$clean_data['section-position'] = $this->clean_classes( $data['section-position'] );
+		}
+
 		if ( isset( $data['section-attr'] ) ) {
 			$clean_data['section-attr'] = $this->clean_attr( $data['section-attr'] );
 		}
@@ -369,7 +384,7 @@ class Fais_Spine_Builder_Custom
 		}
 
 		if ( isset( $data['columns-order'] ) ) {
-			$clean_data['columns-order'] = array_map( array( 'TTFMake_Builder_Save', 'clean_section_id' ), explode( ',', $data['columns-order'] ) );
+			$clean_data['columns-order'] = array_map( array( $this, 'clean_section_id' ), explode( ',', $data['columns-order'] ) );
 		}
 
 		if ( isset( $data['columns'] ) && is_array( $data['columns'] ) ) {
@@ -433,6 +448,10 @@ class Fais_Spine_Builder_Custom
 			$clean_data['section-flextype'] = $this->clean_classes( $data['section-flextype'] );
 		}
 
+		if ( isset( $data['section-position'] ) ) {
+			$clean_data['section-position'] = $this->clean_classes( $data['section-position'] );
+		}
+
 		if ( isset( $data['section-attr'] ) ) {
 			$clean_data['section-attr'] = $this->clean_attr( $data['section-attr'] );
 		}
@@ -486,7 +505,7 @@ class Fais_Spine_Builder_Custom
 		}
 
 		if ( isset( $data['banner-slide-order'] ) ) {
-			$clean_data['banner-slide-order'] = array_map( array( 'TTFMAKE_Builder_Save', 'clean_section_id' ), explode( ',', $data['banner-slide-order'] ) );
+			$clean_data['banner-slide-order'] = array_map( array( $this, 'clean_section_id' ), explode( ',', $data['banner-slide-order'] ) );
 		}
 
 		if ( isset( $data['banner-slides'] ) && is_array( $data['banner-slides'] ) ) {
@@ -524,6 +543,10 @@ class Fais_Spine_Builder_Custom
 
 		if ( isset( $data['section-flextype'] ) ) {
 			$clean_data['section-flextype'] = $this->clean_classes( $data['section-flextype'] );
+		}
+
+		if ( isset( $data['section-position'] ) ) {
+			$clean_data['section-position'] = $this->clean_classes( $data['section-position'] );
 		}
 
 		if ( isset( $data['section-attr'] ) ) {
@@ -1122,10 +1145,27 @@ function fais_spine_output_builder_section_flextree( $section_name, $ttfmake_sec
 	} else {
 		$current_attr = '';
 	}
+
+	if ( isset( $ttfmake_section_data['data']['section-position'] ) && '' !== $ttfmake_section_data['data']['section-position'] ) {
+		$current_position = $ttfmake_section_data['data']['section-position'];
+	} else {
+		$current_position = 'content';
+	}
+
 	?>
 
 
-
+	<div class="wsuwp-builder-meta">
+		<label for="<?php echo $section_name; ?>[section-position]">Section Bins</label>
+		<select id="<?php echo $section_name; ?>[section-position]"
+		        name="<?php echo $section_name; ?>[section-position]"
+		        class="">
+		    <option value="before" <?php selected( esc_attr( $current_position ), 'before' ); ?>>Before Content</option>
+			<option value="content" <?php selected( esc_attr( $current_position ), 'content' ); ?>>Content</option>
+			<option value="after" <?php selected( esc_attr( $current_position ), 'after' ); ?>>After Content</option>
+		</select>
+		<p class="description">Set the bins to put the section in. `<?php echo strtoupper( 'content' ); ?>` by default.  It will still output in the order set, but only in the bin it is set to.</p>
+	</div>
 	<div class="wsuwp-builder-meta">
 		<?php echo Fais_Spine_Builder_Custom::build_flexwork_sectional_inputs( $section_name.'[section-flextype]', $current ); ?>
 		<p><b>Note:</b> Editing this edit by hand with out the builder is only advised if you are familar with css and the framework of Flexwork</p>
@@ -1175,3 +1215,171 @@ function fais_spine_output_builder_section_background( $section_name, $ttfmake_s
 	</div>
 	<?php
 }
+
+
+if ( is_admin() ) {
+class Custom_TTFMAKE_Builder_Save extends TTFMAKE_Builder_Save {
+
+	/**
+	 * Initiate actions.
+	 *
+	 * @since  1.0.0.
+	 *
+	 * @return TTFMAKE_Builder_Save
+	 */
+	public function __construct() {
+		// Only add filters when the builder is being saved
+		if ( isset( $_POST['ttfmake-builder-nonce'] ) && wp_verify_nonce( $_POST['ttfmake-builder-nonce'], 'save' ) && isset( $_POST['ttfmake-section-order'] ) ) {
+			remove_filter( 'wp_insert_post_data', 'wp_insert_post_data', 31 );
+			// Combine the input into the post's content
+			add_filter( 'wp_insert_post_data', array( $this, 'custom_wp_insert_post_data' ), 32, 2 );
+		}
+	}
+
+
+	public function print_sections( $data ) {
+		// For each sections, render it using the template
+		foreach ( $data as $section ) {
+			global $ttfmake_section_data, $ttfmake_sections;
+			$ttfmake_section_data = $section;
+			$ttfmake_sections     = $data;
+
+			// Get the registered sections
+			$registered_sections = ttfmake_get_sections();
+
+			// Get the template for the section
+			ttfmake_load_section_template(
+				$registered_sections[ $section['section-type'] ]['display_template'],
+				$registered_sections[ $section['section-type'] ]['path']
+			);
+
+			// Cleanup the global
+			unset( $GLOBALS['ttfmake_section_data'] );
+		}
+
+	}
+
+	/**
+	 * On post save, use a theme template to generate content from metadata.
+	 *
+	 * @since  1.0.0.
+	 *
+	 * @param  array    $data       The processed post data.
+	 * @param  array    $postarr    The raw post data.
+	 * @return array                Modified post data.
+	 */
+	public function custom_wp_insert_post_data( $data, $postarr ) {
+		if ( ! ttfmake_will_be_builder_page() || ! isset( $_POST['ttfmake-builder-nonce'] ) || ! wp_verify_nonce( $_POST['ttfmake-builder-nonce'], 'save' ) ) {
+			return $data;
+		}
+
+		// Don't do anything during autosave
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+			return $data;
+		}
+
+		// Only check permissions for pages since it can only run on pages
+		if ( ! current_user_can( 'edit_page', get_the_ID() ) ) {
+			return $data;
+		}
+
+		/**
+		 * Filter the section data.
+		 *
+		 * @since 1.2.3.
+		 *
+		 * @param array    $data   The sanitized data.
+		 */
+		$sanitized_sections = apply_filters( 'make_insert_post_data_sections', $this->get_sanitized_sections() );
+
+		// The data has been deleted and can be removed
+		if ( empty( $sanitized_sections ) ) {
+			$data['post_content'] = '';
+			return $data;
+		}
+
+		// Generate the post content
+		$post_content = $this->set_generate_post_content( $sanitized_sections );
+
+		// Sanitize and set the content
+		kses_remove_filters();
+		$data['post_content'] = sanitize_post_field( 'post_content', $post_content, get_the_ID(), 'db' );
+		kses_init_filters();
+
+		return $data;
+	}
+
+	/**
+	 * Based on section data, generate a post's post_content.
+	 *
+	 * @since  1.0.4.
+	 *
+	 * @param  array     $data    Data for sections used to comprise a page's post_content.
+	 * @return string             The post content.
+	 */
+	public function set_generate_post_content( $data ) {
+
+		//var_dump( $data );die();
+		// Run wpautop when saving the data
+		add_filter( 'make_the_builder_content', 'wpautop' );
+
+		// Handle oEmbeds correctly
+		add_filter( 'make_the_builder_content', array( $this, 'embed_handling' ), 8 );
+		add_filter( 'embed_handler_html', array( $this, 'embed_handler_html' ) , 10, 3 );
+		add_filter( 'embed_oembed_html', array( $this, 'embed_oembed_html' ) , 10, 4 );
+
+		// Remove editor image constraints while rendering section data.
+		add_filter( 'editor_max_image_size', array( &$this, 'remove_image_constraints' ) );
+
+		$before_content_area = [];
+		$content_area = [];
+		$after_content_area = [];
+		// For each sections, render it using the template
+		foreach ( $data as $id => $section ) {
+			if ( isset( $section['section-position'] ) ) {
+				if ( 'before' === $section['section-position'] ) {
+					$before_content_area[ $id ] = $section;
+				} else if ( 'after' === $section['section-position'] ) {
+					$after_content_area[ $id ] = $section;
+				} else {
+					$content_area[ $id ] = $section;
+				}
+			} else {
+				$content_area[ $id ] = $section;
+			}
+		}
+
+		// Start the output buffer to collect the contents of the templates
+		ob_start();
+
+		$this->print_sections( $before_content_area );
+		echo '<div id="content_area" class="flex-column">';
+		$this->print_sections( $content_area );
+		echo '</div>';
+		$this->print_sections( $after_content_area );
+
+		// Get the rendered templates from the output buffer
+		$post_content = ob_get_clean();
+
+		// Allow constraints again after builder data processing is complete.
+		remove_filter( 'editor_max_image_size', array( &$this, 'remove_image_constraints' ) );
+
+		/**
+		 * Filter the generated post content.
+		 *
+		 * This content is the full HTML version of the content that will be saved as "post_content".
+		 *
+		 * @since 1.2.3.
+		 *
+		 * @param string    $post_content    The fully generated post content.
+		 * @param array     $data            The data used to generate the content.
+		 */
+		return apply_filters( 'make_generate_post_content', $post_content, $data );
+	}
+}
+
+new Custom_TTFMAKE_Builder_Save();
+
+}
+
+
