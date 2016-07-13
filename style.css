@@ -125,7 +125,8 @@ a.button.docment:before{
     margin-top: 6px;
 	margin-right: 10px;
 	box-shadow: 0 0 5px rgb(255,255,255);
-	text-indent: -999em;
+	/*text-indent: -999em;*/
+	color: rgba(136, 136, 136, 0);
 }
 .cycle-pager span.cycle-pager-active {
 	background: #FFF;
