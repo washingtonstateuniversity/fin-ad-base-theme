@@ -5,9 +5,9 @@
 <?php get_template_part( 'parts/headers' ); ?>
 <?php get_template_part( 'parts/featured-images' ); ?>
 
-<section class="row side-right gutter pad-ends">
+<section class="flex-row pad-TB ">
 
-	<div class="column one">
+	<div class="fifths-3 full-width-at-600">
 
 		<?php while ( have_posts() ) : the_post(); ?>
 
@@ -17,7 +17,7 @@
 
 	</div><!--/column-->
 
-	<div class="column two">
+	<div class="fifths-2 full-width-at-600">
 
 		<?php get_sidebar(); ?>
 
