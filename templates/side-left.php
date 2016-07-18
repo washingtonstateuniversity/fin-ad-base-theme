@@ -9,9 +9,9 @@
 <?php get_template_part( 'parts/headers' ); ?>
 <?php get_template_part( 'parts/featured-images' ); ?>
 
-<section class="flex-row">
+<section class="flex-row pad-TB">
 
-	<div class="grid-part fifths-2">
+	<div class="grid-part fifths-2 full-width-at-600">
 
 		<?php
 		$column = get_post_meta( get_the_ID(), 'column-one', true );
@@ -22,7 +22,7 @@
 
 	</div><!--/column-->
 
-	<div class="grid-part fifths-2">
+	<div class="grid-part fifths-3 full-width-at-600">
 
 		<?php get_template_part( 'articles/article' ); ?>
 

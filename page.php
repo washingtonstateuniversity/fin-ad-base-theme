@@ -7,7 +7,7 @@
 
 <section class="flex-row pad-TB ">
 
-	<div class="fifths-3 full-width-at-600">
+	<div class="grid-part fifths-3 full-width-at-600">
 
 		<?php while ( have_posts() ) : the_post(); ?>
 
@@ -17,7 +17,7 @@
 
 	</div><!--/column-->
 
-	<div class="fifths-2 full-width-at-600">
+	<div class="grid-part fifths-2 full-width-at-600">
 
 		<?php get_sidebar(); ?>
 
