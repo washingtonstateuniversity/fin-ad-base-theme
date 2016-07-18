@@ -15,23 +15,6 @@ function spine_load_builder_module_custom() {
 	}
 }
 
-add_filter( 'theme_page_templates', 'spine_show_builder_page_template_custom', 10, 1 );
-/**
-* If builder functionality is not available, do not show the builder template
-* on the list of available page templates.
-*
-* @param array $page_templates List of available page templates.
-*
-* @return array Modified list of page templates.
-*/
-function spine_show_builder_page_template_custom( $page_templates ) {
-
-	if ( false === apply_filters( 'spine_enable_builder_module', true ) ) {
-		unset( $page_templates['template-builder.php'] );
-	}
-	return $page_templates;
-}
-
 
 add_action( 'wp_enqueue_scripts', 'fais_customizer_enqueue_scripts', 20 );
 /**
