@@ -103,18 +103,18 @@ $section_order  = ( ! empty( $ttfmake_section_data['data']['columns-order'] ) ) 
 	?>
 			<div class="wsuwp-spine-builder-column wsuwp-spine-builder-column-position-<?php echo $j; ?> <?php echo $column_flextype?>" data-id="<?php echo $i; ?>">
 				<div title="<?php esc_attr_e( 'Drag-and-drop this column into place', 'ttfmake' ); ?>" class="ttfmake-sortable-handle">
-					<div class="sortable-background">
-						<a href="#" class="spine-builder-column-configure"><span>Configure this column</span></a>
+                    <div class="sortable-background">
+                        <a href="#" class="spine-builder-column-configure"><span>Configure this column</span></a>
 						<a href="#" class="wsuwp-column-toggle" title="Click to toggle"><div class="handlediv <?php echo $toggle_class; ?>"></div></a>
 						<div class="wsuwp-builder-column-title">Column <?php echo $j; ?> of <?php echo $wsuwp_range; ?></div>
-					</div>
-				</div>
+                    </div>
+                </div>
 
-				<div class="ttfmake-titlediv">
-					<div class="ttfmake-titlewrap">
+                <div class="ttfmake-titlediv">
+                    <div class="ttfmake-titlewrap">
 						<input placeholder="<?php esc_attr_e( 'Enter title here', 'ttfmake' ); ?>" type="text" name="<?php echo $column_name; ?>[title]" class="ttfmake-title ttfmake-section-header-title-input" value="<?php echo esc_attr( htmlspecialchars( $title ) ); ?>" autocomplete="off" />
-					</div>
-				</div>
+                    </div>
+                </div>
 
 				<div class="wsuwp-column-content" <?php echo $column_style; ?>>
 					<input type="hidden" class="wsuwp-column-visible" name="<?php echo $column_name; ?>[toggle]" value="<?php echo $visible; ?>" />
@@ -131,35 +131,35 @@ $section_order  = ( ! empty( $ttfmake_section_data['data']['columns-order'] ) ) 
 				<?php else : ?>
         <?php ttfmake_get_builder_base()->wp_editor( $content, 'ttfmakeeditortext' . $ttfmake_section_data['data']['id'] . $i, $editor_settings ); ?>
 				<?php endif; ?>
-				</div>
-				<div class="spine-builder-column-overlay">
-					<div class="spine-builder-column-overlay-wrapper">
-						<div class="spine-builder-overlay-header">
-							<div class="spine-builder-overlay-title">Configure Column</div>
-							<div class="spine-builder-column-overlay-close">Done</div>
-						</div>
-						<div class="spine-builder-overlay-body">
+                </div>
+                <div class="spine-builder-column-overlay">
+                    <div class="spine-builder-column-overlay-wrapper">
+                        <div class="spine-builder-overlay-header">
+                            <div class="spine-builder-overlay-title">Configure Column</div>
+                            <div class="spine-builder-column-overlay-close">Done</div>
+                        </div>
+                        <div class="spine-builder-overlay-body">
         <?php
 		fais_spine_output_builder_column_type( $column_name, $ttfmake_section_data, $j , $key );
 		fais_spine_output_builder_column_classes( $column_name, $ttfmake_section_data, $j );
 		?>
-						</div>
-					</div>
-				</div>
-			</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
     <?php
 	$j++;
 	endforeach; ?>
-	</div>
+    </div>
 
-	<div class="clear"></div>
-	<div class="spine-builder-overlay">
-		<div class="spine-builder-overlay-wrapper">
-			<div class="spine-builder-overlay-header">
-				<div class="spine-builder-overlay-title">Configure Section</div>
-				<div class="spine-builder-overlay-close">Done</div>
-			</div>
-			<div class="spine-builder-overlay-body">
+    <div class="clear"></div>
+    <div class="spine-builder-overlay">
+        <div class="spine-builder-overlay-wrapper">
+            <div class="spine-builder-overlay-header">
+                <div class="spine-builder-overlay-title">Configure Section</div>
+                <div class="spine-builder-overlay-close">Done</div>
+            </div>
+            <div class="spine-builder-overlay-body">
 				<?php
 				fais_spine_output_builder_section_flextree( $section_name, $ttfmake_section_data );
 				fais_spine_output_builder_section_classes( $section_name, $ttfmake_section_data );
@@ -168,9 +168,9 @@ $section_order  = ( ! empty( $ttfmake_section_data['data']['columns-order'] ) ) 
 
 				do_action( 'spine_output_builder_section', $section_name, $ttfmake_section_data, 'columns' );
 				?>
-			</div>
-		</div>
-	</div>
+            </div>
+        </div>
+    </div>
 	<input type="hidden" value="<?php echo esc_attr( implode( ',', $section_order ) ); ?>" name="<?php echo $section_name; ?>[columns-order]" class="wsuwp-spine-builder-columns-order" />
 	<input type="hidden" class="ttfmake-section-state" name="<?php echo $section_name; ?>[state]" value="<?php
 	if ( isset( $ttfmake_section_data['data']['state'] ) ) {
