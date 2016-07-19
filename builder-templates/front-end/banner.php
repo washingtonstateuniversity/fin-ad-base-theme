@@ -20,28 +20,7 @@ if ( 0 === $slider_height ) {
 }
 $slider_ratio = ( $slider_height / 960 ) * 100;
 ?>
-<style type="text/css">
-    <?php
-	// Maintain aspect ratio
-	if ( 'aspect' === $responsive ) : ?>
 
-    #builder-section-<?php echo esc_attr( $ttfmake_section_data['id'] ); ?> .builder-banner-slide {
-     padding-bottom: <?php echo $slider_ratio; ?>%;
-    }
-    <?php
-	// Balanced
-	else : ?>
-
-	#builder-section-<?php echo esc_attr( $ttfmake_section_data['id'] ); ?> .builder-banner-slide {
-		padding-bottom: <?php echo $slider_height; ?>px;
-    }
-    @media screen and (min-width: 600px) and (max-width: 960px) {
-		#builder-section-<?php echo esc_attr( $ttfmake_section_data['id'] ); ?> .builder-banner-slide {
-			padding-bottom: <?php echo $slider_ratio; ?>%;
-        }
-    }
-    <?php endif; ?>
-</style>
 <?php
 if ( isset( $ttfmake_section_data['background-img'] ) && ! empty( $ttfmake_section_data['background-img'] ) ) {
 	$section_background = $ttfmake_section_data['background-img'];
@@ -89,6 +68,30 @@ if ( '' === $section_id ) {
 }
 ?>
 <section id="<?php echo esc_attr( $section_id ); ?>" <?php echo $section_wrapper_html; ?> class="full-width  ">
+
+<style type="text/css">
+    <?php
+	// Maintain aspect ratio
+	if ( 'aspect' === $responsive ) : ?>
+
+    #builder-section-<?php echo esc_attr( $ttfmake_section_data['id'] ); ?> .builder-banner-slide {
+     padding-bottom: <?php echo $slider_ratio; ?>%;
+    }
+    <?php
+	// Balanced
+	else : ?>
+
+	#builder-section-<?php echo esc_attr( $ttfmake_section_data['id'] ); ?> .builder-banner-slide {
+		padding-bottom: <?php echo $slider_height; ?>px;
+    }
+    @media screen and (min-width: 600px) and (max-width: 960px) {
+		#builder-section-<?php echo esc_attr( $ttfmake_section_data['id'] ); ?> .builder-banner-slide {
+			padding-bottom: <?php echo $slider_ratio; ?>%;
+        }
+    }
+    <?php endif; ?>
+</style>
+
 	<div class="column one <?php echo esc_attr( $column_classes ); ?>">
     <?php if ( ! empty( $ttfmake_section_data['title'] ) ) : ?>
             <header>
