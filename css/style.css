@@ -290,11 +290,10 @@ div#border_bottom:before {
     content:"";
 }
 
-
 /* Admin Bar */
 @media (min-width: 990px) {
 	.admin-bar #spine #glue {
-		margin-top: 0px;
+		margin-top: 0;
 	}
 	body.admin-bar {
 		margin-bottom: -32px !important;
@@ -305,7 +304,7 @@ div#border_bottom:before {
 @media (max-width: 989px) {
 	body.admin-bar {
 		margin-top: 18px !important;
-		padding-bottom: 0px !important;
+		padding-bottom: 0 !important;
 	}
 
 	#wpadminbar {
