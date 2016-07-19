@@ -13,9 +13,43 @@ class Fais_Spine_Builder_Custom
 		add_action( 'admin_init', array( $this, 'remove_extra_make' ), 13 );
 		add_action( 'admin_init', array( $this, 'remove_builder_sections' ), 13 );
 		add_action( 'admin_init', array( $this, 'add_builder_sections' ), 14 );
-
+		add_filter( 'content_edit_pre', array( $this, 'filter_function_name' ), 10, 2 );
 		add_filter( 'make_insert_post_data_sections', array( $this, 'set_section_meta' ), 13, 1 );
 	}
+
+
+function filter_function_name( $content, $post_id ) {
+	// Process content here
+
+		$old_wsu_items = [ 'wsuwpsingle', 'wsuwphalves', 'wsuwpsidebarleft', 'wsuwpsidebarright', 'wsuwpthirds' ];
+		$section_data        = ttfmake_get_section_data( $post_id );
+
+		// Print the current sections
+		$needed_conversion = false;
+		$would_update = [];
+		foreach ( $section_data as $id => $section ) {
+			if ( in_array( $section['section-type'],$old_wsu_items,true ) ) {
+					//$would_update[ '_ttfmake:'.$id.':section-type' ] = 'fais'.$section['section-type'];
+				update_post_meta( $post_id, '_ttfmake:'.$id.':section-type', 'fais'.$section['section-type'] );
+				$needed_conversion = true;
+			}
+		}
+		if ( $needed_conversion ) {
+			$url = admin_url().'post.php?post='.$post_id.'&action=edit';
+			wp_redirect( $url );
+		}
+
+//var_dump( $would_update );
+//var_dump( $ttfmake_sections );
+
+//$ttfmake_sections = get_post_meta( $post_id, '', true );
+//var_dump( $ttfmake_sections );
+//var_dump( $needed_conversion );die();
+
+	return $content;
+}
+
+
 
 	/**
 	 * Enqueue the scripts and styles used with the page builder.
@@ -1120,7 +1154,7 @@ function fais_spine_output_builder_column_type( $column_name, $section_data, $co
 
 	?>
 	<div class="wsuwp-builder-meta">
-		<?php echo Fais_Spine_Builder_Custom->build_flexwork_column_inputs( $column_name.'[column-type]', $column_type ); ?>
+		<?php echo Fais_Spine_Builder_Custom::build_flexwork_column_inputs( $column_name.'[column-type]', $column_type ); ?>
 	</div>
 	<?php
 }
@@ -1167,7 +1201,7 @@ function fais_spine_output_builder_section_flextree( $section_name, $ttfmake_sec
 		<p class="description">Set the bins to put the section in. `<?php echo strtoupper( 'content' ); ?>` by default.  It will still output in the order set, but only in the bin it is set to.</p>
 	</div>
 	<div class="wsuwp-builder-meta">
-		<?php echo Fais_Spine_Builder_Custom->build_flexwork_sectional_inputs( $section_name.'[section-flextype]', $current ); ?>
+		<?php echo Fais_Spine_Builder_Custom::build_flexwork_sectional_inputs( $section_name.'[section-flextype]', $current ); ?>
 		<p><b>Note:</b> Editing this edit by hand with out the builder is only advised if you are familar with css and the framework of Flexwork</p>
 	</div>
 	<div class="wsuwp-builder-meta">
