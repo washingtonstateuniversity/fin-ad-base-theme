@@ -1123,7 +1123,6 @@ function fais_spine_output_builder_column_classes( $column_name, $section_data, 
  * @param int $column
  */
 function fais_spine_output_builder_column_type( $column_name, $section_data, $column = false, $column_order = false ) {
-	//var_dump( $section_data );
 	$section_type = false;
 	if ( isset( $section_data['data']['section-type'] ) ) {
 		$section_type = $section_data['data']['section-type'];
