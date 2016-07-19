@@ -151,10 +151,11 @@ main {
 	box-sizing: border-box;
 	color:#292929;
 	z-index: 2;
-	margin-top: -35px;
 	font-size:16px;
 	position: relative;
 }
+#content_area {margin-top:15px;}
+.type-page > .banner-section + #content_area {margin-top: -35px;}
 
 #footer{
 	margin: 0 5px 13px 25px;
