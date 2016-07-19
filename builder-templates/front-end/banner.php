@@ -67,7 +67,7 @@ if ( '' === $section_id ) {
 	$section_id = sanitize_key( $section_id );
 }
 ?>
-<section id="<?php echo esc_attr( $section_id ); ?>" <?php echo $section_wrapper_html; ?> class="full-width  ">
+<section id="<?php echo esc_attr( $section_id ); ?>" <?php echo $section_wrapper_html; ?> class="banner-section full-width  ">
 
 <style type="text/css">
     <?php
