@@ -143,18 +143,19 @@ a.button.docment:before{
 
 main {
 	background: #dedede;
+	padding-bottom: 34px;
 }
 
 #content_area{
 	box-shadow: inset 0 0 5px 2px rgba(50, 50, 50, 0.75);
-	margin:5px 25px;
+	margin:5px 15px;
 	box-sizing: border-box;
 	color:#292929;
 	z-index: 2;
 	font-size:16px;
 	position: relative;
 }
-#content_area {margin-top:15px;}
+#content_area {margin-top: 37px;}
 .type-page > .banner-section + #content_area {margin-top: -35px;}
 
 #footer{
