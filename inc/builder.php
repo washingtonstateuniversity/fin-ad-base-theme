@@ -1030,6 +1030,9 @@ function fais_spine_get_column_data( $section_data, $columns_number = 2 ) {
  */
 function fais_spine_output_builder_section_classes( $section_name, $ttfmake_section_data ) {
 	$section_classes = ( isset( $ttfmake_section_data['data']['section-classes'] ) ) ? $ttfmake_section_data['data']['section-classes'] : '';
+	if( false !== strpos( trim($section_classes), 'gutter pad-top') ){
+		$section_classes = implode('',explode('gutter pad-top',$section_classes));
+	}
 	?>
 	<div class="wsuwp-builder-meta">
 		<label for="<?php echo $section_name; ?>[section-classes]">Section Classes:</label><input type="text" id="<?php echo $section_name; ?>[section-classes]" class="wsuwp-builder-section-classes widefat" name="<?php echo $section_name; ?>[section-classes]" value="<?php echo esc_attr( $section_classes ); ?>" />
