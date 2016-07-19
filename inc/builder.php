@@ -983,7 +983,7 @@ function filter_function_name( $content, $post_id ) {
 	}
 }
 
-$fais_instance_builder = new Fais_Spine_Builder_Custom();
+new Fais_Spine_Builder_Custom();
 
 
 /**
@@ -1154,11 +1154,7 @@ function fais_spine_output_builder_column_type( $column_name, $section_data, $co
 
 	?>
 	<div class="wsuwp-builder-meta">
-<<<<<<< HEAD
-		<?php echo $$fais_instance_builder->build_flexwork_column_inputs( $column_name.'[column-type]', $column_type ); ?>
-=======
 		<?php echo Fais_Spine_Builder_Custom::build_flexwork_column_inputs( $column_name.'[column-type]', $column_type ); ?>
->>>>>>> refs/remotes/origin/develop
 	</div>
 	<?php
 }
@@ -1205,11 +1201,7 @@ function fais_spine_output_builder_section_flextree( $section_name, $ttfmake_sec
 		<p class="description">Set the bins to put the section in. `<?php echo strtoupper( 'content' ); ?>` by default.  It will still output in the order set, but only in the bin it is set to.</p>
 	</div>
 	<div class="wsuwp-builder-meta">
-<<<<<<< HEAD
-		<?php echo $fais_instance_builder->build_flexwork_sectional_inputs( $section_name.'[section-flextype]', $current ); ?>
-=======
 		<?php echo Fais_Spine_Builder_Custom::build_flexwork_sectional_inputs( $section_name.'[section-flextype]', $current ); ?>
->>>>>>> refs/remotes/origin/develop
 		<p><b>Note:</b> Editing this edit by hand with out the builder is only advised if you are familar with css and the framework of Flexwork</p>
 	</div>
 	<div class="wsuwp-builder-meta">
