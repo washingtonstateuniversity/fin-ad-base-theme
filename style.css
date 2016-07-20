@@ -23,22 +23,53 @@ section{
 }
 
 h1,h2,h3{margin-top: 0;padding: 0;}
+
+h3 {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #272727;
+    border-bottom: 1px solid #272727;
+}
+ol, ul {
+	list-style: none;
+}
+form ol, form ul{
+	padding:0;
+}
+
 #homepage_header_wraper{
 	position:relative;
 }
 
-a.button {
+a[href$=".pdf"], a[href$=".xls"] {
+    background: #eff0f1;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #d7dadb #8d959a #8d959a #d7dadb;
+    border-radius: .5em;
+    color: #3b4042;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+    margin-bottom: 0;
+    line-height: normal;
+    padding: .5em 1em;
+    vertical-align: middle;
+}
+
+
+a.button, a[href$=".pdf"], a[href$=".xls"] {
 	border-color: #000;
 	border-width: 2px;
 	font-weight: 700;
 	padding-left:5px;
 }
-a.button:hover {
+a.button:hover, a[href$=".pdf"]:hover, a[href$=".xls"]:hover {
 	border-color: #000;
 	border-width: 2px;
 	font-weight: 700;
 }
-a.button:before {
+a.button:before, a[href$=".pdf"]:before, a[href$=".xls"]:before {
 	display: inline-block;
 	font: normal normal normal 14px/1 FontAwesome;
 	text-rendering: auto;
@@ -53,7 +84,7 @@ a.button:before {
 	color:#000;
 }
 
-a.button.news,a.button.contact,a.button.docment{
+a.button.news,a.button.contact,a.button.docment, a[href$=".pdf"], a[href$=".xls"]{
 	padding-left: 9px;
 }
 a.button.news:before{
@@ -65,6 +96,27 @@ a.button.contact:before{
 a.button.docment:before{
 	content: "\f07c";
 }
+a[href$=".pdf"]:before{
+	content: "\f1c1";
+}
+a[href$=".xls"]:before{
+	content: "\f1c3";
+}
+
+
+
+/* images -------*/
+img {
+    border: 0;
+    height: auto;
+    max-width: 100%;
+}
+/* make sure that we are accounting for the container that WP wraps images in */
+[id^='attachment_'] {
+    max-width: 100%;
+    height: auto;
+}
+
 
 #homepage_header{
 	padding-top: 35%;
@@ -295,6 +347,19 @@ div#border_bottom:before {
     z-index: 9;
     content:"";
 }
+
+
+/* forms */
+input[type=text], input[type=password], input[type=email], select, textarea{
+	border-radius: 5px;
+	border: 2px solid #6d6d6d;
+    padding: 6px 4px;
+    outline: 0;
+    color: #777;
+    margin: 0;
+    background: #fff;
+}
+
 
 /* Admin Bar */
 @media (min-width: 990px) {
