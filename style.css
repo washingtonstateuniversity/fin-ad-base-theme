@@ -88,7 +88,9 @@ a.button.docment:before{
 }
 
 /* pager */
-.builder-section-content.cycle-slideshow:after {
+.builder-section-content.cycle-slideshow:after,
+.builder-section-content:not(.cycle-slideshow) .builder-banner-slide.first-slide:after
+ {
     height:85px;
     display:block;
     position:absolute;
