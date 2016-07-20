@@ -17,8 +17,7 @@ class Fais_Spine_Builder_Custom
 		add_filter( 'make_insert_post_data_sections', array( $this, 'set_section_meta' ), 13, 1 );
 	}
 
-
-	public function get_column_default_size($section_type){
+	public function get_column_default_size( $section_type ) {
 
 		$column_size_defaults = [ 1 => 'fourths-4' ];
 
@@ -35,7 +34,6 @@ class Fais_Spine_Builder_Custom
 		}
 		return $column_size_defaults;
 	}
-
 
 	public function filter_function_name( $content, $post_id ) {
 
@@ -59,19 +57,19 @@ class Fais_Spine_Builder_Custom
 
 				foreach ( $section['columns'] as $cid => $object ) {
 					// 'column-type' => string 'flex-column  fifths-3  order-1  grid-part'
-					$order = array_flip ( $section['columns-order'] )[$cid] + 1;
-					$object['column-type']='flex-column  '.$this->get_column_default_size( $section['section-type'] )[$cid].'  order-'. $order .'  grid-part';
-					$section['columns'][$cid] = $object;
+					$order = array_flip( $section['columns-order'] )[ $cid ] + 1;
+					$object['column-type'] = 'flex-column  '.$this->get_column_default_size( $section['section-type'] )[ $cid ].'  order-'. $order .'  grid-part';
+					$section['columns'][ $cid ] = $object;
 				}
 
-				$section['columns'][$cid] = $object;
-				if( false !== strpos( trim($section['section-classes']), 'gutter pad-top') ){
-					$section['section-classes'] = implode('',explode('gutter pad-top',$section['section-classes']));
+				$section['columns'][ $cid ] = $object;
+				if ( false !== strpos( trim( $section['section-classes'] ), 'gutter pad-top' ) ) {
+					$section['section-classes'] = implode( '',explode( 'gutter pad-top',$section['section-classes'] ) );
 				}
 				$section['section-classes'] = 'flex-row items-start '.$section['section-classes'];
 				$section['section-layout'] = null;
 				$needed_conversion = true;
-				$section_data[$id] = $section;
+				$section_data[ $id ] = $section;
 			}
 		}
 
@@ -119,9 +117,9 @@ class Fais_Spine_Builder_Custom
 		//var_dump($data);
 		//die();
 		wp_update_post( $data, true );
-		if (is_wp_error($post_id)) {
+		if ( is_wp_error( $post_id ) ) {
 			$errors = $post_id->get_error_messages();
-			foreach ($errors as $error) {
+			foreach ( $errors as $error ) {
 				echo $error;
 			}
 		}
@@ -1108,8 +1106,8 @@ function fais_spine_get_column_data( $section_data, $columns_number = 2 ) {
  */
 function fais_spine_output_builder_section_classes( $section_name, $ttfmake_section_data ) {
 	$section_classes = ( isset( $ttfmake_section_data['data']['section-classes'] ) ) ? $ttfmake_section_data['data']['section-classes'] : '';
-	if( false !== strpos( trim($section_classes), 'gutter pad-top') ){
-		$section_classes = implode('',explode('gutter pad-top',$section_classes));
+	if ( false !== strpos( trim( $section_classes ), 'gutter pad-top' ) ) {
+		$section_classes = implode( '',explode( 'gutter pad-top',$section_classes ) );
 	}
 	?>
 	<div class="wsuwp-builder-meta">
