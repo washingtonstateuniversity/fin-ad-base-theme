@@ -17,3 +17,4 @@
 *.RTF	 diff=astextplain
 
 # absolute paths are ok, as are globs
+*.php text eol=lf
