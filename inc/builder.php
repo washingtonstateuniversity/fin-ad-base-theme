@@ -17,39 +17,115 @@ class Fais_Spine_Builder_Custom
 		add_filter( 'make_insert_post_data_sections', array( $this, 'set_section_meta' ), 13, 1 );
 	}
 
+	public function get_column_default_size( $section_type ) {
 
-function filter_function_name( $content, $post_id ) {
-	// Process content here
+		$column_size_defaults = [ 1 => 'fourths-4' ];
+
+		if ( 'faiswsuwphalves' === $section_type ) {
+			$column_size_defaults = [ 1 => 'fourths-2', 2 => ' fourths-2' ];
+		} elseif ( 'faiswsuwpsidebarright' === $section_type ) {
+			$column_size_defaults = [ 1 => 'fifths-3', 2 => 'fifths-2' ];
+		} elseif ( 'faiswsuwpsidebarleft' === $section_type ) {
+			$column_size_defaults = [ 1 => 'fifths-2', 2 => 'fifths-3' ];
+		} elseif ( 'faiswsuwpthirds' === $section_type ) {
+			$column_size_defaults = [ 1 => 'thirds-1',2 => 'thirds-1', 3 => 'thirds-1' ];
+		} elseif ( 'faiswsuwpquarters' === $section_type ) {
+			$column_size_defaults = [ 1 => 'fourths-1', 2 => 'fourths-1', 3 => 'fourths-1', 4 => 'fourths-1' ];
+		}
+		return $column_size_defaults;
+	}
+
+	public function filter_function_name( $content, $post_id ) {
+
+		// Process content here
+		if ( ! ttfmake_post_type_supports_builder( get_post_type() ) ) {
+			return $content;
+		}
 
 		$old_wsu_items = [ 'wsuwpsingle', 'wsuwphalves', 'wsuwpsidebarleft', 'wsuwpsidebarright', 'wsuwpthirds' ];
 		$section_data        = ttfmake_get_section_data( $post_id );
 
+		//var_dump('was');
+		//var_dump($section_data);
 		// Print the current sections
 		$needed_conversion = false;
 		$would_update = [];
 		foreach ( $section_data as $id => $section ) {
-			if ( in_array( $section['section-type'],$old_wsu_items,true ) ) {
-					//$would_update[ '_ttfmake:'.$id.':section-type' ] = 'fais'.$section['section-type'];
-				update_post_meta( $post_id, '_ttfmake:'.$id.':section-type', 'fais'.$section['section-type'] );
+			if ( in_array( $section['section-type'], $old_wsu_items, true ) ) {
+
+				$section['section-type'] = 'fais'.$section['section-type'];
+
+				foreach ( $section['columns'] as $cid => $object ) {
+					// 'column-type' => string 'flex-column  fifths-3  order-1  grid-part'
+					$order = array_flip( $section['columns-order'] )[ $cid ] + 1;
+					$object['column-type'] = 'flex-column '.$this->get_column_default_size( $section['section-type'] )[ $cid ].' pad-tight  order-'. $order .'  grid-part';
+					$section['columns'][ $cid ] = $object;
+				}
+				$section['section-position'] = 'banner' === $section['section-type'] ? '' : 'content';
+				$section['columns'][ $cid ] = $object;
+				if ( false !== strpos( trim( $section['section-classes'] ), 'gutter pad-top' ) ) {
+					$section['section-classes'] = implode( '',explode( 'gutter pad-top',$section['section-classes'] ) );
+				}
+				$section['section-classes'] = 'flex-row items-start '.$section['section-classes'];
+				$section['section-layout'] = null;
 				$needed_conversion = true;
+				$section_data[ $id ] = $section;
 			}
 		}
+
+		//var_dump('is');
+		//var_dump($section_data);
+
 		if ( $needed_conversion ) {
+			$var_data = array( 'ID' => $post_id );
+			$this->wp_insert_post_data( $var_data, $section_data );
 			$url = admin_url().'post.php?post='.$post_id.'&action=edit';
 			wp_redirect( $url );
 		}
 
-//var_dump( $would_update );
-//var_dump( $ttfmake_sections );
+	//var_dump( $would_update );
+	//var_dump( $ttfmake_sections );
 
-//$ttfmake_sections = get_post_meta( $post_id, '', true );
-//var_dump( $ttfmake_sections );
-//var_dump( $needed_conversion );die();
+	//$ttfmake_sections = get_post_meta( $post_id, '', true );
+	//var_dump( $ttfmake_sections );
+	//var_dump( $needed_conversion );die();
 
-	return $content;
-}
+		return $content;
+	}
+/**
+	 * On post save, use a theme template to generate content from metadata.
+	 *
+	 * @since  1.0.0.
+	 *
+	 * @param  array    $data       The processed post data.
+	 * @param  array    $section_data    The processed sections.
+	 * @return array                Modified post data.
+	 */
+	public function wp_insert_post_data( $data, $section_data ) {
 
+		// save meta
+		ttfmake_get_builder_save()->save_data( $section_data, get_the_ID() );
 
+		// Generate the post content
+		$post_content = Custom_TTFMAKE_Builder_Save::set_generate_post_content( $section_data );
+
+		// Sanitize and set the content
+		kses_remove_filters();
+		$data['post_content'] = sanitize_post_field( 'post_content', $post_content, get_the_ID(), 'db' );
+		kses_init_filters();
+
+		//var_dump($data);
+		//die();
+		wp_update_post( $data, true );
+		if ( is_wp_error( get_the_ID() ) ) {
+			$errors = get_the_ID()->get_error_messages();
+			foreach ( $errors as $error ) {
+				echo $error;
+			}
+		}
+
+		return $data;
+	}
 
 	/**
 	 * Enqueue the scripts and styles used with the page builder.
@@ -1030,6 +1106,9 @@ function fais_spine_get_column_data( $section_data, $columns_number = 2 ) {
  */
 function fais_spine_output_builder_section_classes( $section_name, $ttfmake_section_data ) {
 	$section_classes = ( isset( $ttfmake_section_data['data']['section-classes'] ) ) ? $ttfmake_section_data['data']['section-classes'] : '';
+	if ( false !== strpos( trim( $section_classes ), 'gutter pad-top' ) ) {
+		$section_classes = implode( '',explode( 'gutter pad-top',$section_classes ) );
+	}
 	?>
 	<div class="wsuwp-builder-meta">
 		<label for="<?php echo $section_name; ?>[section-classes]">Section Classes:</label><input type="text" id="<?php echo $section_name; ?>[section-classes]" class="wsuwp-builder-section-classes widefat" name="<?php echo $section_name; ?>[section-classes]" value="<?php echo esc_attr( $section_classes ); ?>" />
@@ -1120,7 +1199,6 @@ function fais_spine_output_builder_column_classes( $column_name, $section_data, 
  * @param int $column
  */
 function fais_spine_output_builder_column_type( $column_name, $section_data, $column = false, $column_order = false ) {
-	//var_dump( $section_data );
 	$section_type = false;
 	if ( isset( $section_data['data']['section-type'] ) ) {
 		$section_type = $section_data['data']['section-type'];
@@ -1271,7 +1349,7 @@ class Custom_TTFMAKE_Builder_Save extends TTFMAKE_Builder_Save {
 	}
 
 
-	public function print_sections( $data ) {
+	static function print_sections( $data ) {
 		// For each sections, render it using the template
 		foreach ( $data as $section ) {
 			global $ttfmake_section_data, $ttfmake_sections;
@@ -1302,7 +1380,7 @@ class Custom_TTFMAKE_Builder_Save extends TTFMAKE_Builder_Save {
 	 * @param  array    $postarr    The raw post data.
 	 * @return array                Modified post data.
 	 */
-	public function custom_wp_insert_post_data( $data, $postarr ) {
+	static function custom_wp_insert_post_data( $data, $postarr ) {
 		if ( ! ttfmake_will_be_builder_page() || ! isset( $_POST['ttfmake-builder-nonce'] ) || ! wp_verify_nonce( $_POST['ttfmake-builder-nonce'], 'save' ) ) {
 			return $data;
 		}
@@ -1324,7 +1402,7 @@ class Custom_TTFMAKE_Builder_Save extends TTFMAKE_Builder_Save {
 		 *
 		 * @param array    $data   The sanitized data.
 		 */
-		$sanitized_sections = apply_filters( 'make_insert_post_data_sections', $this->get_sanitized_sections() );
+		$sanitized_sections = apply_filters( 'make_insert_post_data_sections', ttfmake_get_builder_save()->get_sanitized_sections() );
 
 		// The data has been deleted and can be removed
 		if ( empty( $sanitized_sections ) ) {
@@ -1333,7 +1411,7 @@ class Custom_TTFMAKE_Builder_Save extends TTFMAKE_Builder_Save {
 		}
 
 		// Generate the post content
-		$post_content = $this->set_generate_post_content( $sanitized_sections );
+		$post_content = Custom_TTFMAKE_Builder_Save::set_generate_post_content( $sanitized_sections );
 
 		// Sanitize and set the content
 		kses_remove_filters();
@@ -1351,19 +1429,19 @@ class Custom_TTFMAKE_Builder_Save extends TTFMAKE_Builder_Save {
 	 * @param  array     $data    Data for sections used to comprise a page's post_content.
 	 * @return string             The post content.
 	 */
-	public function set_generate_post_content( $data ) {
+	static function set_generate_post_content( $data ) {
 
 		//var_dump( $data );die();
 		// Run wpautop when saving the data
 		add_filter( 'make_the_builder_content', 'wpautop' );
 
 		// Handle oEmbeds correctly
-		add_filter( 'make_the_builder_content', array( $this, 'embed_handling' ), 8 );
-		add_filter( 'embed_handler_html', array( $this, 'embed_handler_html' ) , 10, 3 );
-		add_filter( 'embed_oembed_html', array( $this, 'embed_oembed_html' ) , 10, 4 );
+		add_filter( 'make_the_builder_content', array( ttfmake_get_builder_save(), 'embed_handling' ), 8 );
+		add_filter( 'embed_handler_html', array( ttfmake_get_builder_save(), 'embed_handler_html' ) , 10, 3 );
+		add_filter( 'embed_oembed_html', array( ttfmake_get_builder_save(), 'embed_oembed_html' ) , 10, 4 );
 
 		// Remove editor image constraints while rendering section data.
-		add_filter( 'editor_max_image_size', array( &$this, 'remove_image_constraints' ) );
+		add_filter( 'editor_max_image_size', array( ttfmake_get_builder_save(), 'remove_image_constraints' ) );
 
 		$before_content_area = [];
 		$content_area = [];
@@ -1386,17 +1464,17 @@ class Custom_TTFMAKE_Builder_Save extends TTFMAKE_Builder_Save {
 		// Start the output buffer to collect the contents of the templates
 		ob_start();
 
-		$this->print_sections( $before_content_area );
+		Custom_TTFMAKE_Builder_Save::print_sections( $before_content_area );
 		echo '<div id="content_area" class="flex-column">';
-		$this->print_sections( $content_area );
+		Custom_TTFMAKE_Builder_Save::print_sections( $content_area );
 		echo '</div>';
-		$this->print_sections( $after_content_area );
+		Custom_TTFMAKE_Builder_Save::print_sections( $after_content_area );
 
 		// Get the rendered templates from the output buffer
 		$post_content = ob_get_clean();
 
 		// Allow constraints again after builder data processing is complete.
-		remove_filter( 'editor_max_image_size', array( &$this, 'remove_image_constraints' ) );
+		remove_filter( 'editor_max_image_size', array( ttfmake_get_builder_save(), 'remove_image_constraints' ) );
 
 		/**
 		 * Filter the generated post content.

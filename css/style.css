@@ -5,12 +5,11 @@
  Author:         Finance and Administration Information Systems
  Author URI:     https://fais.wsu.edu/
  Template:       spine
- Version:        0.1.0
+ Version:        0.2.0
 */
 
 body {
-	font-family: "Open Sans", georgia, serif;
-	background: #9bbdf5 url('https://dl.dropboxusercontent.com/s/e688agqiqb7v8ts/tmp-bk.jpg') top center no-repeat;
+	font-family: 'Open Sans', 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
 	background-size: contain;
 	font-size:10;
 	color:#292929;
@@ -23,27 +22,54 @@ section{
 	background-size: contain;
 }
 
-/*0d1vmwb5dukgxrm/second-bk.png*/
-/*jp7yv2rtuxk6rxx/second-bk-3.png*/
-/*5ktxq535sso8ykh/second-bk-4.png*/
-
 h1,h2,h3{margin-top: 0;padding: 0;}
+
+h3 {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #272727;
+    border-bottom: 1px solid #272727;
+}
+ol, ul {
+	list-style: none;
+}
+form ol, form ul{
+	padding:0;
+}
+
 #homepage_header_wraper{
 	position:relative;
 }
 
-a.button {
+a[href$=".pdf"], a[href$=".xls"] {
+    background: #eff0f1;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #d7dadb #8d959a #8d959a #d7dadb;
+    border-radius: .5em;
+    color: #3b4042;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+    margin-bottom: 0;
+    line-height: normal;
+    padding: .5em 1em;
+    vertical-align: middle;
+}
+
+
+a.button, a[href$=".pdf"], a[href$=".xls"] {
 	border-color: #000;
 	border-width: 2px;
 	font-weight: 700;
 	padding-left:5px;
 }
-a.button:hover {
+a.button:hover, a[href$=".pdf"]:hover, a[href$=".xls"]:hover {
 	border-color: #000;
 	border-width: 2px;
 	font-weight: 700;
 }
-a.button:before {
+a.button:before, a[href$=".pdf"]:before, a[href$=".xls"]:before {
 	display: inline-block;
 	font: normal normal normal 14px/1 FontAwesome;
 	text-rendering: auto;
@@ -56,7 +82,7 @@ a.button:before {
 	color:#000;
 }
 
-a.button.news,a.button.contact,a.button.docment{
+a.button.news,a.button.contact,a.button.docment, a[href$=".pdf"], a[href$=".xls"]{
 	padding-left: 9px;
 }
 a.button.news:before{
@@ -68,8 +94,29 @@ a.button.contact:before{
 a.button.docment:before{
 	content: "\f07c";
 }
+a[href$=".pdf"]:before{
+	content: "\f1c1";
+}
+a[href$=".xls"]:before{
+	content: "\f1c3";
+}
 
-#homepage_header {
+
+
+/* images -------*/
+img {
+    border: 0;
+    height: auto;
+    max-width: 100%;
+}
+/* make sure that we are accounting for the container that WP wraps images in */
+[id^='attachment_'] {
+    max-width: 100%;
+    height: auto;
+}
+
+
+#homepage_header{
 	padding-top: 35%;
 	z-index: 1;
 	background-repeat: no-repeat;
@@ -86,7 +133,12 @@ a.button.docment:before{
 }
 
 /* pager */
-.builder-section-content.cycle-slideshow:after {
+.builder-section-content{
+	z-index:99;
+}
+.builder-section-content.cycle-slideshow::after,
+.builder-section-content:not(.cycle-slideshow) .builder-banner-slide.first-slide::after
+ {
     height:85px;
     display:block;
     position:absolute;
@@ -94,10 +146,17 @@ a.button.docment:before{
     left:0;
     width:100%;
     z-index:999;
+	-ms-background: linear-gradient(to bottom, rgba(222,222,222,0) 0%,rgba(222,222,222,.03) 5%,rgba(222,222,222,.85) 75%,rgba(222,222,222,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     background: linear-gradient(to bottom, rgba(222,222,222,0) 0%,rgba(222,222,222,.03) 5%,rgba(222,222,222,.85) 75%,rgba(222,222,222,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00dedede', endColorstr='#dedede',GradientType=0 );  /* IE6-9 */
     content:"";
 }
+.ie9 .builder-section-content.cycle-slideshow::after,
+.ie9 .builder-section-content:not(.cycle-slideshow) .builder-banner-slide.first-slide:after
+ {
+	/* csslint ignore:start */
+	background-image: url('data:image/svg+xml;utf8,<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 16 85"><defs><style>.cls-1{fill:url(#linear-gradient);}</style><linearGradient id="linear-gradient" x1="8" x2="8" y2="85" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#dedede" stop-opacity="0"/><stop offset="0.05" stop-color="#dedede" stop-opacity="0.03"/><stop offset="0.75" stop-color="#dedede" stop-opacity="0.85"/><stop offset="1" stop-color="#dedede"/></linearGradient></defs><title>Untitled-1</title><rect class="cls-1" width="16" height="85"/></svg>');
+	/* csslint ignore:end */
+ }
 
 .cycle-pager {
 	text-align: center;
@@ -143,18 +202,26 @@ a.button.docment:before{
 
 main {
 	background: #dedede;
+	padding-bottom: 34px;
 }
 
-#content_area{
+#content_area, .content_less [id^='builder-section']{
 	box-shadow: inset 0 0 5px 2px rgba(50, 50, 50, 0.75);
-	margin:5px 25px;
 	box-sizing: border-box;
 	color:#292929;
 	z-index: 2;
-	margin-top: -35px;
 	font-size:16px;
 	position: relative;
 }
+#content_area{
+margin:5px 15px;
+}
+.content_less {
+	padding:5px 15px;
+}
+
+#content_area, [id^='builder-section'].row {margin-top: 37px;}
+.type-page > .banner-section + #content_area {margin-top: -35px;}
 
 #footer{
 	margin: 0 5px 13px 25px;
@@ -164,11 +231,7 @@ main {
 	display:inline-block;
 }
 
-div#main {
-    padding: 5px 15px;
-}
-
-div#main h1{
+main h1{
     font-weight:900;
     font-size:2.5em;
     padding:0;
@@ -287,3 +350,64 @@ div#border_bottom:before {
     z-index: 9;
     content:"";
 }
+
+
+/* forms */
+input[type=text], input[type=password], input[type=email], select, textarea{
+	border-radius: 5px;
+	border: 2px solid #6d6d6d;
+    padding: 6px 4px;
+    outline: 0;
+    color: #777;
+    margin: 0;
+    background: #fff;
+}
+
+
+/* Admin Bar */
+@media (min-width: 990px) {
+	.admin-bar #spine #glue {
+		margin-top: 0;
+	}
+	body.admin-bar {
+		margin-bottom: -32px !important;
+		/*padding-top: 32px !important;*/
+	}
+}
+
+@media (max-width: 989px) {
+	body.admin-bar {
+		margin-top: 18px !important;
+		padding-bottom: 0 !important;
+	}
+
+	#wpadminbar {
+		top: auto !important;
+		bottom: 0 !important;
+		position: fixed !important;
+	}
+
+	#wpadminbar .quicklinks>ul>li {
+		position: relative;
+	}
+
+	#wpadminbar .ab-top-menu>.menupop>.ab-sub-wrapper {
+		bottom: 32px;
+		box-shadow: none;
+	}
+}
+
+@media (max-width: 780px) {
+
+	body.admin-bar {
+		margin-top: -46px !important;
+		padding-bottom: 46px !important;
+	}
+
+	#wpadminbar .ab-top-menu>.menupop>.ab-sub-wrapper {
+		bottom: 46px;
+	}
+
+}
+
+
