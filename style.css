@@ -365,6 +365,10 @@ input[type=text], input[type=password], input[type=email], select, textarea{
     margin: 0;
     background: #fff;
 }
+/* spine overrides */
+.row.single .column {
+    max-width: 100%;
+}
 
 
 /* Admin Bar */
