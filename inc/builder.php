@@ -58,7 +58,7 @@ class Fais_Spine_Builder_Custom
 				foreach ( $section['columns'] as $cid => $object ) {
 					// 'column-type' => string 'flex-column  fifths-3  order-1  grid-part'
 					$order = array_flip( $section['columns-order'] )[ $cid ] + 1;
-					$object['column-type'] = 'flex-column  '.$this->get_column_default_size( $section['section-type'] )[ $cid ].'  order-'. $order .'  grid-part';
+					$object['column-type'] = 'flex-column '.$this->get_column_default_size( $section['section-type'] )[ $cid ].' pad-tight  order-'. $order .'  grid-part';
 					$section['columns'][ $cid ] = $object;
 				}
 				$section['section-position'] = 'banner' === $section['section-type'] ? '' : 'content';
