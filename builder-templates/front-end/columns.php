@@ -89,7 +89,7 @@ if ( '' === $section_id ) {
 }
 
 ?>
-	<section id="<?php echo esc_attr( $section_id ); ?>" <?php echo $section_wrapper_html; ?> data-type="<?php echo $section_type; ?>" class=" <?php echo esc_attr( $section_classes ); ?>" <?php echo esc_attr( $section_attr ); ?>>
+	<section id="<?php echo esc_attr( $section_id ); ?>" <?php echo $section_wrapper_html; ?> data-type="<?php echo $section_type; ?>" class="<?php echo esc_attr( trim($section_classes) ); ?>" <?php echo esc_attr( $section_attr ); ?>>
     <?php
 
 	if ( ! empty( $data_columns ) ) {
