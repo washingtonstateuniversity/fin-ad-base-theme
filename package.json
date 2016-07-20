@@ -1,9 +1,9 @@
 {
-  "name": "wsuwp-spine-child-theme-skeleton",
-  "version": "0.0.1",
+  "name": "fin-ad-base-theme",
+  "version": "0.2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/washingtonstateuniversity/wsuwp-spine-child-theme-skeleton"
+    "url": "https://github.com/washingtonstateuniversity/fin-ad-base-theme"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.1",
