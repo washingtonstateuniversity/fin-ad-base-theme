@@ -146,18 +146,20 @@ a.button.docment:before{
 
 main {
 	background: #dedede;
+	padding-bottom: 34px;
 }
 
 #content_area{
 	box-shadow: inset 0 0 5px 2px rgba(50, 50, 50, 0.75);
-	margin:5px 25px;
+	margin:5px 15px;
 	box-sizing: border-box;
 	color:#292929;
 	z-index: 2;
-	margin-top: -35px;
 	font-size:16px;
 	position: relative;
 }
+#content_area {margin-top: 37px;}
+.type-page > .banner-section + #content_area {margin-top: -35px;}
 
 #footer{
 	margin: 0 5px 13px 25px;
@@ -291,11 +293,10 @@ div#border_bottom:before {
     content:"";
 }
 
-
 /* Admin Bar */
 @media (min-width: 990px) {
 	.admin-bar #spine #glue {
-		margin-top: 0px;
+		margin-top: 0;
 	}
 	body.admin-bar {
 		margin-bottom: -32px !important;
@@ -306,7 +307,7 @@ div#border_bottom:before {
 @media (max-width: 989px) {
 	body.admin-bar {
 		margin-top: 18px !important;
-		padding-bottom: 0px !important;
+		padding-bottom: 0 !important;
 	}
 
 	#wpadminbar {
