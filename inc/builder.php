@@ -18,38 +18,116 @@ class Fais_Spine_Builder_Custom
 	}
 
 
-function filter_function_name( $content, $post_id ) {
-	// Process content here
+	public function get_column_default_size($section_type){
+
+		$column_size_defaults = [ 1 => 'fourths-4' ];
+
+		if ( 'faiswsuwphalves' === $section_type ) {
+			$column_size_defaults = [ 1 => 'fourths-2', 2 => ' fourths-2' ];
+		} elseif ( 'faiswsuwpsidebarright' === $section_type ) {
+			$column_size_defaults = [ 1 => 'fifths-3', 2 => 'fifths-2' ];
+		} elseif ( 'faiswsuwpsidebarleft' === $section_type ) {
+			$column_size_defaults = [ 1 => 'fifths-2', 2 => 'fifths-3' ];
+		} elseif ( 'faiswsuwpthirds' === $section_type ) {
+			$column_size_defaults = [ 1 => 'thirds-1',2 => 'thirds-1', 3 => 'thirds-1' ];
+		} elseif ( 'faiswsuwpquarters' === $section_type ) {
+			$column_size_defaults = [ 1 => 'fourths-1', 2 => 'fourths-1', 3 => 'fourths-1', 4 => 'fourths-1' ];
+		}
+		return $column_size_defaults;
+	}
+
+
+	public function filter_function_name( $content, $post_id ) {
+
+		// Process content here
+		if ( ! ttfmake_post_type_supports_builder( get_post_type() ) ) {
+			return $content;
+		}
 
 		$old_wsu_items = [ 'wsuwpsingle', 'wsuwphalves', 'wsuwpsidebarleft', 'wsuwpsidebarright', 'wsuwpthirds' ];
 		$section_data        = ttfmake_get_section_data( $post_id );
 
+		//var_dump('was');
+		//var_dump($section_data);
 		// Print the current sections
 		$needed_conversion = false;
 		$would_update = [];
 		foreach ( $section_data as $id => $section ) {
-			if ( in_array( $section['section-type'],$old_wsu_items,true ) ) {
-					//$would_update[ '_ttfmake:'.$id.':section-type' ] = 'fais'.$section['section-type'];
-				update_post_meta( $post_id, '_ttfmake:'.$id.':section-type', 'fais'.$section['section-type'] );
+			if ( in_array( $section['section-type'], $old_wsu_items, true ) ) {
+
+				$section['section-type'] = 'fais'.$section['section-type'];
+
+				foreach ( $section['columns'] as $cid => $object ) {
+					// 'column-type' => string 'flex-column  fifths-3  order-1  grid-part'
+					$order = array_flip ( $section['columns-order'] )[$cid] + 1;
+					$object['column-type']='flex-column  '.$this->get_column_default_size( $section['section-type'] )[$cid].'  order-'. $order .'  grid-part';
+					$section['columns'][$cid] = $object;
+				}
+
+				$section['columns'][$cid] = $object;
+				if( false !== strpos( trim($section['section-classes']), 'gutter pad-top') ){
+					$section['section-classes'] = implode('',explode('gutter pad-top',$section['section-classes']));
+				}
+				$section['section-classes'] = 'flex-row items-start '.$section['section-classes'];
+				$section['section-layout'] = null;
 				$needed_conversion = true;
+				$section_data[$id] = $section;
 			}
 		}
+
+		//var_dump('is');
+		//var_dump($section_data);
+
 		if ( $needed_conversion ) {
+			$var_data = array( 'ID' => $post_id );
+			$this->wp_insert_post_data( $var_data, $section_data );
 			$url = admin_url().'post.php?post='.$post_id.'&action=edit';
 			wp_redirect( $url );
 		}
 
-//var_dump( $would_update );
-//var_dump( $ttfmake_sections );
+	//var_dump( $would_update );
+	//var_dump( $ttfmake_sections );
 
-//$ttfmake_sections = get_post_meta( $post_id, '', true );
-//var_dump( $ttfmake_sections );
-//var_dump( $needed_conversion );die();
+	//$ttfmake_sections = get_post_meta( $post_id, '', true );
+	//var_dump( $ttfmake_sections );
+	//var_dump( $needed_conversion );die();
 
-	return $content;
-}
+		return $content;
+	}
+/**
+	 * On post save, use a theme template to generate content from metadata.
+	 *
+	 * @since  1.0.0.
+	 *
+	 * @param  array    $data       The processed post data.
+	 * @param  array    $section_data    The processed sections.
+	 * @return array                Modified post data.
+	 */
+	public function wp_insert_post_data( $data, $section_data ) {
 
+		// save meta
+		ttfmake_get_builder_save()->save_data( get_the_ID(), $post_id );
 
+		// Generate the post content
+		$post_content = ttfmake_get_builder_save()->generate_post_content( $section_data );
+
+		// Sanitize and set the content
+		kses_remove_filters();
+		$data['post_content'] = sanitize_post_field( 'post_content', $post_content, get_the_ID(), 'db' );
+		kses_init_filters();
+
+		//var_dump($data);
+		//die();
+		wp_update_post( $data, true );
+		if (is_wp_error($post_id)) {
+			$errors = $post_id->get_error_messages();
+			foreach ($errors as $error) {
+				echo $error;
+			}
+		}
+
+		return $data;
+	}
 
 	/**
 	 * Enqueue the scripts and styles used with the page builder.
