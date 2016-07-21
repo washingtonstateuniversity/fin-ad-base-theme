@@ -220,7 +220,7 @@ margin:5px 15px;
 	padding:5px 15px;
 }
 
-#content_area, [id^='builder-section'].row, [id^='builder-section'].flex-row, .content_less [id^='builder-section'] {margin-top: 37px;}
+#content_area, [id^='builder-section'].row, [id$=""]:not(#content_area) [id^='builder-section'].flex-row, .content_less [id^='builder-section'] {margin-top: 37px;}
 .type-page > .banner-section + #content_area {margin-top: -35px;}
 
 #footer{
@@ -231,13 +231,22 @@ margin:5px 15px;
 	display:inline-block;
 }
 
-main h1{
+main h1,.page h1.article-title{
     font-weight:900;
     font-size:2.5em;
     padding:0;
     margin: 0;
     margin-bottom: 10;
 }
+
+main h2{
+    font-weight:700;
+    font-size:2em;
+    padding:0;
+    margin: 0;
+    margin-bottom: 8;
+}
+
 
 div#side_right {
 	background: rgba(136, 136, 136, 0.45);
