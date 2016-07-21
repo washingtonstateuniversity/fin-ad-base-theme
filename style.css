@@ -365,6 +365,9 @@ input[type=text], input[type=password], input[type=email], select, textarea{
     margin: 0;
     background: #fff;
 }
+input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, textarea:focus {
+    border: 2px solid #aaa;
+}
 /* spine overrides */
 .row.single .column {
     max-width: 100%;
