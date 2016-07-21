@@ -36,7 +36,6 @@ class Fais_Spine_Builder_Custom
 	}
 
 	public function filter_function_name( $content, $post_id ) {
-
 		// Process content here
 		if ( ! ttfmake_post_type_supports_builder( get_post_type() ) ) {
 			return $content;
@@ -45,9 +44,6 @@ class Fais_Spine_Builder_Custom
 		$old_wsu_items = [ 'wsuwpsingle', 'wsuwphalves', 'wsuwpsidebarleft', 'wsuwpsidebarright', 'wsuwpthirds' ];
 		$section_data        = ttfmake_get_section_data( $post_id );
 
-		//var_dump('was');
-		//var_dump($section_data);
-		// Print the current sections
 		$needed_conversion = false;
 		$would_update = [];
 		foreach ( $section_data as $id => $section ) {
@@ -72,24 +68,12 @@ class Fais_Spine_Builder_Custom
 				$section_data[ $id ] = $section;
 			}
 		}
-
-		//var_dump('is');
-		//var_dump($section_data);
-
 		if ( $needed_conversion ) {
 			$var_data = array( 'ID' => $post_id );
 			$this->wp_insert_post_data( $var_data, $section_data );
 			$url = admin_url().'post.php?post='.$post_id.'&action=edit';
 			wp_redirect( $url );
 		}
-
-	//var_dump( $would_update );
-	//var_dump( $ttfmake_sections );
-
-	//$ttfmake_sections = get_post_meta( $post_id, '', true );
-	//var_dump( $ttfmake_sections );
-	//var_dump( $needed_conversion );die();
-
 		return $content;
 	}
 /**
