@@ -53,7 +53,10 @@ function fais_customizer_enqueue_scripts() {
 	// All theme styles have been output at this time. Plugins and other themes should print styles here, before blocking
 	// Javascript resources are output.
 	do_action( 'spine_enqueue_styles' );
-	wp_enqueue_style( 'flexwork-base', get_stylesheet_directory_uri() . '/TempAssests/css/flexwork-devices.css', array( 'fais_spine-theme-print' ), spine_get_script_version() );
+
+	$coverage = fais_spine_get_option( 'flexwork_coverage', 'devices-light' );
+
+	wp_enqueue_style( 'flexwork-base', get_stylesheet_directory_uri() . '/TempAssests/css/flexwork-'.$coverage.'.css', array( 'fais_spine-theme-print' ), spine_get_script_version() );
 	wp_enqueue_style( 'flexwork-typography', get_stylesheet_directory_uri() . '/TempAssests/css/extra/flexwork-typography.css', array( 'flexwork-base' ), spine_get_script_version() );
 	wp_enqueue_style( 'flexwork-ui', get_stylesheet_directory_uri() . '/TempAssests/css/extra/flexwork-ui.css', array( 'flexwork-typography' ), spine_get_script_version() );
 
@@ -69,7 +72,7 @@ function fais_customizer_enqueue_scripts() {
 
 
 
-function fais_spine_get_option( $option_name ) {
+function fais_spine_get_option( $option_name, $default = '' ) {
 	$spine_options = get_option( 'spine_options' );
 
 	if ( isset( $spine_options[ $option_name ] ) ) {
@@ -77,7 +80,7 @@ function fais_spine_get_option( $option_name ) {
 		$spine_options[ $option_name ] = apply_filters( 'spine_option', $spine_options[ $option_name ], $option_name );
 		return $spine_options[ $option_name ];
 	} else {
-		return false;
+		return $default;
 	}
 }
 

@@ -100,6 +100,30 @@ class Fais_Spine_Theme_Customizer {
 			'type' => 'checkbox',
 			'active_callback' => function() { return 'page' == get_option( 'show_on_front' ); },
 		) );*/
+
+		// background image
+		$wp_customize->add_setting( 'spine_options[flexwork_coverage]', array(
+			'default' => 'devices-light',
+			'capability' => 'edit_theme_options',
+			'type' => 'option',
+		) );
+		$wp_customize->add_control( 'flexwork_coverage', array(
+			'label'    => __( 'Flexworks width set' ),
+			'section'  => '_flexwork',
+			'settings' => 'spine_options[flexwork_coverage]',
+			'type'     => 'select',
+			'choices'  => array(
+				'light'  => 'the 5 most common viewport widths',
+				'devices-light'  => 'top 10 device widths',
+				'devices'  => '(full) most current device widths',
+				'50s'  => 'increments of 50px plus full devices',
+				'25s'  => 'increments of 25px plus full devices',
+			),
+		) );
+		$wp_customize->add_section( '_flexwork', array(
+			'title' => __( 'Flexwork' ),
+		) );
+
 	}
 }
 new Fais_Spine_Theme_Customizer();
