@@ -119,11 +119,14 @@ class Fais_Spine_Builder_Custom
 		if ( ! in_array( $hook_suffix, array( 'post.php', 'post-new.php' ), true ) || ! ttfmake_post_type_supports_builder( get_post_type() )	) {
 			return;
 		}
-
+		wp_enqueue_script( 'tag-it', get_stylesheet_directory_uri() . '/inc/builder-custom/js/tag-it.min.js', array( 'jquery' ), spine_get_script_version(), true );
 		wp_dequeue_script( 'ttfmake-admin-edit-page' );
 		wp_enqueue_script( 'fais-ttfmake-admin-edit-page', get_stylesheet_directory_uri() . '/inc/builder-custom/js/edit-page.js', array( 'jquery' ), spine_get_script_version(), true );
 
 		wp_enqueue_style( 'flexwork-devices', get_stylesheet_directory_uri() . '/TempAssests/css/flexwork-devices.css' );
+
+		wp_enqueue_style( 'tag-it', get_stylesheet_directory_uri() . '/inc/builder-custom/js/jquery.tagit.css' );
+		wp_enqueue_style( 'jtagit.ui-zendesk', get_stylesheet_directory_uri() . '/inc/builder-custom/js/tagit.ui-zendesk.css' );
 
 		wp_enqueue_script( 'flexibility', get_stylesheet_directory_uri() . '/TempAssests/js/flexibility.js', array( 'jquery' ), spine_get_script_version(), true );
 		wp_script_add_data( 'flexibility', 'conditional', 'lte IE 10' );
@@ -858,9 +861,9 @@ class Fais_Spine_Builder_Custom
 				</div>
 				<button class="fw_add_class">+ add</button>
 			</div>
-
+<br/>
 		<?php
-		return "<input type='text' name='" . $field_name . "' class='fexwork-classes full-width' value='" . $section_class_str . "'/>";
+		return "<input type='text' name='" . $field_name . "' class='fexwork-classes full-width' value='" . $section_class_str . "'/><span class='fexwork-error' style='color:red;'>Class already exists</span>";
 	}
 	public function build_flexwork_column_inputs( $field_name, $column_class_str = '' ) {
 		//'flex-row wrap-reverse justify-start content-start items-start pad-airy-TB round-wide-L round-no-at-414'
@@ -937,6 +940,9 @@ class Fais_Spine_Builder_Custom
 		}
 		#start_add_fw_class{
 			float:right;
+		}
+		.fw_class_at {
+			margin-top: 19px;
 		}
 		</style>
 		<h3>Flexwork class builder <button class="start_add_fw_class">Add New Class</button></br></h3>
@@ -1037,9 +1043,9 @@ class Fais_Spine_Builder_Custom
 				</div>
 				<button class="fw_add_class">+ add</button>
 			</div>
-
+<br/>
 		<?php
-		return "<input type='text' name='" . $field_name . "' class='fexwork-classes full-width' value='" . $column_class_str . "'/>";
+		return "<input type='text' name='" . $field_name . "' class='fexwork-classes full-width' value='" . $column_class_str . "'/><span class='fexwork-error' style='color:red;'>Class already exists</span>";
 	}
 }
 

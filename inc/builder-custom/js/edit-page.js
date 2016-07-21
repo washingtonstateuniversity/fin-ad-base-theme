@@ -68,22 +68,6 @@ var oneApp = oneApp || {}, $oneApp = $oneApp || jQuery(oneApp);
 			this.cache.$commentstatus = $('#comment_status');
 			this.cache.$pingstatus = $('#ping_status');
 			this.cache.$body = $('body');
-
-			/*this.cache.$start_add_fw_class = $('#start_add_fw_class');
-			this.cache.$fw_type = $('#flexwork-type');
-			this.cache.$fw_area_type = $('#flexwork-area_type');
-			this.cache.$fw_wrapping = $('#flexwork-wrapping');
-			this.cache.$fw_content_justification = $('#flexwork-content_justification');
-			this.cache.$fw_content_alignment = $('#flexwork-content_alignment');
-			this.cache.$fw_items_positioning = $('#flexwork-items_positioning');
-			this.cache.$fw_pad = $('#flexwork-pad');
-			this.cache.$fw_pad_type = $('#flexwork-pad-type');
-			this.cache.$fw_pad_position = $('#flexwork-pad-position');
-			this.cache.$fw_round = $('#flexwork-round');
-			this.cache.$fw_round_type = $('#flexwork-round-type');
-			this.cache.$fw_round_position = $('#flexwork-round-position');
-			this.cache.$fw_class_at = $('#fw_class_at');
-			this.cache.$fw_at_sizes = $('#flexwork-at-sizes');*/
 		},
 
 		bindEvents: function() {
@@ -114,16 +98,21 @@ var oneApp = oneApp || {}, $oneApp = $oneApp || jQuery(oneApp);
 				var self = this;
 
 				$(".ttfmake-section-body > .spine-builder-overlay").each(function(){
-					self.flexPrepTree($(this), ".wsuwp-spine-halves-stage");
+					var set = $(this);
+					self.flexPrepTree(set, ".wsuwp-spine-halves-stage");
 				});
 
 				$(".wsuwp-spine-builder-column").each(function(){
-					self.flexPrepTree($(this),".wsuwp-spine-builder-column");
+					var set = $(this);
+					self.flexPrepTree(set,".wsuwp-spine-builder-column");
 				});
 
 		},
 		flexPrepTree: function(_selection, _root){
 				var self = this;
+
+				var flex_class_input = _selection.find(".fexwork-classes");
+
 				_selection.find(".fw-builder").hide();
 				_selection.find(".fb-type").closest(".flex-attr-area").hide();
 				_selection.find(".fw_add_class").hide();
@@ -165,9 +154,10 @@ var oneApp = oneApp || {}, $oneApp = $oneApp || jQuery(oneApp);
 							_class += (" " !== _class ? "-":" ") + val;
 						}
 					});
-					_selection.find(".fexwork-classes").val( _selection.find(".fexwork-classes").val() + _class );
+					//flex_class_input.val( flex_class_input.val() + _class );
+					flex_class_input.tagit("createTag", _class);
 					self.flexSectionChange( tar.closest(".ttfmake-section").find(_root), function(){
-						tar.closest(".ttfmake-section").find(_root).addClass( _selection.find(".fexwork-classes").val() );
+						tar.closest(".ttfmake-section").find(_root).addClass( flex_class_input.val() );
 					});
 					_selection.find(".fb-type-chooser").find(":selected").attr("selected",false).removeAttr("selected");
 					_selection.find(".fb-type").find(":selected").attr("selected",false).removeAttr("selected");
@@ -178,11 +168,21 @@ var oneApp = oneApp || {}, $oneApp = $oneApp || jQuery(oneApp);
 
 				});
 
-				_selection.find(".fexwork-classes").on("change", function(){
+				flex_class_input.on("change", function(){
 					var tar = $(this);
-					self.flexSectionChange( tar.closest(".ttfmake-section").find(_root), function(){
-						tar.closest(".ttfmake-section").find(_root).addClass( _selection.find(".fexwork-classes").val() );
+					self.flexSectionChange( tar.closest(_root), function(){
+						tar.closest(_root).addClass( flex_class_input.val() );
 					});
+				});
+				flex_class_input.tagit({
+					allowSpaces: false,
+					singleFieldDelimiter:" ",
+					onTagExists: function(event, ui) {
+						_selection.find(".fexwork-error").show();
+					},
+					beforeTagAdded: function(event, ui) {
+						_selection.find(".fexwork-error").hide();
+					}
 				});
 		},
 		flexSectionChange: function( jObj, callback ){
