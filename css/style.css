@@ -220,7 +220,7 @@ margin:5px 15px;
 	padding:5px 15px;
 }
 
-#content_area, [id^='builder-section'].row {margin-top: 37px;}
+#content_area, [id^='builder-section'].row, [id^='builder-section'].flex-row, .content_less [id^='builder-section'] {margin-top: 37px;}
 .type-page > .banner-section + #content_area {margin-top: -35px;}
 
 #footer{
