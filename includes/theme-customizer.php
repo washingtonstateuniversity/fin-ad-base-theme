@@ -58,6 +58,41 @@ class Fais_Spine_Theme_Customizer {
 			'type' => 'option',
 		) );
 
+		$wp_customize->add_setting( 'spine_options[contact_streetAddress2]', array(
+			'default'    => '',
+			'capability' => 'edit_theme_options',
+			'type'       => 'option',
+		) );
+		$wp_customize->add_control( 'contact_streetAddress2', array(
+			'label'    => false,
+			'section'  => 'section_spine_contact',
+			'settings' => 'spine_options[contact_streetAddress2]',
+			'type'     => 'text',
+			'priority' => 411,
+			'input_attrs' => array(
+				//'class' => 'my-custom-class-for-js',
+				//'style' => 'border: 1px solid #900',
+				'placeholder' => __( 'e.g. Suite 111' ),
+			),
+		) );
+
+		$wp_customize->add_setting( 'spine_options[contact_verbal_location]', array(
+			'default'    => '',
+			'capability' => 'edit_theme_options',
+			'type'       => 'option',
+		) );
+		$wp_customize->add_control( 'contact_verbal_location', array(
+			'label'    => __( 'Verbal Location' ),
+			'section'  => 'section_spine_contact',
+			'settings' => 'spine_options[contact_verbal_location]',
+			'type'     => 'text',
+			'priority' => 412,
+			'input_attrs' => array(
+				//'class' => 'my-custom-class-for-js',
+				//'style' => 'border: 1px solid #900',
+				'placeholder' => __( 'e.g. walk in and turn right' ),
+			),
+		) );
 		/*$wp_customize->add_control( 'spine_options[front_page_title]', array(
 			'label' => 'Show title on front page',
 			'section' => 'static_background',
