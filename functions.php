@@ -66,6 +66,8 @@ function fais_customizer_enqueue_scripts() {
 
 	wp_enqueue_script( 'flexibility', get_stylesheet_directory_uri() . '/TempAssests/js/flexibility.js', array( 'jquery' ), spine_get_script_version(), true );
 	wp_script_add_data( 'flexibility', 'conditional', 'lte IE 10' );
+
+	wp_enqueue_script( 'megamenu', 'http://webcore.fais.wsu.edu/resources/central_FnA_theme/megamenu/bootstrap.js', array( 'flexibility' ), spine_get_script_version(), true );
 }
 
 

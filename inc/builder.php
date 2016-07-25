@@ -896,7 +896,21 @@ class Fais_Spine_Builder_Custom
 			'pad' => '',
 			'round' => '',
 			'at-sizes' => [],
-		 ];
+		];
+		$_column_flex_types = [];
+
+		foreach ( $setion_flex_options['width'] as $selection => $parts ) {
+			$class = $selection.'-';
+			foreach ( $parts as $part ) {
+				$class .= $part;
+				$_column_flex_types[] = $class;
+				foreach ( $at_sizes as $size ) {
+					$at = $selection.'-'.$part.'-at-'.$size;
+					$_column_flex_types[] = $at;
+				}
+			}
+		}
+
 		$column_classes = explode( ' ', $column_class_str );
 
 		//for now just get them in the right spot
@@ -945,6 +959,7 @@ class Fais_Spine_Builder_Custom
 			margin-top: 19px;
 		}
 		</style>
+
 		<h3>Flexwork class builder <button class="start_add_fw_class">Add New Class</button></br></h3>
 			<div class="fw-builder">
 				<div class="flexwork-type flex-attr-area">type:<br/>

@@ -174,7 +174,15 @@ var oneApp = oneApp || {}, $oneApp = $oneApp || jQuery(oneApp);
 						tar.closest(_root).addClass( flex_class_input.val() );
 					});
 				});
-				flex_class_input.tagit({
+
+				tagit_op={};
+				if(column_types.length){
+					tagit_op.availableTags=column_types;
+					tagit_op.autocomplete={delay: 0, minLength: 2};
+				}
+
+
+				flex_class_input.tagit($.extend({
 					allowSpaces: false,
 					singleFieldDelimiter:" ",
 					onTagExists: function(event, ui) {
@@ -183,7 +191,7 @@ var oneApp = oneApp || {}, $oneApp = $oneApp || jQuery(oneApp);
 					beforeTagAdded: function(event, ui) {
 						_selection.find(".fexwork-error").hide();
 					}
-				});
+				},tagit_op));
 		},
 		flexSectionChange: function( jObj, callback ){
 			this.cleanTarget(jObj, function(){
