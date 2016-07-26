@@ -176,9 +176,11 @@ var oneApp = oneApp || {}, $oneApp = $oneApp || jQuery(oneApp);
 				});
 
 				tagit_op={};
-				if(column_types.length){
-					tagit_op.availableTags=column_types;
-					tagit_op.autocomplete={delay: 0, minLength: 2};
+				if( "undefined" !== typeof column_types ){
+					if(column_types.length){
+						tagit_op.availableTags= column_types;
+						tagit_op.autocomplete={delay: 0, minLength: 2};
+					}
 				}
 
 
