@@ -41,9 +41,10 @@ class Fais_Spine_Builder_Custom
 			return $content;
 		}
 
-		$old_wsu_items = [ 'wsuwpsingle', 'wsuwphalves', 'wsuwpsidebarleft', 'wsuwpsidebarright', 'wsuwpthirds' ];
+		$old_wsu_items = [ 'wsuwpheader', 'wsuwpsingle', 'wsuwphalves', 'wsuwpsidebarleft', 'wsuwpsidebarright', 'wsuwpthirds', 'wsuwpquarters' ];
 		$section_data        = ttfmake_get_section_data( $post_id );
-
+		//var_dump( 'was' );
+		//var_dump( $section_data );
 		$needed_conversion = false;
 		$would_update = [];
 		foreach ( $section_data as $id => $section ) {
@@ -68,6 +69,9 @@ class Fais_Spine_Builder_Custom
 				$section_data[ $id ] = $section;
 			}
 		}
+		//var_dump( 'is' );
+		//var_dump( $section_data );
+		//die();
 		if ( $needed_conversion ) {
 			$var_data = array( 'ID' => $post_id );
 			$this->wp_insert_post_data( $var_data, $section_data );
