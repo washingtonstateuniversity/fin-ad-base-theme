@@ -42,7 +42,7 @@ class Fais_Spine_Builder_Custom
 		}
 
 		$old_wsu_items = [ 'wsuwpheader', 'wsuwpsingle', 'wsuwphalves', 'wsuwpsidebarleft', 'wsuwpsidebarright', 'wsuwpthirds', 'wsuwpquarters' ];
-		$section_data        = ttfmake_get_section_data( $post_id );
+		$section_data = ttfmake_get_section_data( $post_id );
 		//var_dump( 'was' );
 		//var_dump( $section_data );
 		$needed_conversion = false;

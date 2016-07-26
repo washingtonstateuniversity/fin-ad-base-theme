@@ -101,7 +101,19 @@ a[href$=".xls"]:before{
 	content: "\f1c3";
 }
 
+/* inline content */
+p a.button.news, p a.button.contact,
+p a.button.docment, p a[href$=".pdf"],
+p a[href$=".xls"] {
+    font-size: 0.7em;
+    padding: 1px 5px 1px 7px;
+}
 
+p a.button.news:before, p a.button.contact:before,
+p a.button.docment:before, p a[href$=".pdf"]:before,
+p a[href$=".xls"]:before {
+    font-size: 1.5em;
+}
 
 /* images -------*/
 img {
