@@ -1,5 +1,4 @@
 <?php
-
 class Fais_Spine_Theme_Customizer {
 	/**
 	 * Setup hooks.
@@ -64,6 +63,7 @@ class Fais_Spine_Theme_Customizer {
 				'label'      => __( 'Primary Accent Color' ),
 				'section'    => 'static_background',
 				'settings'   => 'spine_options[primary_accent_color]',
+				'description' => 'The primary color will alter areas like the top borders',
 			) )
 		);
 

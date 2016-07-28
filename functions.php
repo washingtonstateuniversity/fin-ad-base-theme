@@ -192,7 +192,7 @@ add_shortcode( 'contact_block', 'contact_block_shortcode' );
 
 
 
-
+// will refactor in to this later in crunch mode
 class WSU_FinAd_BaseTheme
 {
 	/**
@@ -228,10 +228,11 @@ function finAdBaseTheme() {
 add_action( 'wp_head','background_hook_css', 21 );
 
 function background_hook_css() {
-	$background_url 	= spine_get_option( 'background_url' );
-	$background_color 	= spine_get_option( 'background_color' );
-	$secoundary_accent_color 	= spine_get_option( 'secoundary_accent_color' );
-	$primary_accent_color 	= spine_get_option( 'primary_accent_color' );
+
+$background_url = fais_spine_get_option( 'background_url', '' );
+$background_color = fais_spine_get_option( 'background_color', '#9bbdf5' );
+$secoundary_accent_color = fais_spine_get_option( 'secoundary_accent_color', '#1122a3' );
+$primary_accent_color = fais_spine_get_option( 'primary_accent_color', '#1122a3' );
 
 	$output = "<style> body:not(.has-background-image) {background-image:url('".$background_url."'); }
 	body:not(.has-background-image) {background-color:".$background_color.'; }
