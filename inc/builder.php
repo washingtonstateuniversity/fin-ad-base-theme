@@ -36,18 +36,15 @@ class Fais_Spine_Builder_Custom
 	}
 
 	public function filter_function_name( $content, $post_id ) {
-
 		// Process content here
 		if ( ! ttfmake_post_type_supports_builder( get_post_type() ) ) {
 			return $content;
 		}
 
-		$old_wsu_items = [ 'wsuwpsingle', 'wsuwphalves', 'wsuwpsidebarleft', 'wsuwpsidebarright', 'wsuwpthirds' ];
-		$section_data        = ttfmake_get_section_data( $post_id );
-
-		//var_dump('was');
-		//var_dump($section_data);
-		// Print the current sections
+		$old_wsu_items = [ 'wsuwpheader', 'wsuwpsingle', 'wsuwphalves', 'wsuwpsidebarleft', 'wsuwpsidebarright', 'wsuwpthirds', 'wsuwpquarters' ];
+		$section_data = ttfmake_get_section_data( $post_id );
+		//var_dump( 'was' );
+		//var_dump( $section_data );
 		$needed_conversion = false;
 		$would_update = [];
 		foreach ( $section_data as $id => $section ) {
@@ -58,7 +55,7 @@ class Fais_Spine_Builder_Custom
 				foreach ( $section['columns'] as $cid => $object ) {
 					// 'column-type' => string 'flex-column  fifths-3  order-1  grid-part'
 					$order = array_flip( $section['columns-order'] )[ $cid ] + 1;
-					$object['column-type'] = 'flex-column '.$this->get_column_default_size( $section['section-type'] )[ $cid ].' pad-tight  order-'. $order .'  grid-part';
+					$object['column-type'] = 'flex-column '.$this->get_column_default_size( $section['section-type'] )[ $cid ].' pad-tight  order-'. $order .'  grid-part full-width-at-667';
 					$section['columns'][ $cid ] = $object;
 				}
 				$section['section-position'] = 'banner' === $section['section-type'] ? '' : 'content';
@@ -72,24 +69,15 @@ class Fais_Spine_Builder_Custom
 				$section_data[ $id ] = $section;
 			}
 		}
-
-		//var_dump('is');
-		//var_dump($section_data);
-
+		//var_dump( 'is' );
+		//var_dump( $section_data );
+		//die();
 		if ( $needed_conversion ) {
 			$var_data = array( 'ID' => $post_id );
 			$this->wp_insert_post_data( $var_data, $section_data );
 			$url = admin_url().'post.php?post='.$post_id.'&action=edit';
 			wp_redirect( $url );
 		}
-
-	//var_dump( $would_update );
-	//var_dump( $ttfmake_sections );
-
-	//$ttfmake_sections = get_post_meta( $post_id, '', true );
-	//var_dump( $ttfmake_sections );
-	//var_dump( $needed_conversion );die();
-
 		return $content;
 	}
 /**
@@ -135,11 +123,14 @@ class Fais_Spine_Builder_Custom
 		if ( ! in_array( $hook_suffix, array( 'post.php', 'post-new.php' ), true ) || ! ttfmake_post_type_supports_builder( get_post_type() )	) {
 			return;
 		}
-
+		wp_enqueue_script( 'tag-it', get_stylesheet_directory_uri() . '/inc/builder-custom/js/tag-it.min.js', array( 'jquery' ), spine_get_script_version(), true );
 		wp_dequeue_script( 'ttfmake-admin-edit-page' );
 		wp_enqueue_script( 'fais-ttfmake-admin-edit-page', get_stylesheet_directory_uri() . '/inc/builder-custom/js/edit-page.js', array( 'jquery' ), spine_get_script_version(), true );
 
 		wp_enqueue_style( 'flexwork-devices', get_stylesheet_directory_uri() . '/TempAssests/css/flexwork-devices.css' );
+
+		wp_enqueue_style( 'tag-it', get_stylesheet_directory_uri() . '/inc/builder-custom/js/jquery.tagit.css' );
+		wp_enqueue_style( 'jtagit.ui-zendesk', get_stylesheet_directory_uri() . '/inc/builder-custom/js/tagit.ui-zendesk.css' );
 
 		wp_enqueue_script( 'flexibility', get_stylesheet_directory_uri() . '/TempAssests/js/flexibility.js', array( 'jquery' ), spine_get_script_version(), true );
 		wp_script_add_data( 'flexibility', 'conditional', 'lte IE 10' );
@@ -874,9 +865,9 @@ class Fais_Spine_Builder_Custom
 				</div>
 				<button class="fw_add_class">+ add</button>
 			</div>
-
+<br/>
 		<?php
-		return "<input type='text' name='" . $field_name . "' class='fexwork-classes full-width' value='" . $section_class_str . "'/>";
+		return "<input type='text' name='" . $field_name . "' class='fexwork-classes full-width' value='" . $section_class_str . "'/><span class='fexwork-error' style='color:red;'>Class already exists</span>";
 	}
 	public function build_flexwork_column_inputs( $field_name, $column_class_str = '' ) {
 		//'flex-row wrap-reverse justify-start content-start items-start pad-airy-TB round-wide-L round-no-at-414'
@@ -909,7 +900,21 @@ class Fais_Spine_Builder_Custom
 			'pad' => '',
 			'round' => '',
 			'at-sizes' => [],
-		 ];
+		];
+		$_column_flex_types = [];
+
+		foreach ( $setion_flex_options['width'] as $selection => $parts ) {
+			$class = $selection.'-';
+			foreach ( $parts as $part ) {
+				$class .= $part;
+				$_column_flex_types[] = $class;
+				foreach ( $at_sizes as $size ) {
+					$at = $selection.'-'.$part.'-at-'.$size;
+					$_column_flex_types[] = $at;
+				}
+			}
+		}
+
 		$column_classes = explode( ' ', $column_class_str );
 
 		//for now just get them in the right spot
@@ -954,7 +959,11 @@ class Fais_Spine_Builder_Custom
 		#start_add_fw_class{
 			float:right;
 		}
+		.fw_class_at {
+			margin-top: 19px;
+		}
 		</style>
+
 		<h3>Flexwork class builder <button class="start_add_fw_class">Add New Class</button></br></h3>
 			<div class="fw-builder">
 				<div class="flexwork-type flex-attr-area">type:<br/>
@@ -1053,9 +1062,9 @@ class Fais_Spine_Builder_Custom
 				</div>
 				<button class="fw_add_class">+ add</button>
 			</div>
-
+<br/>
 		<?php
-		return "<input type='text' name='" . $field_name . "' class='fexwork-classes full-width' value='" . $column_class_str . "'/>";
+		return "<input type='text' name='" . $field_name . "' class='fexwork-classes full-width' value='" . $column_class_str . "'/><span class='fexwork-error' style='color:red;'>Class already exists</span>";
 	}
 }
 

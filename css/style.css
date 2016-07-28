@@ -11,7 +11,7 @@
 body {
 	font-family: 'Open Sans', 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
 	background-size: contain;
-	font-size:10;
+	font-size:10px;
 	color:#292929;
 }
 section{
@@ -101,7 +101,19 @@ a[href$=".xls"]:before{
 	content: "\f1c3";
 }
 
+/* inline content */
+p a.button.news, p a.button.contact,
+p a.button.docment, p a[href$=".pdf"],
+p a[href$=".xls"] {
+    font-size: 0.7em;
+    padding: 1px 5px 1px 7px;
+}
 
+p a.button.news:before, p a.button.contact:before,
+p a.button.docment:before, p a[href$=".pdf"]:before,
+p a[href$=".xls"]:before {
+    font-size: 1.5em;
+}
 
 /* images -------*/
 img {
@@ -220,7 +232,7 @@ margin:5px 15px;
 	padding:5px 15px;
 }
 
-#content_area, [id^='builder-section'].row {margin-top: 37px;}
+#content_area, [id^='builder-section'].row, [id$=""]:not(#content_area) [id^='builder-section'].flex-row, .content_less [id^='builder-section'] {margin-top: 37px;}
 .type-page > .banner-section + #content_area {margin-top: -35px;}
 
 #footer{
@@ -231,13 +243,22 @@ margin:5px 15px;
 	display:inline-block;
 }
 
-main h1{
+main h1,.page h1.article-title{
     font-weight:900;
     font-size:2.5em;
     padding:0;
     margin: 0;
     margin-bottom: 10;
 }
+
+main h2{
+    font-weight:700;
+    font-size:2em;
+    padding:0;
+    margin: 0;
+    margin-bottom: 8;
+}
+
 
 div#side_right {
 	background: rgba(136, 136, 136, 0.45);
@@ -361,6 +382,13 @@ input[type=text], input[type=password], input[type=email], select, textarea{
     color: #777;
     margin: 0;
     background: #fff;
+}
+input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, textarea:focus {
+    border: 2px solid #aaa;
+}
+/* spine overrides */
+.row.single .column {
+    max-width: 100%;
 }
 
 

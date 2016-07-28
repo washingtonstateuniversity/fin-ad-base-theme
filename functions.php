@@ -53,22 +53,146 @@ function fais_customizer_enqueue_scripts() {
 	// All theme styles have been output at this time. Plugins and other themes should print styles here, before blocking
 	// Javascript resources are output.
 	do_action( 'spine_enqueue_styles' );
-	wp_enqueue_style( 'flexwork-base', get_stylesheet_directory_uri() . '/TempAssests/css/flexwork-devices.css', array( 'fais_spine-theme-print' ), spine_get_script_version() );
-	wp_enqueue_style( 'flexwork-typography', get_stylesheet_directory_uri() . '/TempAssests/css/extra/flexwork-typography.css', array( 'flexwork-base' ), spine_get_script_version() );
-	wp_enqueue_style( 'flexwork-ui', get_stylesheet_directory_uri() . '/TempAssests/css/extra/flexwork-ui.css', array( 'flexwork-typography' ), spine_get_script_version() );
+
+	$coverage = fais_spine_get_option( 'flexwork_coverage', 'devices-light' );
+
+	wp_enqueue_style( 'flexwork-base', 'http://webcore.fais.wsu.edu/resources/flexwork/flexwork-'.$coverage.'.css', array( 'fais_spine-theme-print' ), spine_get_script_version() );
+	wp_enqueue_style( 'flexwork-typography', 'http://webcore.fais.wsu.edu/resources/flexwork/extra/flexwork-typography.css', array( 'flexwork-base' ), spine_get_script_version() );
+	wp_enqueue_style( 'flexwork-ui', 'http://webcore.fais.wsu.edu/resources/flexwork/extra/flexwork-ui.css', array( 'flexwork-typography' ), spine_get_script_version() );
 
 	wp_enqueue_style( 'fais_spine-theme-child', get_stylesheet_directory_uri() . '/' . $child_stylesheet, array( 'flexwork-typography' ), spine_get_script_version() );
 
+	wp_enqueue_script( 'tether', 'http://webcore.fais.wsu.edu/resources/flexwork/extra/tether.min.js', array( 'jquery' ), spine_get_script_version(), true );
+	wp_enqueue_script( 'drop', 'http://webcore.fais.wsu.edu/resources/flexwork/extra/drop.min.js', array( 'tether' ), spine_get_script_version(), true );
 	wp_enqueue_script( 'child_controll', get_stylesheet_directory_uri() . '/js/child_controll.js', array( 'jquery' ), spine_get_script_version(), true );
 
-	wp_enqueue_script( 'flexibility', get_stylesheet_directory_uri() . '/TempAssests/js/flexibility.js', array( 'jquery' ), spine_get_script_version(), true );
+	wp_enqueue_script( 'flexibility', 'http://webcore.fais.wsu.edu/resources/flexwork/flexibility.js', array( 'jquery' ), spine_get_script_version(), true );
 	wp_script_add_data( 'flexibility', 'conditional', 'lte IE 10' );
+
+	wp_enqueue_script( 'megamenu', 'http://webcore.fais.wsu.edu/resources/central_FnA_theme/megamenu/bootstrap.js', array( 'flexibility' ), spine_get_script_version(), true );
+	$fais_site_object = array(
+		'local' => array(
+			'title' => get_bloginfo( 'name' ),
+		),
+		'parents' => [ [] ],
+	);
+	wp_localize_script( 'wsu-spine', 'fais_site_object', $fais_site_object );
 }
 
 
 
 
 
+function fais_spine_get_option( $option_name, $default = '' ) {
+	$spine_options = get_option( 'spine_options' );
+
+	if ( isset( $spine_options[ $option_name ] ) ) {
+		// A child theme can override a specific spine option with the spine_option filter.
+		$spine_options[ $option_name ] = apply_filters( 'spine_option', $spine_options[ $option_name ], $option_name );
+		return $spine_options[ $option_name ];
+	} else {
+		return $default;
+	}
+}
+
+
+
+
+// Add Shortcode
+function contact_block_shortcode( $atts ) {
+
+	// Attributes
+	$atts = shortcode_atts(
+		array(
+			'show_verbal' => 'true',
+			'show_phone' => 'true',
+		),
+		$atts
+	);
+	ob_start(); ?>
+
+
+
+
+<div class="flex-column items-start">
+	<h3><?php echo __( 'Address' )?>:</h3>
+	<div><?php echo esc_attr( spine_get_option( 'contact_name' ) ); ?></div>
+	<div><?php echo esc_attr( spine_get_option( 'contact_department' ) ); ?></div>
+	<div><?php echo esc_attr( spine_get_option( 'contact_streetAddress' ) ); ?></div>
+	<?php
+	$street_address2 = fais_spine_get_option( 'contact_streetAddress2' );
+	if ( ! empty( $street_address2 ) ) {
+		?>
+		<div><?php echo esc_attr( $street_address2 ); ?></div>
+		<?php
+	}
+	?>
+	<div class="flex-row full-width items-start">
+		<div class="grid-part pad-no fifths-2"><?php echo esc_attr( spine_get_option( 'contact_addressLocality' ) ); ?></div>
+		<div class="grid-part pad-no fifths-3"><?php echo esc_attr( spine_get_option( 'contact_postalCode' ) ); ?></div>
+	</div>
+
+	<?php
+	$verbal_location = fais_spine_get_option( 'contact_verbal_location' );
+	if ( ! empty( $verbal_location ) ) {
+		?><br/>
+			<h3><?php echo __( 'Verbal Location' )?>:</h3>
+			<div><?php echo esc_attr( $verbal_location ); ?></div>
+
+		<?php
+	}
+	?>
+	<br/>
+	<h3><?php echo __( 'Contact Methods' )?>:</h3>
+
+	<?php
+	$contact_telephone = spine_get_option( 'contact_email' );
+	if ( ! empty( $contact_telephone ) && '' !== trim( $contact_telephone ) ) {
+		?>
+		<div class="flex-row full-width items-start">
+			<h4 class="grid-part pad-no fifths-2"><?php echo __( 'Phone' )?>:</h4>
+			<div class="grid-part pad-no fifths-3"><?php echo esc_attr( $contact_telephone ); ?></div>
+		</div>
+		<?php
+	}
+	?>
+
+	<?php
+	$contact_email = spine_get_option( 'contact_email' );
+	if ( ! empty( $contact_email ) && '' !== trim( $contact_email ) ) {
+		?>
+		<div class="flex-row full-width items-start">
+			<h4 class="grid-part pad-no fifths-2"><?php echo __( 'Email' )?>:</h4>
+			<div class="grid-part pad-no fifths-3"><?php echo esc_attr( $contact_email ); ?></div>
+		</div>
+		<?php
+	}
+	?>
+
+	<?php
+	$contact_point = spine_get_option( 'contact_ContactPoint' );
+	if ( ! empty( $contact_point ) && '' !== trim( $contact_point ) ) {
+		?>
+		<div class="flex-row full-width items-start">
+			<h4 class="grid-part pad-no fifths-2"><?php echo __( 'Point of Contact' )?>:</h4>
+			<div class="grid-part pad-no fifths-3"><?php echo esc_attr( $contact_point ); ?></div>
+		</div>
+		<?php
+	}
+	?>
+</div>
+
+<?php
+	$contact_content = ob_get_clean();
+
+	return $contact_content;
+
+}
+add_shortcode( 'contact_block', 'contact_block_shortcode' );
+
+
+
+// will refactor in to this later in crunch mode
 class WSU_FinAd_BaseTheme
 {
 	/**
@@ -104,8 +228,19 @@ function finAdBaseTheme() {
 add_action( 'wp_head','background_hook_css', 21 );
 
 function background_hook_css() {
-	$background_url 	= spine_get_option( 'background_url' );
-	$background_color 	= spine_get_option( 'background_color' );
-	$output = "<style> body:not(.has-background-image) {background-image:url('".$background_url."'); } body:not(.has-background-image) {background-color:".$background_color.'; } </style>';
+
+$background_url = fais_spine_get_option( 'background_url', '' );
+$background_color = fais_spine_get_option( 'background_color', '#9bbdf5' );
+$secoundary_accent_color = fais_spine_get_option( 'secoundary_accent_color', '#1122a3' );
+$primary_accent_color = fais_spine_get_option( 'primary_accent_color', '#1122a3' );
+
+	$output = "<style> body:not(.has-background-image) {background-image:url('".$background_url."'); }
+	body:not(.has-background-image) {background-color:".$background_color.'; }
+    .primary-accent-bk{background-color:'.$primary_accent_color.';}
+    .secoundary-accent-bk{background-color:'.$secoundary_accent_color.';}
+    .primary-accent{color:'.$primary_accent_color.';}
+    .secoundary-accent{color:'.$secoundary_accent_color.';}
+    div#border_top{background-color:'.$primary_accent_color.'}
+    div#border_bottom{background-color:'.$primary_accent_color.'}  </style>';
 	echo $output;
 }
