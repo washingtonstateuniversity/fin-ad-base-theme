@@ -26,14 +26,14 @@ class Fais_Spine_Theme_Customizer {
 				$wp_customize,
 				'background',
 				array(
-					'label'      => __( 'Upload a logo' ),
+					'label'      => __( 'Upload `<body>` background' ),
 					'section'    => 'static_background',
 					'settings'   => 'spine_options[background_url]',
 					//'context'    => 'your_setting_context'
 				)
 			)
 		);
-		// background image
+		// background color
 		$wp_customize->add_setting( 'spine_options[background_color]', array(
 			'default' => false,
 			'capability' => 'edit_theme_options',
@@ -49,6 +49,41 @@ class Fais_Spine_Theme_Customizer {
 				'settings'   => 'spine_options[background_color]',
 			) )
 		);
+
+		// primary_accent
+		$wp_customize->add_setting( 'spine_options[primary_accent_color]', array(
+			'default' => false,
+			'capability' => 'edit_theme_options',
+			'type' => 'option',
+		) );
+		$wp_customize->add_control(
+			new WP_Customize_Color_Control(
+				$wp_customize,
+				'primary_accent_color',
+				array(
+				'label'      => __( 'Primary Accent Color' ),
+				'section'    => 'static_background',
+				'settings'   => 'spine_options[primary_accent_color]',
+			) )
+		);
+
+		// secoundary_accent
+		$wp_customize->add_setting( 'spine_options[secoundary_accent_color]', array(
+			'default' => false,
+			'capability' => 'edit_theme_options',
+			'type' => 'option',
+		) );
+		$wp_customize->add_control(
+			new WP_Customize_Color_Control(
+				$wp_customize,
+				'secoundary_accent_color',
+				array(
+				'label'      => __( 'Secoundary Accent Color' ),
+				'section'    => 'static_background',
+				'settings'   => 'spine_options[secoundary_accent_color]',
+			) )
+		);
+
 		$wp_customize->add_section( 'static_background', array(
 			'title' => __( 'Background', 'static_background' ),
 		) );

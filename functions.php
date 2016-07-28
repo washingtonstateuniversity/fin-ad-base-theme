@@ -66,18 +66,15 @@ function fais_customizer_enqueue_scripts() {
 	wp_enqueue_script( 'drop', 'http://webcore.fais.wsu.edu/resources/flexwork/extra/drop.min.js', array( 'tether' ), spine_get_script_version(), true );
 	wp_enqueue_script( 'child_controll', get_stylesheet_directory_uri() . '/js/child_controll.js', array( 'jquery' ), spine_get_script_version(), true );
 
-
-
-
 	wp_enqueue_script( 'flexibility', 'http://webcore.fais.wsu.edu/resources/flexwork/flexibility.js', array( 'jquery' ), spine_get_script_version(), true );
 	wp_script_add_data( 'flexibility', 'conditional', 'lte IE 10' );
 
 	wp_enqueue_script( 'megamenu', 'http://webcore.fais.wsu.edu/resources/central_FnA_theme/megamenu/bootstrap.js', array( 'flexibility' ), spine_get_script_version(), true );
 	$fais_site_object = array(
 		'local' => array(
-			'title' => get_bloginfo("name"),
+			'title' => get_bloginfo( 'name' ),
 		),
-		'parents' => [[  ]]
+		'parents' => [ [] ],
 	);
 	wp_localize_script( 'wsu-spine', 'fais_site_object', $fais_site_object );
 }
@@ -233,6 +230,16 @@ add_action( 'wp_head','background_hook_css', 21 );
 function background_hook_css() {
 	$background_url 	= spine_get_option( 'background_url' );
 	$background_color 	= spine_get_option( 'background_color' );
-	$output = "<style> body:not(.has-background-image) {background-image:url('".$background_url."'); } body:not(.has-background-image) {background-color:".$background_color.'; } </style>';
+	$secoundary_accent_color 	= spine_get_option( 'secoundary_accent_color' );
+	$primary_accent_color 	= spine_get_option( 'primary_accent_color' );
+
+	$output = "<style> body:not(.has-background-image) {background-image:url('".$background_url."'); }
+	body:not(.has-background-image) {background-color:".$background_color.'; }
+    .primary-accent-bk{background-color:'.$primary_accent_color.';}
+    .secoundary-accent-bk{background-color:'.$secoundary_accent_color.';}
+    .primary-accent{color:'.$primary_accent_color.';}
+    .secoundary-accent{color:'.$secoundary_accent_color.';}
+    div#border_top{background-color:'.$primary_accent_color.'}
+    div#border_bottom{background-color:'.$primary_accent_color.'}  </style>';
 	echo $output;
 }
