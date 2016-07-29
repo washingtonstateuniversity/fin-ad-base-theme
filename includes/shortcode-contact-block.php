@@ -28,10 +28,10 @@ function contact_block_shortcode( $atts ) {
 		<?php
 	}
 	?>
-	<div class="flex-row full-width items-start">
+    <div class="flex-row full-width items-start">
 		<div class="grid-part pad-no fifths-2"><?php echo esc_attr( spine_get_option( 'contact_addressLocality' ) ); ?></div>
 		<div class="grid-part pad-no fifths-3"><?php echo esc_attr( spine_get_option( 'contact_postalCode' ) ); ?></div>
-	</div>
+    </div>
 
 	<?php
 	$verbal_location = fais_spine_get_option( 'contact_verbal_location' );
@@ -43,17 +43,17 @@ function contact_block_shortcode( $atts ) {
 		<?php
 	}
 	?>
-	<br/>
+    <br/>
 	<h3><?php echo __( 'Contact Methods' )?>:</h3>
 
 	<?php
 	$contact_telephone = spine_get_option( 'contact_email' );
 	if ( ! empty( $contact_telephone ) && '' !== trim( $contact_telephone ) ) {
 		?>
-		<div class="flex-row full-width items-start">
+        <div class="flex-row full-width items-start">
 			<h4 class="grid-part pad-no fifths-2"><?php echo __( 'Phone' )?>:</h4>
 			<div class="grid-part pad-no fifths-3"><?php echo esc_attr( $contact_telephone ); ?></div>
-		</div>
+        </div>
 		<?php
 	}
 	?>
@@ -62,10 +62,10 @@ function contact_block_shortcode( $atts ) {
 	$contact_email = spine_get_option( 'contact_email' );
 	if ( ! empty( $contact_email ) && '' !== trim( $contact_email ) ) {
 		?>
-		<div class="flex-row full-width items-start">
+        <div class="flex-row full-width items-start">
 			<h4 class="grid-part pad-no fifths-2"><?php echo __( 'Email' )?>:</h4>
 			<div class="grid-part pad-no fifths-3"><?php echo esc_attr( $contact_email ); ?></div>
-		</div>
+        </div>
 		<?php
 	}
 	?>
@@ -74,10 +74,10 @@ function contact_block_shortcode( $atts ) {
 	$contact_point = spine_get_option( 'contact_ContactPoint' );
 	if ( ! empty( $contact_point ) && '' !== trim( $contact_point ) ) {
 		?>
-		<div class="flex-row full-width items-start">
+        <div class="flex-row full-width items-start">
 			<h4 class="grid-part pad-no fifths-2"><?php echo __( 'Point of Contact' )?>:</h4>
 			<div class="grid-part pad-no fifths-3"><?php echo esc_attr( $contact_point ); ?></div>
-		</div>
+        </div>
 		<?php
 	}
 	?>
