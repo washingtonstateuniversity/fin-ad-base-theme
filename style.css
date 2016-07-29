@@ -271,7 +271,7 @@ img {
 	margin:0;
 }
 .profile-summary h4 {
-	padding-top:5px
+	padding-top:5px;
 }
 .profile-summary a[href^="mailto"] {
 	padding: 2px 5px;
