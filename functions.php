@@ -2,6 +2,9 @@
 //PSR-1/2 -ish
 
 include_once( 'includes/theme-customizer.php' ); // Include customizer functionality.
+include_once( 'includes/shortcode-contact-block.php' );
+include_once( 'includes/shortcode-cards.php' );
+
 
 add_action( 'init', 'spine_load_builder_module_custom', 99 );
 /**
@@ -140,18 +143,35 @@ add_action( 'wp_head','background_hook_css', 21 );
 
 function background_hook_css() {
 
-$background_url = fais_spine_get_option( 'background_url', '' );
-$background_color = fais_spine_get_option( 'background_color', '#9bbdf5' );
-$secoundary_accent_color = fais_spine_get_option( 'secoundary_accent_color', '#1122a3' );
-$primary_accent_color = fais_spine_get_option( 'primary_accent_color', '#1122a3' );
+	$background_url = fais_spine_get_option( 'background_url', false );
+	$background_color = fais_spine_get_option( 'background_color', '#9bbdf5' );
+	$secoundary_accent_color = fais_spine_get_option( 'secoundary_accent_color', '#1122a3' );
+	$primary_accent_color = fais_spine_get_option( 'primary_accent_color', '#1122a3' );
+	$header_color = fais_spine_get_option( 'header_color', '#981e32' );
+	$header_text_color = fais_spine_get_option( 'header_text_color', '#FFF' );
+	$jacket_background_url = fais_spine_get_option( 'jacket_background_url', false );
 
-	$output = "<style> body:not(.has-background-image) {background-image:url('".$background_url."'); }
-	body:not(.has-background-image) {background-color:".$background_color.'; }
+	$output = '<style> ';
+	if ( false !== $background_url ) {
+		$output .= "body:not(.has-background-image) {background-image:url('".$background_url."'); }";
+	}
+	if ( false !== $jacket_background_url ) {
+		$output .= "#jacket {background: transparent url('".$jacket_background_url."') bottom center no-repeat;background-size: contain;}";
+	}
+	//may want to add logic to this but will hold for now
+	$output .= '
+    body:not(.has-background-image) {background-color:'.$background_color.'; }
     .primary-accent-bk{background-color:'.$primary_accent_color.';}
     .secoundary-accent-bk{background-color:'.$secoundary_accent_color.';}
     .primary-accent{color:'.$primary_accent_color.';}
     .secoundary-accent{color:'.$secoundary_accent_color.';}
     div#border_top{background-color:'.$primary_accent_color.'}
-    div#border_bottom{background-color:'.$primary_accent_color.'}  </style>';
+    div#border_bottom{background-color:'.$primary_accent_color.'}
+	.style-bookmark .main-header { background-color:'.$header_color.'; }
+	.style-bookmark .main-header span { color:'.$header_text_color.'; }
+	  ';
+
+	$output .= '</style>';
+
 	echo $output;
 }

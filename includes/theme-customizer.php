@@ -32,6 +32,24 @@ class Fais_Spine_Theme_Customizer {
 				)
 			)
 		);
+		// background image
+		$wp_customize->add_setting( 'spine_options[jacket_background_url]', array(
+			'default' => false,
+			'capability' => 'edit_theme_options',
+			'type' => 'option',
+		) );
+		$wp_customize->add_control(
+			new WP_Customize_Image_Control(
+				$wp_customize,
+				'jacket_background_url',
+				array(
+					'label'      => __( 'Upload `<div id="jacket">` background' ),
+					'section'    => 'static_background',
+					'settings'   => 'spine_options[jacket_background_url]',
+					//'context'    => 'your_setting_context'
+				)
+			)
+		);
 		// background color
 		$wp_customize->add_setting( 'spine_options[background_color]', array(
 			'default' => false,
@@ -84,8 +102,41 @@ class Fais_Spine_Theme_Customizer {
 			) )
 		);
 
+		// header_color
+		$wp_customize->add_setting( 'spine_options[header_color]', array(
+			'default' => false,
+			'capability' => 'edit_theme_options',
+			'type' => 'option',
+		) );
+		$wp_customize->add_control(
+			new WP_Customize_Color_Control(
+				$wp_customize,
+				'header_color',
+				array(
+				'label'      => __( 'Header Color' ),
+				'section'    => 'static_background',
+				'settings'   => 'spine_options[header_color]',
+			) )
+		);
+		// header_text_color
+		$wp_customize->add_setting( 'spine_options[header_text_color]', array(
+			'default' => false,
+			'capability' => 'edit_theme_options',
+			'type' => 'option',
+		) );
+		$wp_customize->add_control(
+			new WP_Customize_Color_Control(
+				$wp_customize,
+				'header_text_color',
+				array(
+				'label'      => __( 'Header Color' ),
+				'section'    => 'static_background',
+				'settings'   => 'spine_options[header_text_color]',
+			) )
+		);
+
 		$wp_customize->add_section( 'static_background', array(
-			'title' => __( 'Background', 'static_background' ),
+			'title' => __( 'FAIS theme settings', 'static_background' ),
 		) );
 		$wp_customize->add_setting( 'spine_options[background_url]', array(
 			'default' => false,
