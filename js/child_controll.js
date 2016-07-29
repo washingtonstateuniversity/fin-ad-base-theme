@@ -19,8 +19,15 @@
 			$("#hidden").append("<div id='contact-form' class='pad-airy'><input type='hidden' name='img_val' id='img_val' /><span id='close_form'></span><h2>Provide Feed back</h2><form><label>Name<input type='text' /></label><button id='take_shot'>Take Screen Shot</button><span id='screen_area'><span id='remove_screen'></span><span id='screen_image'></span></span><button type='submit'>Submit</button>");
 		}
 
-
-
+		$SpineColor = "";
+		if($("#spine").attr("class").indexOf("dark ")){
+			$SpineColor = "dark";
+		}else if($("#spine").attr("class").indexOf("darker")){
+			$SpineColor = "darker";
+		}else if($("#spine").attr("class").indexOf("crimson")){
+			$SpineColor = "crimson";
+		}
+		$("body").addClass($SpineColor);
 		//http://www.kubilayerdogan.net/html2canvas-take-screenshot-of-web-page-and-save-it-to-server-javascript-and-php/
 		// NOTE THIS IS WHERE WE NEED TO REFERBACK
 
