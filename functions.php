@@ -2,6 +2,9 @@
 //PSR-1/2 -ish
 
 include_once( 'includes/theme-customizer.php' ); // Include customizer functionality.
+include_once( 'includes/shortcode-contact-block.php' );
+include_once( 'includes/shortcode-cards.php' );
+
 
 add_action( 'init', 'spine_load_builder_module_custom', 99 );
 /**
@@ -98,97 +101,8 @@ function fais_spine_get_option( $option_name, $default = '' ) {
 
 
 
-// Add Shortcode
-function contact_block_shortcode( $atts ) {
-
-	// Attributes
-	$atts = shortcode_atts(
-		array(
-			'show_verbal' => 'true',
-			'show_phone' => 'true',
-		),
-		$atts
-	);
-	ob_start(); ?>
 
 
-
-
-<div class="flex-column items-start">
-	<h3><?php echo __( 'Address' )?>:</h3>
-	<div><?php echo esc_attr( spine_get_option( 'contact_name' ) ); ?></div>
-	<div><?php echo esc_attr( spine_get_option( 'contact_department' ) ); ?></div>
-	<div><?php echo esc_attr( spine_get_option( 'contact_streetAddress' ) ); ?></div>
-	<?php
-	$street_address2 = fais_spine_get_option( 'contact_streetAddress2' );
-	if ( ! empty( $street_address2 ) ) {
-		?>
-		<div><?php echo esc_attr( $street_address2 ); ?></div>
-		<?php
-	}
-	?>
-	<div class="flex-row full-width items-start">
-		<div class="grid-part pad-no fifths-2"><?php echo esc_attr( spine_get_option( 'contact_addressLocality' ) ); ?></div>
-		<div class="grid-part pad-no fifths-3"><?php echo esc_attr( spine_get_option( 'contact_postalCode' ) ); ?></div>
-	</div>
-
-	<?php
-	$verbal_location = fais_spine_get_option( 'contact_verbal_location' );
-	if ( ! empty( $verbal_location ) ) {
-		?><br/>
-			<h3><?php echo __( 'Verbal Location' )?>:</h3>
-			<div><?php echo esc_attr( $verbal_location ); ?></div>
-
-		<?php
-	}
-	?>
-	<br/>
-	<h3><?php echo __( 'Contact Methods' )?>:</h3>
-
-	<?php
-	$contact_telephone = spine_get_option( 'contact_email' );
-	if ( ! empty( $contact_telephone ) && '' !== trim( $contact_telephone ) ) {
-		?>
-		<div class="flex-row full-width items-start">
-			<h4 class="grid-part pad-no fifths-2"><?php echo __( 'Phone' )?>:</h4>
-			<div class="grid-part pad-no fifths-3"><?php echo esc_attr( $contact_telephone ); ?></div>
-		</div>
-		<?php
-	}
-	?>
-
-	<?php
-	$contact_email = spine_get_option( 'contact_email' );
-	if ( ! empty( $contact_email ) && '' !== trim( $contact_email ) ) {
-		?>
-		<div class="flex-row full-width items-start">
-			<h4 class="grid-part pad-no fifths-2"><?php echo __( 'Email' )?>:</h4>
-			<div class="grid-part pad-no fifths-3"><?php echo esc_attr( $contact_email ); ?></div>
-		</div>
-		<?php
-	}
-	?>
-
-	<?php
-	$contact_point = spine_get_option( 'contact_ContactPoint' );
-	if ( ! empty( $contact_point ) && '' !== trim( $contact_point ) ) {
-		?>
-		<div class="flex-row full-width items-start">
-			<h4 class="grid-part pad-no fifths-2"><?php echo __( 'Point of Contact' )?>:</h4>
-			<div class="grid-part pad-no fifths-3"><?php echo esc_attr( $contact_point ); ?></div>
-		</div>
-		<?php
-	}
-	?>
-</div>
-
-<?php
-	$contact_content = ob_get_clean();
-
-	return $contact_content;
-
-}
-add_shortcode( 'contact_block', 'contact_block_shortcode' );
 
 
 
@@ -229,18 +143,35 @@ add_action( 'wp_head','background_hook_css', 21 );
 
 function background_hook_css() {
 
-$background_url = fais_spine_get_option( 'background_url', '' );
-$background_color = fais_spine_get_option( 'background_color', '#9bbdf5' );
-$secoundary_accent_color = fais_spine_get_option( 'secoundary_accent_color', '#1122a3' );
-$primary_accent_color = fais_spine_get_option( 'primary_accent_color', '#1122a3' );
+	$background_url = fais_spine_get_option( 'background_url', false );
+	$background_color = fais_spine_get_option( 'background_color', '#9bbdf5' );
+	$secoundary_accent_color = fais_spine_get_option( 'secoundary_accent_color', '#1122a3' );
+	$primary_accent_color = fais_spine_get_option( 'primary_accent_color', '#1122a3' );
+	$header_color = fais_spine_get_option( 'header_color', '#981e32' );
+	$header_text_color = fais_spine_get_option( 'header_text_color', '#FFF' );
+	$jacket_background_url = fais_spine_get_option( 'jacket_background_url', false );
 
-	$output = "<style> body:not(.has-background-image) {background-image:url('".$background_url."'); }
-	body:not(.has-background-image) {background-color:".$background_color.'; }
+	$output = '<style> ';
+	if ( false !== $background_url ) {
+		$output .= "body:not(.has-background-image) {background-image:url('".$background_url."'); }";
+	}
+	if ( false !== $jacket_background_url ) {
+		$output .= "#jacket {background: transparent url('".$jacket_background_url."') bottom center no-repeat;background-size: contain;}";
+	}
+	//may want to add logic to this but will hold for now
+	$output .= '
+    body:not(.has-background-image) {background-color:'.$background_color.'; }
     .primary-accent-bk{background-color:'.$primary_accent_color.';}
     .secoundary-accent-bk{background-color:'.$secoundary_accent_color.';}
     .primary-accent{color:'.$primary_accent_color.';}
     .secoundary-accent{color:'.$secoundary_accent_color.';}
     div#border_top{background-color:'.$primary_accent_color.'}
-    div#border_bottom{background-color:'.$primary_accent_color.'}  </style>';
+    div#border_bottom{background-color:'.$primary_accent_color.'}
+	.style-bookmark .main-header { background-color:'.$header_color.'; }
+	.style-bookmark .main-header span { color:'.$header_text_color.'; }
+	  ';
+
+	$output .= '</style>';
+
 	echo $output;
 }

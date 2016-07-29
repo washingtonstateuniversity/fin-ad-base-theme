@@ -235,6 +235,21 @@ margin:5px 15px;
 #content_area, [id^='builder-section'].row, [id$=""]:not(#content_area) [id^='builder-section'].flex-row, .content_less [id^='builder-section'] {margin-top: 37px;}
 .type-page > .banner-section + #content_area {margin-top: -35px;}
 
+body.home:not(.has-background-image) #jacket {
+    background-position: center bottom;
+    background-repeat: no-repeat;
+}
+.style-bookmark .main-header {
+    background: #981e32;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border: 0;
+    height: auto;
+}
+.home .style-bookmark .main-header { display:none; }
+
 #footer{
 	margin: 0 5px 13px 25px;
 	font-size: 1.4em;
