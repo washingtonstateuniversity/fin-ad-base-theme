@@ -40,8 +40,10 @@ form ol, form ul{
 #homepage_header_wraper{
 	position:relative;
 }
+/* contact cards */
 
-a[href$=".pdf"], a[href$=".xls"] {
+
+a[href$=".pdf"], a[href$=".xls"],a[href^="mailto:"] {
     background: #eff0f1;
     border-style: solid;
     border-width: 1px;
@@ -58,18 +60,18 @@ a[href$=".pdf"], a[href$=".xls"] {
 }
 
 
-a.button, a[href$=".pdf"], a[href$=".xls"] {
+a.button, a[href$=".pdf"], a[href$=".xls"],a[href^="mailto"]  {
 	border-color: #000;
 	border-width: 2px;
 	font-weight: 700;
 	padding-left:5px;
 }
-a.button:hover, a[href$=".pdf"]:hover, a[href$=".xls"]:hover {
+a.button:hover, a[href$=".pdf"]:hover, a[href$=".xls"]:hover,a[href^="mailto:"]:hover  {
 	border-color: #000;
 	border-width: 2px;
 	font-weight: 700;
 }
-a.button:before, a[href$=".pdf"]:before, a[href$=".xls"]:before {
+a.button:before, a[href$=".pdf"]:before, a[href$=".xls"]:before,a[href^="mailto:"]:before {
 	display: inline-block;
 	font: normal normal normal 14px/1 FontAwesome;
 	text-rendering: auto;
@@ -82,7 +84,7 @@ a.button:before, a[href$=".pdf"]:before, a[href$=".xls"]:before {
 	color:#000;
 }
 
-a.button.news,a.button.contact,a.button.docment, a[href$=".pdf"], a[href$=".xls"]{
+a.button.news,a.button.contact,a.button.docment, a[href$=".pdf"], a[href$=".xls"],a[href^="mailto:"]{
 	padding-left: 9px;
 }
 a.button.news:before{
@@ -99,6 +101,9 @@ a[href$=".pdf"]:before{
 }
 a[href$=".xls"]:before{
 	content: "\f1c3";
+}
+a[href^="mailto:"]:before{
+	content: "\f003";
 }
 
 /* inline content */
@@ -237,7 +242,9 @@ img {
 	background: #981e32;
 	color:#fff;
 }
-
+.crimson #contact-form button,.darker #contact-form button,.dark #contact-form button {
+	color:#3b4042;
+}
 
 #close_form:before {
 	display: inline-block;
@@ -253,6 +260,19 @@ img {
 	content:"\f00d";
 }
 
+/*contact cars */
+.profile-summary h2, .profile-summary h3, .profile-summary h4 {
+	padding:0;
+	margin:0;
+}
+.profile-summary h4 {
+	padding-top:5px;
+}
+.profile-summary a[href^="mailto"] {
+	padding: 2px 5px;
+    height: 2.2em;
+    line-height: 2.1em;
+}
 
 
 
