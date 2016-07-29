@@ -72,8 +72,7 @@ function fais_customizer_enqueue_scripts() {
 	wp_enqueue_script( 'flexibility', 'https://webcore.fais.wsu.edu/resources/flexwork/flexibility.js', array( 'jquery' ), spine_get_script_version(), true );
 	wp_script_add_data( 'flexibility', 'conditional', 'lte IE 10' );
 
-
-	wp_enqueue_script( 'megamenu', get_stylesheet_directory_uri() . '/js/html2canvas.js', array( 'jquery' ), spine_get_script_version(), true );
+	wp_enqueue_script( 'html2canvas', get_stylesheet_directory_uri() . '/js/html2canvas.js', array( 'jquery' ), spine_get_script_version(), true );
 
 	$fais_site_object = array(
 		'local' => array(
