@@ -4,7 +4,7 @@
 include_once( 'includes/theme-customizer.php' ); // Include customizer functionality.
 include_once( 'includes/shortcode-contact-block.php' );
 include_once( 'includes/shortcode-cards.php' );
-
+include_once( 'includes/widget-shortcode.php' );
 
 add_action( 'init', 'spine_load_builder_module_custom', 99 );
 /**
@@ -188,10 +188,6 @@ add_action( 'after_setup_theme', 'finAdBaseTheme' );
 function finAdBaseTheme() {
 	return WSU_FinAd_BaseTheme::getInstance();
 }
-
-
-
-
 
 
 add_action( 'wp_head','background_hook_css', 21 );

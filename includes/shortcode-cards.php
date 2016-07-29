@@ -32,19 +32,19 @@ function cards_shortcode( $atts ) {
 	<?php endif; ?>
 
 	</div>
-	<div class="flex-column items-start thirds-2 pad-tight-L profile-summary">
+	<div class="flex-column items-start grid-part thirds-2 pad-tight-L profile-summary">
 		<?php if ( false !== $att['position'] ) :  ?>
 			<h3><?php echo $att['position'] ?></h3>
 		<?php endif; ?>
 		<?php if ( false !== $att['name'] ) :  ?>
 			<h4><?php echo $att['name'] ?></h4>
 		<?php endif; ?>
-		<span class="flex-row">
+		<span class="flex-row justify-between full-width">
 			<?php if ( false !== $att['tel'] ) :  ?>
-				<h5><?php echo $att['tel'] ?></h5>
+				<h5 class=" grid-part "><?php echo $att['tel'] ?></h5>
 			<?php endif; ?>
 			<?php if ( false !== $att['email'] ) :  ?>
-				<a href="mailto:<?php echo $att['email'] ?>">Email</a>
+				<a class=" grid-part pad-tight" href="mailto:<?php echo $att['email'] ?>">Email</a>
 			<?php endif; ?>
 		</span>
 		<?php if ( false !== $att['descrip'] ) :  ?>

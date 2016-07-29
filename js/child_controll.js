@@ -16,7 +16,7 @@
 			$("body").append("<div id='hidden'>");
 		}
 		if( !$("#contact-form").length ){
-			$("#hidden").append("<div id='contact-form' class='pad-airy'><input type='hidden' name='img_val' id='img_val' /><span id='close_form'></span><h2>Provide Feed back</h2><form><label>Name<input type='text' /></label><button id='take_shot'>Take Screen Shot</button><span id='screen_area'><span id='remove_screen'></span><span id='screen_image'></span></span><button type='submit'>Submit</button>");
+			$("#hidden").append("<div id='contact-form' class='pad-airy'><input type='hidden' name='img_val' id='img_val' /><span id='close_form'></span><h2>Provide Feed back</h2><form><label>Name<br/><input type='text' /></label><br/><label>Email<br/><input type='email' /></label><br/><label>Feedback<br/></label><textarea style'width:100%'></textarea><br/><button id='take_shot'>Take Screen Shot</button><span id='screen_area'><span id='remove_screen'></span><span id='screen_image'></span></span><br/><br/><button type='submit'>Submit</button>");
 		}
 
 		var spine_color = "";
@@ -84,6 +84,9 @@
 					//$('#screen_image')(canvas);
 					document.getElementById("screen_image").appendChild(canvas);
 					$("#screen_image canvas").css({"width":100,"height":"auto"});
+					$('body,html').animate({
+						scrollTop: $(window).scrollTop() + 1
+					}, 5);
 				}
 			});
 		});
