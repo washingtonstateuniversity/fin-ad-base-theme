@@ -75,9 +75,7 @@ a.button:before, a[href$=".pdf"]:before, a[href$=".xls"]:before {
 	text-rendering: auto;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	-webkit-transform: translate(0, 0);
-	    -ms-transform: translate(0, 0);
-	        transform: translate(0, 0);
+	transform: translate(0, 0);
 	margin-right:5px;
 	font-size: 26px;
 	line-height: 23px;
@@ -184,7 +182,6 @@ img {
     width:100%;
     z-index:999;
 	-ms-background: linear-gradient(to bottom, rgba(222,222,222,0) 0%,rgba(222,222,222,.03) 5%,rgba(222,222,222,.85) 75%,rgba(222,222,222,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    background: -webkit-linear-gradient(top, rgba(222,222,222,0) 0%,rgba(222,222,222,.03) 5%,rgba(222,222,222,.85) 75%,rgba(222,222,222,1) 100%);
     background: linear-gradient(to bottom, rgba(222,222,222,0) 0%,rgba(222,222,222,.03) 5%,rgba(222,222,222,.85) 75%,rgba(222,222,222,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     content:"";
 }
@@ -228,9 +225,7 @@ img {
 	text-rendering: auto;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	-webkit-transform: translate(0, 0);
-	    -ms-transform: translate(0, 0);
-	        transform: translate(0, 0);
+	transform: translate(0, 0);
 	margin-right:5px;
 	font-size: 26px;
 	line-height: 23px;
@@ -523,4 +518,7 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, tex
 	}
 
 }
-/*# sourceMappingURL=style.css.map */
+
+
+
+/*# sourceMappingURL=tmp-style.css.map */
