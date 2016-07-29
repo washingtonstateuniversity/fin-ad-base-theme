@@ -28,7 +28,7 @@
 		}else if( spine_class.indexOf("crimson") > -1 ){
 			spine_color = "crimson";
 		}
-		$("body").addClass(SpineColor);
+		$("body").addClass(spine_color);
 		//http://www.kubilayerdogan.net/html2canvas-take-screenshot-of-web-page-and-save-it-to-server-javascript-and-php/
 		// NOTE THIS IS WHERE WE NEED TO REFERBACK
 
