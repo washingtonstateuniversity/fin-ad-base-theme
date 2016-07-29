@@ -82,10 +82,6 @@ function fais_customizer_enqueue_scripts() {
 	wp_localize_script( 'wsu-spine', 'fais_site_object', $fais_site_object );
 }
 
-
-
-
-
 function fais_spine_get_option( $option_name, $default = '' ) {
 	$spine_options = get_option( 'spine_options' );
 
@@ -97,13 +93,6 @@ function fais_spine_get_option( $option_name, $default = '' ) {
 		return $default;
 	}
 }
-
-
-
-
-
-
-
 
 
 // will refactor in to this later in crunch mode
@@ -127,6 +116,64 @@ class WSU_FinAd_BaseTheme
 		}
 		return self::$instance;
 	}
+
+	public function __construct() {
+		add_action( 'init', array( $this, 'theme_menus' ), 10, 1 );
+	}
+
+	/**
+	 * Setup the default navigation menus used in the Spine.
+	 */
+	public function theme_menus() {
+		register_nav_menus(
+			array(
+				'fais_global'    => 'Global',
+			)
+		);
+
+	// If the Global Menu doesn't exist, let's create it
+		if ( ! is_nav_menu( 'global-menu' ) ) {
+
+			// Create menu
+			$menu_id = wp_create_nav_menu( 'Global Menu' );
+
+			// Add menu items
+			wp_update_nav_menu_item( $menu_id, 0, array(
+				'menu-item-title' => __( 'Contact' ),
+				'menu-item-url' => home_url( '/contact-information/' ),
+				'menu-item-status' => 'publish',
+			) );
+
+			wp_update_nav_menu_item( $menu_id, 0, array(
+				'menu-item-title' => __( 'Where are we Located' ),
+				'menu-item-url' => home_url( '/located-at/' ),
+				'menu-item-status' => 'publish',
+			) );
+
+			wp_update_nav_menu_item( $menu_id, 0, array(
+				'menu-item-title' => __( 'Give Feedback' ),
+				'menu-item-url' => '#',
+				'menu-item-status' => 'publish',
+				'menu-item-classes' => ' inline-form ',
+			) );
+
+			wp_update_nav_menu_item( $menu_id, 0, array(
+				'menu-item-title' => __( 'F&A Home Page' ),
+				'menu-item-url' => 'https://baf.wsu.edu',
+				'menu-item-attr-title' => 'F-n-A-Home-Page',
+				'menu-item-status' => 'publish',
+			) );
+
+			// Lower case theme_name
+			$theme = strtolower( str_replace( ' ', '_', wp_get_theme() ) );
+
+			$locations = get_theme_mod( 'nav_menu_locations' );
+			$locations['fais_global'] = $menu_id;
+			// Update the theme options
+			set_theme_mod( 'nav_menu_locations', $locations );
+
+		}
+	}
 }
 add_action( 'after_setup_theme', 'finAdBaseTheme' );
 /**
@@ -137,6 +184,10 @@ add_action( 'after_setup_theme', 'finAdBaseTheme' );
 function finAdBaseTheme() {
 	return WSU_FinAd_BaseTheme::getInstance();
 }
+
+
+
+
 
 
 add_action( 'wp_head','background_hook_css', 21 );
@@ -175,3 +226,4 @@ function background_hook_css() {
 
 	echo $output;
 }
+
