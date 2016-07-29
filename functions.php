@@ -72,7 +72,9 @@ function fais_customizer_enqueue_scripts() {
 	wp_enqueue_script( 'flexibility', 'https://webcore.fais.wsu.edu/resources/flexwork/flexibility.js', array( 'jquery' ), spine_get_script_version(), true );
 	wp_script_add_data( 'flexibility', 'conditional', 'lte IE 10' );
 
-	wp_enqueue_script( 'megamenu', 'https://webcore.fais.wsu.edu/resources/central_FnA_theme/megamenu/bootstrap.js', array( 'flexibility' ), spine_get_script_version(), true );
+
+	wp_enqueue_script( 'megamenu', get_stylesheet_directory_uri() . '/js/html2canvas.js', array( 'jquery' ), spine_get_script_version(), true );
+
 	$fais_site_object = array(
 		'local' => array(
 			'title' => get_bloginfo( 'name' ),
@@ -80,6 +82,9 @@ function fais_customizer_enqueue_scripts() {
 		'parents' => [ [] ],
 	);
 	wp_localize_script( 'wsu-spine', 'fais_site_object', $fais_site_object );
+
+	wp_enqueue_script( 'megamenu', 'https://webcore.fais.wsu.edu/resources/central_FnA_theme/megamenu/bootstrap.js', array( 'flexibility' ), spine_get_script_version(), true );
+
 }
 
 function fais_spine_get_option( $option_name, $default = '' ) {
