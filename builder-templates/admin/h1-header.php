@@ -9,7 +9,7 @@ spine_load_section_header();
 	<div class="ttfmake-titlediv">
 		<a href="#" class="spine-builder-column-configure"><span>Configure this column</span></a>
 		<div class="ttfmake-titlewrap">
-			<input placeholder="<?php esc_attr_e( 'Enter title here' ); ?>" type="text" name="<?php echo $section_name; ?>[title]" class="ttfmake-title ttfmake-section-header-title-input" value="<?php
+			<input placeholder="<?php esc_attr_e( 'Enter title here' ); ?>" type="text" name="<?php esc_attr_e( $section_name ); ?>[title]" class="ttfmake-title ttfmake-section-header-title-input" value="<?php
 	if ( isset( $ttfmake_section_data['data']['title'] ) ) {
 		echo esc_attr( htmlspecialchars( $ttfmake_section_data['data']['title'] ) );
 	} ?>" autocomplete="off" />
@@ -33,7 +33,7 @@ spine_load_section_header();
 	</div>
 <input type="hidden"
        class="ttfmake-section-state"
-       name="<?php echo $section_name; ?>[state]"
+       name="<?php esc_attr_e( $section_name ); ?>[state]"
        value="<?php
 		if ( isset( $ttfmake_section_data['data']['state'] ) ) {
 			echo esc_attr( $ttfmake_section_data['data']['state'] );

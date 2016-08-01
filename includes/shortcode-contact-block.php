@@ -16,7 +16,7 @@ function contact_block_shortcode( $atts ) {
 
 
 <div class="flex-column items-start">
-	<h3><?php echo __( 'Address' )?>:</h3>
+	<h3><?php esc_attr_e( 'Address' )?>:</h3>
 	<div><?php echo esc_attr( spine_get_option( 'contact_name' ) ); ?></div>
 	<div><?php echo esc_attr( spine_get_option( 'contact_department' ) ); ?></div>
 	<div><?php echo esc_attr( spine_get_option( 'contact_streetAddress' ) ); ?></div>
@@ -37,21 +37,21 @@ function contact_block_shortcode( $atts ) {
 	$verbal_location = fais_spine_get_option( 'contact_verbal_location' );
 	if ( ! empty( $verbal_location ) ) {
 		?><br/>
-			<h3><?php echo __( 'Verbal Location' )?>:</h3>
+			<h3><?php esc_attr_e( 'Verbal Location' )?>:</h3>
 			<div><?php echo esc_attr( $verbal_location ); ?></div>
 
 		<?php
 	}
 	?>
     <br/>
-	<h3><?php echo __( 'Contact Methods' )?>:</h3>
+	<h3><?php esc_attr_e( 'Contact Methods' )?>:</h3>
 
 	<?php
 	$contact_telephone = spine_get_option( 'contact_email' );
 	if ( ! empty( $contact_telephone ) && '' !== trim( $contact_telephone ) ) {
 		?>
         <div class="flex-row full-width items-start">
-			<h4 class="grid-part pad-no fifths-2"><?php echo __( 'Phone' )?>:</h4>
+			<h4 class="grid-part pad-no fifths-2"><?php esc_attr_e( 'Phone' )?>:</h4>
 			<div class="grid-part pad-no fifths-3"><?php echo esc_attr( $contact_telephone ); ?></div>
         </div>
 		<?php
@@ -63,7 +63,7 @@ function contact_block_shortcode( $atts ) {
 	if ( ! empty( $contact_email ) && '' !== trim( $contact_email ) ) {
 		?>
         <div class="flex-row full-width items-start">
-			<h4 class="grid-part pad-no fifths-2"><?php echo __( 'Email' )?>:</h4>
+			<h4 class="grid-part pad-no fifths-2"><?php esc_attr_e( 'Email' )?>:</h4>
 			<div class="grid-part pad-no fifths-3"><?php echo esc_attr( $contact_email ); ?></div>
         </div>
 		<?php
@@ -75,7 +75,7 @@ function contact_block_shortcode( $atts ) {
 	if ( ! empty( $contact_point ) && '' !== trim( $contact_point ) ) {
 		?>
         <div class="flex-row full-width items-start">
-			<h4 class="grid-part pad-no fifths-2"><?php echo __( 'Point of Contact' )?>:</h4>
+			<h4 class="grid-part pad-no fifths-2"><?php esc_attr_e( 'Point of Contact' )?>:</h4>
 			<div class="grid-part pad-no fifths-3"><?php echo esc_attr( $contact_point ); ?></div>
         </div>
 		<?php

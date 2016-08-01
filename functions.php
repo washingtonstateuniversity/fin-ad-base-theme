@@ -203,28 +203,23 @@ function background_hook_css() {
 	$header_text_color = fais_spine_get_option( 'header_text_color', '#FFF' );
 	$jacket_background_url = fais_spine_get_option( 'jacket_background_url', false );
 
-	$output = '<style> ';
-	if ( false !== $background_url ) {
-		$output .= "body:not(.has-background-image) {background-image:url('".$background_url."'); }";
-	}
-	if ( false !== $jacket_background_url ) {
-		$output .= "#jacket {background: transparent url('".$jacket_background_url."') bottom center no-repeat;background-size: contain;}";
-	}
-	//may want to add logic to this but will hold for now
-	$output .= '
-    body:not(.has-background-image) {background-color:'.$background_color.'; }
-    .primary-accent-bk{background-color:'.$primary_accent_color.';}
-    .secoundary-accent-bk{background-color:'.$secoundary_accent_color.';}
-    .primary-accent{color:'.$primary_accent_color.';}
-    .secoundary-accent{color:'.$secoundary_accent_color.';}
-    div#border_top{background-color:'.$primary_accent_color.'}
-    div#border_bottom{background-color:'.$primary_accent_color.'}
-	.style-bookmark .main-header { background-color:'.$header_color.'; }
-	.style-bookmark .main-header span { color:'.$header_text_color.'; }
-	  ';
-
-	$output .= '</style>';
-
-	echo $output;
+	?><style>
+	<?php if ( false !== $background_url ) : ?>
+		body:not(.has-background-image) { background-image:url('<?php esc_attr_e( $background_url ); ?>'); }
+	<?php endif; ?>
+	<?php if ( false !== $jacket_background_url ) : ?>
+		#jacket { background: transparent url('<?php esc_attr_e( $jacket_background_url ) ?>') bottom center no-repeat;background-size: contain; }
+	<?php endif; ?>
+    body:not(.has-background-image) { background-color:<?php esc_attr_e( $background_color ); ?>; }
+    .primary-accent-bk{background-color:<?php esc_attr_e( $primary_accent_color ); ?>; }
+    .secoundary-accent-bk{background-color:<?php esc_attr_e( $secoundary_accent_color ); ?>; }
+    .primary-accent{color:<?php esc_attr_e( $primary_accent_color ); ?>; }
+    .secoundary-accent{color:<?php esc_attr_e( $secoundary_accent_color ); ?>; }
+    div#border_top{background-color:<?php esc_attr_e( $primary_accent_color ); ?>; }
+    div#border_bottom{background-color:<?php esc_attr_e( $primary_accent_color ); ?>; }
+	.style-bookmark .main-header { background-color:<?php esc_attr_e( $header_color ); ?>; }
+	.style-bookmark .main-header span { color:<?php esc_attr_e( $header_text_color ); ?>; }
+</style>
+<?php
 }
 
