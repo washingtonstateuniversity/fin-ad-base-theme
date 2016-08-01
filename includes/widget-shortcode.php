@@ -41,7 +41,7 @@ class Widget_Shortcode {
 		add_action( 'plugins_loaded', array( $this, 'i18n' ), 5 );
 		add_action( 'widgets_init', array( $this, 'arbitrary_sidebar' ), 20 );
 		add_action( 'in_widget_form', array( $this, 'in_widget_form' ), 10, 3 );
-		add_filter( 'mce_external_plugins', array( $this, 'mce_external_plugins' ) );
+		//add_filter( 'mce_external_plugins', array( $this, 'mce_external_plugins' ) );
 		add_filter( 'mce_buttons', array( $this, 'mce_buttons' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'editor_parameters' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'editor_parameters' ) );
