@@ -88,8 +88,6 @@ $section_order  = ( ! empty( $ttfmake_section_data['data']['columns-order'] ) ) 
 
 </style>
 
-<!-- <?php var_dump( $section_order )?> --$section_order  -->
-
 	<div class="wsuwp-spine-column-stage <?php esc_attr_e( $section_flextype ) ?>">
     <?php $j = 1; foreach ( $section_order as $key => $i ) : ?>
     <?php
