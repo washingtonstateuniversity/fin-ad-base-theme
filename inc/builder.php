@@ -866,8 +866,8 @@ class Fais_Spine_Builder_Custom
 				<button class="fw_add_class">+ add</button>
 			</div>
 <br/>
+<input type='text' name='<?php esc_attr_e( $field_name ); ?>' class='fexwork-classes full-width' value='<?php esc_attr_e( $section_class_str ); ?>'/><span class='fexwork-error' style='color:red;'>Class already exists</span>
 		<?php
-		return "<input type='text' name='" . $field_name . "' class='fexwork-classes full-width' value='" . $section_class_str . "'/><span class='fexwork-error' style='color:red;'>Class already exists</span>";
 	}
 	public function build_flexwork_column_inputs( $field_name, $column_class_str = '' ) {
 		//'flex-row wrap-reverse justify-start content-start items-start pad-airy-TB round-wide-L round-no-at-414'
@@ -1063,8 +1063,8 @@ class Fais_Spine_Builder_Custom
 				<button class="fw_add_class">+ add</button>
 			</div>
 <br/>
+<input type='text' name='<?php esc_attr_e( $field_name ); ?>' class='fexwork-classes full-width' value='<?php esc_attr_e( $column_class_str ); ?>'/><span class='fexwork-error' style='color:red;'>Class already exists</span>
 		<?php
-		return "<input type='text' name='" . $field_name . "' class='fexwork-classes full-width' value='" . $column_class_str . "'/><span class='fexwork-error' style='color:red;'>Class already exists</span>";
 	}
 }
 
@@ -1209,39 +1209,47 @@ function fais_spine_output_builder_column_classes( $column_name, $section_data, 
  */
 function fais_spine_output_builder_column_type( $column_name, $section_data, $column = false, $column_order = false ) {
 	$section_type = false;
-	if ( isset( $section_data['data']['section-type'] ) ) {
+	if ( isset( $section_data['data'] ) & isset( $section_data['data']['section-type'] ) ) {
 		$section_type = $section_data['data']['section-type'];
+	} elseif ( isset( $section_data['section']['id'] )  ) {
+		$section_type = $section_data['section']['id'];
 	}
 
 	$column_type_default = 'flex-column  grid-part ';
 
 	if ( 'faiswsuwphalves' === $section_type ) {
-		$column_size_defaults = [ 1 => 'fourths-2', 2 => ' fourths-2' ];
+		$column_size_defaults = [ 0 => 'fourths-2', 1 => ' fourths-2' ];
 	} elseif ( 'faiswsuwpsidebarright' === $section_type ) {
-		$column_size_defaults = [ 1 => 'fifths-3', 2 => 'fifths-2' ];
+		$column_size_defaults = [ 0 => 'fifths-3', 1 => 'fifths-2' ];
 	} elseif ( 'faiswsuwpsidebarleft' === $section_type ) {
-		$column_size_defaults = [ 1 => 'fifths-2', 2 => 'fifths-3' ];
+		$column_size_defaults = [ 0 => 'fifths-2', 1 => 'fifths-3' ];
 	} elseif ( 'faiswsuwpthirds' === $section_type ) {
-		$column_size_defaults = [ 1 => 'thirds-1',2 => 'thirds-1', 3 => 'thirds-1' ];
+		$column_size_defaults = [ 0 => 'thirds-1', 1 => 'thirds-1', 2 => 'thirds-1' ];
 	} elseif ( 'faiswsuwpquarters' === $section_type ) {
-		$column_size_defaults = [ 1 => 'fourths-1', 2 => 'fourths-1', 3 => 'fourths-1', 4 => 'fourths-1' ];
+		$column_size_defaults = [ 0 => 'fourths-1', 1 => 'fourths-1', 2 => 'fourths-1', 3 => 'fourths-1' ];
 	} else {
-		$column_size_defaults = [ 1 => 'fourths-4' ];
+		$column_size_defaults = [ 0 => 'fourths-4' ];
 	}
+	?>
+	<?php
 
 	if ( false !== $column && false !== $column_order && isset( $column_size_defaults[ $column_order ] ) ) {
 		$column_type_default .= $column_size_defaults[ $column_order ] .'  order-' . $column_order;
-	}
+	}?> <?php
 
 	if ( $column ) {
-		$column_type = ( isset( $section_data['data']['columns'][ $column ]['column-type'] ) && '' !== $section_data['data']['columns'][ $column ]['column-type'] ) ? $section_data['data']['columns'][ $column ]['column-type'] : $column_type_default;
+
+		if ( ! empty( $section_data['data'] ) ) {
+			$column_type = ( isset( $section_data['data']['columns'][ $column ]['column-type'] ) && '' !== $section_data['data']['columns'][ $column ]['column-type'] ) ? $section_data['data']['columns'][ $column ]['column-type'] : $column_type_default;
+		} else {
+			$column_type = $column_type_default;
+		}
 	} else {
 		$column_type = ( isset( $section_data['data']['column-type'] ) && '' !== $section_data['data']['column-type'] ) ? $section_data['data']['column-type'] : $column_type_default;
 	}
-
-	?>
+?>
 	<div class="wsuwp-builder-meta">
-		<?php esc_html_e( Fais_Spine_Builder_Custom::build_flexwork_column_inputs( $column_name.'[column-type]', $column_type ) ); ?>
+		<?php esc_html__( Fais_Spine_Builder_Custom::build_flexwork_column_inputs( $column_name.'[column-type]', $column_type ) ); ?>
 	</div>
 	<?php
 }
@@ -1288,7 +1296,7 @@ function fais_spine_output_builder_section_flextree( $section_name, $ttfmake_sec
 		<p class="description">Set the bins to put the section in. `<?php esc_attr_e( strtoupper( 'content' ) ); ?>` by default.  It will still output in the order set, but only in the bin it is set to.</p>
 	</div>
 	<div class="wsuwp-builder-meta">
-		<?php esc_hmtl_e( Fais_Spine_Builder_Custom::build_flexwork_sectional_inputs( $section_name.'[section-flextype]', $current ) ); ?>
+		<?php Fais_Spine_Builder_Custom::build_flexwork_sectional_inputs( $section_name.'[section-flextype]', $current ); ?>
 		<p><b>Note:</b> Editing this edit by hand with out the builder is only advised if you are familar with css and the framework of Flexwork</p>
 	</div>
 	<div class="wsuwp-builder-meta">

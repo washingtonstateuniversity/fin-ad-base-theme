@@ -48,8 +48,8 @@ if ( isset( $ttfmake_section_data['data']['state'] ) && 'open' === $ttfmake_sect
 			$label = ( isset( $link['label'] ) ) ? esc_html( $link['label'] ) : '';
 
 			// Set up the class value with a base class
-			$class_base = ' class="ttfmake-builder-section-footer-link';
-			$class      = ( isset( $link['class'] ) ) ? $class_base . ' ' . esc_attr( $link['class'] ) . '"' : '"';
+			$class_base = ' ttfmake-builder-section-footer-link';
+			$class      = ( isset( $link['class'] ) ) ? $class_base . ' ' . esc_attr( $link['class'] ) . ' ' : ' ';
 			?>
 		<a href="<?php esc_attr_e( $href ); ?>" id="<?php esc_attr_e( $id ); ?>"  class="<?php esc_attr_e( $class ); ?>" >
 			<span><?php esc_html_e( $label ); ?></span>
