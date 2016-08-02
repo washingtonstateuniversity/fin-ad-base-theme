@@ -148,10 +148,10 @@ $section_order  = ( ! empty( $ttfmake_section_data['data']['columns-order'] ) ) 
                             <div class="spine-builder-column-overlay-close">Done</div>
                         </div>
                         <div class="spine-builder-overlay-body">
-        <?php
-		fais_spine_output_builder_column_type( $column_name, $ttfmake_section_data, $j , $key );
-		fais_spine_output_builder_column_classes( $column_name, $ttfmake_section_data, $j );
-		?>
+							<?php
+								fais_spine_output_builder_column_type( $column_name, $ttfmake_section_data, $j , $key );
+								fais_spine_output_builder_column_classes( $column_name, $ttfmake_section_data, $j );
+							?>
                         </div>
                     </div>
                 </div>
