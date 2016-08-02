@@ -96,7 +96,7 @@ if ( '' === $section_id ) {
             </header>
     <?php endif; ?>
 
-		<div class="builder-section-content <?php esc_attr_e( $is_slider? ' cycle-slideshow' : '' ); ?>" <?php esc_attr_e( ( $is_slider ) ? ttfmake_builder_get_banner_slider_atts( $ttfmake_section_data ) : '' ); ?>>
+		<div class="builder-section-content <?php esc_attr_e( $is_slider? ' cycle-slideshow' : '' ); ?>" <?php echo ( ( $is_slider ) ? ttfmake_builder_get_banner_slider_atts( $ttfmake_section_data ) : '' ); ?>>
     <?php if ( ! empty( $banner_slides ) ) : $i = 0; foreach ( $banner_slides as $slide ) : ?>
 				<div class="builder-banner-slide<?php esc_attr_e( ttfmake_builder_banner_slide_class( $slide ) ); ?> <?php esc_attr_e( ( 0 == $i++ ) ? ' first-slide' : '' ); ?>" style="<?php esc_attr_e( ttfmake_builder_banner_slide_style( $slide, $ttfmake_section_data ) ); ?>">
         <?php if ( ! empty( $slide['slide-url'] ) ) : ?><a href="<?php echo esc_url( $slide['slide-url'] ); ?>"><?php
