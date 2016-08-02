@@ -52,7 +52,7 @@
 		}());
 
 
-		$("#contact-form").css({"opacity":0});
+		$("#contact-form").css({"opacity":0,"z-index":1});
 		$(".inline-form.menu-item").on("click", function(e){
 			e.preventDefault();
 			e.stopPropagation();
