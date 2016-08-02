@@ -88,7 +88,7 @@ class Widget_Shortcode {
 	 * @return void
 	 */
 	function in_widget_form( $widget, $return, $instance ) {
-		echo '<p>' . __( 'Shortcode', 'widget-shortcode' ) . ': ' . ( ( $widget->number == '__i__' ) ? __( 'Please save this first.', 'widget-shortcode' ) : '<code>[widget id="'. $widget->id .'"]</code>' ) . '</p>';
+		echo '<p>' . esc_attr_e( 'Shortcode', 'widget-shortcode' ) . ': ' . ( ( '__i__' === $widget->number ) ?  esc_attr_e( 'Please save this first.', 'widget-shortcode' ) : '<code>[widget id="'. esc_attr_e( $widget->id ).'"]</code>' ) . '</p>';
 	}
 
 	/**
@@ -232,10 +232,10 @@ class Widget_Shortcode {
 			$content = preg_replace( '/<h3 class="widgettitle">(.*?)<\/h3>/', '', $content );
 		}
 
-		if ( $echo !== true ) {
+		if ( true !== $echo ) {
 			return $content; }
 
-		echo $content;
+		esc_attr_e( $content );
 	}
 
 	function mce_external_plugins( $plugins ) {
@@ -249,14 +249,14 @@ class Widget_Shortcode {
 		return $mce_buttons;
 	}
 
+
 	function editor_parameters() {
 		global $wp_registered_widgets;
-
 		$widgets = array();
 		$all_widgets = $this->get_widgets_map();
 		if ( ! empty( $all_widgets ) ) {
 			foreach ( $all_widgets as $id => $position ) {
-				if ( $position == 'arbitrary' ) {
+				if ( 'arbitrary' === $position ) {
 					$title = $wp_registered_widgets[ $id ]['name'];
 					$options = $this->get_widget_options( $id );
 					if ( isset( $options['title'] ) && ! empty( $options['title'] ) ) {

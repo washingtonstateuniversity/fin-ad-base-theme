@@ -4,7 +4,7 @@ global $ttfmake_section_data, $ttfmake_is_js_template;
 
 <?php if ( ! isset( $ttfmake_is_js_template ) || true !== $ttfmake_is_js_template ) : ?>
 <div class="ttfmake-section <?php
-if ( isset( $ttfmake_section_data['data']['state'] ) && 'open' === $ttfmake_section_data['data']['state'] ) { echo 'ttfmake-section-open'; } ?> ttfmake-section-<?php echo esc_attr( $ttfmake_section_data['section']['id'] ); ?>" id="<?php echo 'ttfmake-section-' . esc_attr( $ttfmake_section_data['data']['id'] ); ?>" data-id="<?php echo esc_attr( $ttfmake_section_data['data']['id'] ); ?>" data-section-type="<?php echo esc_attr( $ttfmake_section_data['section']['id'] ); ?>">
+if ( isset( $ttfmake_section_data['data']['state'] ) && 'open' === $ttfmake_section_data['data']['state'] ) { echo 'ttfmake-section-open'; } ?> ttfmake-section-<?php esc_attr_e( $ttfmake_section_data['section']['id'] ); ?>" id="<?php esc_attr_e( 'ttfmake-section-' . $ttfmake_section_data['data']['id'] ); ?>" data-id="<?php esc_attr_e( $ttfmake_section_data['data']['id'] ); ?>" data-section-type="<?php esc_attr_e( $ttfmake_section_data['section']['id'] ); ?>">
 	<?php endif; ?>
 	<?php
 	/**
@@ -17,7 +17,7 @@ if ( isset( $ttfmake_section_data['data']['state'] ) && 'open' === $ttfmake_sect
 	<div class="ttfmake-section-header">
 		<?php $header_title = ( isset( $ttfmake_section_data['data']['label'] ) ) ? $ttfmake_section_data['data']['label'] : ''; ?>
 		<h3>
-			<span class="ttfmake-section-header-title"><?php echo esc_html( $header_title ); ?></span><em><?php echo ( esc_html( $ttfmake_section_data['section']['label'] ) ); ?></em>
+			<span class="ttfmake-section-header-title"><?php esc_html_e( $header_title ); ?></span><em><?php esc_html_e( $ttfmake_section_data['section']['label'] ); ?></em>
 		</h3>
 		<?php
 		/**
@@ -43,16 +43,16 @@ if ( isset( $ttfmake_section_data['data']['state'] ) && 'open' === $ttfmake_sect
 		?>
 		<?php $i = 1; foreach ( $links as $link ) : ?>
 			<?php
-			$href  = ( isset( $link['href'] ) ) ? ' href="' . esc_url( $link['href'] ) . '"' : '';
-			$id    = ( isset( $link['id'] ) ) ? ' id="' . esc_attr( $link['id'] ) . '"' : '';
+			$href  = ( isset( $link['href'] ) ) ? '' . esc_url( $link['href'] ) : '';
+			$id    = ( isset( $link['id'] ) ) ? ' ' . esc_attr( $link['id'] ) : '';
 			$label = ( isset( $link['label'] ) ) ? esc_html( $link['label'] ) : '';
 
 			// Set up the class value with a base class
 			$class_base = ' class="ttfmake-builder-section-footer-link';
 			$class      = ( isset( $link['class'] ) ) ? $class_base . ' ' . esc_attr( $link['class'] ) . '"' : '"';
 			?>
-		<a<?php echo $href . $id . $class; ?>>
-			<span><?php echo $label; ?></span>
+		<a href="<?php esc_attr_e( $href ); ?>" id="<?php esc_attr_e( $id ); ?>"  class="<?php esc_attr_e( $class ); ?>" >
+			<span><?php esc_html_e( $label ); ?></span>
 			</a>
 		<?php $i++; endforeach; ?>
 
@@ -62,4 +62,4 @@ if ( isset( $ttfmake_section_data['data']['state'] ) && 'open' === $ttfmake_sect
 	</div>
 	<div class="clear"></div>
 	<div class="ttfmake-section-body">
-		<input type="hidden" value="<?php echo $ttfmake_section_data['section']['id']; ?>" name="<?php echo ttfmake_get_section_name( $ttfmake_section_data, $ttfmake_is_js_template ); ?>[section-type]" />
+		<input type="hidden" value="<?php esc_attr_e( $ttfmake_section_data['section']['id'] ); ?>" name="<?php esc_attr_e( ttfmake_get_section_name( $ttfmake_section_data, $ttfmake_is_js_template ) ); ?>[section-type]" />

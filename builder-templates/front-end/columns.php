@@ -89,7 +89,7 @@ if ( '' === $section_id ) {
 }
 
 ?>
-	<section id="<?php echo esc_attr( $section_id ); ?>" <?php echo $section_wrapper_html; ?> data-type="<?php echo $section_type; ?>" class="column-section <?php echo esc_attr( trim( $section_classes ) ); ?>" <?php echo esc_attr( $section_attr ); ?>>
+	<section id="<?php esc_attr_e( $section_id ); ?>" <?php esc_attr_e( $section_wrapper_html ); ?> data-type="<?php esc_attr_e( $section_type ); ?>" class="column-section <?php esc_attr_e( trim( $section_classes ) ); ?>" <?php esc_attr_e( $section_attr ); ?>>
     <?php
 
 	if ( ! empty( $data_columns ) ) {
@@ -102,13 +102,13 @@ if ( '' === $section_id ) {
 				$column_background = '';
 			}
 			?>
-         <div style="<?php echo $column_background; ?>" class="<?php echo $column['column-type']; ?> <?php $count++; ?> <?php if ( isset( $column['column-classes'] ) ) : echo esc_attr( $column['column-classes'] );
+         <div style="<?php esc_attr_e( $column_background ); ?>" class="<?php esc_attr_e( $column['column-type'] ); ?> <?php $count++; ?> <?php if ( isset( $column['column-classes'] ) ) : echo esc_attr( $column['column-classes'] );
 		endif; ?>">
 
         <?php if ( '' !== $column['title'] ) : ?>
         <?php $header_level = in_array( $column['header-level'], array( 'h2', 'h3', 'h4' ), true ) ? $column['header-level'] : 'h2'; ?>
 						<header>
-							<<?php echo $header_level; ?>><?php echo apply_filters( 'the_title', $column['title'] ); ?></<?php echo $header_level; ?>>
+							<<?php esc_attr_e( $header_level ); ?>><?php esc_attr_e( apply_filters( 'the_title', $column['title'] ) ); ?></<?php esc_attr_e( $header_level ); ?>>
 						</header>
         <?php endif; ?>
 

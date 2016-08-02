@@ -79,7 +79,7 @@ $section_order  = ( ! empty( $ttfmake_section_data['data']['columns-order'] ) ) 
 
 
 </style>
-	<div class="wsuwp-spine-halves-stage <?php echo $section_flextype ?>">
+	<div class="wsuwp-spine-halves-stage <?php esc_attr_e( $section_flextype ) ?>">
     <?php $j = 1; foreach ( $section_order as $key => $i ) : ?>
     <?php
 	$column_name = $section_name . '[columns][' . $i . ']';
@@ -94,30 +94,30 @@ $section_order  = ( ! empty( $ttfmake_section_data['data']['columns-order'] ) ) 
 	}
 
 	if ( 'invisible' === $visible ) {
-		$column_style = 'style="display: none;"';
+		$column_style = 'display: none;';
 		$toggle_class = 'wsuwp-toggle-closed';
 	} else {
 		$column_style = '';
 		$toggle_class = '';
 	}
 	?>
-			<div class="wsuwp-spine-builder-column wsuwp-spine-builder-column-position-<?php echo $j; ?> <?php echo $column_flextype?>" data-id="<?php echo $i; ?>">
+			<div class="wsuwp-spine-builder-column wsuwp-spine-builder-column-position-<?php esc_attr_e( $j ); ?> <?php esc_attr_e( $column_flextype ); ?>" data-id="<?php esc_attr_e( $i ); ?>">
 				<div title="<?php esc_attr_e( 'Drag-and-drop this column into place', 'ttfmake' ); ?>" class="ttfmake-sortable-handle">
                     <div class="sortable-background">
                         <a href="#" class="spine-builder-column-configure"><span>Configure this column</span></a>
-						<a href="#" class="wsuwp-column-toggle" title="Click to toggle"><div class="handlediv <?php echo $toggle_class; ?>"></div></a>
-						<div class="wsuwp-builder-column-title">Column <?php echo $j; ?> of <?php echo $wsuwp_range; ?></div>
+						<a href="#" class="wsuwp-column-toggle" title="Click to toggle"><div class="handlediv <?php esc_attr_e( $toggle_class ); ?>"></div></a>
+						<div class="wsuwp-builder-column-title">Column <?php esc_html_e( $j ); ?> of <?php esc_html_e( $wsuwp_range ); ?></div>
                     </div>
                 </div>
 
                 <div class="ttfmake-titlediv">
                     <div class="ttfmake-titlewrap">
-						<input placeholder="<?php esc_attr_e( 'Enter title here', 'ttfmake' ); ?>" type="text" name="<?php echo $column_name; ?>[title]" class="ttfmake-title ttfmake-section-header-title-input" value="<?php echo esc_attr( htmlspecialchars( $title ) ); ?>" autocomplete="off" />
+						<input placeholder="<?php esc_attr_e( 'Enter title here', 'ttfmake' ); ?>" type="text" name="<?php esc_attr_e( $column_name ); ?>[title]" class="ttfmake-title ttfmake-section-header-title-input" value="<?php esc_attr_e( htmlspecialchars( $title ) ); ?>" autocomplete="off" />
                     </div>
                 </div>
 
-				<div class="wsuwp-column-content" <?php echo $column_style; ?>>
-					<input type="hidden" class="wsuwp-column-visible" name="<?php echo $column_name; ?>[toggle]" value="<?php echo $visible; ?>" />
+				<div class="wsuwp-column-content" style="<?php esc_attr_e( $column_style ); ?>">
+					<input type="hidden" class="wsuwp-column-visible" name="<?php esc_attr_e( $column_name ); ?>[toggle]" value="<?php esc_attr_e( $visible ); ?>" />
 				<?php
 				$editor_settings = array(
 					'tinymce'       => true,
@@ -171,8 +171,8 @@ $section_order  = ( ! empty( $ttfmake_section_data['data']['columns-order'] ) ) 
             </div>
         </div>
     </div>
-	<input type="hidden" value="<?php echo esc_attr( implode( ',', $section_order ) ); ?>" name="<?php echo $section_name; ?>[columns-order]" class="wsuwp-spine-builder-columns-order" />
-	<input type="hidden" class="ttfmake-section-state" name="<?php echo $section_name; ?>[state]" value="<?php
+	<input type="hidden" value="<?php esc_attr_e( implode( ',', $section_order ) ); ?>" name="<?php esc_attr_e( $section_name ); ?>[columns-order]" class="wsuwp-spine-builder-columns-order" />
+	<input type="hidden" class="ttfmake-section-state" name="<?php esc_attr_e( $section_name ); ?>[state]" value="<?php
 	if ( isset( $ttfmake_section_data['data']['state'] ) ) {
 		echo esc_attr( $ttfmake_section_data['data']['state'] );
 	} else {

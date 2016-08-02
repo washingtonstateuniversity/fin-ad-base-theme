@@ -108,7 +108,7 @@ class Fais_Spine_Builder_Custom
 		if ( is_wp_error( get_the_ID() ) ) {
 			$errors = get_the_ID()->get_error_messages();
 			foreach ( $errors as $error ) {
-				echo $error;
+				esc_html_e( $error );
 			}
 		}
 
@@ -760,7 +760,7 @@ class Fais_Spine_Builder_Custom
 						<option value="">Select</option>
 						<?php
 						foreach ( $setion_flex_options as $key => $option ) {
-							echo '<option value="' . $key . '"">' . $key . '</option>';
+							?><option value="<?php esc_attr_e( $key ) ?>"><?php esc_attr_e( $key ) ?></option><?php
 						}
 						?>
 					</select>
@@ -770,7 +770,7 @@ class Fais_Spine_Builder_Custom
 						<option value="">Select</option>
 						<?php
 						foreach ( $setion_flex_options['area_type'] as $key => $option ) {
-							echo '<option value="' . $key . '"">' . $option . '</option>';
+							?><option value="<?php esc_attr_e( $key ) ?>"><?php esc_attr_e( $option ) ?></option><?php
 						}
 						?>
 					</select>
@@ -780,7 +780,7 @@ class Fais_Spine_Builder_Custom
 						<option value="">Select</option>
 						<?php
 						foreach ( $setion_flex_options['wrapping'] as $key => $option ) {
-							echo '<option value="' . $key . '"">' . $option . '</option>';
+							?><option value="<?php esc_attr_e( $key ) ?>"><?php esc_attr_e( $option ) ?></option><?php
 						}
 						?>
 					</select>
@@ -790,7 +790,7 @@ class Fais_Spine_Builder_Custom
 						<option value="">Select</option>
 						<?php
 						foreach ( $setion_flex_options['content_justification'] as $key => $option ) {
-							echo '<option value="' . $key . '"">' . $option . '</option>';
+							?><option value="<?php esc_attr_e( $key ) ?>"><?php esc_attr_e( $option ) ?></option><?php
 						}
 						?>
 					</select>
@@ -800,7 +800,7 @@ class Fais_Spine_Builder_Custom
 						<option value="">Select</option>
 						<?php
 						foreach ( $setion_flex_options['content_alignment'] as $key => $option ) {
-							echo '<option value="' . $key . '"">' . $option . '</option>';
+							?><option value="<?php esc_attr_e( $key ) ?>"><?php esc_attr_e( $option ) ?></option><?php
 						}
 						?>
 					</select>
@@ -810,7 +810,7 @@ class Fais_Spine_Builder_Custom
 						<option value="">Select</option>
 						<?php
 						foreach ( $setion_flex_options['items_positioning'] as $key => $option ) {
-							echo '<option value="' . $key . '"">' . $option . '</option>';
+							?><option value="<?php esc_attr_e( $key ) ?>"><?php esc_attr_e( $option ) ?></option><?php
 						}
 						?>
 					</select>
@@ -820,7 +820,7 @@ class Fais_Spine_Builder_Custom
 						<option value="">Select</option>
 						<?php
 						foreach ( $setion_flex_options['pad']['type'] as $key => $option ) {
-							echo '<option value="' . $key . '"">' . $option . '</option>';
+							?><option value="<?php esc_attr_e( $key ) ?>"><?php esc_attr_e( $option ) ?></option><?php
 						}
 						?>
 					</select>
@@ -828,7 +828,7 @@ class Fais_Spine_Builder_Custom
 						<option value="">Select</option>
 						<?php
 						foreach ( $setion_flex_options['pad']['position'] as $key => $option ) {
-							echo '<option value="' . $key . '"">' . $option . '</option>';
+							?><option value="<?php esc_attr_e( $key ) ?>"><?php esc_attr_e( $option ) ?></option><?php
 						}
 						?>
 					</select>
@@ -838,7 +838,7 @@ class Fais_Spine_Builder_Custom
 						<option value="">Select</option>
 						<?php
 						foreach ( $setion_flex_options['round']['type'] as $key => $option ) {
-							echo '<option value="' . $key . '"">' . $option . '</option>';
+							?><option value="<?php esc_attr_e( $key ) ?>"><?php esc_attr_e( $option ) ?></option><?php
 						}
 						?>
 					</select>
@@ -846,7 +846,7 @@ class Fais_Spine_Builder_Custom
 						<option value="">Select</option>
 						<?php
 						foreach ( $setion_flex_options['round']['position'] as $key => $option ) {
-							echo '<option value="' . $key . '"">' . $option . '</option>';
+							?><option value="<?php esc_attr_e( $key ) ?>"><?php esc_attr_e( $option ) ?></option><?php
 						}
 						?>
 					</select>
@@ -858,7 +858,7 @@ class Fais_Spine_Builder_Custom
 						<option value="">Select</option>
 						<?php
 						foreach ( $at_sizes as $key => $option ) {
-							echo '<option value="at-' . $key . '"">' . $option . '</option>';
+							?><option value="at-<?php esc_attr_e( $key ) ?>"><?php esc_attr_e( $option ) ?></option><?php
 						}
 						?>
 					</select>
@@ -971,7 +971,7 @@ class Fais_Spine_Builder_Custom
 						<option value="">Select</option>
 						<?php
 						foreach ( $setion_flex_options as $key => $option ) {
-							echo '<option value="' . $key . '"">' . $key . '</option>';
+							?><option value="<?php esc_attr_e( $key ) ?>"><?php esc_attr_e( $key ) ?></option><?php
 						}
 						?>
 					</select>
@@ -981,7 +981,7 @@ class Fais_Spine_Builder_Custom
 						<option value="">Select</option>
 						<?php
 						foreach ( $setion_flex_options['width'] as $key => $option ) {
-							echo '<option value="' . $key . '"">' . $key . '</option>';
+							?><option value="<?php esc_attr_e( $key ) ?>"><?php esc_attr_e( $key ) ?></option><?php
 						}
 						?>
 					</select>
@@ -989,13 +989,13 @@ class Fais_Spine_Builder_Custom
 				<?php
 				foreach ( $setion_flex_options['width'] as $key => $options ) {
 					?>
-					<div class="flexwork-<?php echo $key?> flex-attr-area"><?php echo $key?>:<br/>
-						<select class="flexwork-<?php echo $key?>-select flex-builder-selector fb-type  match-width">
+					<div class="flexwork-<?php esc_attr_e( $key ); ?> flex-attr-area"><?php esc_attr_e( $key ); ?>:<br/>
+						<select class="flexwork-<?php esc_attr_e( $key ); ?>-select flex-builder-selector fb-type  match-width">
 							<option value="">Select</option>
 							<?php
-							foreach ( $options as $subkey => $option ) {
-								echo '<option value="' . $subkey . '"">' . $option . '</option>';
-							}
+								foreach ( $options as $subkey => $option ) {
+									?><option value="<?php esc_attr_e( $subkey ) ?>"><?php esc_attr_e( $option ) ?></option><?php
+								}
 							?>
 						</select>
 					</div>
@@ -1007,7 +1007,7 @@ class Fais_Spine_Builder_Custom
 						<option value="">Select</option>
 						<?php
 						foreach ( $setion_flex_options['order'] as $key => $option ) {
-							echo '<option value="order-' . $key . '"">' . $key . '</option>';
+							?><option value="order-<?php esc_attr_e( $key ) ?>"><?php esc_attr_e( $key ) ?></option><?php
 						}
 						?>
 					</select>
@@ -1017,7 +1017,7 @@ class Fais_Spine_Builder_Custom
 						<option value="">Select</option>
 						<?php
 						foreach ( $setion_flex_options['pad']['type'] as $key => $option ) {
-							echo '<option value="' . $key . '"">' . $option . '</option>';
+							?><option value="<?php esc_attr_e( $key ) ?>"><?php esc_attr_e( $option ) ?></option><?php
 						}
 						?>
 					</select>
@@ -1025,7 +1025,7 @@ class Fais_Spine_Builder_Custom
 						<option value="">Select</option>
 						<?php
 						foreach ( $setion_flex_options['pad']['position'] as $key => $option ) {
-							echo '<option value="' . $key . '"">' . $option . '</option>';
+							?><option value="<?php esc_attr_e( $key ) ?>"><?php esc_attr_e( $option ) ?></option><?php
 						}
 						?>
 					</select>
@@ -1035,7 +1035,7 @@ class Fais_Spine_Builder_Custom
 						<option value="">Select</option>
 						<?php
 						foreach ( $setion_flex_options['round']['type'] as $key => $option ) {
-							echo '<option value="' . $key . '"">' . $option . '</option>';
+							?><option value="<?php esc_attr_e( $key ) ?>"><?php esc_attr_e( $option ) ?></option><?php
 						}
 						?>
 					</select>
@@ -1043,7 +1043,7 @@ class Fais_Spine_Builder_Custom
 						<option value="">Select</option>
 						<?php
 						foreach ( $setion_flex_options['round']['position'] as $key => $option ) {
-							echo '<option value="' . $key . '"">' . $option . '</option>';
+							?><option value="<?php esc_attr_e( $key ) ?>"><?php esc_attr_e( $option ) ?></option><?php
 						}
 						?>
 					</select>
@@ -1055,7 +1055,7 @@ class Fais_Spine_Builder_Custom
 						<option value="">Select</option>
 						<?php
 						foreach ( $at_sizes as $key => $option ) {
-							echo '<option value="at-' . $key . '"">' . $option . '</option>';
+							?><option value="at-<?php esc_attr_e( $key ) ?>"><?php esc_attr_e( $option ) ?></option><?php
 						}
 						?>
 					</select>
@@ -1120,7 +1120,7 @@ function fais_spine_output_builder_section_classes( $section_name, $ttfmake_sect
 	}
 	?>
 	<div class="wsuwp-builder-meta">
-		<label for="<?php echo $section_name; ?>[section-classes]">Section Classes:</label><input type="text" id="<?php echo $section_name; ?>[section-classes]" class="wsuwp-builder-section-classes widefat" name="<?php echo $section_name; ?>[section-classes]" value="<?php echo esc_attr( $section_classes ); ?>" />
+		<label for="<?php esc_attr_e( $section_name ); ?>[section-classes]">Section Classes:</label><input type="text" id="<?php esc_attr_e( $section_name ); ?>[section-classes]" class="wsuwp-builder-section-classes widefat" name="<?php esc_attr_e( $section_name ); ?>[section-classes]" value="<?php esc_attr_e( $section_classes ); ?>" />
 		<p class="description">Enter space delimited class names here to apply them to the <code>section</code> element represented by this builder area.</p>
 	</div>
 	<?php
@@ -1137,8 +1137,8 @@ function fais_spine_output_builder_section_label( $section_name, $ttfmake_sectio
 	$section_label = ( isset( $ttfmake_section_data['data']['label'] ) ) ? $ttfmake_section_data['data']['label'] : '';
 	?>
 	<div class="wsuwp-builder-meta">
-		<label for="<?php echo $section_name; ?>[label]">Section Label:</label>
-		<input type="text" id="<?php echo $section_name; ?>[label]" class="wsuwp-builder-section-label widefat" name="<?php echo $section_name; ?>[label]" value="<?php echo esc_attr( $section_label ); ?>" />
+		<label for="<?php esc_attr_e( $section_name ); ?>[label]">Section Label:</label>
+		<input type="text" id="<?php esc_attr_e( $section_name ); ?>[label]" class="wsuwp-builder-section-label widefat" name="<?php esc_attr_e( $section_name ); ?>[label]" value="<?php esc_attr_e( $section_label ); ?>" />
 		<p class="description">Enter a label to use to identify sections without titles.</p>
 	</div>
 	<?php
@@ -1165,19 +1165,19 @@ function fais_spine_output_builder_column_classes( $column_name, $section_data, 
 
 	?>
 	<div class="wsuwp-builder-meta">
-		<label for="<?php echo $column_name; ?>[column-classes]">Column Classes</label>
+		<label for="<?php esc_attr_e( $column_name ); ?>[column-classes]">Column Classes</label>
 		<input type="text"
-		       id="<?php echo $column_name; ?>[column-classes]"
-		       name="<?php echo $column_name; ?>[column-classes]"
+		       id="<?php esc_attr_e( $column_name ); ?>[column-classes]"
+		       name="<?php esc_attr_e( $column_name ); ?>[column-classes]"
 		       class="spine-builder-column-classes widefat"
-		       value="<?php echo esc_attr( $column_classes ); ?>"/>
+		       value="<?php esc_attr_e( $column_classes ); ?>"/>
 		<p class="description">Enter space delimited class names here to apply them to the <code>div.column</code>
 			element represented by this builder area.</p>
 	</div>
 	<div class="wsuwp-builder-meta">
-		<label for="<?php echo $column_name; ?>[header-level]">Header Level</label>
-		<select id="<?php echo $column_name; ?>[header-level]"
-		        name="<?php echo $column_name; ?>[header-level]"
+		<label for="<?php esc_attr_e( $column_name ); ?>[header-level]">Header Level</label>
+		<select id="<?php esc_attr_e( $column_name ); ?>[header-level]"
+		        name="<?php esc_attr_e( $column_name ); ?>[header-level]"
 		        class="">
 		    <?php if ( 'wsuwpheader' === $section_data['section']['id'] ) : ?>
 		    <option value="h1" <?php selected( esc_attr( $header_level ), 'h1' ); ?>>H1</option>
@@ -1186,15 +1186,15 @@ function fais_spine_output_builder_column_classes( $column_name, $section_data, 
 			<option value="h3" <?php selected( esc_attr( $header_level ), 'h3' ); ?>>H3</option>
 			<option value="h4" <?php selected( esc_attr( $header_level ), 'h4' ); ?>>H4</option>
 		</select>
-		<p class="description">This header will wrap the column title. <?php echo strtoupper( $header_level_default ); ?> by default.</p>
+		<p class="description">This header will wrap the column title. <?php esc_attr_e( strtoupper( $header_level_default ) ); ?> by default.</p>
 	</div>
 	<div class="wsuwp-builder-meta">
-		<label for="<?php echo $column_name; ?>[column-background-image]">Background Image</label>
+		<label for="<?php esc_attr_e( $column_name ); ?>[column-background-image]">Background Image</label>
 		<input type="text"
-		       id="<?php echo $column_name; ?>[column-background-image]"
-		       name="<?php echo $column_name; ?>[column-background-image]"
+		       id="<?php esc_attr_e( $column_name ); ?>[column-background-image]"
+		       name="<?php esc_attr_e( $column_name ); ?>[column-background-image]"
 		       class="spine-builder-column-classes widefat"
-		       value="<?php echo esc_attr( $column_background ); ?>" />
+		       value="<?php esc_attr_e( $column_background ); ?>" />
 		<p class="description">Enter the URL of an image to apply it as this column's background.</p>
 	</div>
 	<?php
@@ -1241,7 +1241,7 @@ function fais_spine_output_builder_column_type( $column_name, $section_data, $co
 
 	?>
 	<div class="wsuwp-builder-meta">
-		<?php echo Fais_Spine_Builder_Custom::build_flexwork_column_inputs( $column_name.'[column-type]', $column_type ); ?>
+		<?php esc_html_e( Fais_Spine_Builder_Custom::build_flexwork_column_inputs( $column_name.'[column-type]', $column_type ) ); ?>
 	</div>
 	<?php
 }
@@ -1277,23 +1277,23 @@ function fais_spine_output_builder_section_flextree( $section_name, $ttfmake_sec
 
 
 	<div class="wsuwp-builder-meta">
-		<label for="<?php echo $section_name; ?>[section-position]">Section Bins</label>
-		<select id="<?php echo $section_name; ?>[section-position]"
-		        name="<?php echo $section_name; ?>[section-position]"
+		<label for="<?php esc_attr_e( $section_name ); ?>[section-position]">Section Bins</label>
+		<select id="<?php esc_attr_e( $section_name ); ?>[section-position]"
+		        name="<?php esc_attr_e( $section_name ); ?>[section-position]"
 		        class="">
 		    <option value="before" <?php selected( esc_attr( $current_position ), 'before' ); ?>>Before Content</option>
 			<option value="content" <?php selected( esc_attr( $current_position ), 'content' ); ?>>Content</option>
 			<option value="after" <?php selected( esc_attr( $current_position ), 'after' ); ?>>After Content</option>
 		</select>
-		<p class="description">Set the bins to put the section in. `<?php echo strtoupper( 'content' ); ?>` by default.  It will still output in the order set, but only in the bin it is set to.</p>
+		<p class="description">Set the bins to put the section in. `<?php esc_attr_e( strtoupper( 'content' ) ); ?>` by default.  It will still output in the order set, but only in the bin it is set to.</p>
 	</div>
 	<div class="wsuwp-builder-meta">
-		<?php echo Fais_Spine_Builder_Custom::build_flexwork_sectional_inputs( $section_name.'[section-flextype]', $current ); ?>
+		<?php esc_hmtl_e( Fais_Spine_Builder_Custom::build_flexwork_sectional_inputs( $section_name.'[section-flextype]', $current ) ); ?>
 		<p><b>Note:</b> Editing this edit by hand with out the builder is only advised if you are familar with css and the framework of Flexwork</p>
 	</div>
 	<div class="wsuwp-builder-meta">
 	<h3>Section Attribute area</h3>
-		<textarea name="<?php echo $section_name?>[section-attr]" placeholder="use this with great caution" style="margin-top: 0px;margin-bottom: 0px;height: 30px;width: 100%;"><?php echo stripslashes( $current_attr ) ?></textarea>
+		<textarea name="<?php esc_attr_e( $section_name ); ?>[section-attr]" placeholder="use this with great caution" style="margin-top: 0px;margin-bottom: 0px;height: 30px;width: 100%;"><?php esc_attr_e( stripslashes( $current_attr ) ); ?></textarea>
 
 		<p><b>Note:</b> You're adding attributes like <code>data-FOO="bar"</code> to the block's html tag.</p>
 	</div>
@@ -1318,19 +1318,19 @@ function fais_spine_output_builder_section_background( $section_name, $ttfmake_s
 
 	?>
 	<div class="wsuwp-builder-meta">
-		<label for="<?php echo $section_name; ?>[background-img]">Background Image</label>
+		<label for="<?php esc_attr_e( $section_name ); ?>[background-img]">Background Image</label>
 		<input type="text"
 		       class="wsuwp-builder-section-image widefat"
-		       id="<?php echo $section_name; ?>[background-img]"
-		       name="<?php echo $section_name; ?>[background-img]"
-		       value="<?php echo $section_background; ?>"/>
+		       id="<?php esc_attr_e( $section_name ); ?>[background-img]"
+		       name="<?php esc_attr_e( $section_name ); ?>[background-img]"
+		       value="<?php esc_attr_e( $section_background ); ?>"/>
 		<br/>
-		<label for="<?php echo $section_name; ?>[background-mobile-img]">Mobile Background Image</label>
+		<label for="<?php esc_attr_e( $section_name ); ?>[background-mobile-img]">Mobile Background Image</label>
 		<input type="text"
 		       class="wsuwp-builder-section-image widefat"
-		       id="<?php echo $section_name; ?>[background-mobile-img]"
-		       name="<?php echo $section_name; ?>[background-mobile-img]"
-		       value="<?php echo $section_mobile_background; ?>"/>
+		       id="<?php esc_attr_e( $section_name ); ?>[background-mobile-img]"
+		       name="<?php esc_attr_e( $section_name ); ?>[background-mobile-img]"
+		       value="<?php esc_attr_e( $section_mobile_background ); ?>"/>
 		<p class="description">Mobile background images are used for display widths narrower than 792px.</p>
 		<p class="description">Background images on sections are an in progress feature. :)</p>
 	</div>

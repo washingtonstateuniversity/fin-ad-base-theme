@@ -4,13 +4,13 @@
     <exclude-pattern>*/vendor/*</exclude-pattern>
     <exclude-pattern>*/inc/builder/*</exclude-pattern>
     <exclude-pattern>*/node_modules/*</exclude-pattern>
-    
-    
+
+
 
     <rule ref="WordPress-Extra">
         <exclude name="WordPress.NamingConventions.ValidFunctionName" />
         <exclude name="WordPress.Files.FileName" />
-        <exclude name="WordPress.XSS.EscapeOutput" />
+        <!--<exclude name="WordPress.XSS.EscapeOutput" />-->
         <exclude name="WordPress.CSRF.NonceVerification" />
         <exclude name="Generic.Formatting.DisallowMultipleStatements" />
         <exclude name="Generic.WhiteSpace.ScopeIndent" />
