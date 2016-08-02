@@ -64,7 +64,8 @@
 				}, 5);
 			//});*/
 			$("#contact-form").animate({
-				opacity:1
+				opacity:1,
+				"z-index":999999
 			}, 50, function() {
 				$('body,html').scroll();
 				$('body,html').animate({ scrollTop: $(window).scrollTop() + 1 }, 5);
@@ -74,7 +75,8 @@
 			e.preventDefault();
 			e.stopPropagation();
 			$("#contact-form").animate({
-				opacity:0
+				opacity:0,
+				"z-index":1
 			}, 50);
 			/*$("#contact-form").toggle(function() {
 				$('body,html').scroll();
