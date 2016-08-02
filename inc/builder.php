@@ -1218,31 +1218,36 @@ function fais_spine_output_builder_column_type( $column_name, $section_data, $co
 	$column_type_default = 'flex-column  grid-part ';
 
 	if ( 'faiswsuwphalves' === $section_type ) {
-		$column_size_defaults = [ 1 => 'fourths-2', 2 => ' fourths-2' ];
+		$column_size_defaults = [ 0 => 'fourths-2', 1 => ' fourths-2' ];
 	} elseif ( 'faiswsuwpsidebarright' === $section_type ) {
-		$column_size_defaults = [ 1 => 'fifths-3', 2 => 'fifths-2' ];
+		$column_size_defaults = [ 0 => 'fifths-3', 1 => 'fifths-2' ];
 	} elseif ( 'faiswsuwpsidebarleft' === $section_type ) {
-		$column_size_defaults = [ 1 => 'fifths-2', 2 => 'fifths-3' ];
+		$column_size_defaults = [ 0 => 'fifths-2', 1 => 'fifths-3' ];
 	} elseif ( 'faiswsuwpthirds' === $section_type ) {
-		$column_size_defaults = [ 1 => 'thirds-1',2 => 'thirds-1', 3 => 'thirds-1' ];
+		$column_size_defaults = [ 0 => 'thirds-1', 1 => 'thirds-1', 2 => 'thirds-1' ];
 	} elseif ( 'faiswsuwpquarters' === $section_type ) {
-		$column_size_defaults = [ 1 => 'fourths-1', 2 => 'fourths-1', 3 => 'fourths-1', 4 => 'fourths-1' ];
+		$column_size_defaults = [ 0 => 'fourths-1', 1 => 'fourths-1', 2 => 'fourths-1', 3 => 'fourths-1' ];
 	} else {
-		$column_size_defaults = [ 1 => 'fourths-4' ];
+		$column_size_defaults = [ 0 => 'fourths-4' ];
 	}
-	?> <!-- <?php esc_html_e( $section_type . '--$section_type' )?> --> <!-- <?php esc_html_e( $column . '--$column' )?> -->  <!-- <?php esc_html_e( $column_name . '--$column_name' )?> -->   <!-- <?php esc_html_e( $column_order . '--$column_order' )?> --> <?php
+	?>
+	<?php
 
 	if ( false !== $column && false !== $column_order && isset( $column_size_defaults[ $column_order ] ) ) {
 		$column_type_default .= $column_size_defaults[ $column_order ] .'  order-' . $column_order;
-	}?> <!-- <?php esc_html_e( $column_type_default . '--$column_order' )?> --> <?php
+	}?> <?php
 
 	if ( $column ) {
-		$column_type = ( isset( $section_data['data']['columns'][ $column ]['column-type'] ) && '' !== $section_data['data']['columns'][ $column ]['column-type'] ) ? $section_data['data']['columns'][ $column ]['column-type'] : $column_type_default;
+
+		if ( ! empty( $section_data['data'] ) ) {
+			$column_type = ( isset( $section_data['data']['columns'][ $column ]['column-type'] ) && '' !== $section_data['data']['columns'][ $column ]['column-type'] ) ? $section_data['data']['columns'][ $column ]['column-type'] : $column_type_default;
+		} else {
+			$column_type = $column_type_default;
+		}
 	} else {
 		$column_type = ( isset( $section_data['data']['column-type'] ) && '' !== $section_data['data']['column-type'] ) ? $section_data['data']['column-type'] : $column_type_default;
 	}
-
-	?>
+?>
 	<div class="wsuwp-builder-meta">
 		<?php esc_html__( Fais_Spine_Builder_Custom::build_flexwork_column_inputs( $column_name.'[column-type]', $column_type ) ); ?>
 	</div>
