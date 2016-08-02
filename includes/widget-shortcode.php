@@ -88,7 +88,14 @@ class Widget_Shortcode {
 	 * @return void
 	 */
 	function in_widget_form( $widget, $return, $instance ) {
-		echo '<p>' . esc_attr_e( 'Shortcode', 'widget-shortcode' ) . ': ' . ( ( '__i__' === $widget->number ) ?  esc_attr_e( 'Please save this first.', 'widget-shortcode' ) : '<code>[widget id="'. esc_attr_e( $widget->id ).'"]</code>' ) . '</p>';
+		?><p>Shortcode:<?php
+		if ( '__i__' === $widget->number ) {
+			esc_attr_e( 'Please save this first.' );
+		} else {
+			echo '<code>[widget id="'.esc_html( $widget->id ).'"]</code>' ;
+
+		}
+		?></p><?php
 	}
 
 	/**
