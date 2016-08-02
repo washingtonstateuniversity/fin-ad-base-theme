@@ -866,8 +866,8 @@ class Fais_Spine_Builder_Custom
 				<button class="fw_add_class">+ add</button>
 			</div>
 <br/>
+<input type='text' name='<?php esc_attr_e( $field_name ); ?>' class='fexwork-classes full-width' value='<?php esc_attr_e( $section_class_str ); ?>'/><span class='fexwork-error' style='color:red;'>Class already exists</span>
 		<?php
-		return "<input type='text' name='" . $field_name . "' class='fexwork-classes full-width' value='" . $section_class_str . "'/><span class='fexwork-error' style='color:red;'>Class already exists</span>";
 	}
 	public function build_flexwork_column_inputs( $field_name, $column_class_str = '' ) {
 		//'flex-row wrap-reverse justify-start content-start items-start pad-airy-TB round-wide-L round-no-at-414'
@@ -1063,8 +1063,8 @@ class Fais_Spine_Builder_Custom
 				<button class="fw_add_class">+ add</button>
 			</div>
 <br/>
+<input type='text' name='<?php esc_attr_e( $field_name ); ?>' class='fexwork-classes full-width' value='<?php esc_attr_e( $column_class_str ); ?>'/><span class='fexwork-error' style='color:red;'>Class already exists</span>
 		<?php
-		return "<input type='text' name='" . $field_name . "' class='fexwork-classes full-width' value='" . $column_class_str . "'/><span class='fexwork-error' style='color:red;'>Class already exists</span>";
 	}
 }
 
@@ -1209,8 +1209,10 @@ function fais_spine_output_builder_column_classes( $column_name, $section_data, 
  */
 function fais_spine_output_builder_column_type( $column_name, $section_data, $column = false, $column_order = false ) {
 	$section_type = false;
-	if ( isset( $section_data['data']['section-type'] ) ) {
+	if ( isset( $section_data['data'] ) & isset( $section_data['data']['section-type'] ) ) {
 		$section_type = $section_data['data']['section-type'];
+	} elseif ( isset( $section_data['section']['id'] )  ) {
+		$section_type = $section_data['section']['id'];
 	}
 
 	$column_type_default = 'flex-column  grid-part ';
@@ -1228,10 +1230,11 @@ function fais_spine_output_builder_column_type( $column_name, $section_data, $co
 	} else {
 		$column_size_defaults = [ 1 => 'fourths-4' ];
 	}
+	?> <!-- <?php esc_html_e( $section_type . '--$section_type' )?> --> <!-- <?php esc_html_e( $column . '--$column' )?> -->  <!-- <?php esc_html_e( $column_name . '--$column_name' )?> -->   <!-- <?php esc_html_e( $column_order . '--$column_order' )?> --> <?php
 
 	if ( false !== $column && false !== $column_order && isset( $column_size_defaults[ $column_order ] ) ) {
 		$column_type_default .= $column_size_defaults[ $column_order ] .'  order-' . $column_order;
-	}
+	}?> <!-- <?php esc_html_e( $column_type_default . '--$column_order' )?> --> <?php
 
 	if ( $column ) {
 		$column_type = ( isset( $section_data['data']['columns'][ $column ]['column-type'] ) && '' !== $section_data['data']['columns'][ $column ]['column-type'] ) ? $section_data['data']['columns'][ $column ]['column-type'] : $column_type_default;
@@ -1241,7 +1244,7 @@ function fais_spine_output_builder_column_type( $column_name, $section_data, $co
 
 	?>
 	<div class="wsuwp-builder-meta">
-		<?php esc_html_e( Fais_Spine_Builder_Custom::build_flexwork_column_inputs( $column_name.'[column-type]', $column_type ) ); ?>
+		<?php esc_html__( Fais_Spine_Builder_Custom::build_flexwork_column_inputs( $column_name.'[column-type]', $column_type ) ); ?>
 	</div>
 	<?php
 }
@@ -1288,7 +1291,7 @@ function fais_spine_output_builder_section_flextree( $section_name, $ttfmake_sec
 		<p class="description">Set the bins to put the section in. `<?php esc_attr_e( strtoupper( 'content' ) ); ?>` by default.  It will still output in the order set, but only in the bin it is set to.</p>
 	</div>
 	<div class="wsuwp-builder-meta">
-		<?php esc_hmtl_e( Fais_Spine_Builder_Custom::build_flexwork_sectional_inputs( $section_name.'[section-flextype]', $current ) ); ?>
+		<?php Fais_Spine_Builder_Custom::build_flexwork_sectional_inputs( $section_name.'[section-flextype]', $current ); ?>
 		<p><b>Note:</b> Editing this edit by hand with out the builder is only advised if you are familar with css and the framework of Flexwork</p>
 	</div>
 	<div class="wsuwp-builder-meta">

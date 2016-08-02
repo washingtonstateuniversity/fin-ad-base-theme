@@ -4,6 +4,14 @@ spine_load_section_header();
 
 global $ttfmake_section_data, $ttfmake_is_js_template;
 
+
+	if ( isset( $section_data['data'] ) & isset( $section_data['data']['section-type'] ) ) {
+		$section_type = $section_data['data']['section-type'];
+	} elseif ( isset( $section_data['section']['id'] )  ) {
+		$section_type = $section_data['section']['id'];
+	}
+
+
 if ( in_array( $ttfmake_section_data['section']['id'], array( 'faiswsuwphalves', 'faiswsuwpsidebarright', 'faiswsuwpsidebarleft' ), true ) ) {
 	$wsuwp_range = 2;
 } elseif ( 'faiswsuwpthirds' === $ttfmake_section_data['section']['id'] ) {
@@ -29,7 +37,7 @@ if ( 'faiswsuwphalves' === $ttfmake_section_data['section']['id'] ) {
 }
 
 
-$section_flextype = ( isset( $ttfmake_section_data['data']['section-flextype'] ) ) ? $ttfmake_section_data['data']['section-flextype'] : 'flex-row';
+$section_flextype = ( isset( $ttfmake_section_data['data']['section-flextype'] ) ) ? $ttfmake_section_data['data']['section-flextype'] : 'flex-row ';
 
 // We didn't always treat single as a column layout. Provide a shim for the old data structure.
 if ( 'faiswsuwpsingle' === $ttfmake_section_data['section']['id'] ) {
@@ -47,11 +55,11 @@ $section_order  = ( ! empty( $ttfmake_section_data['data']['columns-order'] ) ) 
 
 ?>
 <style>
-.wsuwp-spine-halves-stage {
+.wsuwp-spine-column-stage {
     border: 1px solid #a8a8a8;
     position:relative;
 }
-.wsuwp-spine-halves-stage:before {
+.wsuwp-spine-column-stage:before {
     content: "Section area";
     position: absolute;
     top: -20px;
@@ -79,7 +87,10 @@ $section_order  = ( ! empty( $ttfmake_section_data['data']['columns-order'] ) ) 
 
 
 </style>
-	<div class="wsuwp-spine-halves-stage <?php esc_attr_e( $section_flextype ) ?>">
+
+<!-- <?php var_dump( $section_order )?> --$section_order  -->
+
+	<div class="wsuwp-spine-column-stage <?php esc_attr_e( $section_flextype ) ?>">
     <?php $j = 1; foreach ( $section_order as $key => $i ) : ?>
     <?php
 	$column_name = $section_name . '[columns][' . $i . ']';
