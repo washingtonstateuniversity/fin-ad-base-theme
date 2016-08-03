@@ -223,4 +223,4 @@ function background_hook_css() {
 	.style-bookmark .main-header span { color:<?php esc_attr_e( $header_text_color ); ?>; }
 </style>
 <?php
-
+}
