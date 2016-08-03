@@ -7,6 +7,9 @@
 		if ($.browser.msie && $.browser.version == 9) {
 			$('html').addClass('ie9');
 		}
+		if ($.browser.msie || (!(window.ActiveXObject) && "ActiveXObject" in window) || /x64|x32/ig.test(window.navigator.userAgent)) {
+			$('html').addClass('ie');
+		}
 
 		if( $('.page.type-page #content_area').length <= 0 ){
 			$('.page.type-page').addClass("content_less");
