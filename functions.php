@@ -191,6 +191,7 @@ function finAdBaseTheme() {
 }
 
 
+
 add_action( 'wp_head','background_hook_css', 21 );
 
 function background_hook_css() {
@@ -210,16 +211,16 @@ function background_hook_css() {
 	<?php if ( false !== $jacket_background_url ) : ?>
 		#jacket { background: transparent url('<?php esc_attr_e( $jacket_background_url ) ?>') bottom center no-repeat;background-size: contain; }
 	<?php endif; ?>
-    body:not(.has-background-image) { background-color:<?php esc_attr_e( $background_color ); ?>; }
-    .primary-accent-bk{background-color:<?php esc_attr_e( $primary_accent_color ); ?>; }
-    .secoundary-accent-bk{background-color:<?php esc_attr_e( $secoundary_accent_color ); ?>; }
-    .primary-accent{color:<?php esc_attr_e( $primary_accent_color ); ?>; }
-    .secoundary-accent{color:<?php esc_attr_e( $secoundary_accent_color ); ?>; }
+	body:not(.has-background-image) { background-color:<?php esc_attr_e( $background_color ); ?>; }
+    .background-color { background-color:<?php esc_attr_e( $background_color ); ?>; }
+    .primary-accent-bk {background-color:<?php esc_attr_e( $primary_accent_color ); ?>; }
+    .secoundary-accent-bk {background-color:<?php esc_attr_e( $secoundary_accent_color ); ?>; }
+    .primary-accent-text{color:<?php esc_attr_e( $primary_accent_color ); ?>; }
+    .secoundary-accent-text{color:<?php esc_attr_e( $secoundary_accent_color ); ?>; }
     div#border_top{background-color:<?php esc_attr_e( $primary_accent_color ); ?>; }
     div#border_bottom{background-color:<?php esc_attr_e( $primary_accent_color ); ?>; }
 	.style-bookmark .main-header { background-color:<?php esc_attr_e( $header_color ); ?>; }
 	.style-bookmark .main-header span { color:<?php esc_attr_e( $header_text_color ); ?>; }
 </style>
 <?php
-}
 

@@ -41,8 +41,8 @@ class Widget_Shortcode {
 		add_action( 'plugins_loaded', array( $this, 'i18n' ), 5 );
 		add_action( 'widgets_init', array( $this, 'arbitrary_sidebar' ), 20 );
 		add_action( 'in_widget_form', array( $this, 'in_widget_form' ), 10, 3 );
-		//add_filter( 'mce_external_plugins', array( $this, 'mce_external_plugins' ) );
-		add_filter( 'mce_buttons', array( $this, 'mce_buttons' ) );
+		add_filter( 'mce_external_plugins', array( $this, 'mce_external_plugins' ) );
+		add_filter( 'mce_buttons', array( $this, 'mce_buttons' ), 15 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'editor_parameters' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'editor_parameters' ) );
 	}
@@ -115,15 +115,17 @@ class Widget_Shortcode {
 	 */
 	function get_widgets_map() {
 		$sidebars_widgets = wp_get_sidebars_widgets();
+
 		$widgets_map = array();
 		if ( ! empty( $sidebars_widgets ) ) {
 			foreach ( $sidebars_widgets as $position => $widgets ) {
 				if ( ! empty( $widgets ) ) {
 					foreach ( $widgets as $widget ) {
-						$widgets_map[ $widget ] = $position; }
-}
-}
-}
+						$widgets_map[ $widget ] = $position;
+					}
+				}
+			}
+		}
 
 		return $widgets_map;
 	}
@@ -246,7 +248,7 @@ class Widget_Shortcode {
 	}
 
 	function mce_external_plugins( $plugins ) {
-		$plugins['widgetShortcode'] = plugins_url( 'assets/tinymce.js', __FILE__ );
+		$plugins['widgetShortcode'] = get_stylesheet_directory_uri() . '/includes/assets/tinymce.js';
 
 		return $plugins;
 	}
@@ -261,9 +263,10 @@ class Widget_Shortcode {
 		global $wp_registered_widgets;
 		$widgets = array();
 		$all_widgets = $this->get_widgets_map();
+		//var_dump( $all_widgets ); die();
 		if ( ! empty( $all_widgets ) ) {
 			foreach ( $all_widgets as $id => $position ) {
-				if ( 'arbitrary' === $position ) {
+
 					$title = $wp_registered_widgets[ $id ]['name'];
 					$options = $this->get_widget_options( $id );
 					if ( isset( $options['title'] ) && ! empty( $options['title'] ) ) {
@@ -273,13 +276,13 @@ class Widget_Shortcode {
 						'id' => $id,
 						'title' => $title,
 					);
-				}
+				//if ( 'arbitrary' === $position ) {}
 			}
 		}
 		wp_localize_script( 'editor', 'widgetShortcode', array(
 			'title' => __( 'Widget Shortcode', 'widget-shortcode' ),
 			'widgets' => $widgets,
-			'image' => plugins_url( 'assets/widget-icon.png', __FILE__ ),
+			'image' => get_stylesheet_directory_uri() . '/includes/assets/widget-icon.png',
 		) );
 	}
 }

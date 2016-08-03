@@ -66,30 +66,8 @@ if ( '' === $section_id ) {
 
 <section id="<?php esc_attr_e( $section_id ); ?>" data-background="<?php esc_attr_e( $section_background_data ); ?>" data-background-mobile="<?php esc_attr_e( $section_background_mobile_data ); ?>" class="banner-section full-width  <?php esc_attr_e( $section_background_class ); ?>">
 
-<style type="text/css">
-    <?php
-	// Maintain aspect ratio
-	if ( 'aspect' === $responsive ) : ?>
 
-    #builder-section-<?php esc_attr_e( $ttfmake_section_data['id'] ); ?> .builder-banner-slide {
-     padding-bottom: <?php esc_attr_e( $slider_ratio ); ?>%;
-    }
-    <?php
-	// Balanced
-	else : ?>
-
-	#builder-section-<?php esc_attr_e( $ttfmake_section_data['id'] ); ?> .builder-banner-slide {
-		padding-bottom: <?php esc_attr_e( $slider_height ); ?>px;
-    }
-    @media screen and (min-width: 600px) and (max-width: 960px) {
-		#builder-section-<?php esc_attr_e( $ttfmake_section_data['id'] ); ?> .builder-banner-slide {
-			padding-bottom: <?php esc_attr_e( $slider_ratio ); ?>%;
-        }
-    }
-    <?php endif; ?>
-</style>
-
-	<div class="<?php esc_attr_e( $column_classes ); ?>">
+	<div class="banner-column <?php esc_attr_e( $column_classes ); ?>">
     <?php if ( ! empty( $ttfmake_section_data['title'] ) ) : ?>
             <header>
 				<h2><?php esc_attr_e( apply_filters( 'the_title', $ttfmake_section_data['title'] ) ); ?></h2>
@@ -97,6 +75,29 @@ if ( '' === $section_id ) {
     <?php endif; ?>
 
 		<div class="builder-section-content <?php esc_attr_e( $is_slider? ' cycle-slideshow' : '' ); ?>" <?php echo ( ( $is_slider ) ? ttfmake_builder_get_banner_slider_atts( $ttfmake_section_data ) : '' ); ?>>
+
+		<style type="text/css">
+			<?php
+			// Maintain aspect ratio
+			if ( 'aspect' === $responsive ) : ?>
+
+			#builder-section-<?php esc_attr_e( $ttfmake_section_data['id'] ); ?> .builder-banner-slide {
+			padding-bottom: <?php esc_attr_e( $slider_ratio ); ?>%;
+			}
+			<?php
+			// Balanced
+			else : ?>
+
+			#builder-section-<?php esc_attr_e( $ttfmake_section_data['id'] ); ?> .builder-banner-slide {
+				padding-bottom: <?php esc_attr_e( $slider_height ); ?>px;
+			}
+			@media screen and (min-width: 600px) and (max-width: 960px) {
+				#builder-section-<?php esc_attr_e( $ttfmake_section_data['id'] ); ?> .builder-banner-slide {
+					padding-bottom: <?php esc_attr_e( $slider_ratio ); ?>%;
+				}
+			}
+			<?php endif; ?>
+		</style>
     <?php if ( ! empty( $banner_slides ) ) : $i = 0; foreach ( $banner_slides as $slide ) : ?>
 				<div class="builder-banner-slide<?php esc_attr_e( ttfmake_builder_banner_slide_class( $slide ) ); ?> <?php esc_attr_e( ( 0 == $i++ ) ? ' first-slide' : '' ); ?>" style="<?php esc_attr_e( ttfmake_builder_banner_slide_style( $slide, $ttfmake_section_data ) ); ?>">
         <?php if ( ! empty( $slide['slide-url'] ) ) : ?><a href="<?php echo esc_url( $slide['slide-url'] ); ?>"><?php

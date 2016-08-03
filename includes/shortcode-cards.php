@@ -1,4 +1,8 @@
 <?php
+
+//@todo turn into a class
+
+
 // Add Shortcode
 function cards_shortcode( $atts ) {
 
@@ -60,3 +64,18 @@ function cards_shortcode( $atts ) {
 
 }
 add_shortcode( 'contact_cards', 'cards_shortcode' );
+
+		add_filter( 'mce_external_plugins', 'contactCard_mce_external_plugins' );
+		add_filter( 'mce_buttons', 'contactCard_mce_buttons', 15 );
+
+	function contactCard_mce_external_plugins( $plugins ) {
+		$plugins['contactCard'] = get_stylesheet_directory_uri() . '/includes/assets/card_helper.js';
+
+		return $plugins;
+	}
+
+	function contactCard_mce_buttons( $mce_buttons ) {
+		array_push( $mce_buttons, 'separator', 'contactCard' );
+		return $mce_buttons;
+	}
+

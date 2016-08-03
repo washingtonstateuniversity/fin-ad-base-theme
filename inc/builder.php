@@ -15,6 +15,7 @@ class Fais_Spine_Builder_Custom
 		add_action( 'admin_init', array( $this, 'add_builder_sections' ), 14 );
 		add_filter( 'content_edit_pre', array( $this, 'filter_function_name' ), 10, 2 );
 		add_filter( 'make_insert_post_data_sections', array( $this, 'set_section_meta' ), 13, 1 );
+
 	}
 
 	public function get_column_default_size( $section_type ) {
@@ -1343,6 +1344,25 @@ function fais_spine_output_builder_section_background( $section_name, $ttfmake_s
 		<p class="description">Background images on sections are an in progress feature. :)</p>
 	</div>
 	<?php
+}
+
+
+
+
+add_filter( 'tiny_mce_before_init', 'custom_edit_page_js', 9999 );
+function custom_edit_page_js( $opt ) {
+
+	$background_url = fais_spine_get_option( 'background_url', false );
+	$background_color = fais_spine_get_option( 'background_color', '#9bbdf5' );
+	$secoundary_accent_color = fais_spine_get_option( 'secoundary_accent_color', '#1122a3' );
+	$primary_accent_color = fais_spine_get_option( 'primary_accent_color', '#1122a3' );
+	$header_color = fais_spine_get_option( 'header_color', '#981e32' );
+	$header_text_color = fais_spine_get_option( 'header_text_color', '#FFF' );
+	$jacket_background_url = fais_spine_get_option( 'jacket_background_url', false );
+
+	$opt['content_style'] = 'body { background-color:#dedede !important;} .primary-accent-bk {background-color:'.$primary_accent_color.'; } .secoundary-accent-bk {background-color:'.$secoundary_accent_color.'; } .primary-accent-text{color:'.$primary_accent_color.'; } .secoundary-accent-text{color:'.$secoundary_accent_color.'; }' ;
+$opt['content_css'] = $opt['content_css'].',//fonts.googleapis.com/css?family=Open+Sans%3A100%2C200%2C300%2C400%2C500%2C600%2C700%2C800%2C900&#038;ver=4.5.2';
+	return $opt;
 }
 
 

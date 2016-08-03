@@ -64,6 +64,7 @@ class Fais_Spine_Theme_Customizer {
 				'label'      => __( 'Background Color' ),
 				'section'    => 'static_background',
 				'settings'   => 'spine_options[background_color]',
+				'description' => 'The class to use <code>background-color</code>',
 			) )
 		);
 
@@ -81,7 +82,7 @@ class Fais_Spine_Theme_Customizer {
 				'label'      => __( 'Primary Accent Color' ),
 				'section'    => 'static_background',
 				'settings'   => 'spine_options[primary_accent_color]',
-				'description' => 'The primary color will alter areas like the top borders',
+				'description' => 'The primary color will alter areas like the top borders. The classes to use:<br/><b>Background</b> : <code>primary-accent-bk</code> <br/><b>Text</b> : <code>primary-accent-text</code>',
 			) )
 		);
 
@@ -99,6 +100,7 @@ class Fais_Spine_Theme_Customizer {
 				'label'      => __( 'Secoundary Accent Color' ),
 				'section'    => 'static_background',
 				'settings'   => 'spine_options[secoundary_accent_color]',
+				'description' => 'The primary color will alter areas like the top borders. The classes to use:<br/><b>Background</b> : <code>secoundary-accent-bk</code> <br/><b>Text</b> : <code>secoundary-accent-text</code>',
 			) )
 		);
 
