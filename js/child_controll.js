@@ -55,7 +55,7 @@
 		}());
 
 
-		$("#contact-form").css({"opacity":0,"z-index":1});
+		$("#contact-form").css({"opacity":0,"z-index":0});
 		$(".inline-form.menu-item").on("click", function(e){
 			e.preventDefault();
 			e.stopPropagation();
@@ -79,7 +79,7 @@
 			e.stopPropagation();
 			$("#contact-form").animate({
 				opacity:0,
-				"z-index":1
+				"z-index":0
 			}, 50);
 			/*$("#contact-form").toggle(function() {
 				$('body,html').scroll();
