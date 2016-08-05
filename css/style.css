@@ -104,10 +104,11 @@ a.button:before, a[href$=".pdf"]:before, a[href$=".xls"]:before,a[href^="mailto:
 }*/
 
 
-a.button.news,a.button.contact,a.button.docment, a[href$=".pdf"], a[href$=".xls"],a[href^="mailto:"]{
+a.button.news,a.button.contact,a.button.docment, a[href$=".pdf"], a[href$=".xls"],a[href^="mailto:"],#feedback_back_btn{
 	padding-left: 9px;
+	text-decoration: none;
 }
-#spine-sitenav a[href$=".pdf"]:before, #spine-sitenav  a[href$=".xls"]:before, #spine-sitenav  a[href^="mailto:"]:before{
+#spine-sitenav a[href$=".pdf"]:before, #spine-sitenav  a[href$=".xls"]:before, #spine-sitenav  a[href^="mailto:"]:before,#feedback_back_btn:before{
 	font-size: 15px;
 }
 #spine-sitenav a[href$=".pdf"], #spine-sitenav  a[href$=".xls"], #spine-sitenav a[href^="mailto:"]{
@@ -135,6 +136,10 @@ a[href$=".xls"]:before{
 a[href^="mailto:"]:before{
 	content: "\f003";
 }
+#feedback_back_btn:before{
+		content: "\f100";
+}
+
 
 /* inline content */
 p a.button.news, p a.button.contact,
@@ -432,8 +437,8 @@ builder-banner-slide
 
 
 }
-#content_area > [data-type="faiswsuwpsingle"] > .grid-part  {
-	padding:0;
+#content_area > [data-type="faiswsuwpsingle"] > .grid-part:not(.pad-airy) {
+    padding: 0;
 }
 
 #content_area > .column-section > .grid-part > h1,
