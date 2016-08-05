@@ -1,3 +1,4 @@
+/*
 var dev = false;
     if( -1 !== window.location.host.indexOf("wp.wsu.dev") ){
         dev = true;
@@ -28,13 +29,16 @@ console.log("custom");
 function eraseCookie(name) {
     createCookie(name,"",-1);
 }
-
+*/
 (function($){
     var init, setupExamples, setupHeroSelect, navSetup, setupDrops, _Drop;
     _Drop = Drop.createContext({
         classPrefix: "drop"
     });
 
+
+
+/*
 
 
 var url = readCookie('last_location');
@@ -56,7 +60,7 @@ if( "/feedback-form/" === window.location.pathname ){
 	});
 }
 
-function set_up_form_ui(){
+function set_up_form_ui(){*/
 //d7085d8a0a
 //document.cookie = 'mycookie=valueOfCookie;expires=DateHere;path=/'
 
@@ -100,6 +104,9 @@ console.log(data);
 			}
 		});
 	});*/
+
+
+	/*
 	$("#take_shot").off().on("click",function(e){
 		e.preventDefault();
 		e.stopPropagation();
@@ -123,7 +130,7 @@ console.log(data);
 			"z-index":0
 		}, 50);
 	});
-}
+}*/
 
 
 	$(function(){
@@ -146,7 +153,7 @@ console.log(data);
 			$("body").append("<div id='hidden'>");
 		}
 
-
+/*
 		if( !$("#contact-form").length ){
 			$("#hidden").append("<div id='contact-form'>");
            $.ajax({
@@ -168,7 +175,7 @@ console.log(data);
 
             });
         };
-
+*/
 
 
 			//$("#hidden").append("<div id='contact-form' class='pad-airy'><input type='hidden' name='img_val' id='img_val' /><span id='close_form'></span><h2>Provide Feed back</h2><form><label>Name<br/><input type='text' /></label><br/><label>Email<br/><input type='email' /></label><br/><label>Feedback<br/></label><textarea style'width:100%'></textarea><br/><button id='take_shot'>Take Screen Shot</button><span id='screen_area'><span id='remove_screen'></span><span id='screen_image'></span></span><br/><br/><button type='submit'>Submit</button>");
@@ -187,7 +194,7 @@ console.log(data);
 		//http://www.kubilayerdogan.net/html2canvas-take-screenshot-of-web-page-and-save-it-to-server-javascript-and-php/
 		// NOTE THIS IS WHERE WE NEED TO REFERBACK
 
-
+/*
 		//break out later
 		///set up line form
 		(function() {
@@ -223,7 +230,7 @@ console.log(data);
 
 
 
-		$('body,html').scroll();
+		$('body,html').scroll();*/
 	});
 
 
