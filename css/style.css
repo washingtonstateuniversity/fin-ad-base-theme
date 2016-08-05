@@ -14,7 +14,8 @@ body {
 	font-size:10px;
 	color:#292929;
 }
-section{
+
+main section{
 	z-index: 1;
 }
 #jacket{
@@ -342,7 +343,7 @@ img {
 }
 /*media all*/
 .profile-summary a[href^='mailto'] {
-    padding: 0px 5px;
+    padding: 0 5px;
     height: 2.2em;
     line-height: 1.2em;
     font-size: 0.85em;
