@@ -283,6 +283,13 @@ img {
     padding-left: 5px;
     border-top-right-radius: 0;
 }
+.dark .gform_title,.darker .gform_title {
+	color:#fff;
+}
+
+.dark select.gfield_select,.darker select.gfield_select  {
+    color: black;
+}
 
 .dark #contact-form,.dark #close_form  {
 	background: #3b4042;
