@@ -65,8 +65,8 @@
 							value: ''
 						},{
 							type: 'textbox',
-							name: 'Email',
-							label: 'email',
+							name: 'email',
+							label: 'Email',
 							value: ''
 						},{
 							type: 'textbox',
