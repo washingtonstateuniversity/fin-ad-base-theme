@@ -26,7 +26,7 @@ function cards_shortcode( $atts ) {
 
 <div class="flex-row items-start pad-airy">
     <div class="flex-column items-start thirds-1 profile-image">
-	<?php if ( false !== $att['profile_url'] ) :  ?>
+	<?php if ( false !== $att['profile_url'] && '' !== $att['profile_url'] ) :  ?>
 		<img src="<?php esc_attr_e( $att['profile_url'] ); ?>" />
 	<?php else : ?>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 463 562">
@@ -52,7 +52,7 @@ function cards_shortcode( $atts ) {
 			<?php endif; ?>
         </span>
 		<?php if ( false !== $att['descrip'] ) :  ?>
-			<p><?php esc_attr_e( $att['descrip'] ); ?></p>
+			<p><?php esc_html_e( $att['descrip'] ); ?></p>
 		<?php endif; ?>
     </div>
 </div>
