@@ -143,20 +143,20 @@ a[href^="mailto:"]:before{
 }
 
 
-/* inline content */
 p a.button.news, p a.button.contact,
 p a.button.docment, p a[href$=".pdf"],
-p a[href$=".xls"] {
-    font-size: 0.7em;
-    padding: 1px 5px 1px 7px;
+p a[href$=".xls"], p a[href^='mailto:'] {
+    line-height: 1.5em;
+    padding: 0 .52em;
+    margin: 0 .75em;
+    margin-top: -2px;
 }
-
 p a.button.news:before, p a.button.contact:before,
 p a.button.docment:before, p a[href$=".pdf"]:before,
-p a[href$=".xls"]:before {
+p a[href$=".xls"]:before,p a[href^='mailto:']:before {
+    line-height: 1em;
     font-size: 1.5em;
 }
-
 /* images -------*/
 img {
     border: 0;
@@ -328,7 +328,11 @@ img {
 	content:"\f00d";
 }
 
-/*contact cars */
+/*contact cards */
+.content-card p, .content-card h2,.content-card h3,
+.content-card h4{
+	max-width:100%;
+}
 .profile-summary h2, .profile-summary h3, .profile-summary h4 {
 	padding:0;
 	margin:0;
@@ -340,6 +344,18 @@ img {
 	padding: 2px 5px;
     height: 2.2em;
     line-height: 2.1em;
+}
+/*media all*/
+.profile-summary a[href^='mailto'] {
+    padding: 0px 5px;
+    height: 2.2em;
+    line-height: 1.2em;
+    font-size: 0.85em;
+}
+/*media all*/
+a[href^='mailto:']::before {
+    content: "\f003";
+    font-size: 0.75em;
 }
 
 
