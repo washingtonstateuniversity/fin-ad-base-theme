@@ -154,8 +154,10 @@ console.log(data);
                 dataType:"jsonp",
                 jsonpCallback:"feedback"
             }).done(function(data){
+				var html = $("<div>");
+				html.append(data[0].content.rendered);
 				$("#contact-form").prepend("<span id='close_form'>");
-                $("#contact-form").append(data[0].content.rendered);
+                $("#contact-form").append(html.find(".gform_wrapper").html());
 				$("#contact-form").find(".ginput_container_fileupload").css("display","none");
 				$("#contact-form").find(".ginput_container_fileupload").prev("label").css("display","none");
 				$("#contact-form").find(".ginput_container_fileupload").after("<button id='take_shot'>Take Screen Shot</button><span id='screen_area'><span id='remove_screen'></span><span id='screen_image'></span></span>");
