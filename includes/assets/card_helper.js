@@ -104,8 +104,32 @@
 							]
 						}*/
 					],
+
+
+
+
+
+
 					onsubmit: function( e ) {
-						editor.insertContent( '[contact_cards position="' + e.data.position + '" name="' + e.data.name + '" tel="' + e.data.tel + '" email="' + e.data.email + '" descrip="' + e.data.descrip + '" profile_url="' + e.data.profile_url + '" ]');
+						var card_data = ' [contact_cards  ';
+							card_data += ' name="' + e.data.name + '" ';
+
+						if( "" !== e.data.position ){
+							card_data += ' position="' + e.data.position + '" ';
+						}
+
+						if( "" !== e.data.email ){
+							card_data += ' email="' + e.data.email + '" ';
+						}
+
+						card_data += ' descrip="' + e.data.descrip + '" ';
+
+						if( "" !== e.data.email ){
+							card_data += ' profile_url="' + e.data.profile_url + '" ';
+						}
+							card_data += ' ]';
+
+						editor.insertContent( card_data );
 					}
 				});
 			}
