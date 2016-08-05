@@ -44,7 +44,7 @@ console.log(url);
 console.log("pathname");
 console.log(window.location.pathname);
 
-if( "/feedback/" === window.location.pathname ){
+if( "/feedback-form/" === window.location.pathname ){
 	var url = readCookie('last_location read');
 	jQuery(".gform_confirmation_wrapper").append("<a href='"+url+"'>Go back</a>");
 }else{
