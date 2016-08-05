@@ -285,7 +285,7 @@ img {
     padding-left: 5px;
     border-top-right-radius: 0;
 }
-.dark .gform_title,.darker .gform_title {
+.dark .gform_title,.darker .gform_title,.dark #contact-form label,.darker #contact-form label {
 	color:#fff;
 }
 
