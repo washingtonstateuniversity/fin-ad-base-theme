@@ -1,9 +1,7 @@
-(function($){
-    var init, setupExamples, setupHeroSelect, navSetup, setupDrops, _Drop;
-    _Drop = Drop.createContext({
-        classPrefix: "drop"
-    });
-
+var dev = false;
+    if( -1 !== window.location.host.indexOf("wp.wsu.dev") ){
+        dev = true;
+    }
 function createCookie(name,value,days) {
     console.log("createCookie");
     if (days) {
@@ -12,7 +10,7 @@ function createCookie(name,value,days) {
         var expires = " expires="+date.toGMTString() + ";";
     }
     else var expires = "";
-    document.cookie = name+"="+value+";"+expires+" path=/;domain=.wsu.dev";
+    document.cookie = name+"="+value+";"+expires+" path=/;domain="+(dev?".wsu.dev":".wsu.edu");
 }
 
 function readCookie(name) {
@@ -31,9 +29,20 @@ function eraseCookie(name) {
     createCookie(name,"",-1);
 }
 
+(function($){
+    var init, setupExamples, setupHeroSelect, navSetup, setupDrops, _Drop;
+    _Drop = Drop.createContext({
+        classPrefix: "drop"
+    });
+
+
+
 var url = readCookie('last_location');
 
+console.log("url");
 console.log(url);
+console.log("pathname");
+console.log(window.location.pathname);
 
 if( "/feedback/" === window.location.pathname ){
 	var url = readCookie('last_location read');
@@ -42,7 +51,7 @@ if( "/feedback/" === window.location.pathname ){
     console.log("current_location create");
 	createCookie("current_location",window.location,500);
 	jQuery(window).bind('beforeunload', function(){
-         console.log("last_location create");
+        console.log("last_location create");
 		createCookie("last_location",window.location,500);
 	});
 }
