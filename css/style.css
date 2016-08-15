@@ -157,6 +157,15 @@ p a[href$=".xls"]:before,p a[href^='mailto:']:before {
     line-height: 1em;
     font-size: 1.5em;
 }
+
+.ie9 p a.button.news:before, .ie9 p a.button.contact:before,
+.ie9 p a.button.docment:before, .ie9 p a[href$=".pdf"]:before,
+.ie9 p a[href$=".xls"]:before,.ie9 p a[href^='mailto:']:before {
+    line-height: 1.35em;
+    font-size: .55em;
+}
+
+
 /* images -------*/
 img {
     border: 0;
@@ -236,6 +245,7 @@ img {
 /* pager */
 .builder-section-content{
 	z-index:99;
+	overflow: visible;
 }
 .builder-section-content.cycle-slideshow::after,
 .builder-section-content:not(.cycle-slideshow) .builder-banner-slide.first-slide::after
@@ -254,9 +264,16 @@ img {
 .ie9 .builder-section-content.cycle-slideshow::after,
 .ie9 .builder-section-content:not(.cycle-slideshow) .builder-banner-slide.first-slide:after
  {
-	/* csslint ignore:start */
-	background-image: url('data:image/svg+xml;utf8,<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 16 85"><defs><style>.cls-1{fill:url(#linear-gradient);}</style><linearGradient id="linear-gradient" x1="8" x2="8" y2="85" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#dedede" stop-opacity="0"/><stop offset="0.05" stop-color="#dedede" stop-opacity="0.03"/><stop offset="0.75" stop-color="#dedede" stop-opacity="0.85"/><stop offset="1" stop-color="#dedede"/></linearGradient></defs><title>Untitled-1</title><rect class="cls-1" width="16" height="85"/></svg>');
-	/* csslint ignore:end */
+
+	background: url('images/grade.svg') repeat-x left bottom;
+    height:85px;
+    display:block;
+    position:absolute;
+    bottom:-31px;
+    left:0;
+    width:100%;
+    z-index:999;
+ 	content:".";
  }
 #contact-form.tether-element { display:block }
 #contact-form {
@@ -355,8 +372,13 @@ a[href^='mailto:']::before {
     content: "\f003";
     font-size: 0.75em;
 }
-
-
+.ie9 .profile-summary a[href^='mailto:']::before {
+    content: "\f003";
+    font-size: 0.35em;
+}
+.home header.main-header {
+    display: none;
+}
 .cycle-pager {
 	text-align: center;
 	width: 100%;
