@@ -238,6 +238,7 @@ img {
 /* pager */
 .builder-section-content{
 	z-index:99;
+	overflow: visible;
 }
 .builder-section-content.cycle-slideshow::after,
 .builder-section-content:not(.cycle-slideshow) .builder-banner-slide.first-slide::after
@@ -257,9 +258,16 @@ img {
 .ie9 .builder-section-content.cycle-slideshow::after,
 .ie9 .builder-section-content:not(.cycle-slideshow) .builder-banner-slide.first-slide:after
  {
-	/* csslint ignore:start */
-	background-image: url('images/grade.svg');
-	/* csslint ignore:end */
+
+	background: url('images/grade.svg') repeat-x left bottom;
+    height:85px;
+    display:block;
+    position:absolute;
+    bottom:-31px;
+    left:0;
+    width:100%;
+    z-index:999;
+ 	content:".";
  }
 #contact-form.tether-element { display:block }
 #contact-form {
