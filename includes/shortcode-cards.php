@@ -51,16 +51,16 @@ function cards_shortcode( $atts ) {
 				<a class=" grid-part pad-tight" href="mailto:<?php esc_attr_e( $att['email'] ); ?>">Email</a>
 			<?php endif; ?>
         </span>
-		<?php if ( false !== $att['descrip'] ) :  ?>
-			<p><?php esc_html_e( $att['descrip'] ); ?></p>
-		<?php endif; ?>
-    </div>
-</div>
+
 
 <?php
 	$contact_card = ob_get_clean();
+	$discrip = '';
+	if ( false !== $att['descrip'] ) {
+		$discrip = '<p>'. html_entity_decode( $att['descrip'] ) .'</p>';
+	}
 
-	return $contact_card;
+	return $contact_card.$discrip.'</div></div>';
 
 }
 add_shortcode( 'contact_cards', 'cards_shortcode' );
