@@ -14,7 +14,8 @@ body {
 	font-size:10px;
 	color:#292929;
 }
-section{
+
+main section{
 	z-index: 1;
 }
 #jacket{
@@ -55,7 +56,8 @@ a[href$=".pdf"], a[href$=".xls"],a[href^="mailto:"] {
     cursor: pointer;
     margin-bottom: 0;
     line-height: normal;
-    padding: .5em 1em;
+    padding: 0.3em 1em;
+    height: 2.5em;
     vertical-align: middle;
 }
 #spine-sitenav a[href$=".pdf"]{
@@ -335,24 +337,24 @@ img {
 .profile-summary h4 {
 	padding-top:5px;
 }
-.profile-summary a[href^="mailto"] {
-	padding: 2px 5px;
-    height: 2.2em;
-    line-height: 2.1em;
-}
+
 /*media all*/
 .profile-summary a[href^='mailto'] {
-    padding: 0px 5px;
-    height: 2.2em;
+    padding: 0 5px;
+    height: 1.8em;
     line-height: 1.2em;
     font-size: 0.85em;
 }
 /*media all*/
 a[href^='mailto:']::before {
     content: "\f003";
+    font-size: 1.45em;
+    line-height: 0.9em;
+}
+.profile-summary a[href^='mailto:']::before {
+    content: "\f003";
     font-size: 0.75em;
 }
-
 
 
 .cycle-pager {
@@ -454,6 +456,9 @@ builder-banner-slide
 
 }
 #content_area > [data-type="faiswsuwpsingle"] > .grid-part:not(.pad-airy) {
+    padding: 0;
+}
+#content_area > [data-type="faiswsuwpsingle"] > .grid-part:not(.pad-tight) {
     padding: 0;
 }
 
@@ -618,7 +623,26 @@ div#border_bottom:before {
     z-index: 9;
     content:"";
 }
+main .spine-blank-template {
+	width: 400px;
+	background-color: #F2F2F3;
+}
 
+main .h4, main h4 {
+	font-size: 14.8px !important;
+}
+
+main p,main a {
+	font-size: .9em !important;
+}
+
+main h3 {
+	font-size: 1.1em !important;
+}
+
+main ol li, main ul li {
+	line-height: 1.8em;
+}
 
 /* forms */
 input[type=text], input[type=password], input[type=email], select, textarea{
@@ -636,6 +660,24 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, tex
 /* spine overrides */
 .row.single .column {
     max-width: 100%;
+}
+input::-webkit-input-placeholder {
+color: #777 !important;
+}
+
+input:-moz-placeholder { /* Firefox 18- */
+color: #777 !important;
+}
+
+input::-moz-placeholder {  /* Firefox 19+ */
+color: #777 !important;
+}
+
+input:-ms-input-placeholder {
+color: #777 !important;
+}
+.main-header header-group{
+	margin-top:30px;
 }
 
 

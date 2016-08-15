@@ -16,6 +16,11 @@ add_action( 'init', 'spine_load_builder_module_custom', 99 );
 function spine_load_builder_module_custom() {
 	$spine_options = get_option( 'spine_options' );
 	$spine_options['grid_style'] = 'hybrid';
+	$spine_options['large_format'] = ' folio max-1188';
+	$spine_options['crop'] = '';
+	$spine_options['spineless'] = '';
+	$spine_options['broken_binding'] = '';
+
 	update_option( 'spine_options', $spine_options );
 	if ( true === apply_filters( 'spine_enable_builder_module', true ) ) {
 		include_once 'inc/builder.php';
