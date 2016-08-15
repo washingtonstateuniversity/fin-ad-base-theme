@@ -336,15 +336,11 @@ img {
 .profile-summary h4 {
 	padding-top:5px;
 }
-.profile-summary a[href^="mailto"] {
-	padding: 2px 5px;
-    height: 2.2em;
-    line-height: 2.1em;
-}
+
 /*media all*/
 .profile-summary a[href^='mailto'] {
     padding: 0 5px;
-    height: 2.2em;
+    height: 1.8em;
     line-height: 1.2em;
     font-size: 0.85em;
 }
@@ -622,7 +618,26 @@ div#border_bottom:before {
     z-index: 9;
     content:"";
 }
+main .spine-blank-template {
+	width: 400px;
+	background-color: #F2F2F3;
+}
 
+main .h4, main h4 {
+	font-size: 14.8px !important;
+}
+
+main p,main a {
+	font-size: .9em !important;
+}
+
+main h3 {
+	font-size: 1.1em !important;
+}
+
+main ol li, main ul li {
+	line-height: 1.8em;
+}
 
 /* forms */
 input[type=text], input[type=password], input[type=email], select, textarea{

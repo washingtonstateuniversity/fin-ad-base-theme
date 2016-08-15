@@ -45,7 +45,7 @@ function cards_shortcode( $atts ) {
 		<?php endif; ?>
         <span class="flex-row justify-between full-width">
 			<?php if ( false !== $att['tel'] ) :  ?>
-				<h5 class=" grid-part "><?php esc_attr_e( $att['tel'] ); ?></h5>
+				<h5 class=" grid-part pad-no"><?php esc_attr_e( $att['tel'] ); ?></h5>
 			<?php endif; ?>
 			<?php if ( false !== $att['email'] ) :  ?>
 				<a class=" grid-part pad-tight" href="mailto:<?php esc_attr_e( $att['email'] ); ?>">Email</a>
