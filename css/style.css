@@ -56,7 +56,8 @@ a[href$=".pdf"], a[href$=".xls"],a[href^="mailto:"] {
     cursor: pointer;
     margin-bottom: 0;
     line-height: normal;
-    padding: .5em 1em;
+    padding: 0.3em 1em;
+    height: 2.5em;
     vertical-align: middle;
 }
 #spine-sitenav a[href$=".pdf"]{
@@ -347,9 +348,13 @@ img {
 /*media all*/
 a[href^='mailto:']::before {
     content: "\f003";
+    font-size: 1.45em;
+    line-height: 0.9em;
+}
+.profile-summary a[href^='mailto:']::before {
+    content: "\f003";
     font-size: 0.75em;
 }
-
 
 
 .cycle-pager {
