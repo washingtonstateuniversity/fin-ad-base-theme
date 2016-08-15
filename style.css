@@ -159,6 +159,15 @@ p a[href$=".xls"]:before,p a[href^='mailto:']:before {
     line-height: 1em;
     font-size: 1.5em;
 }
+
+.ie9 p a.button.news:before, .ie9 p a.button.contact:before,
+.ie9 p a.button.docment:before, .ie9 p a[href$=".pdf"]:before,
+.ie9 p a[href$=".xls"]:before,.ie9 p a[href^='mailto:']:before {
+    line-height: 1.35em;
+    font-size: .55em;
+}
+
+
 /* images -------*/
 img {
     border: 0;
