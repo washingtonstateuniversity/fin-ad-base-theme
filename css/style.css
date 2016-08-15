@@ -356,7 +356,9 @@ a[href^='mailto:']::before {
     font-size: 0.75em;
 }
 
-
+.home header.main-header {
+    display: none;
+}
 .cycle-pager {
 	text-align: center;
 	width: 100%;
