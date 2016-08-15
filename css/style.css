@@ -457,6 +457,9 @@ builder-banner-slide
 #content_area > [data-type="faiswsuwpsingle"] > .grid-part:not(.pad-airy) {
     padding: 0;
 }
+#content_area > [data-type="faiswsuwpsingle"] > .grid-part:not(.pad-tight) {
+    padding: 0;
+}
 
 #content_area > .column-section > .grid-part > h1,
 #content_area > .column-section > .grid-part > h2 {
@@ -637,6 +640,24 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, tex
 /* spine overrides */
 .row.single .column {
     max-width: 100%;
+}
+input::-webkit-input-placeholder {
+color: #777 !important;
+}
+
+input:-moz-placeholder { /* Firefox 18- */
+color: #777 !important;
+}
+
+input::-moz-placeholder {  /* Firefox 19+ */
+color: #777 !important;
+}
+
+input:-ms-input-placeholder {
+color: #777 !important;
+}
+.main-header header-group{
+	margin-top:30px;
 }
 
 
