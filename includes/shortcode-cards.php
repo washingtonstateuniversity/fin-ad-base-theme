@@ -25,7 +25,7 @@ function cards_shortcode( $atts ) {
 
 
 <div class="flex-row items-start pad-tight content-card">
-    <div class="flex-column items-start thirds-1 profile-image">
+    <div class="flex-column items-start grid-part thirds-1 profile-image">
 	<?php if ( false !== $att['profile_url'] && '' !== $att['profile_url'] ) :  ?>
 		<img src="<?php esc_attr_e( $att['profile_url'] ); ?>" />
 	<?php else : ?>
