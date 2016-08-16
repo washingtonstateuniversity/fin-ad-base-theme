@@ -23,15 +23,20 @@
 
 
 <!-- COMPATIBILITY -->
-	<!--[if IE 9]>
-	<script src="https://webcore.fais.wsu.edu/resources/flexwork/flexibility.js"></script>
-	<style>.grid-part{float:left;}</style>
-	<![endif]-->
 <!-- to get html5 in order -->
-    <!--[if IE 9]><script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script><![endif]-->
+    <!--[if lt IE 9]><script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script><![endif]-->
 
 <!-- polyfill for min/max-width CSS3 Media Queries -->
-    <!--[if IE 9]><script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <!--[if lt IE 9]><script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
+
+<!-- polyfill for flex-box -->
+    <!--[if lt IE 10]>
+        <link href="https://webcore.fais.wsu.edu/resources/flexwork/extra/flexwork-ie9-.support.css" rel="stylesheet" type="text/css" />
+    <![endif]-->
+
+
+
 
 	<?php wp_head(); ?>
 
