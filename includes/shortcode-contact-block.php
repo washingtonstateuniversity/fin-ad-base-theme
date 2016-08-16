@@ -47,7 +47,7 @@ function contact_block_shortcode( $atts ) {
 	<h3><?php esc_attr_e( 'Contact Methods' )?>:</h3>
 
 	<?php
-	$contact_telephone = spine_get_option( 'contact_email' );
+	$contact_telephone = spine_get_option( 'contact_telephone' );
 	if ( ! empty( $contact_telephone ) && '' !== trim( $contact_telephone ) ) {
 		?>
         <div class="flex-row full-width items-start">
