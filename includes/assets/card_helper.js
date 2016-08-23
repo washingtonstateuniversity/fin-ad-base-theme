@@ -122,12 +122,14 @@
 							card_data += ' email="' + e.data.email + '" ';
 						}
 
-						card_data += ' descrip="' + e.data.descrip + '" ';
+
 
 						if( "" !== e.data.email ){
 							card_data += ' profile_url="' + e.data.profile_url + '" ';
 						}
 							card_data += ' ]';
+
+						card_data += ' ' + e.data.descrip + '[/contact_cards]';
 
 						editor.insertContent( card_data );
 					}
