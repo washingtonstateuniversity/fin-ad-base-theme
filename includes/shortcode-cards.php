@@ -14,7 +14,6 @@ function cards_shortcode( $atts, $content ) {
 			'name' => false,
 			'tel' => false,
 			'email' => false,
-			'descrip' => false,
 			'profile_url' => false,
 		),
 		$atts
