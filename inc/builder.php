@@ -64,7 +64,7 @@ class Fais_Spine_Builder_Custom
 				if ( false !== strpos( trim( $section['section-classes'] ), 'gutter pad-top' ) ) {
 					$section['section-classes'] = implode( '',explode( 'gutter pad-top',$section['section-classes'] ) );
 				}
-				$section['section-classes'] = 'flex-row items-start '.$section['section-classes'];
+				$section['section-classes'] = 'flex-row items-start pad-tight '.$section['section-classes'];
 				$section['section-layout'] = null;
 				$needed_conversion = true;
 				$section_data[ $id ] = $section;
