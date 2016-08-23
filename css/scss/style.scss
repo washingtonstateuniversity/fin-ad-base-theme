@@ -8,17 +8,19 @@
  Version:        0.2.0
 */
 
+///This must be parted out
 body {
 	font-family: 'Open Sans', 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
 	background-size: contain;
 	font-size:10px;
 	color:#292929;
 }
+
 main section{
 	z-index: 1;
 }
 #jacket{
-	background: transparent url('https://webcore.fais.wsu.edu/resources/central_FnA_theme/sample-images/second-bk-3.png') bottom center no-repeat;
+	//background: transparent url('https://webcore.fais.wsu.edu/resources/central_FnA_theme/sample-images/second-bk-3.png') bottom center no-repeat;
 	background-size: contain;
 }
 

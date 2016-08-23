@@ -2,7 +2,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
-        concat: {
+        /*concat: {
             options: {
                 sourceMap: true
             },
@@ -10,7 +10,7 @@ module.exports = function(grunt) {
                 src: 'css/*.css',
                 dest: 'tmp-style.css'
             }
-        },
+        },*/
         watch: {
             files: [
                 "css/**/*",
@@ -18,11 +18,23 @@ module.exports = function(grunt) {
                 "inc/**/*",
                 "**/**/*.php"
             ],
-            tasks: ["concat", "postcss", "csslint", "clean", "phpcbf", "phpcs"]
+            tasks: [/*"concat",*/ "sass", "postcss", "cssmin", "copy", "csslint", "clean", "phpcbf", "phpcs"]
         },
+		sass: {
+            options: {
+                sourceMap: true
+            },
+            style: {
+                files: [
+                    { src: "css/scss/style.scss", dest: "build/_post_sass/style.css" },
+                ]
+            },
+        },
+
+
         postcss: {
             options: {
-                map: true,
+                map: false,//true,
                 diff: false,
                 processors: [
                     require( "autoprefixer" )( {
@@ -31,11 +43,31 @@ module.exports = function(grunt) {
                 ]
             },
             dist: {
-                src: "tmp-style.css",
-                dest: "style.css"
+                src: "build/_post_sass/style.css",
+                dest: "build/_precss/style.css"
             }
         },
 
+
+        cssmin: {
+            options: {
+                sourceMap: true,
+            },
+            style: {
+                files: {
+                    // Hmmm, in reverse order
+                    "style.css": ["build/_precss/style.css"],
+                }
+            },
+        },
+
+        copy:{
+            maps: {
+                files: [
+                    { expand: true, src: ["build/_precss/style.map"], dest: "", flatten: true, },
+                ]
+            }
+        },
         csslint: {
             main: {
                 src: [ "style.css" ],
@@ -100,6 +132,9 @@ module.exports = function(grunt) {
     });
 
     grunt.loadNpmTasks( "grunt-postcss" );
+	grunt.loadNpmTasks( "grunt-sass" );
+	grunt.loadNpmTasks( "grunt-contrib-copy" );
+	grunt.loadNpmTasks( "grunt-contrib-cssmin" );
     grunt.loadNpmTasks( "grunt-contrib-concat" );
     grunt.loadNpmTasks( "grunt-contrib-csslint" );
     grunt.loadNpmTasks( "grunt-contrib-clean" );
@@ -108,5 +143,5 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks( 'grunt-phpcbf' );
 
     // Default task(s).
-    grunt.registerTask("default", ["concat", "postcss", "csslint", "clean"]);
+    grunt.registerTask("default", [/*"concat",*/ "sass", "postcss", "cssmin", "copy", "csslint", "clean", "phpcbf", "phpcs"]);
 };
