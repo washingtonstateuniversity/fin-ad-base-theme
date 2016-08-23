@@ -1267,7 +1267,7 @@ function fais_spine_output_builder_section_flextree( $section_name, $ttfmake_sec
 	if ( isset( $ttfmake_section_data['data']['section-flextype'] ) && '' !== $ttfmake_section_data['data']['section-flextype'] ) {
 		$current = $ttfmake_section_data['data']['section-flextype'];
 	} else {
-		$current = 'flex-row items-start';
+		$current = 'flex-row items-start pad-tight ';
 	}
 
 	if ( isset( $ttfmake_section_data['data']['section-attr'] ) && '' !== $ttfmake_section_data['data']['section-attr'] ) {
