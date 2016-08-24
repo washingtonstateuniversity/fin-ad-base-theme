@@ -122,7 +122,10 @@ a[href^="mailto:"]:not(.not-autostyle),
 #spine-sitenav  a[href$=".xls"]:not(.not-autostyle),
 #spine-sitenav a[href^="mailto:"]:not(.not-autostyle){
 	font-weight: 400;
+    line-height: 1em;
+    height: auto;
 }
+
 #spine-sitenav a[href$=".pdf"]:not(.not-autostyle):after,
 #spine-sitenav a[href$=".xls"]:not(.not-autostyle):after,
 #spine-sitenav  a[href^="mailto:"]:not(.not-autostyle):after{
