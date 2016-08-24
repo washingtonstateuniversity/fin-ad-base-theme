@@ -98,17 +98,19 @@ a.button:before, a[href$=".pdf"]:before, a[href$=".xls"]:before, a[href^="mailto
 	color:#000;
 	content: "\f031";
 }*/
-a.button.news, a.button.contact, a.button.docment, a[href$=".pdf"], a[href$=".xls"], a[href^="mailto:"], #feedback_back_btn {
+a.button.news, a.button.contact, a.button.docment, a[href$=".pdf"]:not(.not-autostyle),
+a[href$=".xls"]:not(.not-autostyle), a[href^="mailto:"]:not(.not-autostyle), #feedback_back_btn {
   padding-left: 9px;
   text-decoration: none; }
 
-#spine-sitenav a[href$=".pdf"]:before, #spine-sitenav a[href$=".xls"]:before, #spine-sitenav a[href^="mailto:"]:before, #feedback_back_btn:before {
+#spine-sitenav a[href$=".pdf"]:not(.not-autostyle):before, #spine-sitenav a[href$=".xls"]:not(.not-autostyle):before,
+#spine-sitenav a[href^="mailto:"]:not(.not-autostyle):before, #feedback_back_btn:before {
   font-size: 15px; }
 
-#spine-sitenav a[href$=".pdf"], #spine-sitenav a[href$=".xls"], #spine-sitenav a[href^="mailto:"] {
+#spine-sitenav a[href$=".pdf"]:not(.not-autostyle), #spine-sitenav a[href$=".xls"]:not(.not-autostyle), #spine-sitenav a[href^="mailto:"]:not(.not-autostyle) {
   font-weight: 400; }
 
-#spine-sitenav a[href$=".pdf"]:after, #spine-sitenav a[href$=".xls"]:after, #spine-sitenav a[href^="mailto:"]:after {
+#spine-sitenav a[href$=".pdf"]:not(.not-autostyle):after, #spine-sitenav a[href$=".xls"]:not(.not-autostyle):after, #spine-sitenav a[href^="mailto:"]:not(.not-autostyle):after {
   margin-top: 6px; }
 
 a.button.news:before {
@@ -120,35 +122,35 @@ a.button.contact:before {
 a.button.docment:before {
   content: "\f07c"; }
 
-a[href$=".pdf"]:before {
+a[href$=".pdf"]:not(.not-autostyle):before {
   content: "\f1c1"; }
 
-a[href$=".xls"]:before {
+a[href$=".xls"]:not(.not-autostyle):before {
   content: "\f1c3"; }
 
-a[href^="mailto:"]:before {
+a[href^="mailto:"]:not(.not-autostyle):before {
   content: "\f003"; }
 
 #feedback_back_btn:before {
   content: "\f100"; }
 
 p a.button.news, p a.button.contact,
-p a.button.docment, p a[href$=".pdf"],
-p a[href$=".xls"], p a[href^='mailto:'] {
+p a.button.docment, p a[href$=".pdf"]:not(.not-autostyle),
+p a[href$=".xls"]:not(.not-autostyle), p a[href^='mailto:']:not(.not-autostyle) {
   line-height: 1.5em;
   padding: 0 .52em;
   margin: 0 .75em;
   margin-top: -2px; }
 
 p a.button.news:before, p a.button.contact:before,
-p a.button.docment:before, p a[href$=".pdf"]:before,
-p a[href$=".xls"]:before, p a[href^='mailto:']:before {
+p a.button.docment:before, p a[href$=".pdf"]:not(.not-autostyle):before,
+p a[href$=".xls"]:not(.not-autostyle):before, p a[href^='mailto:']:not(.not-autostyle):before {
   line-height: 1em;
   font-size: 1.5em; }
 
 .ie9 p a.button.news:before, .ie9 p a.button.contact:before,
-.ie9 p a.button.docment:before, .ie9 p a[href$=".pdf"]:before,
-.ie9 p a[href$=".xls"]:before, .ie9 p a[href^='mailto:']:before {
+.ie9 p a.button.docment:before, .ie9 p a[href$=".pdf"]:not(.not-autostyle):before,
+.ie9 p a[href$=".xls"]:not(.not-autostyle):before, .ie9 p a[href^='mailto:']:not(.not-autostyle):before {
   line-height: 1.35em;
   font-size: .55em; }
 
