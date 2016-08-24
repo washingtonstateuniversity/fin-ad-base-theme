@@ -18,6 +18,10 @@ wp-content/plugins/hello.php
 
 /node_modules
 /vendor
+/build
+
+
+
 
 # =========================
 # Operating System Files
