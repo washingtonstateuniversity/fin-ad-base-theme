@@ -1,0 +1,34 @@
+/*contact cards */
+.content-card p, .content-card h2,.content-card h3,
+.content-card h4{
+	max-width:100%;
+}
+.profile-summary h2, .profile-summary h3, .profile-summary h4 {
+	padding:0;
+	margin:0;
+}
+.profile-summary h4 {
+	padding-top:5px;
+}
+
+/*media all*/
+.profile-summary a[href^='mailto'] {
+    padding: 0 5px;
+    height: 1.8em;
+    line-height: 1.2em;
+    font-size: 0.85em;
+}
+/*media all*/
+a[href^='mailto:']::before {
+    content: "\f003";
+    font-size: 1.45em;
+    line-height: 0.9em;
+}
+.profile-summary a[href^='mailto:']::before {
+    content: "\f003";
+    font-size: 0.75em;
+}
+.ie9 .profile-summary a[href^='mailto:']::before {
+    content: "\f003";
+    font-size: 0.35em;
+}
