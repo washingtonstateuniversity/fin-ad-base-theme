@@ -1,3 +1,10 @@
+img {
+    border: 0;
+    height: auto;
+    max-width: 100%;
+    width: 100%;
+}
+
 a[href$=".pdf"]:not(.not-autostyle),
 a[href$=".xls"]:not(.not-autostyle),
 a[href^="mailto:"]:not(.not-autostyle) {
