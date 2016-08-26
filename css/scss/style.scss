@@ -24,7 +24,10 @@ main section{
 	//background: transparent url('https://webcore.fais.wsu.edu/resources/central_FnA_theme/sample-images/second-bk-3.png') bottom center no-repeat;
 	background-size: contain;
 }
-
+a {
+    text-decoration: none;
+    color: #981e32;
+}
 h1,h2,h3{margin-top: 0;padding: 0;}
 
 h3 {
