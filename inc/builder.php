@@ -53,14 +53,18 @@ class Fais_Spine_Builder_Custom
 
 				$section['section-type'] = 'fais'.$section['section-type'];
 
-				foreach ( $section['columns'] as $cid => $object ) {
-					// 'column-type' => string 'flex-column  fifths-3  order-1  grid-part'
-					$order = array_flip( $section['columns-order'] )[ $cid ] + 1;
-					$object['column-type'] = 'flex-column '.$this->get_column_default_size( $section['section-type'] )[ $cid ].' pad-tight  order-'. $order .'  grid-part full-width-at-667';
+				if ( isset( $section['columns'] ) !== $section['columns'] ) {
+					foreach ( $section['columns'] as $cid => $object ) {
+						// 'column-type' => string 'flex-column  fifths-3  order-1  grid-part'
+						$order = array_flip( $section['columns-order'] )[ $cid ] + 1;
+						$object['column-type'] = 'flex-column '.$this->get_column_default_size( $section['section-type'] )[ $cid ].' pad-tight  order-'. $order .'  grid-part full-width-at-667';
+						$section['columns'][ $cid ] = $object;
+					}
 					$section['columns'][ $cid ] = $object;
 				}
+
 				$section['section-position'] = 'banner' === $section['section-type'] ? '' : 'content';
-				$section['columns'][ $cid ] = $object;
+
 				if ( false !== strpos( trim( $section['section-classes'] ), 'gutter pad-top' ) ) {
 					$section['section-classes'] = implode( '',explode( 'gutter pad-top',$section['section-classes'] ) );
 				}
@@ -81,7 +85,7 @@ class Fais_Spine_Builder_Custom
 		}
 		return $content;
 	}
-/**
+	/**
 	 * On post save, use a theme template to generate content from metadata.
 	 *
 	 * @since  1.0.0.
