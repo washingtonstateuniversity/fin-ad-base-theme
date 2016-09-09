@@ -1,13 +1,13 @@
 
 $file_map: (
-    "\f1c2":("doc" "docx"),
-    "\f1c8":("mp4" "wav"),
-    "\f1c4":("ppt"),
-    "\f1c1":("pdf"),
-    "\f1c5":("jpg" "png" "gif"),
-    "\f1c3":("xls"),
-    "\f1c9":(".js"),
-	  "\f1c6":("zip" "tar")
+    "f1c2":("doc" "docx"),
+    "f1c8":("mp4" "wav"),
+    "f1c4":("ppt"),
+    "f1c1":("pdf"),
+    "f1c5":("jpg" "png" "gif"),
+    "f1c3":("xls"),
+    "f1c9":("js"),
+	"f1c6":("zip" "tar")
 );
 
 @mixin map-to-selectors($file_map, $pseudo , $prefex, $otherSelectors) {
@@ -148,8 +148,7 @@ a[href^="mailto:"]:not(.not-autostyle):before{
 		a[href$='.#{$ext}']:not(.not-autostyle):before";
 	}
 	#{$class}{
-	  content: "#{$_type}";
-
+	  content: unquote("\"")+unquote(str-insert($_type,"\\", 1))+unquote("\"");
 	}
 }
 
