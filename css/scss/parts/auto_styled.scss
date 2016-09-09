@@ -1,3 +1,33 @@
+
+$file_map: (
+    "\f1c2":("doc"),
+    "\f1c8":("mp4" "wav"),
+    "\f1c4":("ppt"),
+    "\f1c1":("pdf"),
+    "\f1c5":("jpg" "png" "gif"),
+    "\f1c3":("xls"),
+    "\f1c9":(".js"),
+	  "\f1c6":("zip" "tar")
+);
+
+@mixin map-to-selectors($file_map, $pseudo , $prefex, $otherSelectors) {
+  $selectors: ();
+  @if "" != $otherSelectors {
+    $selectors: append($selectors, $otherSelectors, comma);
+  }
+
+  @each $_type, $_val in $file_map {
+		@each $ext in $_val {
+    $selector: unquote("
+    #{$prefex} a[href$='.#{$ext}']:not(.not-autostyle)#{$pseudo}");
+    $selectors: append($selectors, $selector, comma);
+		}
+	}
+  #{$selectors} { @content; }
+}
+
+
+
 img {
     border: 0;
     height: auto;
@@ -5,16 +35,14 @@ img {
     width: 100%;
 }
 
-a[href$=".pdf"]:not(.not-autostyle),
-a[href$=".xls"]:not(.not-autostyle),
-a[href^="mailto:"]:not(.not-autostyle) {
+@include map-to-selectors($file_map, "", "", "a[href^='mailto']:not(.not-autostyle)") {
     background: #eff0f1;
     border-style: solid;
     border-width: 1px;
     border-color: #d7dadb #8d959a #8d959a #d7dadb;
     border-radius: .5em;
     //color: #3b4042;
-	color: #981e32;
+	  color: #981e32;
     display: inline-block;
     text-decoration: none;
     cursor: pointer;
@@ -23,33 +51,32 @@ a[href^="mailto:"]:not(.not-autostyle) {
     padding: 0.3em 1em;
     min-height: 2.5em;
     vertical-align: middle;
-}
-#spine-sitenav a[href$=".pdf"]:not(.not-autostyle){
+};
+
+@include map-to-selectors($file_map, "", "#spine-sitenav ", "") {
 	border:none;
 	background: transparent;
-}
+};
 
-a.button,
-a[href$=".pdf"]:not(.not-autostyle),
-a[href$=".xls"]:not(.not-autostyle),
-a[href^="mailto"]:not(.not-autostyle)  {
+
+@include map-to-selectors($file_map, "", "", "a.button,
+ a[href^='mailto']:not(.not-autostyle)") {
 	border-color: #000;
 	border-width: 2px;
 	font-weight: 700;
 	padding-left:5px;
-}
-a.button:hover,
-a[href$=".pdf"]:not(.not-autostyle):hover,
-a[href$=".xls"]:not(.not-autostyle):hover,
-a[href^="mailto:"]:not(.not-autostyle):hover  {
+};
+
+@include map-to-selectors($file_map, ":hover", "", "a.button:hover,
+a[href^='mailto']:not(.not-autostyle):hover") {
 	border-color: #000;
 	border-width: 2px;
 	font-weight: 700;
-}
-a.button:before,
-a[href$=".pdf"]:not(.not-autostyle):before,
-a[href$=".xls"]:not(.not-autostyle):before,
-a[href^="mailto:"]:not(.not-autostyle):before {
+};
+
+
+@include map-to-selectors($file_map, ":before", "", "a.button:before,
+a[href^='mailto']:not(.not-autostyle):before") {
 	display: inline-block;
 	font: normal normal normal 14px/1 FontAwesome;
 	text-rendering: auto;
@@ -60,49 +87,40 @@ a[href^="mailto:"]:not(.not-autostyle):before {
 	font-size: 26px;
 	line-height: 23px;
 	color:#000;
-}
+};
 
-a.button.news,
+@include map-to-selectors($file_map, "", "", "a.button.news,
 a.button.contact,
 a.button.docment,
-a[href$=".pdf"]:not(.not-autostyle),
-a[href$=".xls"]:not(.not-autostyle),
-a[href^="mailto:"]:not(.not-autostyle),
-#feedback_back_btn{
+#feedback_back_btn") {
 	padding-left: 9px;
 	text-decoration: none;
-}
-#spine-sitenav a[href$=".pdf"]:not(.not-autostyle):before,
-#spine-sitenav  a[href$=".xls"]:not(.not-autostyle):before,
-#spine-sitenav  a[href^="mailto:"]:not(.not-autostyle):before,
-#feedback_back_btn:before{
+};
+
+
+@include map-to-selectors($file_map, ":before", "#spine-sitenav", "#spine-sitenav a[href^='mailto']:not(.not-autostyle):before, #feedback_back_btn:before") {
 	font-size: 15px;
-}
-#spine-sitenav a[href$=".pdf"]:not(.not-autostyle),
-#spine-sitenav  a[href$=".xls"]:not(.not-autostyle),
-#spine-sitenav a[href^="mailto:"]:not(.not-autostyle){
+};
+
+@include map-to-selectors($file_map, "", "#spine-sitenav", "#spine-sitenav a[href^='mailto']:not(.not-autostyle):after") {
 	font-weight: 400;
     line-height: 1em;
     height: auto;
-}
+};
 
-#spine-sitenav a[href$=".pdf"]:not(.not-autostyle):after,
-#spine-sitenav a[href$=".xls"]:not(.not-autostyle):after,
-#spine-sitenav  a[href^="mailto:"]:not(.not-autostyle):after{
+@include map-to-selectors($file_map, ":after", "#spine-sitenav", "#spine-sitenav a[href^='mailto']:not(.not-autostyle):after") {
+	font-weight: 400;
+    line-height: 1em;
+    height: auto;
 	margin-top: 6px;
-}
+};
 
-
-
-.darker #spine-sitenav a[href$=".pdf"]:not(.not-autostyle):before,
-.darker #spine-sitenav a[href$=".xls"]:not(.not-autostyle):before,
-.darker #spine-sitenav  a[href^="mailto:"]:not(.not-autostyle):before,
-.dark #spine-sitenav a[href$=".pdf"]:not(.not-autostyle):before,
-.dark #spine-sitenav a[href$=".xls"]:not(.not-autostyle):before,
-.dark #spine-sitenav  a[href^="mailto:"]:not(.not-autostyle):before{
+@include map-to-selectors($file_map, ":before", ".darker #spine-sitenav", ".darker #spine-sitenav  a[href^='mailto:']:not(.not-autostyle):before") {
 	color:#fff;
-}
-
+};
+@include map-to-selectors($file_map, ":before", ".dark #spine-sitenav", ".dark #spine-sitenav  a[href^='mailto:']:not(.not-autostyle):before") {
+	color:#fff;
+};
 
 
 
@@ -115,12 +133,6 @@ a.button.contact:before{
 a.button.docment:before{
 	content: "\f07c";
 }
-a[href$=".pdf"]:not(.not-autostyle):before{
-	content: "\f1c1";
-}
-a[href$=".xls"]:not(.not-autostyle):before{
-	content: "\f1c3";
-}
 a[href^="mailto:"]:not(.not-autostyle):before{
 	content: "\f003";
 }
@@ -128,52 +140,66 @@ a[href^="mailto:"]:not(.not-autostyle):before{
 	content: "\f100";
 }
 
+//@for $i from 1 to $number {
+@each $_type, $_val in $file_map {
+  $class: "";
+	@each $ext in $_val {
+		$class: $class + "
+		a[href$='.#{$ext}']:not(.not-autostyle):before";
+	}
+	#{$class}{
+	  content: "#{$_type}";
 
-p a.button.news, p a.button.contact,
-p a.button.docment, p a[href$=".pdf"]:not(.not-autostyle),
-p a[href$=".xls"]:not(.not-autostyle), p a[href^='mailto:']:not(.not-autostyle) {
-    line-height: 1.5em;
-    padding: 0 .52em;
-    margin: 0 .75em;
-    margin-top: -2px;
+	}
 }
 
-p a.button.news:before, p a.button.contact:before,
-p a.button.docment:before, p a[href$=".pdf"]:not(.not-autostyle):before,
-p a[href$=".xls"]:not(.not-autostyle):before, p a[href^='mailto:']:not(.not-autostyle):before {
+@include map-to-selectors($file_map, "", "p ", "p a.button.news,
+p a.button.contact,
+p a.button.docment,
+p a[href^='mailto:']:not(.not-autostyle)") {
+    line-height: 2.4em;
+    padding: 0 0.32em;
+    margin: -3.9px 0.15em 0 0.25em;
+};
+
+
+@include map-to-selectors($file_map, ":before", "p ", "p a.button.news:before,
+p a.button.contact:before,
+p a.button.docment:before,
+p a[href^='mailto:']:not(.not-autostyle):before") {
     line-height: 1em;
     font-size: 1.5em;
-}
+};
 
-.ie9 p a.button.news:before, .ie9 p a.button.contact:before,
-.ie9 p a.button.docment:before, .ie9 p a[href$=".pdf"]:not(.not-autostyle):before,
-.ie9 p a[href$=".xls"]:not(.not-autostyle):before, .ie9 p a[href^='mailto:']:not(.not-autostyle):before {
+@include map-to-selectors($file_map, ":before", ".ie9 p ", ".ie9 p a.button.news:before,
+.ie9 p a.button.contact:before,
+.ie9 p a.button.docment:before,
+.ie9 p a[href^='mailto:']:not(.not-autostyle):before") {
     line-height: 1.35em;
     font-size: .55em;
-}
+};
+
 
 
 
 /*media all*/
-.ie main p a.button.contact,
-.ie main p a.button.docment,
-.ie main p a.button.news,
-.ie main p a[href$='.pdf']:not(.not-autostyle),
-.ie main p a[href$='.xls']:not(.not-autostyle),
-.ie main p a[href^='mailto:']:not(.not-autostyle) {
+
+
+@include map-to-selectors($file_map, "", ".ie p ", ".ie p a.button.news,
+.ie p a.button.contact,
+.ie p a.button.docment,
+.ie p a[href^='mailto:']:not(.not-autostyle)") {
 	line-height: 1.5em;
 	padding: 0 .52em;
 	margin: -2px .75em 0;
 	height: 2em;
-}
+};
 
-/*media all*/
+@include map-to-selectors($file_map, "::before", ".ie p main ", ".ie main p a.button.news::before,
 .ie main p a.button.contact::before,
 .ie main p a.button.docment::before,
-.ie main p a.button.news::before,
-.ie main p a[href$='.pdf']:not(.not-autostyle)::before,
-.ie main p a[href$='.xls']:not(.not-autostyle)::before,
-.ie main p a[href^='mailto:']:not(.not-autostyle)::before {
+.ie main p a[href^='mailto:']:not(.not-autostyle)::before") {
 	line-height: 0;
 	font-size: .5em;
-}
+};
+
