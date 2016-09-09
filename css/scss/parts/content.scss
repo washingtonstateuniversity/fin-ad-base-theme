@@ -12,6 +12,21 @@ main {
 	padding-bottom: 34px;
 }
 
+.list-throwback {
+    margin-bottom: 1.5em;
+    padding-left: 0;
+    list-style: initial;
+    margin-left: 3em;
+}
+
+.list-throwback li{
+    margin-bottom:0;
+    padding-bottom:0;
+    padding-left: 0;
+    list-style: initial;
+}
+
+
 #content_area, .content_less [id^='builder-section']{
 	box-shadow: inset 0 0 5px 2px rgba(50, 50, 50, 0.75);
 	box-sizing: border-box;
