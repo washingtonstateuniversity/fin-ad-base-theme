@@ -24,8 +24,24 @@ main {
     padding-bottom: 0;
     padding-left: 0;
     list-style: inside;
+	font-size: 0.7em;
 }
 
+
+.nice-table {
+	border-bottom: 2px solid #393939 !important;
+	margin-bottom: .8em;
+}
+
+.nice-table > * {
+	border-right: 1px solid #a9a9a9;
+	text-align: center;
+}
+
+.nice-table > :last-child {
+	border-right: none;
+	text-align: left;
+}
 
 #content_area, .content_less [id^='builder-section']{
 	box-shadow: inset 0 0 5px 2px rgba(50, 50, 50, 0.75);
