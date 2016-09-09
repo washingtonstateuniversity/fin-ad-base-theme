@@ -144,8 +144,8 @@ a[href^="mailto:"]:not(.not-autostyle):before{
 @each $_type, $_val in $file_map {
   $class: "";
 	@each $ext in $_val {
-		$class: $class + "
-		a[href$='.#{$ext}']:not(.not-autostyle):before";
+		$class: append($class, "
+		a[href$='.#{$ext}']:not(.not-autostyle):before", comma);
 	}
 	#{$class}{
 	  content: unquote("\"")+unquote(str-insert($_type,"\\", 1))+unquote("\"");
