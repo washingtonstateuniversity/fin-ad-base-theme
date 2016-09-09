@@ -78,6 +78,13 @@ margin:5px 15px;
 	margin-bottom: -4px;
 }
 
+#content_area .flex-column-reverse>*,
+#content_area .flex-column>*,
+#content_area .flex-row-reverse>*,
+#content_area .flex-row>*, .grid-part{
+	padding:0px;
+}
+
 
 body.home:not(.has-background-image) #jacket {
     background-position: center bottom;

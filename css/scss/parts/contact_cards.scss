@@ -13,10 +13,10 @@
 
 /*media all*/
 .profile-summary a[href^='mailto'] {
-    padding: 0 5px;
-    height: 1.8em;
-    line-height: 1.2em;
-    font-size: 0.85em;
+	padding: 0 7px;
+    /* height: 0.2em; */
+    line-height: 2.2em;
+    font-size: .85em;
 }
 /*media all*/
 a[href^='mailto:']::before {
