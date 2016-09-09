@@ -15,15 +15,15 @@ main {
 .list-throwback {
     margin-bottom: 1.5em;
     padding-left: 0;
-    list-style: initial;
-    margin-left: 3em;
+    list-style: inside;
+    margin-left: 1.4em;
 }
 
 .list-throwback li{
-    margin-bottom:0;
-    padding-bottom:0;
+    margin-bottom: 0;
+    padding-bottom: 0;
     padding-left: 0;
-    list-style: initial;
+    list-style: inside;
 }
 
 
@@ -93,12 +93,6 @@ margin:5px 15px;
 	margin-bottom: -4px;
 }
 
-#content_area .flex-column-reverse>*,
-#content_area .flex-column>*,
-#content_area .flex-row-reverse>*,
-#content_area .flex-row>*, .grid-part{
-	padding:0px;
-}
 
 
 body.home:not(.has-background-image) #jacket {
@@ -271,4 +265,9 @@ main h3 {
 
 main ol li, main ul li {
 	line-height: 1.8em;
+}
+
+
+.contact-us div {
+    padding: 0;
 }
