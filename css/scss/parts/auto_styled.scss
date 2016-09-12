@@ -48,7 +48,7 @@ img {
     margin-bottom: 0;
     line-height: normal;
     padding: 0em 0.4em;
-    min-height: 2.1em;
+    min-height: 2.2em;
     margin-left: .2em;
     vertical-align: middle;
     margin-right: .2em;
@@ -165,9 +165,10 @@ a[href^="mailto:"]:not(.not-autostyle):before{
 p a.button.contact,
 p a.button.docment,
 p a[href^='mailto:']:not(.not-autostyle)") {
-    line-height: 2.4em;
-    padding: 0 0.32em;
-    margin: -3.9px 0.15em 0 0.25em;
+    line-height: 2em;
+    padding: 0 0.62em;
+    margin: -3.9px 0.35em 0 .25em;
+    font-size: 0.8em;
 };
 
 
