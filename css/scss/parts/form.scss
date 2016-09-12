@@ -27,3 +27,8 @@ color: #777 !important;
 input:-ms-input-placeholder {
 color: #777 !important;
 }
+
+// super pointed content.
+[action="/feedback-form/"] [type="submit"] {
+    float: right;
+}
