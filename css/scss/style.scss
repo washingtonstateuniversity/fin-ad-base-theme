@@ -54,6 +54,10 @@ address ul li {
     margin: 0;
 }
 
+.nice-number>dd, .nice-number>li {
+    font-size:1em;
+}
+
 /*.flex-column-reverse>*, .flex-column>*, .flex-row-reverse>*, .flex-row>*, .grid-part {
 	padding:0;
 }*/
