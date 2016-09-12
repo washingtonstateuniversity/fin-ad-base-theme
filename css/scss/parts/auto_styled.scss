@@ -178,10 +178,10 @@ p a[href^='mailto:']:not(.not-autostyle):before") {
     font-size: 1.5em;
 };
 
-@include map-to-selectors($file_map, ":before", ".ie9 p ", ".ie9 p a.button.news:before,
-.ie9 p a.button.contact:before,
-.ie9 p a.button.docment:before,
-.ie9 p a[href^='mailto:']:not(.not-autostyle):before") {
+@include map-to-selectors($file_map, ":before", ".ie p ", ".ie p a.button.news:before,
+.ie p a.button.contact:before,
+.ie p a.button.docment:before,
+.ie p a[href^='mailto:']:not(.not-autostyle):before") {
     line-height: 1.35em;
     font-size: .55em;
 };
@@ -202,11 +202,11 @@ p a[href^='mailto:']:not(.not-autostyle):before") {
 	height: 2em;
 };
 
-@include map-to-selectors($file_map, "::before", ".ie p main ", ".ie main p a.button.news::before,
-.ie main p a.button.contact::before,
-.ie main p a.button.docment::before,
-.ie main p a[href^='mailto:']:not(.not-autostyle)::before") {
-	line-height: 0;
-	font-size: .5em;
+@include map-to-selectors($file_map, ":before", ".ie p main ", ".ie main p a.button.news:before,
+.ie main p a.button.contact:before,
+.ie main p a.button.docment:before,
+.ie main p a[href^='mailto:']:not(.not-autostyle):before") {
+	//line-height: 0;
+	//font-size: .5em;
 };
 
