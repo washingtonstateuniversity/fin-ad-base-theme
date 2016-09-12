@@ -41,16 +41,17 @@ img {
     border-width: 1px;
     border-color: #d7dadb #8d959a #8d959a #d7dadb;
     border-radius: .5em;
-    //color: #3b4042;
-	  color: #981e32;
+    color: #981e32;
     display: inline-block;
     text-decoration: none;
     cursor: pointer;
     margin-bottom: 0;
     line-height: normal;
-    padding: 0.3em 1em;
-    min-height: 2.5em;
+    padding: 0em 0.4em;
+    min-height: 2.1em;
+    margin-left: .2em;
     vertical-align: middle;
+    margin-right: .2em;
 };
 
 @include map-to-selectors($file_map, "", "#spine-navigation ", "") {
@@ -87,7 +88,7 @@ a[href^='mailto']:not(.not-autostyle):before,
 	-moz-osx-font-smoothing: grayscale;
 	transform: translate(0, 0);
 	margin-right:5px;
-	font-size: 26px;
+	    font-size: 19px;
 	line-height: 23px;
 	color:#000;
 };
