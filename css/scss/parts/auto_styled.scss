@@ -53,7 +53,7 @@ img {
     vertical-align: middle;
 };
 
-@include map-to-selectors($file_map, "", "#spine-sitenav ", "") {
+@include map-to-selectors($file_map, "", "#spine-navigation ", "") {
 	border:none;
 	background: transparent;
 };
@@ -102,29 +102,29 @@ a.button.docment,
 };
 
 
-@include map-to-selectors($file_map, ":before", "#spine-sitenav", "#spine-sitenav a[href^='mailto']:not(.not-autostyle):before,
+@include map-to-selectors($file_map, ":before", "#spine-navigation", "#spine-navigation a[href^='mailto']:not(.not-autostyle):before,
 .gen_doc:before,
 #feedback_back_btn:before") {
 	font-size: 15px;
 };
 
-@include map-to-selectors($file_map, "", "#spine-sitenav", "#spine-sitenav a[href^='mailto']:not(.not-autostyle):after") {
+@include map-to-selectors($file_map, "", "#spine-navigation", "#spine-navigation a[href^='mailto']:not(.not-autostyle)") {
 	font-weight: 400;
     line-height: 1em;
     height: auto;
 };
 
-@include map-to-selectors($file_map, ":after", "#spine-sitenav", "#spine-sitenav a[href^='mailto']:not(.not-autostyle):after") {
+@include map-to-selectors($file_map, ":after", "#spine-navigation", "#spine-navigation a[href^='mailto']:not(.not-autostyle):after") {
 	font-weight: 400;
     line-height: 1em;
     height: auto;
 	margin-top: 6px;
 };
 
-@include map-to-selectors($file_map, ":before", ".darker #spine-sitenav", ".darker #spine-sitenav  a[href^='mailto:']:not(.not-autostyle):before") {
+@include map-to-selectors($file_map, ":before", ".darker #spine-navigation", ".darker #spine-navigation  a[href^='mailto:']:not(.not-autostyle):before") {
 	color:#fff;
 };
-@include map-to-selectors($file_map, ":before", ".dark #spine-sitenav", ".dark #spine-sitenav  a[href^='mailto:']:not(.not-autostyle):before") {
+@include map-to-selectors($file_map, ":before", ".dark #spine-navigation", ".dark #spine-navigation  a[href^='mailto:']:not(.not-autostyle):before") {
 	color:#fff;
 };
 
