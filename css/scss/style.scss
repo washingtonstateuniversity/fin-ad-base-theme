@@ -43,6 +43,17 @@ ol, ul {
 form ol, form ul{
 	padding:0;
 }
+
+address ul {
+    padding: 0;
+    margin: 0;
+    margin-left: 1em;
+}
+address ul li {
+    padding: 0;
+    margin: 0;
+}
+
 /*.flex-column-reverse>*, .flex-column>*, .flex-row-reverse>*, .flex-row>*, .grid-part {
 	padding:0;
 }*/
