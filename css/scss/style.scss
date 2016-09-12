@@ -299,7 +299,17 @@ p a.button.news, p a.button.contact, p a.button.docment, p a[href$=".pdf"], p a[
 	height: 2.1em;
 }
 
-div#map-embed-cashier-wsu-edu {
+
+
+.page-located-at main .flex-column.grid-part.map {
+	min-height: 640px;
+}
+
+.WSU_MAPS_NS .gm-style .gm-style-pbc + div {
+	box-shadow: inset 0 0 5px 2px rgba(50,50,50,0.75);
+}
+
+div.WSU_MAPS_NS {
 	box-shadow: inset 0 0 5px 2px rgba(50,50,50,0.75);
 	box-sizing: border-box;
 	color: #292929;
@@ -310,14 +320,7 @@ div#map-embed-cashier-wsu-edu {
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
 }
-
-.page-located-at main .flex-column.grid-part.map {
-	min-height: 640px;
+div.WSU_MAPS_NS {
+ min-height: 640px;
 }
-
-.WSU_MAPS_NS .gm-style .gm-style-pbc + div {
-	box-shadow: inset 0 0 5px 2px rgba(50,50,50,0.75);
-}
-
-
 
