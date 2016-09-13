@@ -1,4 +1,6 @@
 
+
+
 .home header.main-header {
     display: none;
 }
@@ -10,21 +12,6 @@
 main {
 	background: #dedede;
 	padding-bottom: 34px;
-}
-
-.list-throwback {
-    margin-bottom: 1.5em;
-    padding-left: 0;
-    list-style: inside;
-    margin-left: 1.4em;
-}
-
-.list-throwback li{
-    margin-bottom: 0;
-    padding-bottom: 0;
-    padding-left: 0;
-    list-style: inside;
-	font-size: 0.8em;
 }
 
 
@@ -278,11 +265,6 @@ main p,main a {
 main h3 {
 	font-size: 1.1em;//!important;
 }
-
-main ol li, main ul li {
-	line-height: 1.8em;
-}
-
 
 .contact-us div {
     padding: 0;

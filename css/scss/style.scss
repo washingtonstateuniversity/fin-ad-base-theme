@@ -9,6 +9,9 @@
 */
 @charset "UTF-8";
 
+@import 'vars/roots.scss';
+
+
 ///This must be parted out
 body {
 	font-family: 'Open Sans', 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
@@ -36,27 +39,10 @@ h3 {
     color: #272727;
     border-bottom: 1px solid #272727;
 }
-ol, ul {
-    list-style: none;
-    margin-left: 17px;
-}
-form ol, form ul{
-	padding:0;
-}
 
-address ul {
-    padding: 0;
-    margin: 0;
-    margin-left: 1em;
-}
-address ul li {
-    padding: 0;
-    margin: 0;
-}
+@import 'parts/lists.scss';
 
-.nice-number>dd, .nice-number>li {
-    font-size:1em;
-}
+
 
 /*.flex-column-reverse>*, .flex-column>*, .flex-row-reverse>*, .flex-row>*, .grid-part {
 	padding:0;
