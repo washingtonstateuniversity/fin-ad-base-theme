@@ -317,3 +317,10 @@ div.WSU_MAPS_NS {
 #spine *{
     font-size: 12px;
 }
+
+@media screen and (max-width: 989px){
+	header.main-header {
+		margin-top: 24px;
+	}
+}
+
