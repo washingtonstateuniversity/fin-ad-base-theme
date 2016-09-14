@@ -1,31 +1,57 @@
 
 $file_map: (
-    "f1c2":("doc" "docx"),
-    "f1c8":("mp4" "wav"),
-    "f1c4":("ppt"),
-    "f1c1":("pdf"),
-    "f1c5":("jpg" "png" "gif"),
-    "f1c3":("xls"),
-    "f1c9":("js"),
-	"f1c6":("zip" "tar")
+    "f1c2":(
+  		("doc" "docx"),
+  		"doc"
+		),
+    "f1c8":(
+		("mp4" "wav"),
+		"audio"
+	),
+    "f1c4":(
+		("ppt"),
+		"powerpoint"
+	),
+    "f1c1":(
+		("pdf"),
+		"pdf"
+	),
+    "f1c5":(
+		("jpg" "png" "gif" "tiff"),
+		"image"
+	),
+    "f1c3":(
+		("xls" "xlsx"),
+		"excel"
+	),
+    "f1c9":(
+		("js" "css"),
+		"scripts"
+	),
+	"f1c6":(
+		("zip" "tar"),
+		"archive"
+	)
 );
+
 
 @mixin map-to-selectors($file_map, $pseudo , $prefex, $otherSelectors) {
   $selectors: ();
+  @each $_type, $_val in $file_map {
+		$class: nth($_val, 2);
+		$selectors: append($selectors, unquote("#{$prefex} .#{$class}#{$pseudo}"), comma);
+		$exts: nth($_val, 1);
+		@each $ext in $exts {
+			$selector: unquote("#{$prefex} a[href$='.#{$ext}']:not(.not-autostyle)#{$pseudo}");
+			$selectors: append($selectors, $selector, comma);
+		}
+
+	}
   @if "" != $otherSelectors {
     $selectors: append($selectors, $otherSelectors, comma);
   }
-
-  @each $_type, $_val in $file_map {
-		@each $ext in $_val {
-    $selector: unquote("
-    #{$prefex} a[href$='.#{$ext}']:not(.not-autostyle)#{$pseudo}");
-    $selectors: append($selectors, $selector, comma);
-		}
-	}
   #{$selectors} { @content; }
 }
-
 
 
 img {
@@ -150,15 +176,23 @@ a[href^="mailto:"]:not(.not-autostyle):before{
     content: "\f016";
 }
 //@for $i from 1 to $number {
-@each $_type, $_val in $file_map {
+@each $_type,$_val in $file_map {
   $class: "";
-	@each $ext in $_val {
+$classed: nth($_val, 2);
+
+		$class:  $class + "
+		a.#{$classed}:before,";
+
+$exts: nth($_val, 1);
+	@each $ext in $exts {
 		$class:  $class + "
 		a[href$='.#{$ext}']:not(.not-autostyle):before,";
 	}
+
 	#{$class}{
 	  content: unquote("\"")+unquote(str-insert($_type,"\\", 1))+unquote("\"");
 	}
+
 }
 
 @include map-to-selectors($file_map, "", "p ", "p a.button.news,
