@@ -314,8 +314,12 @@ div.WSU_MAPS_NS {
  min-height: 640px !important;
 }
 
-#spine *{
+#spine section * {
     font-size: 12px;
+}
+
+#spine #wsu-global-links * {
+    font-size: .9em;
 }
 
 #spine.darker{
@@ -326,6 +330,12 @@ div.WSU_MAPS_NS {
 }
 
 
+@media screen and (max-width: 989px){
+    #binder #spine #glue {
+        position: fixed;
+        width: 298px;
+    }
+}
 
 @media screen and (max-width: 989px){
 	header.main-header {
