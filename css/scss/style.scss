@@ -72,7 +72,7 @@ img {
 	    font-size: 0;
 }
 [title='F-n-A-Home-Page']:before{
-	content:'Home Page';
+	content:'';
 	font-size: 12px;
 	padding-left: 30px;
     background-repeat: no-repeat;
@@ -314,3 +314,6 @@ div.WSU_MAPS_NS {
  min-height: 640px !important;
 }
 
+#spine *{
+    font-size: 12px;
+}
