@@ -39,10 +39,12 @@ $file_map: (
   $selectors: ();
   @each $_type, $_val in $file_map {
 		$class: nth($_val, 2);
-		$selectors: append($selectors, unquote("#{$prefex} .#{$class}#{$pseudo}"), comma);
+		$selectors: append($selectors, unquote("
+		#{$prefex} .#{$class}#{$pseudo}"), comma);
 		$exts: nth($_val, 1);
 		@each $ext in $exts {
-			$selector: unquote("#{$prefex} a[href$='.#{$ext}']:not(.not-autostyle)#{$pseudo}");
+			$selector: unquote("
+			#{$prefex} a[href$='.#{$ext}']:not(.not-autostyle)#{$pseudo}");
 			$selectors: append($selectors, $selector, comma);
 		}
 
