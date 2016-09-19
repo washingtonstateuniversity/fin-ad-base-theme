@@ -228,7 +228,11 @@ img {
 .row.single .column {
     max-width: 100%;
 }
-
+.size-xlarge .max-1188 .main-header .header-group,
+.main-header .header-group,
+.main-header .header-group:not(.x) {
+    width: 100%;
+}
 
 
 @import 'parts/form.scss';
