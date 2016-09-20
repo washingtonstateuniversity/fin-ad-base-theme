@@ -66,7 +66,7 @@ class Fais_Spine_Builder_Custom
 
 				$section['section-type'] = 'fais'.$section['section-type'];
 
-				if ( isset( $section['columns'] ) !== $section['columns'] ) {
+				if ( isset( $section['columns'] ) && ! empty( $section['columns'] ) ) {
 					foreach ( $section['columns'] as $cid => $object ) {
 						// 'column-type' => string 'flex-column  fifths-3  order-1  grid-part'
 						$order = array_flip( $section['columns-order'] )[ $cid ] + 1;
