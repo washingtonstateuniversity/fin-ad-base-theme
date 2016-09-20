@@ -32,9 +32,9 @@ function eraseCookie(name) {
 */
 (function($){
     var init, setupExamples, setupHeroSelect, navSetup, setupDrops, _Drop;
-    _Drop = Drop.createContext({
+    /*_Drop = Drop.createContext({
         classPrefix: "drop"
-    });
+    });*/
 
 
 
