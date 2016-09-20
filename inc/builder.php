@@ -13,11 +13,14 @@ class Fais_Spine_Builder_Custom
 		add_action( 'admin_init', array( $this, 'remove_extra_make' ), 13 );
 		add_action( 'admin_init', array( $this, 'remove_builder_sections' ), 13 );
 		add_action( 'admin_init', array( $this, 'add_builder_sections' ), 14 );
-		add_filter( 'content_edit_pre', array( $this, 'filter_function_name' ), 10, 2 );
+		add_filter( 'content_edit_pre', array( $this, 'builder_convertion_utility' ), 10, 2 );
 		add_filter( 'make_insert_post_data_sections', array( $this, 'set_section_meta' ), 13, 1 );
 
 	}
 
+	/**
+	 * return builder to flexwork grid map.
+	 */
 	public function get_column_default_size( $section_type ) {
 
 		$column_size_defaults = [ 1 => 'fourths-4' ];
@@ -36,7 +39,18 @@ class Fais_Spine_Builder_Custom
 		return $column_size_defaults;
 	}
 
-	public function filter_function_name( $content, $post_id ) {
+	/**
+	 * builder_convertion_utility
+	 * `content_edit_pre` hook. On post edit, convert WSU general blocks into
+	 * FAIS block to better fit the general design.
+	 *
+	 * @since  0.5.0
+	 *
+	 * @param  string    $content       pre edit content.
+	 * @param  int       $post_id       post id.
+	 * @return string                   altered html string.
+	 */
+	public function builder_convertion_utility( $content, $post_id ) {
 		// Process content here
 		if ( ! ttfmake_post_type_supports_builder( get_post_type() ) ) {
 			return $content;
@@ -44,8 +58,7 @@ class Fais_Spine_Builder_Custom
 
 		$old_wsu_items = [ 'wsuwpheader', 'wsuwpsingle', 'wsuwphalves', 'wsuwpsidebarleft', 'wsuwpsidebarright', 'wsuwpthirds', 'wsuwpquarters' ];
 		$section_data = ttfmake_get_section_data( $post_id );
-		//var_dump( 'was' );
-		//var_dump( $section_data );
+
 		$needed_conversion = false;
 		$would_update = [];
 		foreach ( $section_data as $id => $section ) {
@@ -74,9 +87,6 @@ class Fais_Spine_Builder_Custom
 				$section_data[ $id ] = $section;
 			}
 		}
-		//var_dump( 'is' );
-		//var_dump( $section_data );
-		//die();
 		if ( $needed_conversion ) {
 			$var_data = array( 'ID' => $post_id );
 			$this->wp_insert_post_data( $var_data, $section_data );
@@ -85,6 +95,7 @@ class Fais_Spine_Builder_Custom
 		}
 		return $content;
 	}
+
 	/**
 	 * On post save, use a theme template to generate content from metadata.
 	 *
