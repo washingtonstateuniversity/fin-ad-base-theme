@@ -264,7 +264,7 @@ a[href^='mailto']:not(.not-autostyle).img-link img,
 };
 
 
-@include map-to-selectors($file_map, ".img-link:not([href*='wsu.edu']):after", "", "a.external:after,
+@include map-to-selectors($file_map, ".img-link:not([href*='wsu.edu']):after", "", "a.img-link.external:after,
 a[href^='mailto']:not(.not-autostyle):not([href*='wsu.edu']):after,
 .gen_doc:not([href*='wsu.edu']):after") {
     z-index: 999;
@@ -319,6 +319,16 @@ a[href^='mailto']:not(.not-autostyle):not([href*='wsu.edu']):after,
 	margin: -2px .75em 0;
 	height: 2em;
 };
+
+@include map-to-selectors($file_map, ".img-link", ".ie ", ".ie a.button.img-link,
+.ie a[href^='mailto']:not(.not-autostyle).img-link,
+.ie .gen_doc.img-link") {
+    height: auto;
+    padding: 0;
+};
+
+
+
 
 @include map-to-selectors($file_map, ":before", ".ie p main ", ".ie main p a.button.news:before,
 .ie main p a.button.contact:before,
