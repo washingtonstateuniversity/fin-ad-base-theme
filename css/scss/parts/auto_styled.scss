@@ -220,6 +220,73 @@ p a[href^='mailto:']:not(.not-autostyle):before") {
     font-size: 1.5em;
 };
 
+
+
+
+
+@include map-to-selectors($file_map, ".img-link", "", "a.button.img-link,
+a[href^='mailto']:not(.not-autostyle).img-link,
+.gen_doc.img-link") {
+    display: inline-block;
+    height: auto;
+    padding: 0;
+    position:relative;
+};
+
+
+
+@include map-to-selectors($file_map, ".img-link:before", "", "a.button.img-link:before,
+a[href^='mailto']:not(.not-autostyle).img-link:before,
+.gen_doc.img-link:before") {
+    margin-right: 5px;
+    font-size: 19px;
+    line-height: 23px;
+    color: #000;
+    position:absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    border-right: 1px solid #000000;
+    border-bottom: 1px solid #000;
+    padding: 5px 7px 5px 8px;
+    border-bottom-right-radius: 3px;
+    background: #d0d0d0;
+};
+
+
+@include map-to-selectors($file_map, ".img-link img", "", "a.button.img-link img,
+a[href^='mailto']:not(.not-autostyle).img-link img,
+.gen_doc.img-link img") {
+    z-index: 1;
+    position:relative;
+};
+
+
+@include map-to-selectors($file_map, ".img-link:not([href*='wsu.edu']):after", "", "a.external:after,
+a[href^='mailto']:not(.not-autostyle):not([href*='wsu.edu']):after,
+.gen_doc:not([href*='wsu.edu']):after") {
+    z-index: 999;
+    position:relative;
+    font-family: Spine-Icons;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 12px;
+    position: absolute;
+    margin-left: 3px;
+    content: "\21AA";
+    bottom: 0;
+    right: 0;
+    border-top: 1px solid #000000;
+    border-left: 1px solid #000;
+    padding: 3px 7px 3px 8px;
+    border-top-left-radius: 3px;
+    background: #d0d0d0;
+};
+
+
+
+
+
 @include map-to-selectors($file_map, ":before", ".ie p ", ".ie p a.button.news:before,
 .ie p a.button.contact:before,
 .ie p a.button.docment:before,
@@ -227,6 +294,12 @@ p a[href^='mailto:']:not(.not-autostyle):before") {
     line-height: 1.35em;
     font-size: .55em;
 };
+
+
+
+
+
+
 
 
 
