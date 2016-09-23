@@ -221,9 +221,6 @@ p a[href^='mailto:']:not(.not-autostyle):before") {
 };
 
 
-
-
-
 @include map-to-selectors($file_map, ".img-link", "", "a.button.img-link,
 a[href^='mailto']:not(.not-autostyle).img-link,
 .gen_doc.img-link") {
