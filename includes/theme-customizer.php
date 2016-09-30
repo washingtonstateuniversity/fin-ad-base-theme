@@ -131,7 +131,7 @@ class Fais_Spine_Theme_Customizer {
 				$wp_customize,
 				'header_text_color',
 				array(
-				'label'      => __( 'Header Color' ),
+				'label'      => __( 'Header Text Color' ),
 				'section'    => 'static_background',
 				'settings'   => 'spine_options[header_text_color]',
 			) )
