@@ -208,8 +208,11 @@ body div#border_top {
 	max-width: 100%;
 }
 
-
-
+@media (max-width: 989px){
+	.home .style-bookmark .main-header, .home header.main-header, .main-header, .style-bookmark .main-header, body .style-bookmark .main-header {
+		width: 100%;
+	}
+}
 
 
 #footer{
