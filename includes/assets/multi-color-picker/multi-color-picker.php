@@ -54,15 +54,15 @@ class Customize_Multi_Color_Control extends WP_Customize_Control {
 	public function render_content() {
 
 		if ( isset( $this->label ) && '' !== $this->label ) {
-			echo '<span class="customize-control-title">' . sanitize_text_field( $this->label ) . '</span>';
+			esc_html_e( '<span class="customize-control-title">' . sanitize_text_field( $this->label ) . '</span>' );
 		}
 
 		if ( isset( $this->description ) && '' !== $this->description ) {
-			echo '<span class="description customize-control-description">' . sanitize_text_field( $this->description ) . '</span>';
+			esc_html_e( '<span class="description customize-control-description">' . sanitize_text_field( $this->description ) . '</span>' );
 		}
 
 		// Output the div that will wrap our picker triggers.
-		echo '<style>
+		esc_html_e(  '<style>
 
 .customize-control-multi-color {
     position: relative;
@@ -135,7 +135,7 @@ ul.grouplist li.multi-color-picker-trigger a.wp-color-result {
 }
 
 
-</style><div class="multi-color-picker-triggers"></div>';
+</style><div class="multi-color-picker-triggers"></div>');
 
 		// Output the div that will wrap our picker triggers.
 		//echo '<ul class="color_group">';
@@ -162,7 +162,7 @@ ul.grouplist li.multi-color-picker-trigger a.wp-color-result {
 			$show_opacity = ( isset( $color_data['show_opacity'] ) ) ? $color_data['show_opacity'] : 'true';
 
 			?>
-			<input type="text" class="multi-color-control" data-show-opacity="<?php echo esc_attr( $show_opacity ); ?>" data-palette="<?php echo $palette ?>" data-title="<?php echo esc_attr( $label ); ?>" data-default-color="<?php echo esc_attr( $default ); ?>" value="<?php echo $this->settings[ $key ]->value(); ?>" <?php echo $this->get_link( $key ); ?> />
+			<input type="text" class="multi-color-control" data-show-opacity="<?php echo esc_attr( $show_opacity ); ?>" data-palette="<?php echo esc_attr( $palette ) ?>" data-title="<?php echo esc_attr( $label ); ?>" data-default-color="<?php echo esc_attr( $default ); ?>" value="<?phpecho esc_attr( this->settings[ $key ]->value()); ?>" <?php echo esc_html( $this->get_link( $key ) ); ?> />
 			<?php
 		}
 // Output the div that will wrap our picker triggers.

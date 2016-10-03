@@ -56,6 +56,13 @@ if ( $section_background || $section_mobile_background ) {
 	$section_id = '';
 }
 
+$banner_slider_atts = '';
+if ( $is_slider ) {
+	$banner_slider_atts = ttfmake_builder_get_banner_slider_atts( $ttfmake_section_data );
+}
+
+
+
 // If a section ID is not available for use, we build a default ID.
 if ( '' === $section_id ) {
 	$section_id = 'builder-section-' . esc_attr( $ttfmake_section_data['id'] );
@@ -74,7 +81,7 @@ if ( '' === $section_id ) {
             </header>
     <?php endif; ?>
 
-		<div class="builder-section-content <?php esc_attr_e( $is_slider? ' cycle-slideshow' : '' ); ?>" <?php echo ( ( $is_slider ) ? ttfmake_builder_get_banner_slider_atts( $ttfmake_section_data ) : '' ); ?>>
+		<div class="builder-section-content <?php esc_attr_e( $is_slider ? ' cycle-slideshow' : '' ); ?>" <?php esc_html_e( $banner_slider_atts; ) ?> >
 
 		<style type="text/css">
 			<?php
