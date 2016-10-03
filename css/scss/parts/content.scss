@@ -192,27 +192,59 @@ body div#border_top {
 	z-index: 9;
 }
 
-.home .style-bookmark .main-header, .home header.main-header, .main-header, .style-bookmark .main-header, body .style-bookmark .main-header {
+.home .style-bookmark .main-header,
+.home header.main-header,
+.main-header,
+.style-bookmark .main-header,
+body .style-bookmark .main-header {
 	display: block;
 	position: fixed;
 	top: 0;
 	left: inherit;
 	z-index: 8;
 	background: none;
-	width: inherit;
+	width: calc( 100% - (100vw - 1007px) );
+	//width: inherit;
 }
-
 .main-header .header-group {
 	padding: 2rem 0 1.1rem 1.3rem;
 	background-color: rgba(60,133,216,0.62);
 	max-width: 100%;
 }
 
-@media (max-width: 989px){
-	.home .style-bookmark .main-header, .home header.main-header, .main-header, .style-bookmark .main-header, body .style-bookmark .main-header {
+
+@media (max-width: 810px){
+	body .style-bookmark .main-header {
 		width: 100%;
 	}
 }
+@media (min-width: 811px ) and (max-width: 989px){
+	body .style-bookmark .main-header {
+		width: calc( 100% - (100vw - 809px) );
+	}
+}
+@media (min-width: 990px ) and (max-width: 1007px){
+	body .style-bookmark .main-header {
+		width: 100%;
+	}
+}
+@media (min-width: 1008px ) and (max-width: 1187px){
+	body .style-bookmark .main-header {
+		width: calc( 100% - (100vw - 809px) );
+	}
+}
+
+
+
+@media (max-width: 989px){
+	.main-header .header-group{
+		top:50px;
+	}
+	.opensansy .main-header sup.sub-header[data-sitename]{
+		font-size:1.2em;
+	}
+}
+
 
 
 #footer{
