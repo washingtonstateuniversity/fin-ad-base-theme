@@ -192,11 +192,7 @@ body div#border_top {
 	z-index: 9;
 }
 
-.home .style-bookmark .main-header,
-.home header.main-header,
-.main-header,
-.style-bookmark .main-header,
-body .style-bookmark .main-header {
+body #binder header.main-header {
 	display: block;
 	position: fixed;
 	top: 0;
@@ -214,22 +210,22 @@ body .style-bookmark .main-header {
 
 
 @media (max-width: 810px){
-	body .style-bookmark .main-header {
+	body #binder header.main-header {
 		width: 100%;
 	}
 }
 @media (min-width: 811px ) and (max-width: 989px){
-	body .style-bookmark .main-header {
+	body #binder header.main-header {
 		width: calc( 100% - (100vw - 809px) );
 	}
 }
 @media (min-width: 990px ) and (max-width: 1007px){
-	body .style-bookmark .main-header {
+	body #binder header.main-header {
 		width: 100%;
 	}
 }
 @media (min-width: 1008px ) and (max-width: 1187px){
-	body .style-bookmark .main-header {
+	body #binder header.main-header {
 		width: calc( 100% - (100vw - 809px) );
 	}
 }
