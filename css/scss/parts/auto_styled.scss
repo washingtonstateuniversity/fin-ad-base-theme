@@ -120,7 +120,7 @@ a[href^='mailto']:not(.not-autostyle):before,
 	-moz-osx-font-smoothing: grayscale;
 	transform: translate(0, 0);
 	margin-right: .5rem;
-	    font-size: 1.9rem;
+	font-size: 1.9rem;
 	line-height: 2.3rem;
 	color:#000;
 };
@@ -208,7 +208,7 @@ p a[href^='mailto:']:not(.not-autostyle)") {
     line-height: 2rem;
     padding: 0 0.62rem;
     margin: -.39rem 0.35rem 0 .25rem;
-    font-size: 0.8rem;
+    font-size: 1.1rem;
 };
 
 
@@ -292,8 +292,8 @@ a[href^='mailto']:not(.not-autostyle):not([href*='wsu.edu']):after,
 .ie p a.button.contact:before,
 .ie p a.button.docment:before,
 .ie p a[href^='mailto:']:not(.not-autostyle):before") {
-    line-height: 1.35rem;
-    font-size: 5.5rem;
+    line-height: 1.85rem;
+    font-size: 1.6rem;
 };
 
 
