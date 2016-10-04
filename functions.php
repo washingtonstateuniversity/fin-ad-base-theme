@@ -252,8 +252,8 @@ function background_hook_css() {
     .secoundary-accent-bk {background-color:<?php esc_attr_e( $secoundary_accent_color ); ?>; }
     .primary-accent-text{color:<?php esc_attr_e( $primary_accent_color ); ?>; }
     .secoundary-accent-text{color:<?php esc_attr_e( $secoundary_accent_color ); ?>; }
-    div#border_top{background-color:<?php esc_attr_e( $primary_accent_color ); ?>; }
-    div#border_bottom{background-color:<?php esc_attr_e( $primary_accent_color ); ?>; }
+    body div#border_top{background-color:<?php esc_attr_e( $primary_accent_color ); ?>; }
+    body div#border_bottom{background-color:<?php esc_attr_e( $primary_accent_color ); ?>; }
 	.main-header .header-group { background-color:<?php esc_attr_e( $header_color ); ?>; }
 	.style-bookmark .main-header span { color:<?php esc_attr_e( $header_text_color ); ?>; }
 </style>

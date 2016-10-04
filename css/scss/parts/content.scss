@@ -183,14 +183,6 @@ body.home:not(.has-background-image) #jacket {
 	margin-top: calc(3.7rem + 5rem);
 }
 
-div#border_top {
-	background: #1122a3;
-	height: 1.3rem;
-	position: fixed;
-	top: 0;
-	width: inherit;
-	z-index: 9;
-}
 
 body #binder header.main-header {
 	display: block;
@@ -209,22 +201,38 @@ body #binder header.main-header {
 }
 
 
+body div#border_top {
+	background: #1122a3;
+	height: 1.3rem;
+	position: fixed;
+	top: 0;
+	width: inherit;
+	z-index: 9;
+}
+
+
+
+
 @media (max-width: 810px){
+	body div#border_top,
 	body #binder header.main-header {
 		width: 100%;
 	}
 }
 @media (min-width: 811px ) and (max-width: 989px){
+	body div#border_top,
 	body #binder header.main-header {
 		width: calc( 100% - (100vw - 80.9rem) );
 	}
 }
 @media (min-width: 990px ) and (max-width: 1007px){
+	body div#border_top,
 	body #binder header.main-header {
 		width: 100%;
 	}
 }
 @media (min-width: 1008px ) and (max-width: 1187px){
+	body div#border_top,
 	body #binder header.main-header {
 		width: calc( 100% - (100vw - 80.9rem) );
 	}
