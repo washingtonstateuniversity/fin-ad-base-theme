@@ -44,7 +44,7 @@ function cards_shortcode( $atts, $content ) {
 			<?php if ( false !== $att['tel'] && '' !== $att['tel'] ) :  ?>
 				<h5 class=" pad-no"><?php esc_attr_e( $att['tel'] ); ?></h5>
 			<?php endif; ?>
-			<?php if ( false !== $att['email'] && '' !== $att['email'] ) :  ?>
+			<?php if ( false !== $att['email'] && '' !== $att['email']  && is_email( $att['email'] )  ) :  ?>
 				<a class=" pad-tight" href="mailto:<?php esc_attr_e( $att['email'] ); ?>">Email</a>
 			<?php endif; ?>
         </span>
