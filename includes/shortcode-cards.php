@@ -22,7 +22,7 @@ function cards_shortcode( $atts, $content ) {
 
 
 <div class="flex-row items-start no-pad content-card">
-    <div class="flex-column items-start thirds-1 profile-image">
+    <div class="thirds-1 profile-image"> <!--flex-column items-start -->
 		<?php if ( false !== $att['profile_url'] && '' !== $att['profile_url'] ) :  ?>
 			<img src="<?php esc_attr_e( $att['profile_url'] ); ?>" />
 		<?php else : ?>
@@ -31,7 +31,6 @@ function cards_shortcode( $atts, $content ) {
 				<path d="M237.83,336.55A109.08,109.08,0,1,0,128.75,227.47,109.11,109.11,0,0,0,237.83,336.55Z" transform="translate(-2 -2)"/>
 			</svg>
 		<?php endif; ?>
-
     </div>
     <div class="flex-column items-start thirds-2 pad-tight-L profile-summary">
 		<?php if ( false !== $att['position'] && '' !== $att['position'] ) :  ?>
