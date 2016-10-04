@@ -206,11 +206,9 @@ body div#border_top {
 	height: 1.3rem;
 	position: fixed;
 	top: 0;
-	width: calc( 100% - (100vw - 100.7rem) );
+    width: calc(100% - (100vw - 120.5rem));
 	z-index: 9;
 }
-
-
 
 
 @media (max-width: 810px){
