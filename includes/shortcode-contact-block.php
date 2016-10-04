@@ -60,7 +60,7 @@ function contact_block_shortcode( $atts ) {
 
 			<?php
 			$contact_email = spine_get_option( 'contact_email' );
-			if ( ! empty( $contact_email ) && '' !== trim( $contact_email ) ) {
+			if ( ! empty( $contact_email ) && '' !== trim( $contact_email )  && is_email( $contact_email ) ) {
 				?>
 				<div class="flex-row full-width items-start contact_email">
 					<h4 class="grid-part pad-no fifths-2"><?php esc_attr_e( 'Email' )?>:</h4>
