@@ -70,20 +70,20 @@ img {
 @include map-to-selectors($file_map, "", "", "a[href^='mailto']:not(.not-autostyle)") {
     background: #eff0f1;
     border-style: solid;
-    border-width: 1px;
+    border-width: .1rem;
     border-color: #d7dadb #8d959a #8d959a #d7dadb;
-    border-radius: .5em;
+    border-radius: .5rem;
     color: #981e32;
     display: inline-block;
     text-decoration: none;
     cursor: pointer;
     margin-bottom: 0;
     line-height: normal;
-    padding: 0em 0.4em;
-    min-height: 2.2em;
-    margin-left: .2em;
+    padding: 0 0.4rem;
+    min-height: 2.2rem;
+    margin-left: .2rem;
     vertical-align: middle;
-    margin-right: .2em;
+    margin-right: .2rem;
 };
 
 @include map-to-selectors($file_map, "", "#spine-navigation ", "") {
@@ -96,16 +96,16 @@ img {
  a[href^='mailto']:not(.not-autostyle),
 .gen_doc") {
 	border-color: #000;
-	border-width: 2px;
+	border-width: .2rem;
 	font-weight: 700;
-	padding-left:5px;
+	padding-left: .5rem;
 };
 
 @include map-to-selectors($file_map, ":hover", "", "a.button:hover,
 a[href^='mailto']:not(.not-autostyle):hover,
 .gen_doc:hover") {
 	border-color: #000;
-	border-width: 2px;
+	border-width: .2rem;
 	font-weight: 700;
 };
 
@@ -114,14 +114,14 @@ a[href^='mailto']:not(.not-autostyle):hover,
 a[href^='mailto']:not(.not-autostyle):before,
 .gen_doc:before") {
 	display: inline-block;
-	font: normal normal normal 14px/1 FontAwesome;
+	font: normal normal normal 1.4rem/1 FontAwesome;
 	text-rendering: auto;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	transform: translate(0, 0);
-	margin-right:5px;
-	    font-size: 19px;
-	line-height: 23px;
+	margin-right: .5rem;
+	    font-size: 1.9rem;
+	line-height: 2.3rem;
 	color:#000;
 };
 
@@ -130,7 +130,7 @@ a.button.contact,
 a.button.docment,
 #feedback_back_btn,
 .gen_doc") {
-	padding-left: 9px;
+	padding-left: .9rem;
 	text-decoration: none;
 };
 
@@ -138,20 +138,20 @@ a.button.docment,
 @include map-to-selectors($file_map, ":before", "#spine-navigation", "#spine-navigation a[href^='mailto']:not(.not-autostyle):before,
 .gen_doc:before,
 #feedback_back_btn:before") {
-	font-size: 15px;
+	font-size: 1.5rem;
 };
 
 @include map-to-selectors($file_map, "", "#spine-navigation", "#spine-navigation a[href^='mailto']:not(.not-autostyle)") {
 	font-weight: 400;
-    line-height: 1em;
+    line-height: 1rem;
     height: auto;
 };
 
 @include map-to-selectors($file_map, ":after", "#spine-navigation", "#spine-navigation a[href^='mailto']:not(.not-autostyle):after") {
 	font-weight: 400;
-    line-height: 1em;
+    line-height: 1rem;
     height: auto;
-	margin-top: 6px;
+	margin-top: .6rem;
 };
 
 @include map-to-selectors($file_map, ":before", ".darker #spine-navigation", ".darker #spine-navigation  a[href^='mailto:']:not(.not-autostyle):before") {
@@ -205,10 +205,10 @@ $exts: nth($_val, 1);
 p a.button.contact,
 p a.button.docment,
 p a[href^='mailto:']:not(.not-autostyle)") {
-    line-height: 2em;
-    padding: 0 0.62em;
-    margin: -3.9px 0.35em 0 .25em;
-    font-size: 0.8em;
+    line-height: 2rem;
+    padding: 0 0.62rem;
+    margin: -.39rem 0.35rem 0 .25rem;
+    font-size: 0.8rem;
 };
 
 
@@ -216,8 +216,8 @@ p a[href^='mailto:']:not(.not-autostyle)") {
 p a.button.contact:before,
 p a.button.docment:before,
 p a[href^='mailto:']:not(.not-autostyle):before") {
-    line-height: 1em;
-    font-size: 1.5em;
+    line-height: 1rem;
+    font-size: 1.5rem;
 };
 
 
@@ -236,19 +236,19 @@ a[href^='mailto']:not(.not-autostyle).img-link,
 @include map-to-selectors($file_map, ".img-link:before", "", "a.button.img-link:before,
 a[href^='mailto']:not(.not-autostyle).img-link:before,
 .gen_doc.img-link:before") {
-    margin-right: 5px;
-    font-size: 19px;
-    line-height: 23px;
+    margin-right: .5rem;
+    font-size: 1.9rem;
+    line-height: 2.3rem;
     color: #000;
     position:absolute;
     top: 0;
     left: 0;
     z-index: 999;
-    border-right: 1px solid #000000;
-    border-bottom: 1px solid #000;
-    padding: 5px 7px 5px 8px;
-    border-bottom-right-radius: 3px;
-	border-top-left-radius: 3px;
+    border-right: .1rem solid #000000;
+    border-bottom: .1rem solid #000;
+    padding: .5rem .7rem .5rem .8rem;
+    border-bottom-right-radius: .3rem;
+	border-top-left-radius: .3rem;
     background: #d0d0d0;
 };
 
@@ -258,7 +258,7 @@ a[href^='mailto']:not(.not-autostyle).img-link img,
 .gen_doc.img-link img") {
     z-index: 1;
     position:relative;
-	border-radius: 3px;
+	border-radius: .3rem;
 };
 
 
@@ -270,17 +270,17 @@ a[href^='mailto']:not(.not-autostyle):not([href*='wsu.edu']):after,
     font-family: Spine-Icons;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-size: 12px;
+    font-size: 1.2rem;
     position: absolute;
-    margin-left: 3px;
+    margin-left: .3rem;
     content: "\21AA";
     bottom: 0;
     right: 0;
-    border-top: 1px solid #000000;
-    border-left: 1px solid #000;
-    padding: 3px 7px 3px 8px;
-    border-top-left-radius: 3px;
-    border-bottom-right-radius: 3px;
+    border-top: .1rem solid #000000;
+    border-left: .1rem solid #000;
+    padding: .3rem .7rem .3rem .8rem;
+    border-top-left-radius: .3rem;
+    border-bottom-right-radius: .3rem;
     background: #d0d0d0;
 };
 
@@ -292,8 +292,8 @@ a[href^='mailto']:not(.not-autostyle):not([href*='wsu.edu']):after,
 .ie p a.button.contact:before,
 .ie p a.button.docment:before,
 .ie p a[href^='mailto:']:not(.not-autostyle):before") {
-    line-height: 1.35em;
-    font-size: .55em;
+    line-height: 1.35rem;
+    font-size: 5.5rem;
 };
 
 
@@ -312,10 +312,10 @@ a[href^='mailto']:not(.not-autostyle):not([href*='wsu.edu']):after,
 .ie p a.button.contact,
 .ie p a.button.docment,
 .ie p a[href^='mailto:']:not(.not-autostyle)") {
-	line-height: 1.5em;
-	padding: 0 .52em;
-	margin: -2px .75em 0;
-	height: 2em;
+	line-height: 1.5rem;
+	padding: 0 .52rem;
+	margin: -.2rem .75rem 0;
+	height: 2rem;
 };
 
 @include map-to-selectors($file_map, ".img-link", ".ie ", ".ie a.button.img-link,

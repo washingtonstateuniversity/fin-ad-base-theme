@@ -1,15 +1,15 @@
 /* forms */
 input[type=text], input[type=password], input[type=email], select, textarea{
-	border-radius: 5px;
-	border: 2px solid #6d6d6d;
-    padding: 6px 4px;
+	border-radius: .5rem;
+	border: .2rem solid #6d6d6d;
+    padding: .6rem .4rem;
     outline: 0;
     color: #777;
     margin: 0;
     background: #fff;
 }
 input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, textarea:focus {
-    border: 2px solid #aaa;
+    border: .2rem solid #aaa;
 }
 
 input::-webkit-input-placeholder {
