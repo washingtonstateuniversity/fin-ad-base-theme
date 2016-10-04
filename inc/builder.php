@@ -68,9 +68,9 @@ class Fais_Spine_Builder_Custom
 
 				if ( isset( $section['columns'] ) && ! empty( $section['columns'] ) ) {
 					foreach ( $section['columns'] as $cid => $object ) {
-						// 'column-type' => string 'flex-column  fifths-3  order-1  grid-part'
+						// 'column-type' => string 'flex-column  fifths-3  order-1'
 						$order = array_flip( $section['columns-order'] )[ $cid ] + 1;
-						$object['column-type'] = 'flex-column '.$this->get_column_default_size( $section['section-type'] )[ $cid ].' pad-tight  order-'. $order .'  grid-part full-width-at-667';
+						$object['column-type'] = 'flex-column '.$this->get_column_default_size( $section['section-type'] )[ $cid ].' pad-tight  order-'. $order .'  full-width-at-667';
 						$section['columns'][ $cid ] = $object;
 					}
 					$section['columns'][ $cid ] = $object;
@@ -1231,7 +1231,7 @@ function fais_spine_output_builder_column_type( $column_name, $section_data, $co
 		$section_type = $section_data['section']['id'];
 	}
 
-	$column_type_default = 'flex-column  grid-part ';
+	$column_type_default = ' flex-column  full-width-at-667 ';
 
 	if ( 'faiswsuwphalves' === $section_type ) {
 		$column_size_defaults = [ 0 => 'fourths-2', 1 => ' fourths-2' ];
