@@ -53,7 +53,23 @@ function cards_shortcode( $atts, $content ) {
 <?php
 	$contact_card = ob_get_clean();
 
-	return $contact_card. wp_kses_post( $content )  .'</div></div>';
+	return $contact_card. wp_kses( $content, array(
+		'a' => array(
+			'href' => array(),
+			'title' => array(),
+		),
+		'br' => array(),
+		'b' => array(),
+		'u' => array(),
+		'i' => array(),
+		'em' => array(),
+		'strong' => array(),
+		'ul' => array(
+			'class' => array(),
+		),'li' => array(
+			'class' => array(),
+		),
+	) )  .'</div></div>';
 
 }
 add_shortcode( 'contact_cards', 'cards_shortcode' );
