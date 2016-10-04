@@ -28,6 +28,29 @@ function spine_load_builder_module_custom() {
 }
 
 
+/**
+* Set flag on if site is in dev or production
+* return boolean is production
+*/
+function is_development() {
+	$filter_string = 'stage.,wsu.dev'; // this would be an option at some point
+	$filters = explode( ',',$filter_string );
+	$result = false;
+	foreach ( $filters as $url_frag ) {
+		if ( false !== strpos( $_SERVER['HTTP_HOST'], $url_frag ) ) {
+			$result = true;
+		}
+	}
+	return $result;
+}
+
+
+
+
+
+
+
+
 add_action( 'wp_enqueue_scripts', 'fais_customizer_enqueue_scripts', 21 );
 /**
  * Enqueue the styles and scripts used inside the Customizer.
@@ -64,14 +87,15 @@ function fais_customizer_enqueue_scripts() {
 
 	$coverage = fais_spine_get_option( 'flexwork_coverage', 'devices-light' );
 
-	wp_enqueue_style( 'flexwork-base', 'https://webcore.fais.wsu.edu/resources/flexwork/flexwork-'.$coverage.'.css', array( 'fais_spine-theme-print' ), spine_get_script_version() );
-	wp_enqueue_style( 'flexwork-typography', 'https://webcore.fais.wsu.edu/resources/flexwork/extra/flexwork-typography.css', array( 'flexwork-base' ), spine_get_script_version() );
-	wp_enqueue_style( 'flexwork-ui', 'https://webcore.fais.wsu.edu/resources/flexwork/extra/flexwork-ui.css', array( 'flexwork-typography' ), spine_get_script_version() );
+	$flex_dev = is_development() ? 'dev/' : '';
+	wp_enqueue_style( 'flexwork-base', 'https://webcore.fais.wsu.edu/resources/flexwork/'.$flex_dev .'flexwork-'.$coverage.'.css', array( 'fais_spine-theme-print' ), spine_get_script_version() );
+	wp_enqueue_style( 'flexwork-typography', 'https://webcore.fais.wsu.edu/resources/flexwork/'.$flex_dev .'extra/flexwork-typography.css', array( 'flexwork-base' ), spine_get_script_version() );
+	wp_enqueue_style( 'flexwork-ui', 'https://webcore.fais.wsu.edu/resources/flexwork/'.$flex_dev .'extra/flexwork-ui.css', array( 'flexwork-typography' ), spine_get_script_version() );
 
 	wp_enqueue_style( 'fais_spine-theme-child', get_stylesheet_directory_uri() . '/' . $child_stylesheet, array( 'flexwork-typography' ), spine_get_script_version() );
 
-	wp_enqueue_script( 'tether', 'https://webcore.fais.wsu.edu/resources/flexwork/extra/tether.min.js', array( 'jquery' ), spine_get_script_version(), true );
-	wp_enqueue_script( 'drop', 'https://webcore.fais.wsu.edu/resources/flexwork/extra/drop.min.js', array( 'tether' ), spine_get_script_version(), true );
+	wp_enqueue_script( 'tether', 'https://webcore.fais.wsu.edu/resources/flexwork/'.$flex_dev .'extra/tether.min.js', array( 'jquery' ), spine_get_script_version(), true );
+	wp_enqueue_script( 'drop', 'https://webcore.fais.wsu.edu/resources/flexwork/'.$flex_dev .'extra/drop.min.js', array( 'tether' ), spine_get_script_version(), true );
 	wp_enqueue_script( 'child_controll', get_stylesheet_directory_uri() . '/js/child_controll.js', array( 'jquery' ), spine_get_script_version(), true );
 
 	wp_enqueue_script( 'html2canvas', get_stylesheet_directory_uri() . '/js/html2canvas.js', array( 'jquery' ), spine_get_script_version(), true );
