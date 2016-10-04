@@ -21,8 +21,8 @@ function cards_shortcode( $atts, $content ) {
 	ob_start(); ?>
 
 
-<div class="flex-row items-start pad-tight content-card">
-    <div class="flex-column items-start grid-part thirds-1 profile-image">
+<div class="flex-row items-start no-pad content-card">
+    <div class="flex-column items-start thirds-1 profile-image">
 		<?php if ( false !== $att['profile_url'] && '' !== $att['profile_url'] ) :  ?>
 			<img src="<?php esc_attr_e( $att['profile_url'] ); ?>" />
 		<?php else : ?>
@@ -33,19 +33,19 @@ function cards_shortcode( $atts, $content ) {
 		<?php endif; ?>
 
     </div>
-    <div class="flex-column items-start grid-part thirds-2 pad-tight-L profile-summary">
-		<?php if ( false !== $att['position'] ) :  ?>
+    <div class="flex-column items-start thirds-2 pad-tight-L profile-summary">
+		<?php if ( false !== $att['position'] && '' !== $att['position'] ) :  ?>
 			<h3><?php esc_attr_e( $att['position'] ); ?></h3>
 		<?php endif; ?>
-		<?php if ( false !== $att['name'] ) :  ?>
+		<?php if ( false !== $att['name'] && '' !== $att['name'] ) :  ?>
 			<h4><?php esc_attr_e( $att['name'] ); ?></h4>
 		<?php endif; ?>
         <span class="flex-row justify-between full-width">
-			<?php if ( false !== $att['tel'] ) :  ?>
-				<h5 class=" grid-part pad-no"><?php esc_attr_e( $att['tel'] ); ?></h5>
+			<?php if ( false !== $att['tel'] && '' !== $att['tel'] ) :  ?>
+				<h5 class=" pad-no"><?php esc_attr_e( $att['tel'] ); ?></h5>
 			<?php endif; ?>
-			<?php if ( false !== $att['email'] ) :  ?>
-				<a class=" grid-part pad-tight" href="mailto:<?php esc_attr_e( $att['email'] ); ?>">Email</a>
+			<?php if ( false !== $att['email'] && '' !== $att['email'] ) :  ?>
+				<a class=" pad-tight" href="mailto:<?php esc_attr_e( $att['email'] ); ?>">Email</a>
 			<?php endif; ?>
         </span>
 
