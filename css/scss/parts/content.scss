@@ -184,12 +184,18 @@ body.home:not(.has-background-image) #jacket {
 #content_area, .content_less [id^=builder-section], [id$=""]:not(#content_area) [id^=builder-section].flex-row, [id^=builder-section].row {
 	margin-top: calc(3.7rem + -5rem);
 }*/
+:nth-child(1).sup-header-default {
+	font-size: 35px;
+	margin-top: 1.5rem;
+}
 #content_area, .content_less [id^=builder-section], [id$=""]:not(#content_area) [id^=builder-section].flex-row, [id^=builder-section].row {
-    margin-top: calc(3.7rem + 5rem);// !important;
+	margin-top: calc(3.7rem + 7rem);
 }
-[data-type="banner"] + #content_area{
-	margin-top: calc(3.7rem + 5rem);// !important;
+
+[data-type="banner"] + #content_area {
+	margin-top: calc(3.7rem + 5rem);
 }
+
 
 body #binder header.main-header {
 	display: block;
