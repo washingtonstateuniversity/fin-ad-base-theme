@@ -230,6 +230,7 @@ function finAdBaseTheme() {
 add_action( 'wp_head','background_hook_css', 21 );
 
 function background_hook_css() {
+	// best would be to creat a css file on type save to better cache
 
 	$background_url = fais_spine_get_option( 'background_url', false );
 	$background_color = fais_spine_get_option( 'background_color', '#9bbdf5' );
@@ -255,9 +256,12 @@ function background_hook_css() {
     body div#border_top{background-color:<?php esc_attr_e( $primary_accent_color ); ?>; }
     body div#border_bottom{background-color:<?php esc_attr_e( $primary_accent_color ); ?>; }
 	.main-header .header-group { background-color:<?php esc_attr_e( $header_color ); ?>; }
-	.sup-header-default,
-	.sup-header-default a,
-	.sup-header-default span { color:<?php esc_attr_e( $header_text_color ); ?>; }
+	.main-header .sup-header-default,
+	.main-header .sup-header-default a,
+	.main-header .sup-header-default span,
+	.main-header .sub-header-default,
+	.main-header .sub-header-default a,
+	.main-header .sub-header-default span { color:<?php esc_attr_e( $header_text_color ); ?>; }
 </style>
 <?php
 }
