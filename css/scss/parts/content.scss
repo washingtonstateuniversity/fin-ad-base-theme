@@ -226,7 +226,11 @@ body div#border_top {
 	z-index: 9;
 }
 
-
+@media (max-width: 667px){
+	body #binder main header.main-header {
+		position: relative;
+	}
+}
 @media (max-width: 810px){
 	body div#border_top,
 	body #binder header.main-header {
