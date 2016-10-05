@@ -230,6 +230,9 @@ body div#border_top {
 	body #binder main header.main-header {
 		position: relative;
 	}
+	.main-header .header-group{
+		top: 0;
+	}
 }
 @media (max-width: 810px){
 	body div#border_top,
