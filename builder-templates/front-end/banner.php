@@ -81,7 +81,7 @@ if ( '' === $section_id ) {
             </header>
     <?php endif; ?>
 
-		<div class="builder-section-content <?php esc_attr_e( $is_slider ? ' cycle-slideshow ' : '' ); ?>" <?php esc_html_e( $banner_slider_atts ); ?> >
+		<div class="builder-section-content <?php esc_attr_e( $is_slider ? ' cycle-slideshow ' : '' ); ?>" <?php esc_attr_e( $banner_slider_atts ); ?> >
 
 		<style type="text/css">
 			<?php
