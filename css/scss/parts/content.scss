@@ -144,9 +144,6 @@ content: counter(nn_counter) "";
 	border-radius: .7rem;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
-
-
-
 }
 #content_area > [data-type="faiswsuwpsingle"] > .grid-part:not(.pad-airy) {
     padding: 0;
@@ -212,7 +209,12 @@ body #binder header.main-header {
 	background-color: rgba(60,133,216,0.62);
 	max-width: 100%;
 }
-
+:nth-child(1).sup-header-default,
+:nth-child(1).sup-header-default a,
+:nth-child(1).sup-header-default span  {
+	font-size: 3.5rem;
+	margin-top: 1.5rem;
+}
 
 body div#border_top {
 	background: #1122a3;

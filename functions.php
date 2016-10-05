@@ -255,7 +255,9 @@ function background_hook_css() {
     body div#border_top{background-color:<?php esc_attr_e( $primary_accent_color ); ?>; }
     body div#border_bottom{background-color:<?php esc_attr_e( $primary_accent_color ); ?>; }
 	.main-header .header-group { background-color:<?php esc_attr_e( $header_color ); ?>; }
-	.style-bookmark .main-header span { color:<?php esc_attr_e( $header_text_color ); ?>; }
+	.sup-header-default,
+	.sup-header-default a,
+	.sup-header-default span { color:<?php esc_attr_e( $header_text_color ); ?>; }
 </style>
 <?php
 }
