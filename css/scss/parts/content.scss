@@ -225,7 +225,16 @@ body div#border_top {
     width: calc(100% - (100vw - 120.5rem));
 	z-index: 9;
 }
-
+@media (min-width: 668px ) and (max-width: 989px){
+	.main-header .header-group{
+		top:5rem;
+	}
+}
+@media (max-width: 989px){
+	.opensansy .main-header sup.sub-header[data-sitename]{
+		font-size:1.2rem;
+	}
+}
 @media (max-width: 667px){
 	body #binder main header.main-header {
 		position: relative;
@@ -261,16 +270,7 @@ body div#border_top {
 	}
 }
 
-@media (min-width: 668px ) and (max-width: 989px){
-	.main-header .header-group{
-		top:5rem;
-	}
-}
-@media (max-width: 989px){
-	.opensansy .main-header sup.sub-header[data-sitename]{
-		font-size:1.2rem;
-	}
-}
+
 
 
 #footer{
