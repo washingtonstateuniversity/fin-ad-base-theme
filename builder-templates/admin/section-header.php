@@ -2,7 +2,7 @@
 global $ttfmake_section_data, $ttfmake_is_js_template;
 ?>
 <style>
-.ttfmake-section.active-false{
+.ttfmake-section.active-false .ttfmake-section-header{
     position: relative;
     opacity: 0.6;
     border: .1rem dashed red;
