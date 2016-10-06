@@ -206,6 +206,10 @@ body #binder header.main-header {
 	background: none;
 	width: calc( 100% - (100vw - 100.7rem) );
 }
+_::-webkit-full-page-media, _:future, :root body #binder header.main-header {
+    width: calc(100% - (100vw - 99rem));
+}
+
 .main-header .header-group {
 	padding: 2rem 0 1.1rem 1.3rem;
 	background-color: rgba(60,133,216,0.62);
@@ -233,6 +237,17 @@ body div#border_top {
     width: calc(100% - (100vw - 120.5rem));
 	z-index: 9;
 }
+
+_::-webkit-full-page-media, _:future, :root body div#border_top {
+    width: calc(100% - (100vw - 120.5rem));
+}
+
+
+
+
+
+
+
 @media (min-width: 668px ) and (max-width: 989px){
 	.main-header .header-group{
 		top:5rem;
@@ -262,6 +277,13 @@ body div#border_top {
 	body #binder header.main-header {
 		width: calc( 100% - (100vw - 80.9rem) );
 	}
+	_::-webkit-full-page-media, _:future, :root body #binder header.main-header {
+		width: calc( 100% - (100vw - 79.2rem) );
+	}
+	_::-webkit-full-page-media, _:future, :root body div#border_top {
+		width: calc( 100% - (100vw - 79.2rem) );
+	}
+
 }
 @media (min-width: 990px ) and (max-width: 1007px){
 	body div#border_top,
@@ -273,8 +295,14 @@ body div#border_top {
 	body #binder header.main-header {
 		width: calc( 100% - (100vw - 80.9rem) );
 	}
+	_::-webkit-full-page-media, _:future, :root body #binder header.main-header { //iOS has no scroll bar ``/
+		width: calc( 100% - (100vw - 79.2rem) );
+	}
 	body div#border_top {
 		width: calc( 100% - (100vw - 100.7rem) );
+	}
+	_::-webkit-full-page-media, _:future, :root body div#border_top {
+		width: calc( 100% - (100vw - 99rem) );
 	}
 }
 
