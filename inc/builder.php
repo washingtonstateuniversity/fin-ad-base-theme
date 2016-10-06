@@ -705,11 +705,11 @@ class Fais_Spine_Builder_Custom
 			'items_positioning' => [ 'items-start' => 'items-start', 'items-end' => 'items-end', 'items-center' => 'items-center', 'items-baseline' => 'items-baseline', 'items-stretch' => 'items-stretch' ],
 			'pad' => [
 				'type' => [ '_' => 'inherited', 'airy' => 'airy (2em)', 'tight' => 'tight (1em)', 'no' => 'remove (0em)' ],
-				'position' => [ '_' => 'All', 'L' => 'Left', 'R' => 'Right', 'T' => 'Top', 'B' => 'Bottom', 'LR' => 'Flanks/Sides', 'TB' => 'Ends/Head-foot' ],
+				'position' => [ '_' => 'All', 'l' => 'Left', 'r' => 'Right', 't' => 'Top', 'b' => 'Bottom', 'lr' => 'Flanks/Sides', 'tb' => 'Ends/Head-foot' ],
 			],
 			'round' => [
 				'type' => [ '_' => 'inherited', 'wide' => 'wide (2em)', 'tight' => 'tight (1em)', 'mini' => 'mini (0.5em)', 'no' => 'remove (0em)' ],
-				'position' => [ '_' => 'All', 'L' => 'Left Side', 'R' => 'Right Side', 'T' => 'Top', 'B' => 'Bottom', 'TL' => 'Top Left', 'BL' => 'Bottom Left', 'TR' => 'Top Right', 'BR' => 'Bottom Right' ],
+				'position' => [ '_' => 'All', 'l' => 'Left Side', 'r' => 'Right Side', 't' => 'Top', 'b' => 'Bottom', 'tl' => 'Top Left', 'bl' => 'Bottom Left', 'tr' => 'Top Right', 'bt' => 'Bottom Right' ],
 			],
 		];
 		$at_sizes = [ '320' => '320', '360' => '360', '375' => '375', '384' => '384', '390' => '390', '400' => '400', '414' => '414', '480' => '480', '568' => '568', '600' => '600', '640' => '640', '667' => '667', '695' => '695', '720' => '720', '736' => '736', '768' => '768', '800' => '800', '960' => '960', '1024' => '1024', '1280' => '1280', '1366' => '1366', '1440' => '1440' ];
@@ -901,11 +901,11 @@ class Fais_Spine_Builder_Custom
 			'order' => [ '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10', '11','11', '12' => '12' ],
 			'pad' => [
 				'type' => [ '_' => 'inherited', 'airy' => 'airy (2em)', 'tight' => 'tight (1em)', 'no' => 'remove (0em)' ],
-				'position' => [ '_' => 'All', 'L' => 'Left', 'R' => 'Right', 'T' => 'Top', 'B' => 'Bottom', 'LR' => 'Flanks/Sides', 'TB' => 'Ends/Head-foot' ],
+				'position' => [ '_' => 'All', 'l' => 'Left', 'r' => 'Right', 't' => 'Top', 'b' => 'Bottom', 'lr' => 'Flanks/Sides', 'tb' => 'Ends/Head-foot' ],
 			],
 			'round' => [
 				'type' => [ '_' => 'inherited', 'wide' => 'wide (2em)', 'tight' => 'tight (1em)', 'mini' => 'mini (0.5em)', 'no' => 'remove (0em)' ],
-				'position' => [ '_' => 'All', 'L' => 'Left Side', 'R' => 'Right Side', 'T' => 'Top', 'B' => 'Bottom', 'TL' => 'Top Left', 'BL' => 'Bottom Left', 'TR' => 'Top Right', 'BR' => 'Bottom Right' ],
+				'position' => [ '_' => 'All', 'l' => 'Left Side', 'r' => 'Right Side', 't' => 'Top', 'b' => 'Bottom', 'tl' => 'Top Left', 'bl' => 'Bottom Left', 'tr' => 'Top Right', 'br' => 'Bottom Right' ],
 			],
 		];
 		$at_sizes = [ '320' => '320', '360' => '360', '375' => '375', '384' => '384', '390' => '390', '400' => '400', '414' => '414', '480' => '480', '568' => '568', '600' => '600', '640' => '640', '667' => '667', '695' => '695', '720' => '720', '736' => '736', '768' => '768', '800' => '800', '960' => '960', '1024' => '1024', '1280' => '1280', '1366' => '1366', '1440' => '1440' ];

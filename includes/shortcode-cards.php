@@ -32,7 +32,7 @@ function cards_shortcode( $atts, $content ) {
 			</svg>
 		<?php endif; ?>
     </div>
-    <div class="flex-column items-start thirds-2 pad-tight-L profile-summary">
+    <div class="flex-column items-start thirds-2 pad-tight-l profile-summary">
 		<?php if ( false !== $att['position'] && '' !== $att['position'] ) :  ?>
 			<h3><?php esc_attr_e( $att['position'] ); ?></h3>
 		<?php endif; ?>

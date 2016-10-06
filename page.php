@@ -6,7 +6,7 @@
 	<?php get_template_part( 'parts/featured-images' ); ?>
 
 	<section class="page type-page">
-		<div id="builder-section-shim" class="flex-row pad-TB">
+		<div id="builder-section-shim" class="flex-row pad-tb">
 			<div class="grid-part fifths-3 full-width-at-600">
 				<?php while ( have_posts() ) : the_post(); ?>
 					<?php get_template_part( 'articles/article' ); ?>

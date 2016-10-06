@@ -9,7 +9,7 @@
 <?php get_template_part( 'parts/headers' ); ?>
 <?php get_template_part( 'parts/featured-images' ); ?>
 
-<section class="flex-row pad-TB">
+<section class="flex-row pad-tb">
 
 	<div class="grid-part fifths-3 full-width-at-600">
 
