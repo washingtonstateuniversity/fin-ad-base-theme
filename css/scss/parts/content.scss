@@ -95,8 +95,14 @@ content: counter(nn_counter) "";
 }
 
 
-
-
+//auto header
+#content_area > .column-section > .grid-part > h1, #content_area > .column-section > .grid-part > h2 {
+	box-shadow: none !important;
+	box-sizing: border-box;
+	position: relative;
+	padding: 0 !important;
+	margin-bottom: 1rem !important;
+}
 
 #content_area, .content_less [id^='builder-section']{
 	box-shadow: inset 0 0 .5rem .2rem rgba(50, 50, 50, 0.75);
@@ -206,11 +212,17 @@ body #binder header.main-header {
 	max-width: 100%;
 }
 
+span.sub-header-default {
+    font-size: 2.3rem;
+    font-weight: 700;
+    padding-bottom: 0.2rem;
+	margin-top: -0.7rem;
+}
 :nth-child(1).sup-header-default,
 :nth-child(1).sup-header-default a,
 :nth-child(1).sup-header-default span  {
-	font-size: 3.5rem;
-	margin-top: 1.5rem;
+    font-size: 1.6rem;
+    margin-top: 1.5rem;
 }
 
 body div#border_top {
