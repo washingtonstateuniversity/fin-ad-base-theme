@@ -72,7 +72,7 @@ global $ttfmake_section_data, $ttfmake_is_js_template;
 
 <?php if ( ! isset( $ttfmake_is_js_template ) || true !== $ttfmake_is_js_template ) : ?>
 
-<?php $active = isset( $ttfmake_section_data['data']['section-active'] ) ? $ttfmake_section_data['data']['section-active'] : 'false' ?>
+<?php $active = isset( $ttfmake_section_data['data']['section-active'] ) ? $ttfmake_section_data['data']['section-active'] : 'true' ?>
 
 <div class="ttfmake-section <?php echo 'active-'.$active; ?> <?php
 if ( isset( $ttfmake_section_data['data']['state'] ) && 'open' === $ttfmake_section_data['data']['state'] ) { echo 'ttfmake-section-open'; } ?> ttfmake-section-<?php esc_attr_e( $ttfmake_section_data['section']['id'] ); ?>" id="<?php esc_attr_e( 'ttfmake-section-' . $ttfmake_section_data['data']['id'] ); ?>" data-id="<?php esc_attr_e( $ttfmake_section_data['data']['id'] ); ?>" data-section-type="<?php esc_attr_e( $ttfmake_section_data['section']['id'] ); ?>">
