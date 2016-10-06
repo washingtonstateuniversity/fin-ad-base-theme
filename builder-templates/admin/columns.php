@@ -60,13 +60,14 @@ $section_order  = ( ! empty( $ttfmake_section_data['data']['columns-order'] ) ) 
     position:relative;
 }
 .wsuwp-spine-column-stage:before {
-    content: "Section area";
+	content: "Section area";
     position: absolute;
-    top: -20px;
-    left: calc( 50% - 44px);
-    background: #a8a8a8;
+    top: -28px;
+    left: calc( 50% - 40px);
+    background: rgba(168, 168, 168, 0.45);
     color: #fff;
     padding: 5px 10px;
+    font-size: 0.8rem;
 }
 
 .wsuwp-spine-builder-column {
@@ -75,12 +76,16 @@ $section_order  = ( ! empty( $ttfmake_section_data['data']['columns-order'] ) ) 
 }
 .wsuwp-spine-builder-column:before {
     content: "Column area";
-    position: absolute;
-    top: -20px;
-    left: calc( 50% - 44px);
-    background: #a8a8a8;
-    color: #fff;
+	position: absolute;
+    top: 8px;
+    left: -2px;
+    background: rgb(238, 238, 238);
     padding: 5px 10px;
+    font-size: 0.8rem;
+    z-index: 9;
+    border: 1px solid #d9d9d9;
+    border-right: none;
+    color: #494949;
 }
 
 
