@@ -73,6 +73,6 @@ if ( $posts ) : ?>
 <?php
 // No events were found.
 else : ?>
-	<p><?php printf( esc_html__( 'There are no upcoming %s at this time.', 'the-events-calendar' ), esc_attr_e( $events_label_plural_lowercase ) ); ?></p>
+	<p><?php printf( esc_html__( 'There are no upcoming %s at this time.', 'the-events-calendar' ), esc_attr__( $events_label_plural_lowercase ) ); ?></p>
 <?php
 endif;
