@@ -1,10 +1,83 @@
 <?php
 global $ttfmake_section_data, $ttfmake_is_js_template;
 ?>
+<style>
+.ttfmake-section.active-false{
+    position: relative;
+    opacity: 0.6;
+    border: .1rem dashed red;
+}
+.ttfmake-section.active-false:before {
+    content: "Inactive!";
+    position: absolute;
+    top: 0.9rem;
+    left: -.1rem;
+    background: rgba(216, 17, 17, 0.93);
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    z-index: 9;
+    border: 1px solid #560a0a;
+    border-left: none;
+    color: #e2e2e2;
+    font-weight: 600;
+}
+.wsuwp-spine-column-stage {
+    border: 1px solid #a8a8a8;
+    position:relative;
+}
+.wsuwp-spine-column-stage:before {
+	content: "Section area";
+    position: absolute;
+    top: -28px;
+    left: calc( 50% - 40px);
+    background: rgba(168, 168, 168, 0.45);
+    color: #fff;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+}
+
+.wsuwp-spine-builder-column {
+    border: 1px solid #a8a8a8;
+    position:relative;
+}
+.wsuwp-spine-builder-column:before {
+    content: "Column area";
+	position: absolute;
+    top: .5rem;
+    left: -.1rem;
+    background: rgb(238, 238, 238);
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    z-index: 9;
+    border: 1px solid #d9d9d9;
+    border-right: none;
+    color: #494949;
+}
+
+
+.wsuwp-spine-builder-column.pad-no:before {
+    top: 0;
+}
+.wsuwp-spine-builder-column.pad-hair:before {
+    top: .2rem;
+}
+.wsuwp-spine-builder-column.pad-tight:before {
+    top: .8rem;
+}
+.wsuwp-spine-builder-column.pad-airy:before {
+    top: 1.6rem;
+}
+
+</style>
 
 <?php if ( ! isset( $ttfmake_is_js_template ) || true !== $ttfmake_is_js_template ) : ?>
-<div class="ttfmake-section <?php
+
+<?php $active = isset( $ttfmake_section_data['data']['section-active'] ) ? $ttfmake_section_data['data']['section-active'] : 'false' ?>
+
+<div class="ttfmake-section <?php echo 'active-'.$active; ?> <?php
 if ( isset( $ttfmake_section_data['data']['state'] ) && 'open' === $ttfmake_section_data['data']['state'] ) { echo 'ttfmake-section-open'; } ?> ttfmake-section-<?php esc_attr_e( $ttfmake_section_data['section']['id'] ); ?>" id="<?php esc_attr_e( 'ttfmake-section-' . $ttfmake_section_data['data']['id'] ); ?>" data-id="<?php esc_attr_e( $ttfmake_section_data['data']['id'] ); ?>" data-section-type="<?php esc_attr_e( $ttfmake_section_data['section']['id'] ); ?>">
+
+
 	<?php endif; ?>
 	<?php
 	/**

@@ -77,12 +77,14 @@ class Fais_Spine_Builder_Custom
 				}
 
 				$section['section-position'] = 'banner' === $section['section-type'] ? '' : 'content';
+				$section['section-active'] = 'true';
 
 				if ( false !== strpos( trim( $section['section-classes'] ), 'gutter pad-top' ) ) {
 					$section['section-classes'] = implode( '',explode( 'gutter pad-top',$section['section-classes'] ) );
 				}
 				$section['section-classes'] = 'flex-row items-start pad-tight '.$section['section-classes'];
 				$section['section-layout'] = null;
+
 				$needed_conversion = true;
 				$section_data[ $id ] = $section;
 			}
@@ -451,6 +453,10 @@ class Fais_Spine_Builder_Custom
 			$clean_data['section-position'] = $this->clean_classes( $data['section-position'] );
 		}
 
+		if ( isset( $data['section-active'] ) ) {
+			$clean_data['section-active'] = $this->clean_classes( $data['section-active'] );
+		}
+
 		if ( isset( $data['section-attr'] ) ) {
 			$clean_data['section-attr'] = $this->clean_attr( $data['section-attr'] );
 		}
@@ -569,6 +575,10 @@ class Fais_Spine_Builder_Custom
 			$clean_data['section-position'] = $this->clean_classes( $data['section-position'] );
 		}
 
+		if ( isset( $data['section-active'] ) ) {
+			$clean_data['section-active'] = $this->clean_classes( $data['section-active'] );
+		}
+
 		if ( isset( $data['section-attr'] ) ) {
 			$clean_data['section-attr'] = $this->clean_attr( $data['section-attr'] );
 		}
@@ -664,6 +674,10 @@ class Fais_Spine_Builder_Custom
 
 		if ( isset( $data['section-position'] ) ) {
 			$clean_data['section-position'] = $this->clean_classes( $data['section-position'] );
+		}
+
+		if ( isset( $data['section-active'] ) ) {
+			$clean_data['section-active'] = $this->clean_classes( $data['section-active'] );
 		}
 
 		if ( isset( $data['section-attr'] ) ) {
@@ -1297,17 +1311,32 @@ function fais_spine_output_builder_section_flextree( $section_name, $ttfmake_sec
 		$current_position = 'content';
 	}
 
+	if ( isset( $ttfmake_section_data['data']['section-active'] ) && '' !== $ttfmake_section_data['data']['section-active'] ) {
+		$current_active = $ttfmake_section_data['data']['section-active'];
+	} else {
+		$current_active = 'true';
+	}
+
 	?>
 
-
+	<div class="wsuwp-builder-meta">
+		<label for="<?php esc_attr_e( $section_name ); ?>[section-active]">Active</label>
+		<select id="<?php esc_attr_e( $section_name ); ?>[section-active]"
+		        name="<?php esc_attr_e( $section_name ); ?>[section-active]"
+		        class="">
+		    <option value="false" <?php selected( $current_active, 'false' ); ?>>false</option>
+			<option value="true" <?php selected( $current_active, 'true' ); ?>>true</option>
+		</select>
+		<p class="description">This will turn off the output of the section on the front facing side.</p>
+	</div>
 	<div class="wsuwp-builder-meta">
 		<label for="<?php esc_attr_e( $section_name ); ?>[section-position]">Section Bins</label>
 		<select id="<?php esc_attr_e( $section_name ); ?>[section-position]"
 		        name="<?php esc_attr_e( $section_name ); ?>[section-position]"
 		        class="">
-		    <option value="before" <?php selected( esc_attr( $current_position ), 'before' ); ?>>Before Content</option>
-			<option value="content" <?php selected( esc_attr( $current_position ), 'content' ); ?>>Content</option>
-			<option value="after" <?php selected( esc_attr( $current_position ), 'after' ); ?>>After Content</option>
+		    <option value="before" <?php selected( $current_position, 'before' ); ?>>Before Content</option>
+			<option value="content" <?php selected( $current_position, 'content' ); ?>>Content</option>
+			<option value="after" <?php selected( $current_position, 'after' ); ?>>After Content</option>
 		</select>
 		<p class="description">Set the bins to put the section in. `<?php esc_attr_e( strtoupper( 'content' ) ); ?>` by default.  It will still output in the order set, but only in the bin it is set to.</p>
 	</div>

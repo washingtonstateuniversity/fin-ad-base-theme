@@ -1,6 +1,17 @@
 <?php
 global $ttfmake_section_data, $ttfmake_sections;
 
+$active = 'true';
+if ( isset( $ttfmake_section_data['section-active'] ) && 'false' === $ttfmake_section_data['section-active'] ) {
+	$active = 'false';
+}
+
+if ( 'false' === $active ) {
+	?><!-- hidden section (<?php echo $ttfmake_section_data['section-type']; ?>) --><?php
+
+} else {
+
+
 // Default to sidebar right if a section type has not been specified.
 $section_type = ( isset( $ttfmake_section_data['section-type'] ) ) ? $ttfmake_section_data['section-type'] : 'faiswsuwpsidebarright';
 
@@ -123,3 +134,5 @@ if ( '' === $section_id ) {
 	?>
 	</section>
 <?php
+
+}

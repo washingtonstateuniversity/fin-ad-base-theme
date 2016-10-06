@@ -54,44 +54,6 @@ $section_name   = ttfmake_get_section_name( $ttfmake_section_data, $ttfmake_is_j
 $section_order  = ( ! empty( $ttfmake_section_data['data']['columns-order'] ) ) ? $ttfmake_section_data['data']['columns-order'] : range( 1, $wsuwp_range );
 
 ?>
-<style>
-.wsuwp-spine-column-stage {
-    border: 1px solid #a8a8a8;
-    position:relative;
-}
-.wsuwp-spine-column-stage:before {
-	content: "Section area";
-    position: absolute;
-    top: -28px;
-    left: calc( 50% - 40px);
-    background: rgba(168, 168, 168, 0.45);
-    color: #fff;
-    padding: 5px 10px;
-    font-size: 0.8rem;
-}
-
-.wsuwp-spine-builder-column {
-    border: 1px solid #a8a8a8;
-    position:relative;
-}
-.wsuwp-spine-builder-column:before {
-    content: "Column area";
-	position: absolute;
-    top: 8px;
-    left: -2px;
-    background: rgb(238, 238, 238);
-    padding: 5px 10px;
-    font-size: 0.8rem;
-    z-index: 9;
-    border: 1px solid #d9d9d9;
-    border-right: none;
-    color: #494949;
-}
-
-
-
-
-</style>
 
 	<div class="wsuwp-spine-column-stage <?php esc_attr_e( $section_flextype ) ?>">
     <?php $j = 1; foreach ( $section_order as $key => $i ) : ?>
