@@ -29,10 +29,10 @@
 <!-- polyfill for min/max-width CSS3 Media Queries -->
     <!--[if lt IE 9]><script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 
-
+<?php $flex_dev = is_development() ? 'dev/' : '';?>
 <!-- polyfill for flex-box -->
     <!--[if lt IE 10]>
-        <link href="https://webcore.fais.wsu.edu/resources/flexwork/extra/flexwork-ie9-.support.css" rel="stylesheet" type="text/css" />
+        <link href="https://webcore.fais.wsu.edu/resources/flexwork/<?php echo $flex_dev;?>extra/flexwork-ie9-.support.css" rel="stylesheet" type="text/css" />
     <![endif]-->
 
 
