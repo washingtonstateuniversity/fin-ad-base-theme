@@ -136,7 +136,9 @@ console.log(data);
 	$(function(){
 
 
-
+$(".folding>*>*").on("click",function(){
+	$(this).toggleClass("unfolded");
+});
 
 		if ($.browser.msie && $.browser.version == 9) {
 			$('html').addClass('ie9');

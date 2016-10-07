@@ -1,0 +1,21 @@
+//simple actions
+.folding > * {
+	> *:nth-child(1) + *  {
+		height: 0;
+		overflow: hidden;
+		padding: 0;
+		margin: 0;
+	}
+	> *:nth-child(1){
+		cursor:pointer;
+		margin: 0;
+		&:hover{
+			opacity: .85;
+		}
+	}
+}
+.folding .unfolded + * {
+	height: 100%;
+	overflow: visible;
+	transition: height 1s ease-in-out;
+}

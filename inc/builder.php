@@ -900,6 +900,9 @@ class Fais_Spine_Builder_Custom
 		<?php
 	}
 	public function build_flexwork_column_inputs( $field_name, $column_class_str = '' ) {
+
+/*@todo add a type by type default setting map*/
+
 		//'flex-row wrap-reverse justify-start content-start items-start pad-airy-TB round-wide-L round-no-at-414'
 		$setion_flex_options = [
 			'width' => [
