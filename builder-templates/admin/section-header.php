@@ -38,10 +38,23 @@ global $ttfmake_section_data, $ttfmake_is_js_template;
     padding: 5px 10px;
     font-size: 0.8rem;
 }
-
+.wsuwp-spine-column-stage{
+    background: #fff5f5;
+    color: white;
+    background: repeating-linear-gradient( 135deg, #efdbea, #efdbea 3px, #edf1f3 3px, #f9f9fb 15px );
+}
+.wsuwp-spine-column-stage:after {
+    content: "\{\ column-padding";
+    position: absolute;
+    top: -11px;
+    left: 6px;
+    color: #000;
+    background: rgba(255, 255, 255, 0.72);
+}
 .wsuwp-spine-builder-column {
     border: 1px solid #a8a8a8;
-    position:relative;
+    position: relative;
+    background: #fff;
 }
 .wsuwp-spine-builder-column:before {
     content: "Column area";
