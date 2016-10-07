@@ -79,11 +79,6 @@ content: counter(nn_counter) "";
     left: -2rem;
 }
 
-.ie .nice-number>dd:before,.ie .nice-number>li:before {
-    height: 1.3rem;
-    padding-top: 0.65rem;
-}
-
 .ie .nice-number.large>dd:before,.ie .nice-number.large>li:before {
     height: 1.9rem;
     padding-top: 1rem;
