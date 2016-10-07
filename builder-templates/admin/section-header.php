@@ -117,13 +117,13 @@ global $ttfmake_section_data, $ttfmake_is_js_template;
 .wsuwp-spine-column-stage{
     background: #fff5f5;
     border-radius: .5rem;
-    background: repeating-linear-gradient( 135deg, rgb(219, 222, 212), rgb(219, 222, 212) 3px, rgba(255, 255, 255, 0.4) 3px, rgba(255, 255, 255, 0.4) 15px );
+    background: repeating-linear-gradient( 135deg, rgb(219, 222, 212), rgb(219, 222, 212) 3px, rgba(255, 255, 255, 0.4) 3px, rgba(255, 255, 255, 0.4) 15px ), linear-gradient(to right, #dedede, #dedede);
 	    box-shadow: inset 0 0 .5rem .2rem rgba(50,50,50,.55);
 }
 
 .wsuwp-spine-builder-column {
 	background: #fff5f5;
-    background: repeating-linear-gradient( 45deg, rgba(200, 200, 200, 0.2), rgba(200, 200, 200, 0.2) 3px, rgba(255, 255, 255, 0.2) 3px, rgba(255, 255, 255, 0.2) 15px );
+    background: repeating-linear-gradient( 45deg, rgba(200, 200, 200, 0.2), rgba(200, 200, 200, 0.2) 3px, rgba(255, 255, 255, 0.2) 3px, rgba(255, 255, 255, 0.2) 15px ), linear-gradient(to right, #dedede, #dedede);
 }
 .box-model-part-content{
 
