@@ -79,6 +79,14 @@ content: counter(nn_counter) "";
     left: -2rem;
 }
 
+.ie9 .nice-number.large>dd:before,.ie9 .nice-number.large>li:before {
+    height: 1.9rem;
+    padding-top: 1rem;
+}
+
+
+
+
 
 .nice-table > :last-child {
 	border-right: none;
