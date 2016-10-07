@@ -239,7 +239,7 @@ body div#border_top {
 }
 
 _::-webkit-full-page-media, _:future, :root body div#border_top {
-    width: calc(100% - (100vw - 120.5rem));
+    width: calc(100% - (100vw - 118.8rem));
 }
 
 
@@ -305,7 +305,10 @@ _::-webkit-full-page-media, _:future, :root body div#border_top {
 		width: calc( 100% - (100vw - 99rem) );
 	}
 }
-
+#binder:after, .clearfix:after, .rebound:after, .row:not(.clear-none):after, main:after {
+    clear: both;
+    top: 0;
+}
 
 
 
