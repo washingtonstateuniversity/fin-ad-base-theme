@@ -1398,7 +1398,7 @@ function fais_spine_output_builder_section_background( $section_name, $ttfmake_s
 
 add_filter( 'tiny_mce_before_init', 'custom_edit_page_js', 9999 );
 function custom_edit_page_js( $opt ) {
-
+$flex_dev = is_development() ? 'dev/' : '';
 	$background_url = fais_spine_get_option( 'background_url', false );
 	$background_color = fais_spine_get_option( 'background_color', '#9bbdf5' );
 	$secoundary_accent_color = fais_spine_get_option( 'secoundary_accent_color', '#1122a3' );
@@ -1408,7 +1408,15 @@ function custom_edit_page_js( $opt ) {
 	$jacket_background_url = fais_spine_get_option( 'jacket_background_url', false );
 
 	$opt['content_style'] = 'body { background-color:#dedede !important;} .primary-accent-bk {background-color:'.$primary_accent_color.'; } .secoundary-accent-bk {background-color:'.$secoundary_accent_color.'; } .primary-accent-text{color:'.$primary_accent_color.'; } .secoundary-accent-text{color:'.$secoundary_accent_color.'; }' ;
-$opt['content_css'] = $opt['content_css'].',//fonts.googleapis.com/css?family=Open+Sans%3A100%2C200%2C300%2C400%2C500%2C600%2C700%2C800%2C900&#038;ver=4.5.2';
+
+	$opt['content_css'] = $opt['content_css'].',//fonts.googleapis.com/css?family=Open+Sans%3A100%2C200%2C300%2C400%2C500%2C600%2C700%2C800%2C900&#038;ver=4.5.2';
+	$opt['content_css'] = $opt['content_css'].',//wp.wsu.dev/wp-content/themes/spine/style.css?ver='.spine_get_script_version();
+	$opt['content_css'] = $opt['content_css'].',//wp.wsu.dev/wp-content/themes/spine/styles/bookmark.css?ver='.spine_get_script_version();
+	$opt['content_css'] = $opt['content_css'].',//webcore.fais.wsu.edu/resources/flexwork/'.$flex_dev .'flexwork-devices-light.css?ver='.spine_get_script_version();
+	$opt['content_css'] = $opt['content_css'].',//webcore.fais.wsu.edu/resources/flexwork/'.$flex_dev .'extra/flexwork-typography.css?ver='.spine_get_script_version();
+	$opt['content_css'] = $opt['content_css'].',//webcore.fais.wsu.edu/resources/flexwork/'.$flex_dev .'extra/flexwork-ui.css?ver='.spine_get_script_version();
+	$opt['content_css'] = $opt['content_css'].',/wp-content/themes/fin-ad-base-theme/style.css?ver='.spine_get_script_version();
+
 	return $opt;
 }
 

@@ -78,6 +78,7 @@ $section_order  = ( ! empty( $ttfmake_section_data['data']['columns-order'] ) ) 
 	}
 	?>
 			<div class="wsuwp-spine-builder-column wsuwp-spine-builder-column-position-<?php esc_attr_e( $j ); ?> <?php esc_attr_e( $column_flextype ); ?>" data-id="<?php esc_attr_e( $i ); ?>">
+			<div class="box-model-part-content">
 				<div title="<?php esc_attr_e( 'Drag-and-drop this column into place', 'ttfmake' ); ?>" class="ttfmake-sortable-handle">
                     <div class="sortable-background">
                         <a href="#" class="spine-builder-column-configure"><span>Configure this column</span></a>
@@ -123,6 +124,7 @@ $section_order  = ( ! empty( $ttfmake_section_data['data']['columns-order'] ) ) 
                     </div>
                 </div>
             </div>
+			</div>
     <?php
 	$j++;
 	endforeach; ?>

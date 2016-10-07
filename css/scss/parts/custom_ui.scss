@@ -1,5 +1,5 @@
 //simple actions
-.folding > * {
+body:not(#tinymce) .folding > * {
 	> *:nth-child(1) + *  {
 		height: 0;
 		overflow: hidden;
@@ -14,7 +14,7 @@
 		}
 	}
 }
-.folding .unfolded + * {
+body:not(#tinymce) .folding .unfolded + * {
 	height: 100%;
 	overflow: visible;
 	transition: height 1s ease-in-out;

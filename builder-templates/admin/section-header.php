@@ -2,6 +2,9 @@
 global $ttfmake_section_data, $ttfmake_is_js_template;
 ?>
 <style>
+
+
+
 .ttfmake-section.active-false{
 	position: relative;
 }
@@ -25,7 +28,7 @@ global $ttfmake_section_data, $ttfmake_is_js_template;
     font-weight: 600;
 }
 .wsuwp-spine-column-stage {
-    border: 1px solid #a8a8a8;
+    border: 1px solid #cccbcb;
     position:relative;
 }
 .wsuwp-spine-column-stage:before {
@@ -38,51 +41,127 @@ global $ttfmake_section_data, $ttfmake_is_js_template;
     padding: 5px 10px;
     font-size: 0.8rem;
 }
-.wsuwp-spine-column-stage{
-    background: #fff5f5;
-    color: white;
-    background: repeating-linear-gradient( 135deg, #efdbea, #efdbea 3px, #edf1f3 3px, #f9f9fb 15px );
-}
-.wsuwp-spine-column-stage:after {
-    content: "\{\ column-padding";
-    position: absolute;
-    top: -11px;
-    left: 6px;
-    color: #000;
-    background: rgba(255, 255, 255, 0.72);
-}
+
+
 .wsuwp-spine-builder-column {
-    border: 1px solid #a8a8a8;
+    border: 1px dashed rgba(119, 119, 119, 0.81);
     position: relative;
     background: #fff;
 }
 .wsuwp-spine-builder-column:before {
-    content: "Column area";
+	content: "Column area";
 	position: absolute;
-    top: .5rem;
-    left: -.1rem;
-    background: rgb(238, 238, 238);
-    padding: 5px 10px;
-    font-size: 0.8rem;
-    z-index: 9;
-    border: 1px solid #d9d9d9;
-    border-right: none;
-    color: #494949;
+	top: 1rem;
+	left: 1rem;
+	background: rgb(238, 238, 238);
+	padding: 5px 10px;
+	font-size: 0.8rem;
+	z-index: 9;
+	border: 1px solid #d9d9d9;
+	border-right: none;
+	color: #494949;
 }
 
 
-.wsuwp-spine-builder-column.pad-no:before {
-    top: 0;
+.wsuwp-spine-builder-column:before,
+.wsuwp-spine-builder-column.pad-no:before,
+.wsuwp-spine-builder-column.no-pad:before {
+    top: 0rem;
+    left: 0rem;
 }
 .wsuwp-spine-builder-column.pad-hair:before {
-    top: .2rem;
+    top: 0.2rem;
+    left: 0.2rem;
 }
 .wsuwp-spine-builder-column.pad-tight:before {
-    top: .8rem;
+    top: 0.8rem;
+    left: 0.8rem;
 }
 .wsuwp-spine-builder-column.pad-airy:before {
-    top: 1.6rem;
+	top: 1.6rem;
+    left: 1.6rem;
 }
+
+.wsuwp-spine-column-stage:after,
+.wsuwp-spine-builder-column:after {
+
+    position: absolute;
+
+    color: #000;
+    background: rgba(255, 255, 255, 1);
+    border: 1px solid #494949;
+
+
+    padding-top: 0;
+    line-height: 11px;
+	z-index: 9;
+}
+
+.wsuwp-spine-column-stage:after {
+	content: "section-padding\ \}\ ";
+    top: -8px;
+    right: 6px;
+    border-right: none;
+    padding-left: .5rem;
+    text-indent: -2px;
+}
+.wsuwp-spine-builder-column:after {
+    content: "\{\ column-padding";
+    top: -8px;
+    left: 6px;
+    border-left: none;
+	padding-right: .5rem;
+	text-indent: -4px;
+}
+
+.wsuwp-spine-column-stage{
+    background: #fff5f5;
+    border-radius: .5rem;
+    background: repeating-linear-gradient( 135deg, rgb(219, 222, 212), rgb(219, 222, 212) 3px, rgba(255, 255, 255, 0.4) 3px, rgba(255, 255, 255, 0.4) 15px );
+	    box-shadow: inset 0 0 .5rem .2rem rgba(50,50,50,.55);
+}
+
+.wsuwp-spine-builder-column {
+	background: #fff5f5;
+    background: repeating-linear-gradient( 45deg, rgba(200, 200, 200, 0.2), rgba(200, 200, 200, 0.2) 3px, rgba(255, 255, 255, 0.2) 3px, rgba(255, 255, 255, 0.2) 15px );
+}
+.box-model-part-content{
+
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-position: bottom right, left, right;
+background: linear-gradient(to right, rgba(255,255,255,.3), rgba(255,255,255,.3)), linear-gradient(to right, #dedede, #dedede);
+    padding: 0;
+}
+.ttfmake-section-open .ttfmake-section-body {
+    height: auto;
+    padding: 0 !important;
+    border-radius: .5rem;
+}
+.tfmake-section.ttfmake-section-open {
+
+    border-radius:  0 0 .5rem .5rem;
+}
+
+.ttfmake-section-body {
+	background: #dedede;
+	padding-bottom: 3.4rem;
+}
+/*media all*/
+#tinymce {
+
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-position: bottom right, left, right;
+background: linear-gradient(to right, rgba(255,255,255,.3), rgba(255,255,255,.3)), linear-gradient(to right, #dedede, #dedede);
+}
+
+
+}
+
+iframe[id^="ttfmakeeditortext14666957786431_ifr"]{
+	background: transparent;
+}
+
+
 
 </style>
 
