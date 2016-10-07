@@ -126,10 +126,9 @@ global $ttfmake_section_data, $ttfmake_is_js_template;
     background: repeating-linear-gradient( 45deg, rgba(200, 200, 200, 0.2), rgba(200, 200, 200, 0.2) 3px, rgba(255, 255, 255, 0.2) 3px, rgba(255, 255, 255, 0.2) 15px ), linear-gradient(to right, #dedede, #dedede);
 }
 .box-model-part-content{
-
-  background-repeat: no-repeat, no-repeat, no-repeat;
-  background-position: bottom right, left, right;
-background: linear-gradient(to right, rgba(255,255,255,.3), rgba(255,255,255,.3)), linear-gradient(to right, #dedede, #dedede);
+	background-repeat: no-repeat, no-repeat, no-repeat;
+	background-position: bottom right, left, right;
+	background: linear-gradient(to right, rgba(255,255,255,.3), rgba(255,255,255,.3)), linear-gradient(to right, #dedede, #dedede);
     padding: 0;
 }
 .ttfmake-section-open .ttfmake-section-body {

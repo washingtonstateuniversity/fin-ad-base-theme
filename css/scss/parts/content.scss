@@ -11,27 +11,15 @@ body{
 	box-shadow: rgb(0, 0, 0) 0 -.2rem 2.9rem;
 }
 
-
+main {
+	background: #dedede;
+	padding-bottom: 3.4rem;
+}
 
 .nice-table {
 	border-bottom: .2rem solid #393939 !important;
 	margin-bottom: .8rem;
 
-}
-
-
-.ttfmake-section-body {
-	background: #dedede;
-	padding-bottom: 3.4rem;
-}
-/*media all*/
-#tinymce {
-
-background: linear-gradient(to right, rgba(255,255,255,.3), rgba(255,255,255,.3)), linear-gradient(to right, #dedede, #dedede);
-}
-
-iframe[id^="ttfmakeeditortext14666957786431_ifr"]{
-	background: transparent;
 }
 
 .nice-table.head > * {
