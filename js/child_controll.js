@@ -140,9 +140,11 @@ $(".folding>*>*").on("click",function(){
 	$(this).toggleClass("unfolded");
 });
 
+$(".folding>*>*").on("click",function(){
+	$(this).toggleClass("unfolded");
+});
 
-
-
+$('html').attr('data-useragent',navigator.userAgent);
 
 
 

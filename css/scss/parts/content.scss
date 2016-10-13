@@ -129,7 +129,11 @@ content: counter(nn_counter) "";
 #content_area, [id^='builder-section'].row, [id$=""]:not(#content_area) [id^='builder-section'].flex-row, .content_less [id^='builder-section'] {margin-top: 3.7rem;}
 .type-page > .banner-section + #content_area {margin-top: -3.5rem;}
 
-.ie.ie9 .type-page > .banner-section + #content_area {margin-top:0;}
+.ie.ie9 .type-page > .banner-section + #content_area,
+[data-useragent*="Windows NT 6.1"] .type-page > .banner-section + #content_area {margin-top:0;}
+
+
+
 
 #content_area > .banner-section{ overflow-y:hidden; padding:0; }
 #content_area > .banner-section > .banner-column > .builder-section-content > .builder-banner-slide,
