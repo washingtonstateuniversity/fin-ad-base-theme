@@ -36,7 +36,7 @@ main {
 content: counter(nn_counter) "";
 
 }
-
+/*
 .nice-number>dd,.nice-number>li {
     counter-increment: nn_counter;
     list-style: none;
@@ -83,7 +83,7 @@ content: counter(nn_counter) "";
     height: 1.9rem;
     padding-top: 1rem;
 }
-
+*/
 
 
 
@@ -92,13 +92,15 @@ content: counter(nn_counter) "";
 	border-right: none;
 	text-align: left;
 }
+
+/*
 .nice-number>dd, .nice-number>li {
 
     list-style: none;
     position: relative;
     line-height: 1.3rem;
     font-size: 1.3rem;
-}
+}*/
 
 
 //auto header
