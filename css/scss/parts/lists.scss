@@ -19,9 +19,6 @@ address ul li {
     margin: 0;
 }
 
-main ol li, main ul li {
-	//line-height: 1.3rem;
-}
 
 .list-throwback {
 	font-size:#{$root-font-list};
@@ -35,14 +32,7 @@ main ol li, main ul li {
     padding-left: 0;
     list-style: outside;
 }
-/*
-.nice-number {
-    font-size:#{$root-font-list};
-}
 
-.nice-number>dd, .nice-number>li {
-    font-size:1rem;
-}*/
 
 ul .list-throwback, ol .list-throwback,
 ul ul, ol ol,

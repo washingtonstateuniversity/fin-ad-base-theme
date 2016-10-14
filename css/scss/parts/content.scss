@@ -132,9 +132,19 @@ content: counter(nn_counter) "";
 .type-page > .banner-section + #content_area {margin-top: -3.5rem;}
 
 .ie.ie9 .type-page > .banner-section + #content_area {margin-top:0;}
-[data-useragent*="Windows NT 6.1"] .nice-number > dd::before,[data-useragent*="Windows NT 6.1"] .nice-number > li::before{
+/*[data-useragent*="Windows NT 6.1"] .nice-number > dd::before,[data-useragent*="Windows NT 6.1"] .nice-number > li::before{
 	padding:0.5rem 0 0 0.465rem;
 }
+
+[data-useragent*="Windows NT 6.1"] .nice-number>dd::before, [data-useragent*="Windows NT 6.1"] .nice-number>li::before {
+    padding: .12rem 0 0 .495rem;
+}*/
+[data-useragent*="Windows NT 6.1"][data-useragent*="Trident"] .nice-number>dd::before,
+[data-useragent*="Windows NT 6.1"][data-useragent*="Trident"] .nice-number>li::before {
+	padding: .7rem 0 0 .465rem !important;
+}
+
+
 
 #content_area > .banner-section{ overflow-y:hidden; padding:0; }
 #content_area > .banner-section > .banner-column > .builder-section-content > .builder-banner-slide,
@@ -261,7 +271,9 @@ _::-webkit-full-page-media, _:future, :root body div#border_top {
 }
 
 
-
+dl.flex-row, ol.flex-row, ul.flex-row{
+    margin: 0;
+}
 
 @media (min-width: 668px ) and (max-width: 989px){
 	.main-header .header-group{
