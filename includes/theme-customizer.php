@@ -311,7 +311,7 @@ class Fais_Spine_Theme_Customizer {
 
 		// background image
 		$wp_customize->add_setting( 'spine_options[flexwork_coverage]', array(
-			'default' => 'devices-light',
+			'default' => 'devices-lite',
 			'capability' => 'edit_theme_options',
 			'type' => 'option',
 		) );
@@ -321,8 +321,8 @@ class Fais_Spine_Theme_Customizer {
 			'settings' => 'spine_options[flexwork_coverage]',
 			'type'     => 'select',
 			'choices'  => array(
-				'light'  => 'the 5 most common viewport widths',
-				'devices-light'  => 'top 10 device widths',
+				'lite'  => 'the 5 most common viewport widths',
+				'devices-lite'  => 'top 10 device widths',
 				'devices'  => '(full) most current device widths',
 				'50s'  => 'increments of 50px plus full devices',
 				'25s'  => 'increments of 25px plus full devices',

@@ -85,7 +85,7 @@ function fais_customizer_enqueue_scripts() {
 	// Javascript resources are output.
 	do_action( 'spine_enqueue_styles' );
 
-	$coverage = fais_spine_get_option( 'flexwork_coverage', 'devices-light' );
+	$coverage = fais_spine_get_option( 'flexwork_coverage', 'devices-lite' );
 
 	$flex_dev = is_development() ? 'dev/' : '';
 	wp_enqueue_style( 'flexwork-base', 'https://webcore.fais.wsu.edu/resources/flexwork/'.$flex_dev .'flexwork-'.$coverage.'.css', array( 'fais_spine-theme-print' ), spine_get_script_version() );

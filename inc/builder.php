@@ -1412,7 +1412,7 @@ $flex_dev = is_development() ? 'dev/' : '';
 	$opt['content_css'] = $opt['content_css'].',//fonts.googleapis.com/css?family=Open+Sans%3A100%2C200%2C300%2C400%2C500%2C600%2C700%2C800%2C900&#038;ver=4.5.2';
 	$opt['content_css'] = $opt['content_css'].',//wp.wsu.dev/wp-content/themes/spine/style.css?ver='.spine_get_script_version();
 	$opt['content_css'] = $opt['content_css'].',//wp.wsu.dev/wp-content/themes/spine/styles/bookmark.css?ver='.spine_get_script_version();
-	$opt['content_css'] = $opt['content_css'].',//webcore.fais.wsu.edu/resources/flexwork/'.$flex_dev .'flexwork-devices-light.css?ver='.spine_get_script_version();
+	$opt['content_css'] = $opt['content_css'].',//webcore.fais.wsu.edu/resources/flexwork/'.$flex_dev .'flexwork-devices-lite.css?ver='.spine_get_script_version();
 	$opt['content_css'] = $opt['content_css'].',//webcore.fais.wsu.edu/resources/flexwork/'.$flex_dev .'extra/flexwork-typography.css?ver='.spine_get_script_version();
 	$opt['content_css'] = $opt['content_css'].',//webcore.fais.wsu.edu/resources/flexwork/'.$flex_dev .'extra/flexwork-ui.css?ver='.spine_get_script_version();
 	$opt['content_css'] = $opt['content_css'].',/wp-content/themes/fin-ad-base-theme/style.css?ver='.spine_get_script_version();
