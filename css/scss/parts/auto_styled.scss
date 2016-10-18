@@ -81,12 +81,21 @@ img {
     line-height: 1.3;
     padding: 0 .5rem 0 2.1rem;
     min-height: 1.8rem;
-    margin-left: 0.1rem;
     vertical-align: middle;
-    margin-right: .2rem;
     position: relative;
 	text-decoration: none;
 };
+
+@include map-to-selectors($file_map, "", "p > ", "p > a.button, p > a[href^='mailto']:not(.not-autostyle)") {
+	margin-right: .2rem;
+	margin-left: 0.1rem;
+};
+@include map-to-selectors($file_map, "", "li > ", "li > a.button,  li > a[href^='mailto']:not(.not-autostyle)") {
+	margin-right: .2rem;
+	margin-left: 0.1rem;
+};
+
+
 
 @include map-to-selectors($file_map, "", "#spine-navigation ", "") {
 	border:none;
@@ -166,11 +175,11 @@ a[href^="mailto:"]:not(.not-autostyle):before{
 	}
 }
 
-@include map-to-selectors($file_map, "", "p ", "p a.button.news, p a.button.contact, p a.button.docment, p a[href^='mailto:']:not(.not-autostyle)") {
-	margin-top: -.1rem;
+@include map-to-selectors($file_map, "", "p > ", "p > a.button.news, p > a.button.contact, p > a.button.docment, p > a[href^='mailto:']:not(.not-autostyle)") {
+	margin-top: -.3rem;
 };
 
-@include map-to-selectors($file_map, "", "li ", "li a.button.news, li a.button.contact, li a.button.docment, li a[href^='mailto:']:not(.not-autostyle)") {
+@include map-to-selectors($file_map, "", "li > ", "li > a.button.news, li > a.button.contact, li > a.button.docment, li > a[href^='mailto:']:not(.not-autostyle)") {
 	    margin-top: -.3rem;
 };
 
