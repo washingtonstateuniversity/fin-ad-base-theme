@@ -30,7 +30,7 @@ class Fais_Spine_Theme_Customizer {
 	require_once( dirname( __FILE__ ) . '/assets/multi-color-picker/multi-color-picker.php' );
 
 		$wp_customize->add_setting( 'spine_options[megamenu_show]', array(
-			'default' => "true",
+			'default' => 'true',
 			'capability' => 'edit_theme_options',
 			'type' => 'option',
 		) );
@@ -44,8 +44,6 @@ class Fais_Spine_Theme_Customizer {
 				'false'  => 'Don\'t show the megamenu',
 			),
 		) );
-
-
 
 		// background image
 		$wp_customize->add_setting( 'spine_options[background_url]', array(

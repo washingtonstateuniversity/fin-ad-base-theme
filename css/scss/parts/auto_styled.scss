@@ -67,23 +67,26 @@ img {
     width: 100%;
 }
 
-@include map-to-selectors($file_map, "", "", "a[href^='mailto']:not(.not-autostyle)") {
-    background: #eff0f1;
+@include map-to-selectors($file_map, "", "", "a.button,  a[href^='mailto']:not(.not-autostyle)") {
+    background: rgba(255,255,255,.25);
     border-style: solid;
     border-width: .1rem;
-    border-color: #d7dadb #8d959a #8d959a #d7dadb;
+    border-color: rgba(123,123,123,.65);
     border-radius: .5rem;
     color: #981e32;
     display: inline-block;
     text-decoration: none;
     cursor: pointer;
     margin-bottom: 0;
-    line-height: normal;
-    padding: 0 0.4rem;
-    min-height: 2.2rem;
-    margin-left: .2rem;
+    line-height: 1.3;
+    padding: 0 0.5rem;
+    min-height: 1.8rem;
+    margin-left: 0.1rem;
     vertical-align: middle;
     margin-right: .2rem;
+    position: relative;
+    padding-left: 1.8rem;
+	text-decoration: none;
 };
 
 @include map-to-selectors($file_map, "", "#spine-navigation ", "") {
@@ -91,67 +94,33 @@ img {
 	background: transparent;
 };
 
-
-@include map-to-selectors($file_map, "", "", "a.button,
- a[href^='mailto']:not(.not-autostyle),
-.gen_doc") {
-	border-color: #000;
-	border-width: .2rem;
-	font-weight: 700;
-	padding-left: .5rem;
+@include map-to-selectors($file_map, ":hover", "", "a.button:hover, a[href^='mailto']:not(.not-autostyle):hover, .gen_doc:hover") {
+	background:rgba(255,255,255,.75);
 };
 
-@include map-to-selectors($file_map, ":hover", "", "a.button:hover,
-a[href^='mailto']:not(.not-autostyle):hover,
-.gen_doc:hover") {
-	border-color: #000;
-	border-width: .2rem;
-	font-weight: 700;
-};
-
-
-@include map-to-selectors($file_map, ":before", "", "a.button:before,
-a[href^='mailto']:not(.not-autostyle):before,
-.gen_doc:before") {
+@include map-to-selectors($file_map, ":before", "", "a.button:before, a[href^='mailto']:not(.not-autostyle):before, .gen_doc:before") {
 	display: inline-block;
-	font: normal normal normal 1.4rem/1 FontAwesome;
-	text-rendering: auto;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	transform: translate(0, 0);
-	margin-right: .5rem;
-	font-size: 1.9rem;
-	line-height: 2.3rem;
-	color:#000;
+    font: normal normal normal 1.4rem/1 FontAwesome;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform: translate(0,0);
+    margin-right: .5rem;
+    font-size: inherit;
+    line-height: 95%;
+    color: rgba(80,80,80,.95);
+    position: absolute;
+    left: 0.4rem;
+	top: 0.27rem;
 };
 
-@include map-to-selectors($file_map, "", "", "a.button.news,
-a.button.contact,
-a.button.docment,
-#feedback_back_btn,
-.gen_doc") {
-	padding-left: .9rem;
-	text-decoration: none;
-};
-
-
-@include map-to-selectors($file_map, ":before", "#spine-navigation", "#spine-navigation a[href^='mailto']:not(.not-autostyle):before,
-.gen_doc:before,
-#feedback_back_btn:before") {
-	font-size: 1.5rem;
+@include map-to-selectors($file_map, ":before", "#spine-navigation", "#spine-navigation a[href^='mailto']:not(.not-autostyle):before, .gen_doc:before, #feedback_back_btn:before") {
+	top: 0.87rem;
 };
 
 @include map-to-selectors($file_map, "", "#spine-navigation", "#spine-navigation a[href^='mailto']:not(.not-autostyle)") {
-	font-weight: 400;
-    line-height: 1rem;
-    height: auto;
-};
-
-@include map-to-selectors($file_map, ":after", "#spine-navigation", "#spine-navigation a[href^='mailto']:not(.not-autostyle):after") {
-	font-weight: 400;
-    line-height: 1rem;
-    height: auto;
-	margin-top: .6rem;
+	position: relative;
+	padding-left: 2rem;
 };
 
 @include map-to-selectors($file_map, ":before", ".darker #spine-navigation", ".darker #spine-navigation  a[href^='mailto:']:not(.not-autostyle):before") {
@@ -160,7 +129,6 @@ a.button.docment,
 @include map-to-selectors($file_map, ":before", ".dark #spine-navigation", ".dark #spine-navigation  a[href^='mailto:']:not(.not-autostyle):before") {
 	color:#fff;
 };
-
 
 
 a.button.news:before{
@@ -182,14 +150,13 @@ a[href^="mailto:"]:not(.not-autostyle):before{
     content: "\f016";
 }
 //@for $i from 1 to $number {
-@each $_type,$_val in $file_map {
-  $class: "";
-$classed: nth($_val, 2);
+@each $_type, $_val in $file_map {
+	$class: "";
+	$classed: nth($_val, 2);
 
-		$class:  $class + "
-		a.#{$classed}:before,";
+	$class:  $class + " a.#{$classed}:before,";
 
-$exts: nth($_val, 1);
+	$exts: nth($_val, 1);
 	@each $ext in $exts {
 		$class:  $class + "
 		a[href$='.#{$ext}']:not(.not-autostyle):before,";
@@ -198,44 +165,30 @@ $exts: nth($_val, 1);
 	#{$class}{
 	  content: unquote("\"")+unquote(str-insert($_type,"\\", 1))+unquote("\"");
 	}
-
 }
 
-@include map-to-selectors($file_map, "", "p ", "p a.button.news,
-p a.button.contact,
-p a.button.docment,
-p a[href^='mailto:']:not(.not-autostyle)") {
-    line-height: 2rem;
-    padding: 0 0.62rem;
-    margin: -.39rem 0.35rem 0 .25rem;
-    font-size: 1.1rem;
+@include map-to-selectors($file_map, "", "p ", "p a.button.news, p a.button.contact, p a.button.docment, p a[href^='mailto:']:not(.not-autostyle)") {
+	margin-top: -.1rem;
+};
+
+@include map-to-selectors($file_map, "", "li ", "li a.button.news, li a.button.contact, li a.button.docment, li a[href^='mailto:']:not(.not-autostyle)") {
+	    margin-top: -.3rem;
 };
 
 
-@include map-to-selectors($file_map, ":before", "p ", "p a.button.news:before,
-p a.button.contact:before,
-p a.button.docment:before,
-p a[href^='mailto:']:not(.not-autostyle):before") {
-    line-height: 1rem;
-    font-size: 1.5rem;
-};
 
-
-@include map-to-selectors($file_map, ".img-link", "", "a.button.img-link,
-a[href^='mailto']:not(.not-autostyle).img-link,
-.gen_doc.img-link") {
+@include map-to-selectors($file_map, ".img-link", "", "a.button.img-link, a[href^='mailto']:not(.not-autostyle).img-link, .gen_doc.img-link") {
     display: inline-block;
     height: auto;
     padding: 0;
     position:relative;
     text-align: center;
     background: #d4d3d3;
+	margin-top: inherit;
 };
 
 
-@include map-to-selectors($file_map, ".img-link:before", "", "a.button.img-link:before,
-a[href^='mailto']:not(.not-autostyle).img-link:before,
-.gen_doc.img-link:before") {
+@include map-to-selectors($file_map, ".img-link:before", "", "a.button.img-link:before, a[href^='mailto']:not(.not-autostyle).img-link:before, .gen_doc.img-link:before") {
     margin-right: .5rem;
     font-size: 1.9rem;
     line-height: 2.3rem;
@@ -253,18 +206,14 @@ a[href^='mailto']:not(.not-autostyle).img-link:before,
 };
 
 
-@include map-to-selectors($file_map, ".img-link img", "", "a.button.img-link img,
-a[href^='mailto']:not(.not-autostyle).img-link img,
-.gen_doc.img-link img") {
+@include map-to-selectors($file_map, ".img-link img", "", "a.button.img-link img, a[href^='mailto']:not(.not-autostyle).img-link img, .gen_doc.img-link img") {
     z-index: 1;
     position:relative;
 	border-radius: .3rem;
 };
 
 
-@include map-to-selectors($file_map, ".img-link:not([href*='wsu.edu']):after", "", "a.img-link.external:after,
-a[href^='mailto']:not(.not-autostyle):not([href*='wsu.edu']):after,
-.gen_doc:not([href*='wsu.edu']):after") {
+@include map-to-selectors($file_map, ".img-link:not([href*='wsu.edu']):after", "", "a.img-link.external:after, a[href^='mailto']:not(.not-autostyle):not([href*='wsu.edu']):after, .gen_doc:not([href*='wsu.edu']):after") {
     z-index: 999;
     position:relative;
     font-family: Spine-Icons;
@@ -282,57 +231,5 @@ a[href^='mailto']:not(.not-autostyle):not([href*='wsu.edu']):after,
     border-top-left-radius: .3rem;
     border-bottom-right-radius: .3rem;
     background: #d0d0d0;
-};
-
-
-
-
-
-@include map-to-selectors($file_map, ":before", ".ie p ", ".ie p a.button.news:before,
-.ie p a.button.contact:before,
-.ie p a.button.docment:before,
-.ie p a[href^='mailto:']:not(.not-autostyle):before") {
-    line-height: 1.85rem;
-    font-size: 1.6rem;
-};
-
-
-
-
-
-
-
-
-
-
-/*media all*/
-
-
-@include map-to-selectors($file_map, "", ".ie p ", ".ie p a.button.news,
-.ie p a.button.contact,
-.ie p a.button.docment,
-.ie p a[href^='mailto:']:not(.not-autostyle)") {
-	line-height: 1.5rem;
-	padding: 0 .52rem;
-	margin: -.2rem .75rem 0;
-	height: 2rem;
-};
-
-@include map-to-selectors($file_map, ".img-link", ".ie ", ".ie a.button.img-link,
-.ie a[href^='mailto']:not(.not-autostyle).img-link,
-.ie .gen_doc.img-link") {
-    height: auto;
-    padding: 0;
-};
-
-
-
-
-@include map-to-selectors($file_map, ":before", ".ie p main ", ".ie main p a.button.news:before,
-.ie main p a.button.contact:before,
-.ie main p a.button.docment:before,
-.ie main p a[href^='mailto:']:not(.not-autostyle):before") {
-	//line-height: 0;
-	//font-size: .5em;
 };
 

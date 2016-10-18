@@ -89,10 +89,6 @@ function fais_customizer_enqueue_scripts() {
 
 	$megamenu_show = fais_spine_get_option( 'megamenu_show', 'true' );
 
-
-
-
-
 	$flex_dev = is_development() ? 'dev/' : '';
 	wp_enqueue_style( 'flexwork-base', 'https://webcore.fais.wsu.edu/resources/flexwork/'.$flex_dev .'flexwork-'.$coverage.'.css', array( 'fais_spine-theme-print' ), spine_get_script_version() );
 	wp_enqueue_style( 'flexwork-typography', 'https://webcore.fais.wsu.edu/resources/flexwork/'.$flex_dev .'extra/flexwork-typography.css', array( 'flexwork-base' ), spine_get_script_version() );
@@ -119,7 +115,7 @@ function fais_customizer_enqueue_scripts() {
 		$dev = 'dev/';
 	}
 
-	if( "true" === $megamenu_show ){
+	if ( 'true' === $megamenu_show ) {
 		wp_enqueue_script( 'megamenu', 'https://webcore.fais.wsu.edu/resources/central_FnA_theme/'.$dev .'megamenu/bootstrap.js', array( 'html2canvas' ), spine_get_script_version(), true );
 	}
 }
