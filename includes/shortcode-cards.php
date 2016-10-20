@@ -39,9 +39,9 @@ function cards_shortcode( $atts, $content ) {
 		<?php if ( false !== $att['name'] && '' !== $att['name'] ) :  ?>
 			<h4><?php esc_attr_e( $att['name'] ); ?></h4>
 		<?php endif; ?>
-        <span class="flex-row justify-between full-width">
+        <span class="flex-row justify-between full-width no-pad">
 			<?php if ( false !== $att['tel'] && '' !== $att['tel'] ) :  ?>
-				<h5 class=" pad-no"><?php esc_attr_e( $att['tel'] ); ?></h5>
+				<h5 class=" pad-no"  style="margin: 0;"><?php esc_attr_e( $att['tel'] ); ?></h5>
 			<?php endif; ?>
 			<?php if ( false !== $att['email'] && '' !== $att['email']  && is_email( $att['email'] )  ) :  ?>
 				<a class=" pad-tight" href="mailto:<?php esc_attr_e( $att['email'] ); ?>">Email</a>
