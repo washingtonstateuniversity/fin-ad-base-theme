@@ -10,8 +10,8 @@ ol > li:before,ul > li:before {
 	position: relative;
 	left: -5px;
 }
-.spine-sitenav ul > li:before
-ul.list-blank > li:before
+.spine-sitenav ul > li:before,
+ul.list-blank > li:before,
 ol.list-blank > li:before {
 	content:none;
 }
