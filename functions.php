@@ -183,7 +183,7 @@ class WSU_FinAd_BaseTheme
 
 			// Add menu items
 			wp_update_nav_menu_item( $menu_id, 0, array(
-				'menu-item-title' => __( 'Contact' ),
+				'menu-item-title' => __( 'Contact Us' ),
 				'menu-item-url' => home_url( '/contact-information/' ),
 				'menu-item-status' => 'publish',
 			) );
