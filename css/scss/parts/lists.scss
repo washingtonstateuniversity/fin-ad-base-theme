@@ -1,10 +1,16 @@
-
 ol, ul {
-    list-style: none;
+    list-style-type: none;
     margin-left: 1.7rem;
 	//font-size:#{$root-font-list};
 	padding: 0 2rem 1rem 1rem;
 }
+
+ol > li:before,ul > li:before {
+    content: "-";
+    position: relative;
+    left: -5px;
+}
+
 form ol, form ul{
 	padding:0;
 }
@@ -14,25 +20,34 @@ address ul {
     margin: 0;
     margin-left: 1rem;
 }
+
 address ul li {
     padding: 0;
     margin: 0;
 }
 
+ol.list-throwback > li:before,ul.list-throwback > li:before {
+    content: '\2022';
+    position: relative;
+    left: -5px;
+    font-size: 1.8rem;
+    top: .3rem;
+}
 
+
+
+/*
 .list-throwback {
-	//font-size:#{$root-font-list};
     margin-bottom: 1.5rem;
     margin-left: 1.4rem;
 }
 
-.list-throwback > li{
+.list-throwback > li, li.list-throwback {
     margin-bottom: 0;
     padding-bottom: 0;
     padding-left: 0;
     list-style: outside;
 }
-
 
 ul .list-throwback, ol .list-throwback,
 ul ul, ol ol,
@@ -40,19 +55,4 @@ ul ol, ol ul  {
     margin-left: 0;
 	padding-left:2rem;
 }
-
-
-/*media all
-.nice-number > dd, .nice-number > li {
-    padding: 0 0 .6rem .3rem;
-}
-
-.list-group.nice-number>dd:before, .list-group.nice-number>li:before {
-    top: 0.2rem;
-}
-.list-group.nice-number.small>dd:before, .list-group.nice-number.small>li:before {
-    top: 0.4rem;
-}
-.list-group.nice-number.large>dd:before, .list-group.nice-number.large>li:before {
-    top: 0.3rem;
-}*/
+*/
