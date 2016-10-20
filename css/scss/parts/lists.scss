@@ -1,16 +1,18 @@
 ol, ul {
-    list-style-type: none;
-    margin-left: 1.7rem;
+	list-style-type: none;
+	margin-left: 1.7rem;
 	//font-size:#{$root-font-list};
 	padding: 0 2rem 1rem 1rem;
 }
 
 ol > li:before,ul > li:before {
-    content: "-";
-    position: relative;
-    left: -5px;
+	content: "-";
+	position: relative;
+	left: -5px;
 }
-
+.spine-sitenav ul > li:before {
+	content:none;
+}
 form ol, form ul{
 	padding:0;
 }
