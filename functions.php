@@ -104,7 +104,7 @@ function fais_customizer_enqueue_scripts() {
 
 
 	if( "true" === $is_dev_mode ){
-		wp_enqueue_style( 'fais_spine-theme',  'https://webcore.fais.wsu.edu/resources/central_FnA_theme/dev/wordpress/fin-ad-base-theme/style.css', array( 'flexwork-typography' ), spine_get_script_version() );
+		wp_enqueue_style( 'fais_spine-theme-child',  'https://webcore.fais.wsu.edu/resources/central_FnA_theme/dev/wordpress/fin-ad-base-theme/style.css', array( 'flexwork-typography' ), spine_get_script_version() );
 	}else{
 		wp_enqueue_style( 'fais_spine-theme-child', get_stylesheet_directory_uri() . '/' . $child_stylesheet, array( 'flexwork-typography' ), spine_get_script_version() );
 	}
