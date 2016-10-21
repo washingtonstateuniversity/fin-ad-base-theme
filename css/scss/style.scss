@@ -40,15 +40,23 @@ h3 {
     border-bottom: .1rem solid #272727;
 }
 
-
-
+.flex-column-reverse>*, .flex-column>*, .flex-row-reverse>*, .flex-row>*, .grid-part {
+    min-width: 1%;
+    padding: initial;
+    box-sizing: border-box;
+    transition: width 1s ease-in-out;
+}
+.h4, .h5, .h6, h4, h5, h6 {
+    margin-top: .3rem;
+    margin-bottom: .3rem;
+}
 
 h4{
 	font-weight: 600;
 }
 
-@import 'parts/lists.scss';
 
+@import 'parts/lists.scss';
 
 
 /*.flex-column-reverse>*, .flex-column>*, .flex-row-reverse>*, .flex-row>*, .grid-part {

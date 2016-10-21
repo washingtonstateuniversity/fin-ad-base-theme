@@ -66,7 +66,26 @@ module.exports = function(grunt) {
                 files: [
                     { expand: true, src: ["build/_precss/style.map"], dest: "", flatten: true, },
                 ]
+            },
+
+            dev: {
+                files: [
+                    { expand: true, src: [
+						"../fin-ad-base-theme/**/*.css",
+						"../fin-ad-base-theme/**/*.js",
+						"../fin-ad-base-theme/**/*.jpg",
+						"../fin-ad-base-theme/**/*.png",
+						"../fin-ad-base-theme/**/*.gif",
+						"../fin-ad-base-theme/**/*.svg",
+						'!**/vendor/**',
+						'!**/node_modules/**',
+						'!**/build/**'
+					], dest: "//facops35/resources/central_FnA_theme/dev/wordpress/fin-ad-base-theme/", flatten: false, },
+					{ expand: true, src: ["../fin-ad-base-theme/**/*.js"], dest: "//facops35/resources/central_FnA_theme/dev/wordpress/fin-ad-base-theme/", flatten: false, },
+					{ expand: true, src: ["../fin-ad-base-theme/**/*.jpg"], dest: "//facops35/resources/central_FnA_theme/dev/wordpress/fin-ad-base-theme/", flatten: false, },
+                ]
             }
+
         },
         csslint: {
             main: {

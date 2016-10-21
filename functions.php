@@ -66,7 +66,7 @@ function fais_customizer_enqueue_scripts() {
 	 */
 
 	$is_dev_mode = fais_spine_get_option( 'is_dev_mode', 'false' ); // yeah wil come base to case correctly, in rush ``/ lol
-	if( "true" !== $is_dev_mode ){
+	if( "true" === $is_dev_mode ){
 		wp_enqueue_style( 'fais_spine-theme',  'https://webcore.fais.wsu.edu/resources/central_FnA_theme/dev/wordpress/fin-ad-base-theme/style.css', array( 'wsu-spine' ), spine_get_script_version() );
 	}else{
 		wp_enqueue_style( 'fais_spine-theme',       get_template_directory_uri()   . '/style.css', array( 'wsu-spine' ), spine_get_script_version() );
