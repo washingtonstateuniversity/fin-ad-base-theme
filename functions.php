@@ -65,7 +65,13 @@ function fais_customizer_enqueue_scripts() {
 	* also we know this is a child theme so no need to check.
 	 */
 
-	wp_enqueue_style( 'fais_spine-theme',       get_template_directory_uri()   . '/style.css', array( 'wsu-spine' ), spine_get_script_version() );
+	$is_dev_mode = fais_spine_get_option( 'is_dev_mode', 'false' ); // yeah wil come base to case correctly, in rush ``/ lol
+	if( "true" !== $is_dev_mode ){
+		wp_enqueue_style( 'fais_spine-theme',  'https://webcore.fais.wsu.edu/resources/central_FnA_theme/dev/wordpress/fin-ad-base-theme/style.css', array( 'wsu-spine' ), spine_get_script_version() );
+	}else{
+		wp_enqueue_style( 'fais_spine-theme',       get_template_directory_uri()   . '/style.css', array( 'wsu-spine' ), spine_get_script_version() );
+	}
+
 	if ( 'skeletal' !== spine_get_option( 'theme_style' ) ) {
 		wp_enqueue_style( 'fais_spine-theme-extra', get_template_directory_uri()   . '/styles/' . spine_get_option( 'theme_style' ) . '.css', array( 'fais_spine-theme' ), spine_get_script_version() );
 	}
@@ -101,6 +107,10 @@ function fais_customizer_enqueue_scripts() {
 	wp_enqueue_script( 'child_controll', get_stylesheet_directory_uri() . '/js/child_controll.js', array( 'jquery' ), spine_get_script_version(), true );
 
 	wp_enqueue_script( 'html2canvas', get_stylesheet_directory_uri() . '/js/html2canvas.js', array( 'jquery' ), spine_get_script_version(), true );
+
+
+
+
 
 	$fais_site_object = array(
 		'local' => array(

@@ -339,14 +339,34 @@ class Fais_Spine_Theme_Customizer {
 			'choices'  => array(
 				'lite'  => 'the 5 most common viewport widths',
 				'devices-lite'  => 'top 10 device widths',
-				'devices'  => '(full) most current device widths',
+				'devices'  => '(fullest) most current device widths',
 				'50s'  => 'increments of 50px plus full devices',
 				'25s'  => 'increments of 25px plus full devices',
 			),
 		) );
+
+
+		$wp_customize->add_setting( 'spine_options[is_dev_mode]', array(
+			'default' => 'false',
+			'capability' => 'edit_theme_options',
+			'type' => 'option',
+		) );
+		$wp_customize->add_control( 'is_dev_mode', array(
+			'label'    => __( 'Use `stage.`\'s Development Mode' ),
+			'section'  => '_flexwork',
+			'settings' => 'spine_options[is_dev_mode]',
+			'type'     => 'select',
+			'description' => 'As much as possible pull everything from <code>https://webcore.fais.wsu.edu</code> under <code>resources/central_FnA_theme/dev/wordpress/</code>',
+			'choices'  => array(
+				'true'  => 'true',
+				'false'  => 'false',
+			),
+		) );
+
 		$wp_customize->add_section( '_flexwork', array(
 			'title' => __( 'Flexwork' ),
 		) );
+
 
 	}
 }
