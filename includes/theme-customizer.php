@@ -158,7 +158,7 @@ class Fais_Spine_Theme_Customizer {
 		*/
 		$bg_colors_control_data = array(
 			'label'       => __( 'Theme Color palette' ),
-			'description' => __( 'The class to use the colors are in the format of <code>`block_name-type_name`</code>.\r\n\r\n <strong>type_name</strong> is the element\s part.\r\n  <strong>type_name</strong> is the element\s part.  Values supported are `bk` for background amd `text` for text. \r\n\r\nThis means for the &quot;Secoundary Accent Color&quot; color for the text block would be <code>secoundary-accent-text</code>' ),
+			'description' => __( '<p>The class to use the colors are in the format of <code>`block_name-type_name`</code>.</p>  <p><strong>type_name</strong> is the element\'s part. <br/>   <strong>type_name</strong> is the element\'s part.  Values supported are `bk` for background amd `text` for text.</p> This means for the &quot;Secoundary Accent Color&quot; color for the text block would be <code>secoundary-accent-text</code>' ),
 			'section'     => 'static_background',
 		);
 
@@ -259,6 +259,7 @@ class Fais_Spine_Theme_Customizer {
 			'section'  => '_flexwork',
 			'settings' => 'spine_options[flexwork_coverage]',
 			'type'     => 'select',
+			'description' => '<hr/>',
 			'choices'  => array(
 				'lite'  => 'the 5 most common viewport widths',
 				'devices-lite'  => 'top 10 device widths',
@@ -269,8 +270,24 @@ class Fais_Spine_Theme_Customizer {
 		) );
 
 
-
-
+		// Pagebuilder + Flexwork options
+		$wp_customize->add_setting( 'spine_options[column_type_default]', array(
+			'default' => '',
+			'capability' => 'edit_theme_options',
+			'type' => 'option',
+		) );
+		$wp_customize->add_control( 'column_type_default', array(
+			'label'    =>  __( 'Column content treatment default' ),
+			'section'  => '_flexwork',
+			'settings' => 'spine_options[column_type_default]',
+			'type'     => 'select',
+			'description' => 'How to you want to treat the children of the column?',
+			'choices'  => array(
+				''  => 'inherit',
+				'flex-colmun'  => 'Stacked',
+				'flex-row'  => 'In line',
+			),
+		) );
 
 		$wp_customize->add_setting( 'spine_options[fw_column_width_default]', array(
 			'default'    => 'fourths-4',
@@ -279,7 +296,7 @@ class Fais_Spine_Theme_Customizer {
 		) );
 		$wp_customize->add_control( 'fw_column_width_default', array(
 			'label'    => __( 'Column width default' ),
-			'section'  => 'section_spine_contact',
+			'section'  => '_flexwork',
 			'settings' => 'spine_options[fw_column_width_default]',
 			'type'     => 'text',
 			'priority' => 412,
@@ -290,7 +307,23 @@ class Fais_Spine_Theme_Customizer {
 			),
 		) );
 
-
+		$wp_customize->add_setting( 'spine_options[fw_column_response_width_default]', array(
+			'default'    => 'full-width-at-667',
+			'capability' => 'edit_theme_options',
+			'type'       => 'option',
+		) );
+		$wp_customize->add_control( 'fw_column_response_width_default', array(
+			'label'    => __( 'Column width default when at 667px viewport' ),  // would build later
+			'section'  => '_flexwork',
+			'settings' => 'spine_options[fw_column_response_width_default]',
+			'type'     => 'text',
+			'priority' => 412,
+			'input_attrs' => array(
+				//'class' => 'my-custom-class-for-js',
+				//'style' => 'border: 1px solid #900',
+				'placeholder' => __( 'e.g. walk in and turn right' ),
+			),
+		) );
 
 
 

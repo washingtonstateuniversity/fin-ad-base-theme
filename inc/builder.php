@@ -1250,8 +1250,7 @@ function fais_spine_output_builder_column_type( $column_name, $section_data, $co
 		$section_type = $section_data['section']['id'];
 	}
 
-	$column_type_default = ' flex-column  full-width-at-667 ';
-
+	$column_type_default = ' ' . fais_spine_get_option( 'fw_column_type_default', '' ) . ' ';
 
 	$fw_column_width_default = fais_spine_get_option( 'fw_column_width_default', '' );
 
@@ -1268,6 +1267,15 @@ function fais_spine_output_builder_column_type( $column_name, $section_data, $co
 	} elseif ( 'faiswsuwpquarters' === $section_type ) {
 		$column_size_defaults = [ 0 => 'fourths-1', 1 => 'fourths-1', 2 => 'fourths-1', 3 => 'fourths-1' ];
 	}
+
+
+	if( count( $column_size_defaults ) > 1 ){
+		$fw_column_response_width_default = fais_spine_get_option( 'fw_column_response_width_default', '' );
+		$column_type_default .= ' '.$fw_column_response_width_default;
+	}
+
+
+
 	?>
 	<?php
 
@@ -1562,7 +1570,7 @@ class Custom_TTFMAKE_Builder_Save extends TTFMAKE_Builder_Save {
 		ob_start();
 
 		Custom_TTFMAKE_Builder_Save::print_sections( $before_content_area );
-		echo '<div id="content_area" class="flex-column">';
+		echo '<div id="content_area" >'; //class="flex-column" removing the type for now
 		Custom_TTFMAKE_Builder_Save::print_sections( $content_area );
 		echo '</div>';
 		Custom_TTFMAKE_Builder_Save::print_sections( $after_content_area );
