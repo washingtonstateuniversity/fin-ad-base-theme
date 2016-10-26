@@ -132,18 +132,29 @@ console.log(data);
 	});
 }*/
 
-
 	$(function(){
 
 
-$(".folding>*:nth-child(odd)").on("click",function(){
-	$(this).toggleClass("unfolded");
-});
+		$('html').attr('data-useragent',navigator.userAgent);
 
-$('html').attr('data-useragent',navigator.userAgent);
+		$(".folding>*:nth-child(odd)").on("click",function(){
+			$(this).toggleClass("unfolded");
+		});
 
+		var icons = {
+          header: "ui-icon-circle-arrow-e",
+          activeHeader: "ui-icon-circle-arrow-s"
+        };
 
-
+        $( ".accordion" ).each(function(idx, val){
+            $(this).accordion({
+      			collapsible: true,
+                icons: icons,
+                heightStyle: "content",
+                header: "h3",
+                active: false
+    		});
+        });
 
 		if ($.browser.msie && $.browser.version == 9) {
 			$('html').addClass('ie9');
