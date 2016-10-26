@@ -175,6 +175,29 @@ class Fais_Spine_Theme_Customizer {
 		'postMessage'
 	);
 
+
+
+		$wp_customize->add_setting( 'spine_options[is_dev_mode]', array(
+			'default' => 'false',
+			'capability' => 'edit_theme_options',
+			'type' => 'option',
+		) );
+		$wp_customize->add_control( 'is_dev_mode', array(
+			'label'    => __( 'Use `stage.`\'s Development Mode' ),
+			'section'  => 'static_background',
+			'settings' => 'spine_options[is_dev_mode]',
+			'type'     => 'select',
+			'description' => 'As much as possible pull everything from <code>https://webcore.fais.wsu.edu</code> under <code>resources/central_FnA_theme/dev/wordpress/</code>',
+			'choices'  => array(
+				'true'  => 'true',
+				'false'  => 'false',
+			),
+		) );
+
+
+
+
+
 		// background color
 		/*$wp_customize->add_setting( 'spine_options[background_color]', array(
 			'default' => false,
@@ -345,23 +368,6 @@ class Fais_Spine_Theme_Customizer {
 			),
 		) );
 
-
-		$wp_customize->add_setting( 'spine_options[is_dev_mode]', array(
-			'default' => 'false',
-			'capability' => 'edit_theme_options',
-			'type' => 'option',
-		) );
-		$wp_customize->add_control( 'is_dev_mode', array(
-			'label'    => __( 'Use `stage.`\'s Development Mode' ),
-			'section'  => '_flexwork',
-			'settings' => 'spine_options[is_dev_mode]',
-			'type'     => 'select',
-			'description' => 'As much as possible pull everything from <code>https://webcore.fais.wsu.edu</code> under <code>resources/central_FnA_theme/dev/wordpress/</code>',
-			'choices'  => array(
-				'true'  => 'true',
-				'false'  => 'false',
-			),
-		) );
 
 		$wp_customize->add_section( '_flexwork', array(
 			'title' => __( 'Flexwork' ),
