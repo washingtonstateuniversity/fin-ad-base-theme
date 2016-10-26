@@ -15,6 +15,11 @@ if ( 'false' === $active ) {
 // Default to sidebar right if a section type has not been specified.
 $section_type = ( isset( $ttfmake_section_data['section-type'] ) ) ? $ttfmake_section_data['section-type'] : 'faiswsuwpsidebarright';
 
+
+$fw_column_width_default = fais_spine_get_option( 'fw_column_width_default', '' );
+
+$column_size_defaults = [ 1 => $fw_column_width_default ];
+
 if ( 'faiswsuwphalves' === $section_type ) {
 	$column_size_defaults = [ 1 => 'fourths-2', 2 => ' fourths-2' ];
 } elseif ( 'faiswsuwpsidebarright' === $section_type ) {
@@ -25,8 +30,6 @@ if ( 'faiswsuwphalves' === $section_type ) {
 	$column_size_defaults = [ 1 => 'thirds-1',2 => 'thirds-1', 3 => 'thirds-1' ];
 } elseif ( 'faiswsuwpquarters' === $section_type ) {
 	$column_size_defaults = [ 1 => 'fourths-1', 2 => 'fourths-1', 3 => 'fourths-1', 4 => 'fourths-1' ];
-} else {
-	$column_size_defaults = [ 1 => 'fourths-4' ];
 }
 
 // Provide a list matching the number of columns to the selected section type.
@@ -113,7 +116,9 @@ if ( '' === $section_id ) {
 				$column_background = '';
 			}
 			?>
-         <div style="<?php esc_attr_e( $column_background ); ?>" class="<?php esc_attr_e( $column['column-type'] ); ?> <?php $count++; ?> <?php if ( isset( $column['column-classes'] ) ) : echo esc_attr( $column['column-classes'] );
+         <div style="<?php esc_attr_e( $column_background ); ?>"
+		 		<?php if ( "" !== $column_background ) : esc_attr_e( "style='".$column_background."'" ) ; endif; ?>
+		class="<?php esc_attr_e( $column['column-type'] ); ?> <?php $count++; ?> <?php if ( isset( $column['column-classes'] ) ) : echo esc_attr( $column['column-classes'] );
 		endif; ?>">
 
         <?php if ( '' !== $column['title'] ) : ?>

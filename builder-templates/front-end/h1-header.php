@@ -53,7 +53,7 @@ if ( '' === $section_id ) {
 }
 ?>
 <section id="<?php esc_attr_e( $section_id ); ?>" <?php esc_attr_e( stripslashes( $section_attr ) ); ?> <?php esc_attr_e( $section_wrapper_html ); ?> class="flex-row full-width h1-header <?php esc_attr_e( $section_classes ); ?>">
-	<div style="<?php esc_attr_e( $column_background ); ?>" class="fourths-4 <?php esc_attr_e( $column_classes ); ?>">
+	<div style="<?php esc_attr_e( $column_background ); ?>" class="<?php esc_attr_e( $column_classes ); ?>">
     <?php if ( ! empty( $ttfmake_section_data['title'] ) ) : ?>
 			<<?php esc_attr_e( $header_level ); ?>><?php esc_attr_e( apply_filters( 'the_title', $ttfmake_section_data['title'] ) ); ?></<?php esc_attr_e( $header_level ); ?>>
     <?php endif; ?>

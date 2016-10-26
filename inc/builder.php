@@ -23,7 +23,9 @@ class Fais_Spine_Builder_Custom
 	 */
 	public function get_column_default_size( $section_type ) {
 
-		$column_size_defaults = [ 1 => 'fourths-4' ];
+		$fw_column_width_default = fais_spine_get_option( 'fw_column_width_default', '' );
+
+		$column_size_defaults = [ 1 => $fw_column_width_default ];
 
 		if ( 'faiswsuwphalves' === $section_type ) {
 			$column_size_defaults = [ 1 => 'fourths-2', 2 => ' fourths-2' ];
@@ -1250,6 +1252,11 @@ function fais_spine_output_builder_column_type( $column_name, $section_data, $co
 
 	$column_type_default = ' flex-column  full-width-at-667 ';
 
+
+	$fw_column_width_default = fais_spine_get_option( 'fw_column_width_default', '' );
+
+	$column_size_defaults = [ 0 => $fw_column_width_default ];
+
 	if ( 'faiswsuwphalves' === $section_type ) {
 		$column_size_defaults = [ 0 => 'fourths-2', 1 => ' fourths-2' ];
 	} elseif ( 'faiswsuwpsidebarright' === $section_type ) {
@@ -1260,8 +1267,6 @@ function fais_spine_output_builder_column_type( $column_name, $section_data, $co
 		$column_size_defaults = [ 0 => 'thirds-1', 1 => 'thirds-1', 2 => 'thirds-1' ];
 	} elseif ( 'faiswsuwpquarters' === $section_type ) {
 		$column_size_defaults = [ 0 => 'fourths-1', 1 => 'fourths-1', 2 => 'fourths-1', 3 => 'fourths-1' ];
-	} else {
-		$column_size_defaults = [ 0 => 'fourths-4' ];
 	}
 	?>
 	<?php

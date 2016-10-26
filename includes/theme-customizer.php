@@ -82,98 +82,98 @@ class Fais_Spine_Theme_Customizer {
 			)
 		);
 
-	/**
-	 * Define a default palette that we'll use for some of the colors.
-	 *
-	 * We could certainly define a separate palette for each color also.
-	 */
-	$palette = array(
-		'rgba(255, 0, 0, 0.7)',
-		'rgba(54, 0, 170, 0.8)',
-		'#FFCC00',
-		'rgba( 20, 20, 20, 0.8 )',
-		'#00CC77',
-	);
+		/**
+		* Define a default palette that we'll use for some of the colors.
+		*
+		* We could certainly define a separate palette for each color also.
+		*/
+		$palette = array(
+			'rgba(255, 0, 0, 0.7)',
+			'rgba(54, 0, 170, 0.8)',
+			'#FFCC00',
+			'rgba( 20, 20, 20, 0.8 )',
+			'#00CC77',
+		);
 
-	/**
-	 * Define our color settings under the group "Background Colors".
-	 *
-	 * This is one of the arrays that we'll pass to our helper function to
-	 * register each setting and group them under a single control.
-	 */
-	$bg_colors = array(
-		'background_color' => array(
-			'label'   => __( 'Body Background' ),
-			'default' => 'rgba(255, 0, 0, 0.7)',
-			'palette' => $palette, // This could also be true or false
-		),
-		'primary_accent_color' => array(
-			'label'      => __( 'Primary Accent Color' ),
-			'palette' => $palette, // This could also be true or false
-			'description' => 'The primary color will alter areas like the top borders. The classes to use:<br/><b>Background</b> : <code>primary-accent-bk</code> <br/><b>Text</b> : <code>primary-accent-text</code>',
+		/**
+		* Define our color settings under the group "Background Colors".
+		*
+		* This is one of the arrays that we'll pass to our helper function to
+		* register each setting and group them under a single control.
+		*/
+		$bg_colors = array(
+			'background_color' => array(
+				'label'   => __( 'Body Background' ),
+				'default' => 'rgba(255, 0, 0, 0.7)',
+				'palette' => $palette, // This could also be true or false
+			),
+			'primary_accent_color' => array(
+				'label'      => __( 'Primary Accent Color' ),
+				'palette' => $palette, // This could also be true or false
+				'description' => 'The primary color will alter areas like the top borders. The classes to use:<br/><b>Background</b> : <code>primary-accent-bk</code> <br/><b>Text</b> : <code>primary-accent-text</code>',
 
-		),
+			),
 
-		'secoundary_accent_color' => array(
-			'label'      => __( 'Secoundary Accent Color' ),
+			'secoundary_accent_color' => array(
+				'label'      => __( 'Secoundary Accent Color' ),
 
-			'palette' => $palette, // This could also be true or false
-			'description' => 'The primary color will alter areas like the top borders. The classes to use:<br/><b>Background</b> : <code>secoundary-accent-bk</code> <br/><b>Text</b> : <code>secoundary-accent-text</code>',
-		),
-		'header_color' => array(
-			'label'      => __( 'Page Header Color' ),
-			'palette' => $palette, // This could also be true or false
-			'description' => '',
-		),
-		'header_text_color' => array(
-			'label'      => __( 'Header Text Color' ),
-			'palette' => $palette, // This could also be true or false'description' => 'The primary color will alter areas like the top borders. The classes to use:<br/><b>Background</b> : <code>secoundary-accent-bk</code> <br/><b>Text</b> : <code>secoundary-accent-text</code>',
-		),
-		/*'header_bg' => array(
-			'label'   => __( 'Header Background'),
-			'default' => 'rgba(54, 0, 170, 0.8)',
-			'palette' => $palette,
-		),
-		'sidebar_bg' => array(
-			'label'   => __( 'Sidebar Background' ),
-			'default' => '#FFCC00',
-			'palette' => $palette,
-		),
-		'article_bg' => array(
-			'label'   => __( 'Article Background'),
-			'default' => 'rgba( 20, 20, 20, 0.8 )',
-			'palette' => $palette,
-		),
-		'footer_bg' => array(
-			'label'   => __( 'Footer Background'),
-			'default' => '#00CC77',
-			'palette' => $palette,
-		),*/
-	);
+				'palette' => $palette, // This could also be true or false
+				'description' => 'The primary color will alter areas like the top borders. The classes to use:<br/><b>Background</b> : <code>secoundary-accent-bk</code> <br/><b>Text</b> : <code>secoundary-accent-text</code>',
+			),
+			'header_color' => array(
+				'label'      => __( 'Page Header Color' ),
+				'palette' => $palette, // This could also be true or false
+				'description' => '',
+			),
+			'header_text_color' => array(
+				'label'      => __( 'Header Text Color' ),
+				'palette' => $palette, // This could also be true or false'description' => 'The primary color will alter areas like the top borders. The classes to use:<br/><b>Background</b> : <code>secoundary-accent-bk</code> <br/><b>Text</b> : <code>secoundary-accent-text</code>',
+			),
+			/*'header_bg' => array(
+				'label'   => __( 'Header Background'),
+				'default' => 'rgba(54, 0, 170, 0.8)',
+				'palette' => $palette,
+			),
+			'sidebar_bg' => array(
+				'label'   => __( 'Sidebar Background' ),
+				'default' => '#FFCC00',
+				'palette' => $palette,
+			),
+			'article_bg' => array(
+				'label'   => __( 'Article Background'),
+				'default' => 'rgba( 20, 20, 20, 0.8 )',
+				'palette' => $palette,
+			),
+			'footer_bg' => array(
+				'label'   => __( 'Footer Background'),
+				'default' => '#00CC77',
+				'palette' => $palette,
+			),*/
+		);
 
-	/**
-	 * Set up the array of standard control data.
-	 *
-	 * This could also have an active_callback, a sanitize_callback, etc.
-	 */
-	$bg_colors_control_data = array(
-		'label'       => __( 'Theme Color palette' ),
-		'description' => __( 'The class to use the colors are in the format of <code>`block_name-type_name`</code>.\r\n\r\n <strong>type_name</strong> is the element\s part.\r\n  <strong>type_name</strong> is the element\s part.  Values supported are `bk` for background amd `text` for text. \r\n\r\nThis means for the &quot;Secoundary Accent Color&quot; color for the text block would be <code>secoundary-accent-text</code>' ),
-		'section'     => 'static_background',
-	);
+		/**
+		* Set up the array of standard control data.
+		*
+		* This could also have an active_callback, a sanitize_callback, etc.
+		*/
+		$bg_colors_control_data = array(
+			'label'       => __( 'Theme Color palette' ),
+			'description' => __( 'The class to use the colors are in the format of <code>`block_name-type_name`</code>.\r\n\r\n <strong>type_name</strong> is the element\s part.\r\n  <strong>type_name</strong> is the element\s part.  Values supported are `bk` for background amd `text` for text. \r\n\r\nThis means for the &quot;Secoundary Accent Color&quot; color for the text block would be <code>secoundary-accent-text</code>' ),
+			'section'     => 'static_background',
+		);
 
-	/**
-	 * Use the helper function to register the group of settings and associate them with
-	 * a single Multi Color Picker control.
-	 */
-	components_register_color_group(
-		$wp_customize,
-		'spine_options',
-		$bg_colors,
-		$bg_colors_control_data,
-		$palette,
-		'postMessage'
-	);
+		/**
+		* Use the helper function to register the group of settings and associate them with
+		* a single Multi Color Picker control.
+		*/
+		components_register_color_group(
+			$wp_customize,
+			'spine_options',
+			$bg_colors,
+			$bg_colors_control_data,
+			$palette,
+			'postMessage'
+		);
 
 
 
@@ -195,106 +195,6 @@ class Fais_Spine_Theme_Customizer {
 		) );
 
 
-
-
-
-		// background color
-		/*$wp_customize->add_setting( 'spine_options[background_color]', array(
-			'default' => false,
-			'capability' => 'edit_theme_options',
-			'type' => 'option',
-		) );
-		$wp_customize->add_control(
-			new WP_Customize_Color_Control(
-            $wp_customize,
-            'background_color',
-            array(
-            'label'      => __( 'Background Color' ),
-            'section'    => 'static_background',
-            'settings'   => 'spine_options[background_color]',
-            'description' => 'The class to use <code>background-color</code>',
-			) )
-		);
-
-		// primary_accent
-		$wp_customize->add_setting( 'spine_options[primary_accent_color]', array(
-			'default' => false,
-			'capability' => 'edit_theme_options',
-			'type' => 'option',
-		) );
-		$wp_customize->add_control(
-			new WP_Customize_Color_Control(
-				$wp_customize,
-				'primary_accent_color',
-				array(
-				'label'      => __( 'Primary Accent Color' ),
-				'section'    => 'static_background',
-				'settings'   => 'spine_options[primary_accent_color]',
-				'description' => 'The primary color will alter areas like the top borders. The classes to use:<br/><b>Background</b> : <code>primary-accent-bk</code> <br/><b>Text</b> : <code>primary-accent-text</code>',
-			) )
-		);
-
-
-
-		// secoundary_accent
-		$wp_customize->add_setting( 'spine_options[secoundary_accent_color]', array(
-			'default' => false,
-			'capability' => 'edit_theme_options',
-			'type' => 'option',
-		) );
-		$wp_customize->add_control(
-			new WP_Customize_Color_Control(
-				$wp_customize,
-				'secoundary_accent_color',
-				array(
-				'label'      => __( 'Secoundary Accent Color' ),
-				'section'    => 'static_background',
-				'settings'   => 'spine_options[secoundary_accent_color]',
-				'description' => 'The primary color will alter areas like the top borders. The classes to use:<br/><b>Background</b> : <code>secoundary-accent-bk</code> <br/><b>Text</b> : <code>secoundary-accent-text</code>',
-			) )
-		);
-
-
-
-		// header_color
-		$wp_customize->add_setting( 'spine_options[header_color]', array(
-			'default' => false,
-			'capability' => 'edit_theme_options',
-			'type' => 'option',
-		) );
-		$wp_customize->add_control(
-			new WP_Customize_Color_Control(
-				$wp_customize,
-				'header_color',
-				array(
-				'label'      => __( 'Header Color' ),
-				'section'    => 'static_background',
-				'settings'   => 'spine_options[header_color]',
-			) )
-		);
-		// header_text_color
-		$wp_customize->add_setting( 'spine_options[header_text_color]', array(
-			'default' => false,
-			'capability' => 'edit_theme_options',
-			'type' => 'option',
-		) );
-		$wp_customize->add_control(
-			new WP_Customize_Color_Control(
-				$wp_customize,
-				'header_text_color',
-				array(
-				'label'      => __( 'Header Text Color' ),
-				'section'    => 'static_background',
-				'settings'   => 'spine_options[header_text_color]',
-			) )
-		);
-
-
-
-
-
-
-		*/
 
 		$wp_customize->add_section( 'static_background', array(
 			'title' => __( 'FAIS theme settings', 'static_background' ),
@@ -348,7 +248,7 @@ class Fais_Spine_Theme_Customizer {
 			'active_callback' => function() { return 'page' == get_option( 'show_on_front' ); },
 		) );*/
 
-		// background image
+		// Pagebuilder + Flexwork options
 		$wp_customize->add_setting( 'spine_options[flexwork_coverage]', array(
 			'default' => 'devices-lite',
 			'capability' => 'edit_theme_options',
@@ -367,6 +267,33 @@ class Fais_Spine_Theme_Customizer {
 				'25s'  => 'increments of 25px plus full devices',
 			),
 		) );
+
+
+
+
+
+		$wp_customize->add_setting( 'spine_options[fw_column_width_default]', array(
+			'default'    => 'fourths-4',
+			'capability' => 'edit_theme_options',
+			'type'       => 'option',
+		) );
+		$wp_customize->add_control( 'fw_column_width_default', array(
+			'label'    => __( 'Column width default' ),
+			'section'  => 'section_spine_contact',
+			'settings' => 'spine_options[fw_column_width_default]',
+			'type'     => 'text',
+			'priority' => 412,
+			'input_attrs' => array(
+				//'class' => 'my-custom-class-for-js',
+				//'style' => 'border: 1px solid #900',
+				'placeholder' => __( 'e.g. walk in and turn right' ),
+			),
+		) );
+
+
+
+
+
 
 
 		$wp_customize->add_section( '_flexwork', array(

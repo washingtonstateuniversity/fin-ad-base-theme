@@ -22,6 +22,14 @@ if ( in_array( $ttfmake_section_data['section']['id'], array( 'faiswsuwphalves',
 	$wsuwp_range = 1;
 }
 
+
+
+$fw_column_width_default = fais_spine_get_option( 'fw_column_width_default', '' );
+
+$column_size_defaults = [ 1 => $fw_column_width_default ];
+
+
+
 if ( 'faiswsuwphalves' === $ttfmake_section_data['section']['id'] ) {
 	$column_size_defaults = [ 1 => 'fourths-2',2 => 'fourths-2' ];
 } elseif ( 'faiswsuwpsidebarright' === $ttfmake_section_data['section']['id'] ) {
@@ -32,8 +40,6 @@ if ( 'faiswsuwphalves' === $ttfmake_section_data['section']['id'] ) {
 	$column_size_defaults = [ 1 => 'thirds-1',2 => 'thirds-1',3 => 'thirds-1' ];
 } elseif ( 'faiswsuwpquarters' === $ttfmake_section_data['section']['id'] ) {
 	$column_size_defaults = [ 1 => 'fourths-1',2 => 'fourths-1',3 => 'fourths-1',4 => 'fourths-1' ];
-} else {
-	$column_size_defaults = [ 1 => 'fourths-4' ];
 }
 
 
