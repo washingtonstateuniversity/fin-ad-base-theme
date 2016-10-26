@@ -81,8 +81,6 @@ module.exports = function(grunt) {
 						'!**/node_modules/**',
 						'!**/build/**'
 					], dest: "//facops35/resources/central_FnA_theme/dev/wordpress/fin-ad-base-theme/", flatten: false, },
-					{ expand: true, src: ["../fin-ad-base-theme/**/*.js"], dest: "//facops35/resources/central_FnA_theme/dev/wordpress/fin-ad-base-theme/", flatten: false, },
-					{ expand: true, src: ["../fin-ad-base-theme/**/*.jpg"], dest: "//facops35/resources/central_FnA_theme/dev/wordpress/fin-ad-base-theme/", flatten: false, },
                 ]
             }
 
