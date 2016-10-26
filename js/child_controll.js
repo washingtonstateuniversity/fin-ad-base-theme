@@ -136,11 +136,7 @@ console.log(data);
 	$(function(){
 
 
-$(".folding>*>*").on("click",function(){
-	$(this).toggleClass("unfolded");
-});
-
-$(".folding>*>*").on("click",function(){
+$(".folding>*:nth-child(odd)").on("click",function(){
 	$(this).toggleClass("unfolded");
 });
 

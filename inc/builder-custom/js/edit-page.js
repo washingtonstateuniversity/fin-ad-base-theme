@@ -94,106 +94,106 @@ var oneApp = oneApp || {}, $oneApp = $oneApp || jQuery(oneApp);
 			self.init_flexTree();
 		},
 		init_flexTree : function(view){
-				view = view || false;
-				var self = this;
+			view = view || false;
+			var self = this;
 
-				$(".ttfmake-section-body > .spine-builder-overlay").each(function(){
-					var set = $(this);
-					self.flexPrepTree(set, ".wsuwp-spine-halves-stage");
-				});
+			$(".ttfmake-section-body > .spine-builder-overlay").each(function(){
+				var set = $(this);
+				self.flexPrepTree(set, ".wsuwp-spine-halves-stage");
+			});
 
-				$(".wsuwp-spine-builder-column").each(function(){
-					var set = $(this);
-					self.flexPrepTree(set,".wsuwp-spine-builder-column");
-				});
+			$(".wsuwp-spine-builder-column").each(function(){
+				var set = $(this);
+				self.flexPrepTree(set,".wsuwp-spine-builder-column");
+			});
 
 		},
 		flexPrepTree: function(_selection, _root){
-				var self = this;
+			var self = this;
 
-				var flex_class_input = _selection.find(".fexwork-classes");
+			var flex_class_input = _selection.find(".fexwork-classes");
 
-				_selection.find(".fw-builder").hide();
+			_selection.find(".fw-builder").hide();
+			_selection.find(".fb-type").closest(".flex-attr-area").hide();
+			_selection.find(".fw_add_class").hide();
+			_selection.find('.start_add_fw_class').show();
+			_selection.find('.start_add_fw_class').on("click", function(e){
+				e.preventDefault();
+				_selection.find(".fb-type").find(":selected").attr("selected",false).removeAttr("selected");
 				_selection.find(".fb-type").closest(".flex-attr-area").hide();
-				_selection.find(".fw_add_class").hide();
-				_selection.find('.start_add_fw_class').show();
-				_selection.find('.start_add_fw_class').on("click", function(e){
-					e.preventDefault();
-					_selection.find(".fb-type").find(":selected").attr("selected",false).removeAttr("selected");
+				_selection.find('.flexwork-type').show();
+				_selection.find(".fw-builder").show();
+			});
+			_selection.find("select.flex-builder-selector").on("change", function(){
+				var val = $(this).val();
+				if( $(this).is(".fb-type-chooser") ){
 					_selection.find(".fb-type").closest(".flex-attr-area").hide();
-					_selection.find('.flexwork-type').show();
-					_selection.find(".fw-builder").show();
-				});
-				_selection.find("select.flex-builder-selector").on("change", function(){
-					var val = $(this).val();
-					if( $(this).is(".fb-type-chooser") ){
-						_selection.find(".fb-type").closest(".flex-attr-area").hide();
-					}
-					_selection.find(".flexwork-"+val).show();
+				}
+				_selection.find(".flexwork-"+val).show();
 
-					_selection.find(".fw_class_at").show();
-					_selection.find(".fw_add_class").show();
-				});
-				_selection.find(".fw_class_at").on("click", function(e){
-					e.preventDefault();
-					_selection.find(".flexwork-at-sizes").show();
-				});
+				_selection.find(".fw_class_at").show();
+				_selection.find(".fw_add_class").show();
+			});
+			_selection.find(".fw_class_at").on("click", function(e){
+				e.preventDefault();
+				_selection.find(".flexwork-at-sizes").show();
+			});
 
-				_selection.find(".fw_add_class").on("click", function(e){
-					e.preventDefault();
-					var tar = $(this);
-					var _class = " ";
-					var type_val = _selection.find(".fb-type-chooser").val();
-					if( "pad" === type_val || "round" === type_val ){
-						_class += type_val;
-					}
-
-					_selection.find(".fw-builder select.fb-type:visible").each(function(){
-						var val = $(this).val();
-						if( "_" !== val && "" !== val ){
-							_class += (" " !== _class ? "-":" ") + val;
-						}
-					});
-					//flex_class_input.val( flex_class_input.val() + _class );
-					flex_class_input.tagit("createTag", _class);
-					self.flexSectionChange( tar.closest(".ttfmake-section").find(_root), function(){
-						tar.closest(".ttfmake-section").find(_root).addClass( flex_class_input.val() );
-					});
-					_selection.find(".fb-type-chooser").find(":selected").attr("selected",false).removeAttr("selected");
-					_selection.find(".fb-type").find(":selected").attr("selected",false).removeAttr("selected");
-					_selection.find(".fb-type").closest(".flex-attr-area").hide();
-					_selection.find(".fw_add_class").hide();
-					_selection.find(".fw_class_at").hide();
-					_selection.find(".fw-builder").hide();
-
-				});
-
-				flex_class_input.on("change", function(){
-					var tar = $(this);
-					self.flexSectionChange( tar.closest(_root), function(){
-						tar.closest(_root).addClass( flex_class_input.val() );
-					});
-				});
-
-				tagit_op={};
-				if( "undefined" !== typeof column_types ){
-					if(column_types.length){
-						tagit_op.availableTags= column_types;
-						tagit_op.autocomplete={delay: 0, minLength: 2};
-					}
+			_selection.find(".fw_add_class").on("click", function(e){
+				e.preventDefault();
+				var tar = $(this);
+				var _class = " ";
+				var type_val = _selection.find(".fb-type-chooser").val();
+				if( "pad" === type_val || "round" === type_val ){
+					_class += type_val;
 				}
 
-
-				flex_class_input.tagit($.extend({
-					allowSpaces: false,
-					singleFieldDelimiter:" ",
-					onTagExists: function(event, ui) {
-						_selection.find(".fexwork-error").show();
-					},
-					beforeTagAdded: function(event, ui) {
-						_selection.find(".fexwork-error").hide();
+				_selection.find(".fw-builder select.fb-type:visible").each(function(){
+					var val = $(this).val();
+					if( "_" !== val && "" !== val ){
+						_class += (" " !== _class ? "-":" ") + val;
 					}
-				},tagit_op));
+				});
+				//flex_class_input.val( flex_class_input.val() + _class );
+				flex_class_input.tagit("createTag", _class);
+				self.flexSectionChange( tar.closest(".ttfmake-section").find(_root), function(){
+					tar.closest(".ttfmake-section").find(_root).addClass( flex_class_input.val() );
+				});
+				_selection.find(".fb-type-chooser").find(":selected").attr("selected",false).removeAttr("selected");
+				_selection.find(".fb-type").find(":selected").attr("selected",false).removeAttr("selected");
+				_selection.find(".fb-type").closest(".flex-attr-area").hide();
+				_selection.find(".fw_add_class").hide();
+				_selection.find(".fw_class_at").hide();
+				_selection.find(".fw-builder").hide();
+
+			});
+
+			flex_class_input.on("change", function(){
+				var tar = $(this);
+				self.flexSectionChange( tar.closest(_root), function(){
+					tar.closest(_root).addClass( flex_class_input.val() );
+				});
+			});
+
+			tagit_op={};
+			if( "undefined" !== typeof column_types ){
+				if(column_types.length){
+					tagit_op.availableTags= column_types;
+					tagit_op.autocomplete={delay: 0, minLength: 2};
+				}
+			}
+
+
+			flex_class_input.tagit($.extend({
+				allowSpaces: false,
+				singleFieldDelimiter:" ",
+				onTagExists: function(event, ui) {
+					_selection.find(".fexwork-error").show();
+				},
+				beforeTagAdded: function(event, ui) {
+					_selection.find(".fexwork-error").hide();
+				}
+			},tagit_op));
 		},
 		flexSectionChange: function( jObj, callback ){
 			this.cleanTarget(jObj, function(){
