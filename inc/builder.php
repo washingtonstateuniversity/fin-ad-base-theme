@@ -711,7 +711,8 @@ class Fais_Spine_Builder_Custom
 		return $clean_data;
 	}
 
-	public function build_flexwork_sectional_inputs( $field_name, $section_class_str = '' ) {//@TODO removing this temp list for the js version
+	public function build_flexwork_sectional_inputs( $field_name, $section_class_str = '' ) {
+//@TODO removing this temp list for the js version
 		//'flex-row wrap-reverse justify-start content-start items-start pad-airy-TB round-wide-L round-no-at-414'
 		$setion_flex_options = [
 			'area_type' => [ 'flex-row' => 'flex-row', 'flex-column' => 'flex-column', 'row-reverse' => 'row-reverse', 'column-reverse' => 'column-reverse' ],
@@ -901,7 +902,8 @@ class Fais_Spine_Builder_Custom
 <input type='text' name='<?php esc_attr_e( $field_name ); ?>' class='fexwork-classes full-width' value='<?php esc_attr_e( $section_class_str ); ?>'/><span class='fexwork-error' style='color:red;'>Class already exists</span>
 		<?php
 	}
-	public function build_flexwork_column_inputs( $field_name, $column_class_str = '' ) {//@TODO removing this temp list for the js version
+	public function build_flexwork_column_inputs( $field_name, $column_class_str = '' ) {
+//@TODO removing this temp list for the js version
 
 /*@todo add a type by type default setting map*/
 
@@ -1268,13 +1270,10 @@ function fais_spine_output_builder_column_type( $column_name, $section_data, $co
 		$column_size_defaults = [ 0 => 'fourths-1', 1 => 'fourths-1', 2 => 'fourths-1', 3 => 'fourths-1' ];
 	}
 
-
-	if( count( $column_size_defaults ) > 1 ){
+	if ( count( $column_size_defaults ) > 1 ) {
 		$fw_column_response_width_default = fais_spine_get_option( 'fw_column_response_width_default', '' );
 		$column_type_default .= ' '.$fw_column_response_width_default;
 	}
-
-
 
 	?>
 	<?php

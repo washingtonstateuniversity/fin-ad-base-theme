@@ -66,9 +66,9 @@ function fais_customizer_enqueue_scripts() {
 	 */
 
 	$is_dev_mode = fais_spine_get_option( 'is_dev_mode', 'false' ); // yeah wil come base to case correctly, in rush ``/ lol
-	if( "true" === $is_dev_mode ){
+	if ( 'true' === $is_dev_mode ) {
 		$flex_dev = 'dev/';
-	}else{
+	} else {
 		$flex_dev = is_development() ? 'dev/' : '';
 	}
 
@@ -97,15 +97,13 @@ function fais_customizer_enqueue_scripts() {
 
 	$megamenu_show = fais_spine_get_option( 'megamenu_show', 'true' );
 
-
 	wp_enqueue_style( 'flexwork-base', 'https://webcore.fais.wsu.edu/resources/flexwork/'.$flex_dev .'flexwork-'.$coverage.'.css', array( 'fais_spine-theme-print' ), spine_get_script_version() );
 	wp_enqueue_style( 'flexwork-typography', 'https://webcore.fais.wsu.edu/resources/flexwork/'.$flex_dev .'extra/flexwork-typography.css', array( 'flexwork-base' ), spine_get_script_version() );
 	wp_enqueue_style( 'flexwork-ui', 'https://webcore.fais.wsu.edu/resources/flexwork/'.$flex_dev .'extra/flexwork-ui.css', array( 'flexwork-typography' ), spine_get_script_version() );
 
-
-	if( "true" === $is_dev_mode ){
+	if ( 'true' === $is_dev_mode ) {
 		wp_enqueue_style( 'fais_spine-theme-child',  'https://webcore.fais.wsu.edu/resources/central_FnA_theme/dev/wordpress/fin-ad-base-theme/style.css', array( 'flexwork-typography' ), spine_get_script_version() );
-	}else{
+	} else {
 		wp_enqueue_style( 'fais_spine-theme-child', get_stylesheet_directory_uri() . '/' . $child_stylesheet, array( 'flexwork-typography' ), spine_get_script_version() );
 	}
 
@@ -114,10 +112,6 @@ function fais_customizer_enqueue_scripts() {
 	wp_enqueue_script( 'child_controll', get_stylesheet_directory_uri() . '/js/child_controll.js', array( 'jquery' ), spine_get_script_version(), true );
 
 	wp_enqueue_script( 'html2canvas', get_stylesheet_directory_uri() . '/js/html2canvas.js', array( 'jquery' ), spine_get_script_version(), true );
-
-
-
-
 
 	$fais_site_object = array(
 		'local' => array(

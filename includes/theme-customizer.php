@@ -175,8 +175,6 @@ class Fais_Spine_Theme_Customizer {
 			'postMessage'
 		);
 
-
-
 		$wp_customize->add_setting( 'spine_options[is_dev_mode]', array(
 			'default' => 'false',
 			'capability' => 'edit_theme_options',
@@ -193,8 +191,6 @@ class Fais_Spine_Theme_Customizer {
 				'false'  => 'false',
 			),
 		) );
-
-
 
 		$wp_customize->add_section( 'static_background', array(
 			'title' => __( 'FAIS theme settings', 'static_background' ),
@@ -269,7 +265,6 @@ class Fais_Spine_Theme_Customizer {
 			),
 		) );
 
-
 		// Pagebuilder + Flexwork options
 		$wp_customize->add_setting( 'spine_options[column_type_default]', array(
 			'default' => '',
@@ -277,7 +272,7 @@ class Fais_Spine_Theme_Customizer {
 			'type' => 'option',
 		) );
 		$wp_customize->add_control( 'column_type_default', array(
-			'label'    =>  __( 'Column content treatment default' ),
+			'label'    => __( 'Column content treatment default' ),
 			'section'  => '_flexwork',
 			'settings' => 'spine_options[column_type_default]',
 			'type'     => 'select',
@@ -325,14 +320,9 @@ class Fais_Spine_Theme_Customizer {
 			),
 		) );
 
-
-
-
-
 		$wp_customize->add_section( '_flexwork', array(
 			'title' => __( 'Flexwork' ),
 		) );
-
 
 	}
 }

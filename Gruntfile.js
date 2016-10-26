@@ -71,8 +71,16 @@ module.exports = function(grunt) {
             dev: {
                 files: [
                     { expand: true, src: [
-						"../fin-ad-base-theme/**/*.css",
-						"../fin-ad-base-theme/**/*.js",
+						"../fin-ad-base-theme/build/**/*.css",
+						"../fin-ad-base-theme/build/**/*.js",
+						"../fin-ad-base-theme/builder-templates/**/*.css",
+						"../fin-ad-base-theme/builder-templates/**/*.js",
+						"../fin-ad-base-theme/inc/**/*.css",
+						"../fin-ad-base-theme/inc/**/*.js",
+						"../fin-ad-base-theme/includes/**/*.css",
+						"../fin-ad-base-theme/includes/**/*.js",
+						"../fin-ad-base-theme/js/**/*.css",
+						"../fin-ad-base-theme/js/**/*.js",
 						"../fin-ad-base-theme/**/*.jpg",
 						"../fin-ad-base-theme/**/*.png",
 						"../fin-ad-base-theme/**/*.gif",
