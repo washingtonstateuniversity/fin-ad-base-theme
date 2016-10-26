@@ -711,7 +711,7 @@ class Fais_Spine_Builder_Custom
 		return $clean_data;
 	}
 
-	public function build_flexwork_sectional_inputs( $field_name, $section_class_str = '' ) {
+	public function build_flexwork_sectional_inputs( $field_name, $section_class_str = '' ) {//@TODO removing this temp list for the js version
 		//'flex-row wrap-reverse justify-start content-start items-start pad-airy-TB round-wide-L round-no-at-414'
 		$setion_flex_options = [
 			'area_type' => [ 'flex-row' => 'flex-row', 'flex-column' => 'flex-column', 'row-reverse' => 'row-reverse', 'column-reverse' => 'column-reverse' ],
@@ -901,7 +901,7 @@ class Fais_Spine_Builder_Custom
 <input type='text' name='<?php esc_attr_e( $field_name ); ?>' class='fexwork-classes full-width' value='<?php esc_attr_e( $section_class_str ); ?>'/><span class='fexwork-error' style='color:red;'>Class already exists</span>
 		<?php
 	}
-	public function build_flexwork_column_inputs( $field_name, $column_class_str = '' ) {
+	public function build_flexwork_column_inputs( $field_name, $column_class_str = '' ) {//@TODO removing this temp list for the js version
 
 /*@todo add a type by type default setting map*/
 
@@ -1411,7 +1411,7 @@ function fais_spine_output_builder_section_background( $section_name, $ttfmake_s
 
 add_filter( 'tiny_mce_before_init', 'custom_edit_page_js', 9999 );
 function custom_edit_page_js( $opt ) {
-$flex_dev = is_development() ? 'dev/' : '';
+	$flex_dev = is_development() ? 'dev/' : '';
 	$background_url = fais_spine_get_option( 'background_url', false );
 	$background_color = fais_spine_get_option( 'background_color', '#9bbdf5' );
 	$secoundary_accent_color = fais_spine_get_option( 'secoundary_accent_color', '#1122a3' );
