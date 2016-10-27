@@ -82,10 +82,12 @@ module.exports = function(grunt) {
 						"../fin-ad-base-theme/includes/**/*.js",
 						"../fin-ad-base-theme/js/**/*.css",
 						"../fin-ad-base-theme/js/**/*.js",
+						"../fin-ad-base-theme/*.css",
 						"../fin-ad-base-theme/**/*.jpg",
 						"../fin-ad-base-theme/**/*.png",
 						"../fin-ad-base-theme/**/*.gif",
 						"../fin-ad-base-theme/**/*.svg",
+						"../fin-ad-base-theme/**/*.map",
 						'!**/vendor/**',
 						'!**/node_modules/**',
 						'!**/build/**'
