@@ -3,7 +3,7 @@ global $ttfmake_section_data;
 $section_wrapper_html = '';
 // Sections can have ids (provided by outside forces other than this theme) and classes.
 
-$section_classes = 'full-width'
+$section_classes = 'full-width';
 if ( isset( $ttfmake_section_data['section-classes'] ) ) {
 	$section_classes .= ' '.$ttfmake_section_data['section-classes'];
 }
