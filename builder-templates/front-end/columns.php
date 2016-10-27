@@ -115,10 +115,19 @@ if ( '' === $section_id ) {
 			} else {
 				$column_background = '';
 			}
+
+			$column_classes = '';
+
+			if ( '' !== $column['column-type'] ) {
+				$column_classes .= ' '.$column['column-type'] ;
+				}
+			if ( '' !== $column['column-classes'] ) {
+				$column_classes .= ' '.$column['column-classes'] ;
+			}
+			$count++;
 			?>
-         <div <?php if ( '' !== $column_background ) : esc_attr_e( "style='".$column_background."'" ); endif; ?>
-		class="<?php esc_attr_e( $column['column-type'] ); ?> <?php $count++; ?> <?php if ( isset( $column['column-classes'] ) ) : echo esc_attr( $column['column-classes'] );
-		endif; ?>">
+         <div <?php if ( '' !== $column_background ) : esc_attr_e( "style='".$column_background."'" ); endif; ?>  <?php if ( false !== $column_background && '' !== $column_background ) : echo ' style="' . esc_attr( $column_background ). '" '; endif; ?>
+		class=" <?php if ( '' !== $column_classes ) : echo esc_attr( $column_classes ); endif; ?> ">
 
         <?php if ( '' !== $column['title'] ) : ?>
         <?php $header_level = in_array( $column['header-level'], array( 'h2', 'h3', 'h4' ), true ) ? $column['header-level'] : 'h2'; ?>
