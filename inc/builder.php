@@ -147,7 +147,16 @@ class Fais_Spine_Builder_Custom
 		wp_dequeue_script( 'ttfmake-admin-edit-page' );
 		wp_enqueue_script( 'fais-ttfmake-admin-edit-page', get_stylesheet_directory_uri() . '/inc/builder-custom/js/edit-page.js', array( 'jquery' ), spine_get_script_version(), true );
 
-		wp_enqueue_style( 'flexwork-devices', 'https://webcore.fais.wsu.edu/resources/flexwork/flexwork-devices.css' );
+		$is_dev_mode = fais_spine_get_option( 'is_dev_mode', 'false' ); // yeah wil come base to case correctly, in rush ``/ lol
+		if ( 'true' === $is_dev_mode ) {
+			$flex_dev = 'dev/';
+		} else {
+			$flex_dev = is_development() ? 'dev/' : '';
+		}
+		$coverage = fais_spine_get_option( 'flexwork_coverage', 'devices-lite' );
+		wp_enqueue_style( 'flexwork-base', 'https://webcore.fais.wsu.edu/resources/flexwork/'.$flex_dev .'flexwork-'.$coverage.'.css', array( ), spine_get_script_version() );
+
+		//wp_enqueue_style( 'flexwork-devices', 'https://webcore.fais.wsu.edu/resources/flexwork/flexwork-devices.css' );
 
 		wp_enqueue_style( 'tag-it', get_stylesheet_directory_uri() . '/inc/builder-custom/js/jquery.tagit.css' );
 		wp_enqueue_style( 'jtagit.ui-zendesk', get_stylesheet_directory_uri() . '/inc/builder-custom/js/tagit.ui-zendesk.css' );
