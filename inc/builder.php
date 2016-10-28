@@ -143,9 +143,22 @@ class Fais_Spine_Builder_Custom
 		if ( ! in_array( $hook_suffix, array( 'post.php', 'post-new.php' ), true ) || ! ttfmake_post_type_supports_builder( get_post_type() )	) {
 			return;
 		}
-		wp_enqueue_script( 'tag-it', get_stylesheet_directory_uri() . '/inc/builder-custom/js/tag-it.min.js', array( 'jquery' ), spine_get_script_version(), true );
-		wp_dequeue_script( 'ttfmake-admin-edit-page' );
-		wp_enqueue_script( 'fais-ttfmake-admin-edit-page', get_stylesheet_directory_uri() . '/inc/builder-custom/js/edit-page.js', array( 'jquery' ), spine_get_script_version(), true );
+
+/*
+
+<!-- COMPATIBILITY -->
+<!-- to get html5 in order -->
+    <!--[if lt IE 9]><script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script><![endif]-->
+
+<!-- polyfill for min/max-width CSS3 Media Queries -->
+    <!--[if lt IE 9]><script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
+<?php $flex_dev = is_development() ? 'dev/' : '';?>
+<!-- polyfill for flex-box -->
+    <!--[if lt IE 10]>
+        <link href="https://webcore.fais.wsu.edu/resources/flexwork/<?php echo $flex_dev;?>extra/flexwork-ie9-.support.css" rel="stylesheet" type="text/css" />
+    <![endif]-->
+*/
 
 		$is_dev_mode = fais_spine_get_option( 'is_dev_mode', 'false' ); // yeah wil come base to case correctly, in rush ``/ lol
 		if ( 'true' === $is_dev_mode ) {
@@ -154,6 +167,14 @@ class Fais_Spine_Builder_Custom
 			$flex_dev = is_development() ? 'dev/' : '';
 		}
 		$coverage = fais_spine_get_option( 'flexwork_coverage', 'devices-lite' );
+
+		wp_enqueue_style( 'flexibility', 'https://webcore.fais.wsu.edu/resources/flexwork/'.$flex_dev.'extra/flexwork-ie9-.support.css', array( '' ), spine_get_script_version(), true );
+		wp_style_add_data( 'flexibility', 'conditional', 'lt IE 9' );
+
+		wp_enqueue_script( 'tag-it', get_stylesheet_directory_uri() . '/inc/builder-custom/js/tag-it.min.js', array( 'jquery' ), spine_get_script_version(), true );
+		wp_dequeue_script( 'ttfmake-admin-edit-page' );
+		wp_enqueue_script( 'fais-ttfmake-admin-edit-page', get_stylesheet_directory_uri() . '/inc/builder-custom/js/edit-page.js', array( 'jquery' ), spine_get_script_version(), true );
+
 		wp_enqueue_style( 'flexwork-base', 'https://webcore.fais.wsu.edu/resources/flexwork/'.$flex_dev .'flexwork-'.$coverage.'.css', array(), spine_get_script_version() );
 
 		//wp_enqueue_style( 'flexwork-devices', 'https://webcore.fais.wsu.edu/resources/flexwork/flexwork-devices.css' );
@@ -161,8 +182,8 @@ class Fais_Spine_Builder_Custom
 		wp_enqueue_style( 'tag-it', get_stylesheet_directory_uri() . '/inc/builder-custom/js/jquery.tagit.css' );
 		wp_enqueue_style( 'jtagit.ui-zendesk', get_stylesheet_directory_uri() . '/inc/builder-custom/js/tagit.ui-zendesk.css' );
 
-		wp_enqueue_script( 'flexibility', 'https://webcore.fais.wsu.edu/resources/flexwork/extra/flexibility.js', array( 'jquery' ), spine_get_script_version(), true );
-		wp_script_add_data( 'flexibility', 'conditional', 'lte IE 10' );
+		//wp_enqueue_script( 'flexibility', 'https://webcore.fais.wsu.edu/resources/flexwork/extra/flexibility.js', array( 'jquery' ), spine_get_script_version(), true );
+		//wp_script_add_data( 'flexibility', 'conditional', 'lte IE 10' );
 
 	}
 
