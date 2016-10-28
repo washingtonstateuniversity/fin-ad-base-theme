@@ -154,7 +154,7 @@ class Fais_Spine_Builder_Custom
 			$flex_dev = is_development() ? 'dev/' : '';
 		}
 		$coverage = fais_spine_get_option( 'flexwork_coverage', 'devices-lite' );
-		wp_enqueue_style( 'flexwork-base', 'https://webcore.fais.wsu.edu/resources/flexwork/'.$flex_dev .'flexwork-'.$coverage.'.css', array( ), spine_get_script_version() );
+		wp_enqueue_style( 'flexwork-base', 'https://webcore.fais.wsu.edu/resources/flexwork/'.$flex_dev .'flexwork-'.$coverage.'.css', array(), spine_get_script_version() );
 
 		//wp_enqueue_style( 'flexwork-devices', 'https://webcore.fais.wsu.edu/resources/flexwork/flexwork-devices.css' );
 
