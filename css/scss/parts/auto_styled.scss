@@ -39,16 +39,16 @@ $file_map: (
 );
 
 
-@mixin map-to-selectors($file_map, $pseudo , $prefex, $otherSelectors) {
+@mixin map-to-selectors($file_map, $pseudoSelector , $prefex, $otherSelectors) {
   $selectors: ();
   @each $_type, $_val in $file_map {
 		$class: nth($_val, 2);
 		$selectors: append($selectors, unquote("
-		#{$prefex} .#{$class}#{$pseudo}"), comma);
+		#{$prefex} .#{$class}#{$pseudoSelector}"), comma);
 		$exts: nth($_val, 1);
 		@each $ext in $exts {
 			$selector: unquote("
-			#{$prefex} a[href$='.#{$ext}']:not(.not-autostyle)#{$pseudo}");
+			#{$prefex} a[href$='.#{$ext}']:not(.not-autostyle)#{$pseudoSelector}");
 			$selectors: append($selectors, $selector, comma);
 		}
 
@@ -69,10 +69,7 @@ img {
 
 @include map-to-selectors($file_map, "", "", "a.button,  a[href^='mailto']:not(.not-autostyle)") {
     background: rgba(255,255,255,.25);
-    border-style: solid;
-    border-width: .1rem;
-    border-color: rgba(123,123,123,.65);
-    border-radius: .5rem;
+
     color: #981e32;
     display: inline-block;
     text-decoration: none;
@@ -85,6 +82,36 @@ img {
     position: relative;
 	text-decoration: none;
 };
+
+@include map-to-selectors($file_map, "", ".ada-bordered ", "") {
+    border-style: solid;
+    border-width: .1rem;
+    border-color: rgba(123,123,123,.65);
+    border-radius: .5rem;
+	margin-top: 0rem;
+};
+@include map-to-selectors($file_map, ".ada-bordered", "", "") {
+    border-style: solid;
+    border-width: .1rem;
+    border-color: rgba(123,123,123,.65);
+    border-radius: .5rem;
+	margin-top: 0rem;
+};
+
+@include map-to-selectors($file_map, "", ".icon-only ", "") {
+    border: inherit;
+	background:none;
+	margin-top: 0rem;
+	font-weight:600;
+};
+@include map-to-selectors($file_map, ".icon-only", "", "") {
+    border: inherit;
+	background:none;
+	margin-top: 0rem;
+	font-weight:600;
+};
+
+
 
 @include map-to-selectors($file_map, "", "p > ", "p > a.button, p > a[href^='mailto']:not(.not-autostyle)") {
 	margin-right: .2rem;

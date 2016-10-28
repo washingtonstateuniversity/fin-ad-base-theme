@@ -259,15 +259,19 @@ dl.flex-row, ol.flex-row, ul.flex-row{
 	_::-webkit-full-page-media, _:future, :root body div#border_top {
 		width: calc( 100% - (100vw - 79.2rem) );
 	}
-	[data-useragent*="Firefox"] body #binder header.main-header {
-		width: calc( 100% - (100vw - 79.2rem) );
-	}
+	[data-useragent*="Firefox"] body #binder header.main-header,// {
+		//width: calc( 100% - (100vw - 79.2rem) );
+	//}
 	[data-useragent*="Firefox"]  body div#border_top {
 		width: calc( 100% - (100vw - 79.2rem) );
 	}
 
 }
-
+@media only screen and (max-width: 693px){
+	#binder.fluid main, #binder.hybrid main {
+		margin-top: 30px;
+	}
+}
 @media (min-width: 990px ) and (max-width: 1007px){
 	body div#border_top,
 	body #binder header.main-header {
