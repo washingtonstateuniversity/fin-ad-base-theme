@@ -1,12 +1,12 @@
 //simple actions
 body:not(#tinymce) .folding > * {
-	> *:nth-child(1) + *  {
+	&:nth-child(odd) + *  {
 		height: 0;
 		overflow: hidden;
 		padding: 0;
 		margin: 0;
 	}
-	> *:nth-child(1){
+	&:nth-child(odd){
 		cursor:pointer;
 		margin: 0;
 		&:hover{
@@ -19,3 +19,79 @@ body:not(#tinymce) .folding .unfolded + * {
 	overflow: visible;
 	transition: height 1s ease-in-out;
 }
+
+body:not(#tinymce) .folding.as-more > * {
+	&:nth-child(odd){
+		&:hover{
+		}
+		&:after{
+			content: "More... ";
+			padding-left: .5rem;
+			font-size: 50%;
+			float:right;
+		}
+		&:before{
+			//content:"\f101";
+
+			display: inline-block;
+			font: normal normal normal 14px/1 FontAwesome;
+			text-rendering: auto;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+			padding-left:.5rem;
+			font-size: 50%;
+		}&:before{
+			//float:right;
+		}
+	}
+}
+
+.accordion .ui-accordion-header:before {
+    content:"\f196";
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding-right:.5rem;
+}
+
+.accordion .ui-accordion-header:hover {
+    cursor:pointer;
+    color: #9d060b;
+}
+.accordion .ui-accordion-header:hover:before {
+    color: #9d060b;
+    content:"\f0fe";
+    padding-right:.35rem;
+}
+
+.accordion .ui-accordion-header.ui-accordion-header-active:before{
+     content:"\f147";
+}
+.accordion .ui-accordion-header.ui-accordion-header-active:hover:before{
+     content:"\f146";
+}
+
+
+
+/*body:not(#tinymce) .folding > *:nth-child(1) + *  {
+		height: 0;
+		overflow: hidden;
+		padding: 0;
+		margin: 0;
+	}
+body:not(#tinymce) .folding > *:nth-child(1){
+		cursor:pointer;
+		margin: 0;
+	}
+body:not(#tinymce) .folding > *:nth-child(1):hover{
+			opacity: .85;
+		}
+
+body:not(#tinymce) .folding > .unfolded + * {
+	height: 100%;
+	overflow: visible;
+	transition: height 1s ease-in-out;
+}*/

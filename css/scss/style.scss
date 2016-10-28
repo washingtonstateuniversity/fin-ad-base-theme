@@ -42,7 +42,7 @@ h3 {
 
 .flex-column-reverse>*, .flex-column>*, .flex-row-reverse>*, .flex-row>*, .grid-part {
     min-width: 1%;
-    padding: initial;
+    padding: inherit;//initial;
     box-sizing: border-box;
     transition: width 1s ease-in-out;
 }

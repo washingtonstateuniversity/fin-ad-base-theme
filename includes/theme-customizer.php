@@ -23,8 +23,8 @@ class Fais_Spine_Theme_Customizer {
 	 */
 	public function customize_register( $wp_customize ) {
 
-	// Inlcude the Alpha Color Picker.
-	//require_once( dirname( __FILE__ ) . '/assets/alpha-color-picker/alpha-color-picker.php' );
+	// Include the Multi Color Picker.
+	require_once( dirname( __FILE__ ) . '/assets/page-by-page/page-by-page.php' );
 
 	// Include the Multi Color Picker.
 	require_once( dirname( __FILE__ ) . '/assets/multi-color-picker/multi-color-picker.php' );

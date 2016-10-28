@@ -138,7 +138,13 @@ console.log(data);
 		$('html').attr('data-useragent',navigator.userAgent);
 
 		$(".folding>*:nth-child(odd)").on("click",function(){
-			$(this).toggleClass("unfolded");
+			if( $(this).closest(".folding").is(".one-at-time") ){
+				$(".unfolded").removeClass("unfolded");
+				$(this).toggleClass("unfolded");
+			}else{
+				$(this).toggleClass("unfolded");
+			}
+
 		});
 
 		var icons = {
