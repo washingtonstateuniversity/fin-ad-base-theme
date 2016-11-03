@@ -87,7 +87,9 @@ main {
 	padding: .7rem 0 0 .465rem !important;
 }
 
-
+.type-page>section.banner-section {
+    margin-top: 74px;
+}
 
 #content_area > .banner-section{ overflow-y:hidden; padding:0; }
 #content_area > .banner-section > .banner-column > .builder-section-content > .builder-banner-slide,
