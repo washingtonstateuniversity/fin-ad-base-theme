@@ -136,7 +136,9 @@ main {
     padding: .5rem 1.5rem 1.2rem 1.5rem;
 	margin-bottom: -.4rem;
 }
-
+.column-section div header{
+	width:100%;
+}
 
 
 body.home:not(.has-background-image) #jacket {

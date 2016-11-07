@@ -212,7 +212,7 @@ a[href^="mailto:"]:not(.not-autostyle):before{
 
 
 
-@include map-to-selectors($file_map, ".img-link", "", "a.button.img-link, a[href^='mailto']:not(.not-autostyle).img-link, .gen_doc.img-link") {
+@include map-to-selectors($file_map, ".img-link", "", "a.button.img-link,  .gen_doc.img-link") {
     display: inline-block;
     height: auto;
     padding: 0;
@@ -223,7 +223,9 @@ a[href^="mailto:"]:not(.not-autostyle):before{
 };
 
 
-@include map-to-selectors($file_map, ".img-link:before", "", "a.button.img-link:before, a[href^='mailto']:not(.not-autostyle).img-link:before, .gen_doc.img-link:before") {
+
+
+@include map-to-selectors($file_map, ".img-link:before", "", "a.button.img-link:before, .gen_doc.img-link:before") {
     margin-right: .5rem;
     font-size: 1.9rem;
     line-height: 2.3rem;
@@ -240,8 +242,15 @@ a[href^="mailto:"]:not(.not-autostyle):before{
     background: #d0d0d0;
 };
 
+@include map-to-selectors($file_map, ".img-link:before", '[data-useragent*="Windows NT 6.1"][data-useragent*="Trident"] ', "a.button.img-link:before, .gen_doc.img-link:before") {
+	font-size: 1.9rem;
+	line-height: 3.3rem;
+	display: block;
+	height: 3.3rem;
+	padding-top: 1.5rem;
+};
 
-@include map-to-selectors($file_map, ".img-link img", "", "a.button.img-link img, a[href^='mailto']:not(.not-autostyle).img-link img, .gen_doc.img-link img") {
+@include map-to-selectors($file_map, ".img-link img", "", "a.button.img-link img, .gen_doc.img-link img") {
     z-index: 1;
     position:relative;
 	border-radius: .3rem;
