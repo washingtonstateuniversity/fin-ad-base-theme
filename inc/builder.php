@@ -1444,21 +1444,27 @@ function fais_spine_output_builder_section_background( $section_name, $ttfmake_s
 
 // Callback function to filter the MCE settings
 function my_mce_before_init_insert_formats( $init_array ) {
-	var_dump( $init_array );
-	die();
+	//var_dump( $init_array );
+	//die();
 	// Define the style_formats array
 	$style_formats = array(
 		// Each array child is a format with it's own settings
 		array(
-			'title' => '.list-throwback',
+			'title' => 'list-throwback',
 			'block' => 'ul',
 			'classes' => 'list-throwback',
 			'wrapper' => true,
 		),
 		array(
-			'title' => '.list-blank',
+			'title' => 'list-blank',
 			'block' => 'ul',
 			'classes' => 'list-blank',
+			'wrapper' => true,
+		),
+		array(
+			'title' => 'nice-numbers',
+			'block' => 'ul',
+			'classes' => 'nice-numbers',
 			'wrapper' => true,
 		),
 	);
@@ -1487,15 +1493,41 @@ function custom_edit_page_js( $opt ) {
 	$header_text_color = fais_spine_get_option( 'header_text_color', '#FFF' );
 	$jacket_background_url = fais_spine_get_option( 'jacket_background_url', false );
 
+	$is_dev_mode = fais_spine_get_option( 'is_dev_mode', 'false' ); // yeah wil come base to case correctly, in rush ``/ lol
+	if ( 'true' === $is_dev_mode ) {
+		$flex_dev = 'dev/';
+	} else {
+		$flex_dev = is_development() ? 'dev/' : '';
+	}
+
+	/* design dependant third party and theme urls */
+	$main_theme_style = get_stylesheet_directory_uri() . '/style.css?ver='.spine_get_script_version();
+
+	if ( 'true' === $is_dev_mode ) {
+		$main_theme_style = '//webcore.fais.wsu.edu/resources/central_FnA_theme/dev/wordpress/fin-ad-base-theme/style.css';
+	}
+
+	$url_list = array(
+		'//fonts.googleapis.com/css?family=Open+Sans%3A100%2C200%2C300%2C400%2C500%2C600%2C700%2C800%2C900&#038;ver=4.5.2',
+		get_template_directory_uri().'/style.css?ver='.spine_get_script_version(),
+		get_template_directory_uri().'/styles/bookmark.css?ver='.spine_get_script_version(),
+		'//webcore.fais.wsu.edu/resources/flexwork/'.$flex_dev .'flexwork-devices-lite.css?ver='.spine_get_script_version(),
+		'//webcore.fais.wsu.edu/resources/flexwork/'.$flex_dev .'extra/flexwork-typography.css?ver='.spine_get_script_version(),
+		'//webcore.fais.wsu.edu/resources/flexwork/'.$flex_dev .'extra/flexwork-ui.css?ver='.spine_get_script_version(),
+		$main_theme_style,
+	);
+
+$opt['content_css'] = $opt['content_css'].','. implode( ',',$url_list );
+
 	$opt['content_style'] = 'body { background-color:#dedede !important;} .primary-accent-bk {background-color:'.$primary_accent_color.'; } .secoundary-accent-bk {background-color:'.$secoundary_accent_color.'; } .primary-accent-text{color:'.$primary_accent_color.'; } .secoundary-accent-text{color:'.$secoundary_accent_color.'; }' ;
 
-	$opt['content_css'] = $opt['content_css'].',//fonts.googleapis.com/css?family=Open+Sans%3A100%2C200%2C300%2C400%2C500%2C600%2C700%2C800%2C900&#038;ver=4.5.2';
+	/*$opt['content_css'] = $opt['content_css'].',//fonts.googleapis.com/css?family=Open+Sans%3A100%2C200%2C300%2C400%2C500%2C600%2C700%2C800%2C900&#038;ver=4.5.2';
 	$opt['content_css'] = $opt['content_css'].',//wp.wsu.dev/wp-content/themes/spine/style.css?ver='.spine_get_script_version();
 	$opt['content_css'] = $opt['content_css'].',//wp.wsu.dev/wp-content/themes/spine/styles/bookmark.css?ver='.spine_get_script_version();
 	$opt['content_css'] = $opt['content_css'].',//webcore.fais.wsu.edu/resources/flexwork/'.$flex_dev .'flexwork-devices-lite.css?ver='.spine_get_script_version();
 	$opt['content_css'] = $opt['content_css'].',//webcore.fais.wsu.edu/resources/flexwork/'.$flex_dev .'extra/flexwork-typography.css?ver='.spine_get_script_version();
 	$opt['content_css'] = $opt['content_css'].',//webcore.fais.wsu.edu/resources/flexwork/'.$flex_dev .'extra/flexwork-ui.css?ver='.spine_get_script_version();
-	$opt['content_css'] = $opt['content_css'].',/wp-content/themes/fin-ad-base-theme/style.css?ver='.spine_get_script_version();
+	$opt['content_css'] = $opt['content_css'].',/wp-content/themes/fin-ad-base-theme/style.css?ver='.spine_get_script_version();*/
 
 	return $opt;
 }

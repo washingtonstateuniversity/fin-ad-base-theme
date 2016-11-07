@@ -7,7 +7,7 @@
 var oneApp = oneApp || {}, $oneApp = $oneApp || jQuery(oneApp);
 (function(window, $, _, oneApp, $oneApp){
 	$.fn.stripClass = function (partialMatch, endOrBegin) {
-		console.log("stripClass----------->>>>>>>>>>>");
+		//console.log("stripClass----------->>>>>>>>>>>");
 		var regx;
 		regx = new RegExp((!endOrBegin ? "\\b" : "\\S+") + partialMatch + "\\S*", "g");
 		//console.log(regx);
