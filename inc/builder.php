@@ -1508,6 +1508,7 @@ function custom_edit_page_js( $opt ) {
 	}
 
 	$url_list = array(
+		'//repo.wsu.edu/spine/1/spine.min.css?ver='.spine_get_script_version(),
 		'//fonts.googleapis.com/css?family=Open+Sans%3A100%2C200%2C300%2C400%2C500%2C600%2C700%2C800%2C900&#038;ver=4.5.2',
 		get_template_directory_uri().'/style.css?ver='.spine_get_script_version(),
 		get_template_directory_uri().'/styles/bookmark.css?ver='.spine_get_script_version(),
@@ -1515,6 +1516,7 @@ function custom_edit_page_js( $opt ) {
 		'//webcore.fais.wsu.edu/resources/flexwork/'.$flex_dev .'extra/flexwork-typography.css?ver='.spine_get_script_version(),
 		'//webcore.fais.wsu.edu/resources/flexwork/'.$flex_dev .'extra/flexwork-ui.css?ver='.spine_get_script_version(),
 		$main_theme_style,
+		get_stylesheet_directory_uri() . '/includes/assets/tinymce_editor_style_helper.css',
 	);
 
 $opt['content_css'] = $opt['content_css'].','. implode( ',',$url_list );
