@@ -248,7 +248,7 @@ a[href^="mailto:"]:not(.not-autostyle):before{
 };
 
 
-@include map-to-selectors($file_map, ".img-link:not([href*='wsu.edu']):after", "", "a.img-link.external:after, a[href^='mailto']:not(.not-autostyle):not([href*='wsu.edu']):after, .gen_doc:not([href*='wsu.edu']):after") {
+@include map-to-selectors($file_map, ".img-link:not([href*='wsu.edu']):after", "", "a.img-link.external:after, .gen_doc:not([href*='wsu.edu']):after") {
     z-index: 999;
     position:relative;
     font-family: Spine-Icons;
