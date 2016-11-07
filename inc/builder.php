@@ -1185,6 +1185,9 @@ function fais_spine_output_builder_section_classes( $section_name, $ttfmake_sect
 	if ( false !== strpos( trim( $section_classes ), 'gutter pad-top' ) ) {
 		$section_classes = implode( '',explode( 'gutter pad-top',$section_classes ) );
 	}
+	if ( false !== strpos( trim( $section_classes ), 'grid-part' ) ) {
+		$section_classes = implode( '',explode( 'grid-part',$section_classes ) );
+	}
 	?>
 	<div class="wsuwp-builder-meta">
 		<label for="<?php esc_attr_e( $section_name ); ?>[section-classes]">Section Classes:</label><input type="text" id="<?php esc_attr_e( $section_name ); ?>[section-classes]" class="wsuwp-builder-section-classes widefat" name="<?php esc_attr_e( $section_name ); ?>[section-classes]" value="<?php esc_attr_e( $section_classes ); ?>" />
@@ -1312,15 +1315,13 @@ function fais_spine_output_builder_column_type( $column_name, $section_data, $co
 		$column_type_default .= $column_size_defaults[ $column_order ] .'  order-' . $column_order;
 	}?> <?php
 
+	$column_type = $column_type_default;
 	if ( $column ) {
-
-		if ( ! empty( $section_data['data'] ) ) {
-			$column_type = ( isset( $section_data['data']['columns'][ $column ]['column-type'] ) && '' !== $section_data['data']['columns'][ $column ]['column-type'] ) ? $section_data['data']['columns'][ $column ]['column-type'] : $column_type_default;
-		} else {
-			$column_type = $column_type_default;
+		if ( ! empty( $section_data['data'] ) && isset( $section_data['data']['columns'][ $column ]['column-type'] ) && '' !== $section_data['data']['columns'][ $column ]['column-type'] ) {
+			$column_type = $section_data['data']['columns'][ $column ]['column-type'];
 		}
-	} else {
-		$column_type = ( isset( $section_data['data']['column-type'] ) && '' !== $section_data['data']['column-type'] ) ? $section_data['data']['column-type'] : $column_type_default;
+	} elseif ( isset( $section_data['data']['column-type'] ) && '' !== $section_data['data']['column-type'] ) {
+		$column_type = $section_data['data']['column-type'];
 	}
 ?>
 	<div class="wsuwp-builder-meta">
@@ -1338,32 +1339,37 @@ function fais_spine_output_builder_column_type( $column_name, $section_data, $co
  * @param int $column
  */
 function fais_spine_output_builder_section_flextree( $section_name, $ttfmake_section_data ) {
-	if ( isset( $ttfmake_section_data['data']['section-flextype'] ) && '' !== $ttfmake_section_data['data']['section-flextype'] ) {
-		$current = $ttfmake_section_data['data']['section-flextype'];
-	} else {
+
+	$current = '';
+	if ( isset( $ttfmake_section_data['data']['section-type'] ) && '' !== $ttfmake_section_data['data']['section-type'] && 'faiswsuwpsingle' !== $ttfmake_section_data['data']['section-type'] ) {
 		$current = 'flex-row items-start pad-tight ';
 	}
 
+	if ( isset( $ttfmake_section_data['data']['section-flextype'] ) && '' !== $ttfmake_section_data['data']['section-flextype'] ) {
+		$current = $ttfmake_section_data['data']['section-flextype'];
+	}
+
+	$current_attr = '';
 	if ( isset( $ttfmake_section_data['data']['section-attr'] ) && '' !== $ttfmake_section_data['data']['section-attr'] ) {
 		$current_attr = $ttfmake_section_data['data']['section-attr'];
-	} else {
-		$current_attr = '';
 	}
 
+	$current_position = 'content';
 	if ( isset( $ttfmake_section_data['data']['section-position'] ) && '' !== $ttfmake_section_data['data']['section-position'] ) {
 		$current_position = $ttfmake_section_data['data']['section-position'];
-	} else {
-		$current_position = 'content';
 	}
 
+	$current_active = 'true';
 	if ( isset( $ttfmake_section_data['data']['section-active'] ) && '' !== $ttfmake_section_data['data']['section-active'] ) {
 		$current_active = $ttfmake_section_data['data']['section-active'];
-	} else {
-		$current_active = 'true';
 	}
 
 	?>
-
+<style>
+	ul.tagit {
+		clear: both;
+	}
+</style>
 	<div class="wsuwp-builder-meta">
 		<label for="<?php esc_attr_e( $section_name ); ?>[section-active]">Active</label>
 		<select id="<?php esc_attr_e( $section_name ); ?>[section-active]"
@@ -1436,6 +1442,38 @@ function fais_spine_output_builder_section_background( $section_name, $ttfmake_s
 }
 
 
+// Callback function to filter the MCE settings
+function my_mce_before_init_insert_formats( $init_array ) {
+	var_dump( $init_array );
+	die();
+	// Define the style_formats array
+	$style_formats = array(
+		// Each array child is a format with it's own settings
+		array(
+			'title' => '.list-throwback',
+			'block' => 'ul',
+			'classes' => 'list-throwback',
+			'wrapper' => true,
+		),
+		array(
+			'title' => '.list-blank',
+			'block' => 'ul',
+			'classes' => 'list-blank',
+			'wrapper' => true,
+		),
+	);
+	// Insert the array, JSON ENCODED, into 'style_formats'
+	$old_style_formats = array();
+	if ( isset( $init_array['style_formats'] ) ) {
+		$old_style_formats = wp_json_decode( $init_array['style_formats'] );
+	}
+	$init_array['style_formats'] = wp_json_encode( $old_style_formats + $style_formats );
+
+	return $init_array;
+
+}
+// Attach callback to 'tiny_mce_before_init'
+add_filter( 'tiny_mce_before_init', 'my_mce_before_init_insert_formats' );
 
 
 add_filter( 'tiny_mce_before_init', 'custom_edit_page_js', 9999 );
