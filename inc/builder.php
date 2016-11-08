@@ -1336,7 +1336,7 @@ function fais_spine_output_builder_column_type( $column_name, $section_data, $co
 function fais_spine_output_builder_section_flextree( $section_name, $ttfmake_section_data ) {
 
 	$current = '';
-	if ( empty( $ttfmake_section_data['data'] ) && 'faiswsuwpsingle' !== $ttfmake_section_data['section']['id'] ) {
+	if ( empty( $ttfmake_section_data['data'] ) && 'faiswsuwpsingle' !== $ttfmake_section_data['section']['id'] && 'banner' !== $ttfmake_section_data['section']['id'] ) {
 		$current = 'flex-row items-start pad-tight ';
 	}
 
