@@ -1443,45 +1443,6 @@ function fais_spine_output_builder_section_background( $section_name, $ttfmake_s
 
 
 // Callback function to filter the MCE settings
-function my_mce_before_init_insert_formats( $init_array ) {
-	//var_dump( $init_array );
-	//die();
-	// Define the style_formats array
-	$style_formats = array(
-		// Each array child is a format with it's own settings
-		array(
-			'title' => 'list-throwback',
-			'block' => 'ul',
-			'classes' => 'list-throwback',
-			'wrapper' => true,
-		),
-		array(
-			'title' => 'list-blank',
-			'block' => 'ul',
-			'classes' => 'list-blank',
-			'wrapper' => true,
-		),
-		array(
-			'title' => 'nice-numbers',
-			'block' => 'ul',
-			'classes' => 'nice-numbers',
-			'wrapper' => true,
-		),
-	);
-	// Insert the array, JSON ENCODED, into 'style_formats'
-	$old_style_formats = array();
-	if ( isset( $init_array['style_formats'] ) ) {
-		$old_style_formats = wp_json_decode( $init_array['style_formats'] );
-	}
-	$init_array['style_formats'] = wp_json_encode( $old_style_formats + $style_formats );
-
-	return $init_array;
-
-}
-// Attach callback to 'tiny_mce_before_init'
-add_filter( 'tiny_mce_before_init', 'my_mce_before_init_insert_formats' );
-
-
 add_filter( 'tiny_mce_before_init', 'custom_edit_page_js', 9999 );
 function custom_edit_page_js( $opt ) {
 	$flex_dev = is_development() ? 'dev/' : '';
@@ -1519,20 +1480,250 @@ function custom_edit_page_js( $opt ) {
 		get_stylesheet_directory_uri() . '/includes/assets/tinymce_editor_style_helper.css',
 	);
 
-$opt['content_css'] = $opt['content_css'].','. implode( ',',$url_list );
+	$opt['content_css'] = $opt['content_css'].','. implode( ',',$url_list );
 
 	$opt['content_style'] = 'body { background-color:#dedede !important;} .primary-accent-bk {background-color:'.$primary_accent_color.'; } .secoundary-accent-bk {background-color:'.$secoundary_accent_color.'; } .primary-accent-text{color:'.$primary_accent_color.'; } .secoundary-accent-text{color:'.$secoundary_accent_color.'; }' ;
-
-	/*$opt['content_css'] = $opt['content_css'].',//fonts.googleapis.com/css?family=Open+Sans%3A100%2C200%2C300%2C400%2C500%2C600%2C700%2C800%2C900&#038;ver=4.5.2';
-	$opt['content_css'] = $opt['content_css'].',//wp.wsu.dev/wp-content/themes/spine/style.css?ver='.spine_get_script_version();
-	$opt['content_css'] = $opt['content_css'].',//wp.wsu.dev/wp-content/themes/spine/styles/bookmark.css?ver='.spine_get_script_version();
-	$opt['content_css'] = $opt['content_css'].',//webcore.fais.wsu.edu/resources/flexwork/'.$flex_dev .'flexwork-devices-lite.css?ver='.spine_get_script_version();
-	$opt['content_css'] = $opt['content_css'].',//webcore.fais.wsu.edu/resources/flexwork/'.$flex_dev .'extra/flexwork-typography.css?ver='.spine_get_script_version();
-	$opt['content_css'] = $opt['content_css'].',//webcore.fais.wsu.edu/resources/flexwork/'.$flex_dev .'extra/flexwork-ui.css?ver='.spine_get_script_version();
-	$opt['content_css'] = $opt['content_css'].',/wp-content/themes/fin-ad-base-theme/style.css?ver='.spine_get_script_version();*/
+	$opt['apply_source_formatting'] = false;
 
 	return $opt;
 }
+
+
+/**
+ * Add styles/classes to the "Styles" drop-down
+ */
+add_filter( 'tiny_mce_before_init', 'fb_mce_before_init', 999999 );
+
+function fb_mce_before_init( $settings ) {
+		/* still needs
+		.img-link {}
+		.not-autostyle {}
+		*/
+	$style_formats = array(
+		array(
+			'title' => 'Lists',
+			'items' => array(
+				array(
+					'title' => 'list-throwback',
+					'selector' => 'ul',
+					'classes' => 'list-throwback',
+				),
+				array(
+					'title' => 'list-blank',
+					'selector' => 'ul',
+					'classes' => 'list-blank',
+				),
+				array(
+					'title' => 'nice-numbers (ul/ol)',
+					'selector' => 'ul,ol',
+					'classes' => 'nice-numbers',
+				),
+			),
+		),
+		array(
+			'title' => 'Theme colors',
+			'items' => array(
+				array(
+					'title' => 'background color',
+					'classes' => 'background-color',
+				),
+				array(
+					'title' => 'primary accent BACKGROUND',
+					'classes' => 'primary-accent-bk',
+				),
+				array(
+					'title' => 'secoundary accent BACKGROUND',
+					'classes' => 'secoundary-accent-bk',
+				),
+				array(
+					'title' => 'primary accent TEXT',
+					'classes' => 'primary-accent-text',
+				),
+				array(
+					'title' => 'secoundary accent TEXT',
+					'classes' => 'secoundary-accent-text',
+				),
+			),
+		),
+		/* Theme UI should go here
+		.folding {}
+		*/
+		array(
+			'title' => 'File Highlighters',
+			'items' => array(
+				array(
+					'title' => 'Word documents',
+					'selector' => 'li,a,i,b',
+					'classes' => 'doc',
+				),
+				array(
+					'title' => 'Videos',
+					'selector' => 'li,a,i,b',
+					'classes' => 'video',
+				),
+				array(
+					'title' => 'Audio',
+					'selector' => 'li,a,i,b',
+					'classes' => 'audio',
+				),
+				array(
+					'title' => 'Powerpoint',
+					'selector' => 'li,a,i,b',
+					'classes' => 'powerpoint',
+				),
+				array(
+					'title' => 'PDF',
+					'selector' => 'li,a,i,b',
+					'classes' => 'pdf',
+				),
+				array(
+					'title' => 'image',
+					'selector' => 'li,a,i,b',
+					'classes' => 'image',
+				),
+				array(
+					'title' => 'Excel',
+					'selector' => 'li,a,i,b',
+					'classes' => 'excel',
+				),
+				array(
+					'title' => 'Scripts',
+					'selector' => 'li,a,i,b',
+					'classes' => 'scripts',
+				),
+				array(
+					'title' => 'archive files (zip,tar)',
+					'selector' => 'li,a,i,b',
+					'classes' => 'archive-file',
+				),
+			),
+		),
+
+		array(
+			'title'   => 'Headings',
+			'items' => array(
+				array(
+					'title'   => 'Heading 1',
+					'format'  => 'h1',
+				),
+				array(
+					'title'   => 'Heading 2',
+					'format'  => 'h2',
+				),
+				array(
+					'title'   => 'Heading 3',
+					'format'  => 'h3',
+				),
+				array(
+					'title'   => 'Heading 4',
+					'format'  => 'h4',
+				),
+				array(
+					'title'   => 'Heading 5',
+					'format'  => 'h5',
+				),
+				array(
+					'title'   => 'Heading 6',
+					'format'  => 'h6',
+				),
+			),
+		),
+		array(
+			'title'   => 'Inline',
+			'items' => array(
+				array(
+					'title'   => 'Bold',
+					'format'  => 'bold',
+					'icon'    => 'bold',
+				),
+				array(
+					'title'   => 'Italic',
+					'format'  => 'italic',
+					'icon'    => 'italic',
+				),
+				array(
+					'title'   => 'Underline',
+					'format'  => 'underline',
+					'icon'    => 'underline',
+				),
+				array(
+					'title'   => 'Strikethrough',
+					'format'  => 'strikethrough',
+					'icon'    => 'strikethrough',
+				),
+				array(
+					'title'   => 'Superscript',
+					'format'  => 'superscript',
+					'icon'    => 'superscript',
+				),
+				array(
+					'title'   => 'Subscript',
+					'format'  => 'subscript',
+					'icon'    => 'subscript',
+				),
+				array(
+					'title'   => 'Code',
+					'format'  => 'code',
+					'icon'    => 'code',
+				),
+			),
+		),
+		array(
+			'title'   => 'Blocks',
+			'items' => array(
+				array(
+					'title'   => 'Paragraph',
+					'format'  => 'p',
+				),
+				array(
+					'title'   => 'Blockquote',
+					'format'  => 'blockquote',
+				),
+				array(
+					'title'   => 'Div',
+					'format'  => 'div',
+				),
+				array(
+					'title'   => 'Pre',
+					'format'  => 'pre',
+				),
+			),
+		),
+		array(
+			'title'   => 'Alignment',
+			'items' => array(
+				array(
+					'title'   => 'Left',
+					'format'  => 'alignleft',
+					'icon'    => 'alignleft',
+				),
+				array(
+					'title'   => 'Center',
+					'format'  => 'aligncenter',
+					'icon'    => 'aligncenter',
+				),
+				array(
+					'title'   => 'Right',
+					'format'  => 'alignright',
+					'icon'    => 'alignright',
+				),
+				array(
+					'title'   => 'Justify',
+					'format'  => 'alignjustify',
+					'icon'    => 'alignjustify',
+				),
+			),
+		),
+
+	);
+
+	$settings['style_formats'] = wp_json_encode( $style_formats );
+	// Merge old & new styles
+	// for now skip as we want the order to be what we set
+	//$settings['style_formats_merge'] = 'true';
+	return $settings;
+}
+
 
 
 if ( is_admin() ) {
