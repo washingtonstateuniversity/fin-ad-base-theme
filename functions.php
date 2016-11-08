@@ -66,10 +66,9 @@ function fais_customizer_enqueue_scripts() {
 	 */
 
 	$is_dev_mode = fais_spine_get_option( 'is_dev_mode', 'false' ); // yeah wil come base to case correctly, in rush ``/ lol
-	if ( 'true' === $is_dev_mode ) {
+	$flex_dev = '';
+	if ( 'true' === $is_dev_mode || is_development() ) {
 		$flex_dev = 'dev/';
-	} else {
-		$flex_dev = is_development() ? 'dev/' : '';
 	}
 
 	wp_enqueue_style( 'fais_spine-theme',       get_template_directory_uri()   . '/style.css', array( 'wsu-spine' ), spine_get_script_version() );

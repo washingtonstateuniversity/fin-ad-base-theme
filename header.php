@@ -29,13 +29,22 @@
 <!-- polyfill for min/max-width CSS3 Media Queries -->
     <!--[if lt IE 9]><script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 
-<?php $flex_dev = is_development() ? 'dev/' : '';?>
+<?php
+	$is_dev_mode = fais_spine_get_option( 'is_dev_mode', 'false' );
+	$flex_dev = '';
+	if ( 'true' === $is_dev_mode || is_development() ) {
+		$flex_dev = 'dev/';
+	}
+?>
 <!-- polyfill for flex-box -->
     <!--[if lt IE 10]>
         <link href="https://webcore.fais.wsu.edu/resources/flexwork/<?php echo $flex_dev;?>extra/flexwork-ie9-.support.css" rel="stylesheet" type="text/css" />
     <![endif]-->
-
-
+<?php
+	if ( 'true' === $is_dev_mode || is_development()  ) {
+		?><meta name="robots" content="noindex"><?php
+	}
+?>
 
 
 	<?php wp_head(); ?>
