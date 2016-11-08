@@ -1341,7 +1341,7 @@ function fais_spine_output_builder_column_type( $column_name, $section_data, $co
 function fais_spine_output_builder_section_flextree( $section_name, $ttfmake_section_data ) {
 
 	$current = '';
-	if ( isset( $ttfmake_section_data['data']['section-type'] ) && '' !== $ttfmake_section_data['data']['section-type'] && 'faiswsuwpsingle' !== $ttfmake_section_data['data']['section-type'] ) {
+	if ( empty( $ttfmake_section_data['data'] ) && 'faiswsuwpsingle' !== $ttfmake_section_data['section']['id'] ) {
 		$current = 'flex-row items-start pad-tight ';
 	}
 
@@ -1370,6 +1370,7 @@ function fais_spine_output_builder_section_flextree( $section_name, $ttfmake_sec
 		clear: both;
 	}
 </style>
+<?php //var_dump( $ttfmake_section_data ); ?>
 	<div class="wsuwp-builder-meta">
 		<label for="<?php esc_attr_e( $section_name ); ?>[section-active]">Active</label>
 		<select id="<?php esc_attr_e( $section_name ); ?>[section-active]"
