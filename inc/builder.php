@@ -1302,18 +1302,13 @@ function fais_spine_output_builder_column_type( $column_name, $section_data, $co
 	} elseif ( 'faiswsuwpquarters' === $section_type ) {
 		$column_size_defaults = [ 0 => 'fourths-1', 1 => 'fourths-1', 2 => 'fourths-1', 3 => 'fourths-1' ];
 	}
-
-	if ( count( $column_size_defaults ) > 1 ) {
-		$fw_column_response_width_default = fais_spine_get_option( 'fw_column_response_width_default', '' );
-		$column_type_default .= ' '.$fw_column_response_width_default;
-	}
-
-	?>
-	<?php
-
 	if ( false !== $column && false !== $column_order && isset( $column_size_defaults[ $column_order ] ) ) {
 		$column_type_default .= $column_size_defaults[ $column_order ] .'  order-' . $column_order;
-	}?> <?php
+	}
+	if ( count( $column_size_defaults ) > 1 ) {
+		$fw_column_response_width_default = fais_spine_get_option( 'fw_column_response_width_default', 'full-width-at-667' );
+		$column_type_default .= ' '.$fw_column_response_width_default;
+	}
 
 	$column_type = $column_type_default;
 	if ( $column ) {
