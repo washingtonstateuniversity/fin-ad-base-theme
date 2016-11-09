@@ -72,7 +72,9 @@ class Fais_Spine_Builder_Custom
 					foreach ( $section['columns'] as $cid => $object ) {
 						// 'column-type' => string 'flex-column  fifths-3  order-1'
 						$order = array_flip( $section['columns-order'] )[ $cid ] + 1;
-						$object['column-type'] = 'flex-column '.$this->get_column_default_size( $section['section-type'] )[ $cid ].' pad-tight  order-'. $order .'  full-width-at-667';
+						if( 'faiswsuwpsingle' !== $section['section-type']){
+							$object['column-type'] = 'flex-column '.$this->get_column_default_size( $section['section-type'] )[ $cid ].' pad-tight  order-'. $order .'  full-width-at-667';
+						}
 						$section['columns'][ $cid ] = $object;
 					}
 					$section['columns'][ $cid ] = $object;
@@ -84,7 +86,10 @@ class Fais_Spine_Builder_Custom
 				if ( false !== strpos( trim( $section['section-classes'] ), 'gutter pad-top' ) ) {
 					$section['section-classes'] = implode( '',explode( 'gutter pad-top',$section['section-classes'] ) );
 				}
-				$section['section-classes'] = 'flex-row items-start pad-tight '.$section['section-classes'];
+				if( 'faiswsuwpsingle' !== $section['section-type']){
+					$section['section-classes'] = 'flex-row items-start pad-tight '.$section['section-classes'];
+				}
+
 				$section['section-layout'] = null;
 
 				$needed_conversion = true;
