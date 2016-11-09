@@ -63,6 +63,15 @@ main {
 	//padding: .5rem;
 }
 
+// added till content is edited
+[data-type="faiswsuwpsingle"].column-section.flex-row.items-start {
+	padding: 1.5rem;
+}
+
+[data-type="faiswsuwpsingle"].column-section.flex-row.items-start>.pad-tight {
+	padding: 0;
+}
+
 
 #content_area{
 	margin: .5rem 1.5rem;
