@@ -474,7 +474,9 @@ class Fais_Spine_Builder_Custom
 		}
 
 		if ( isset( $data['section-classes'] ) ) {
-			$clean_data['section-classes'] = $this->clean_classes( $data['section-classes'] );
+			$classes = $data['section-classes'];
+			$classes = str_replace( array( 'flex-row', 'items-start', 'pad-tight', 'pad-airy', 'gutter', 'pad-ends' ), '', $classes );
+			$clean_data['section-classes'] = $this->clean_classes( $classes );
 		}
 
 		if ( isset( $data['section-flextype'] ) ) {
@@ -531,7 +533,7 @@ class Fais_Spine_Builder_Custom
 	 */
 	public function save_columns( $data ) {
 		$clean_data = array();
-
+		var_dump( $data );die();
 		if ( isset( $data['columns-number'] ) ) {
 			if ( in_array( $data['columns-number'], range( 1, 4 ), true ) ) {
 				$clean_data['columns-number'] = $data['columns-number'];
@@ -577,7 +579,11 @@ class Fais_Spine_Builder_Custom
 				}
 
 				if ( isset( $item['column-type'] ) ) {
-					$clean_data['columns'][ $id ]['column-type'] = $this->clean_type( $item['column-type'] );
+					$classes = $item['column-type'];
+					if ( 'faiswsuwpsingle' === $data['section-type'] ) {
+						$classes = str_replace( array( 'flex-column', 'fourths-4', 'grid-part', 'items-start', 'pad-tight', 'pad-airy', 'gutter', 'pad-ends', 'full-width-at-667' ), '', $classes );
+					}
+					$clean_data['columns'][ $id ]['column-type'] = $this->clean_type( $classes );
 				}
 
 				if ( isset( $item['column-classes'] ) ) {
@@ -596,7 +602,11 @@ class Fais_Spine_Builder_Custom
 		}
 
 		if ( isset( $data['section-classes'] ) ) {
-			$clean_data['section-classes'] = $this->clean_classes( $data['section-classes'] );
+			$classes = $data['section-classes'];
+			if ( 'faiswsuwpsingle' === $data['section-type'] ) {
+				$classes = str_replace( array( 'flex-row', 'items-start', 'pad-tight', 'pad-airy', 'gutter', 'pad-ends' ), '', $classes );
+			}
+			$clean_data['section-classes'] = $this->clean_classes( $classes );
 		}
 
 		if ( isset( $data['section-flextype'] ) ) {
