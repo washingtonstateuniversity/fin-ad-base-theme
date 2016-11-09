@@ -40,7 +40,16 @@ h3 {
     border-bottom: .1rem solid #272727;
 }
 
-.flex-column-reverse>*:not([class*="pad-"]), .flex-column>*:not([class*="pad-"]), .flex-row-reverse>*:not([class*="pad-"]), .flex-row>*:not([class*="pad-"]), .grid-part {
+
+.flex-column-reverse:not([class*="pad-kids"])>*,
+.flex-column:not([class*="pad-kids"])>*,
+.flex-row-reverse:not([class*="pad-kids"])>*,
+.flex-row:not([class*="pad-kids"])>*,
+.flex-column-reverse:not([class*="pad-kids"])>*:not([class*="pad-"]),
+.flex-column:not([class*="pad-kids"])>*:not([class*="pad-"]),
+.flex-row-reverse:not([class*="pad-kids"])>*:not([class*="pad-"]),
+.flex-row:not([class*="pad-kids"])>*:not([class*="pad-"]),
+.grid-part {
     padding: inherit;//initial;
 }
 .h4, .h5, .h6, h4, h5, h6 {
