@@ -585,8 +585,9 @@ class Fais_Spine_Builder_Custom
 
 				if ( isset( $item['column-type'] ) ) {
 					$classes = $item['column-type'];
+					$classes = str_replace( array( 'grid-part', 'gutter' ), '', $classes );
 					if ( 'faiswsuwpsingle' === $data['section-type'] ) {
-						$classes = str_replace( array( 'flex-column', 'fourths-4', 'grid-part', 'items-start', 'pad-tight', 'pad-airy', 'gutter', 'pad-ends', 'full-width-at-667' ), '', $classes );
+						$classes = str_replace( array( 'flex-column', 'fourths-4', 'items-start', 'pad-tight', 'pad-airy', 'pad-ends', 'full-width-at-667' ), '', $classes );
 					}
 					$clean_data['columns'][ $id ]['column-type'] = $this->clean_type( $classes );
 				}
@@ -1209,6 +1210,11 @@ function fais_spine_output_builder_section_classes( $section_name, $ttfmake_sect
 	if ( false !== strpos( trim( $section_classes ), 'grid-part' ) ) {
 		$section_classes = implode( '',explode( 'grid-part',$section_classes ) );
 	}
+
+	if ( isset( $ttfmake_section_data['section']['id'] ) && 'faiswsuwpsingle' === $ttfmake_section_data['section']['id'] ) {
+		$section_classes = str_replace( array( 'flex-row', 'items-start', 'pad-tight', 'pad-airy', 'gutter', 'pad-ends' ), '', $section_classes );
+	}
+
 	?>
 	<div class="wsuwp-builder-meta">
 		<label for="<?php esc_attr_e( $section_name ); ?>[section-classes]">Section Classes:</label><input type="text" id="<?php esc_attr_e( $section_name ); ?>[section-classes]" class="wsuwp-builder-section-classes widefat" name="<?php esc_attr_e( $section_name ); ?>[section-classes]" value="<?php esc_attr_e( $section_classes ); ?>" />
@@ -1252,6 +1258,11 @@ function fais_spine_output_builder_column_classes( $column_name, $section_data, 
 		$column_classes = ( isset( $section_data['data']['column-classes'] ) ) ? $section_data['data']['column-classes'] : '';
 		$header_level   = ( isset( $section_data['data']['header-level'] ) ) ? $section_data['data']['header-level'] : $header_level_default;
 		$column_background = ( isset( $section_data['data']['column-background-image'] ) ) ? $section_data['data']['column-background-image'] : '';
+	}
+	$column_classes = str_replace( array( 'grid-part', 'gutter', 'pad-ends' ), '', $column_classes );
+
+	if ( 'faiswsuwpsingle' === $section_data['section']['id'] ) {
+		$column_classes = str_replace( array( 'flex-column', 'fourths-4', 'items-start', 'pad-ends', 'full-width-at-667' ), '', $column_classes );
 	}
 
 	?>
@@ -1339,6 +1350,12 @@ function fais_spine_output_builder_column_type( $column_name, $section_data, $co
 	} elseif ( isset( $section_data['data']['column-type'] ) && '' !== $section_data['data']['column-type'] ) {
 		$column_type = $section_data['data']['column-type'];
 	}
+
+	$column_type = str_replace( array( 'grid-part', 'gutter', 'pad-ends' ), '', $column_type );
+	if ( 'faiswsuwpsingle' === $section_type ) {
+		$column_type = str_replace( array( 'flex-column', 'fourths-4', 'items-start', 'pad-ends', 'full-width-at-667' ), '', $column_type );
+	}
+
 ?>
 	<div class="wsuwp-builder-meta">
 		<?php esc_html__( Fais_Spine_Builder_Custom::build_flexwork_column_inputs( $column_name.'[column-type]', $column_type ) ); ?>
@@ -1363,6 +1380,11 @@ function fais_spine_output_builder_section_flextree( $section_name, $ttfmake_sec
 
 	if ( isset( $ttfmake_section_data['data']['section-flextype'] ) && '' !== $ttfmake_section_data['data']['section-flextype'] ) {
 		$current = $ttfmake_section_data['data']['section-flextype'];
+	}
+
+	$current = str_replace( array( 'grid-part', 'gutter', 'pad-ends' ), '', $current );
+	if ( 'faiswsuwpsingle' === $ttfmake_section_data['section']['id']  ) {
+		$current = str_replace( array( 'flex-row', 'items-start', 'gutter', 'pad-ends' ), '', $current );
 	}
 
 	$current_attr = '';
