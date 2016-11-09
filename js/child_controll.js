@@ -176,7 +176,7 @@ console.log(data);
 		if( !$("#hidden").length ){
 			$("body").append("<div id='hidden'>");
 		}
-        if( $("#map_view_id").length ){
+        if( $(".WSU_MAPS_NS").length ){
             setTimeout(function(){ $.wsu_maps.state.map_inst.setOptions({'zoom':15}); }, 1000);
             $(window).resize(function(){
                 setTimeout(function(){ $.wsu_maps.state.map_inst.setOptions({'zoom':15}); }, 1000);
