@@ -45,7 +45,14 @@ function is_development() {
 }
 
 
+function add_meta_tags() {
+	$is_dev_mode = fais_spine_get_option( 'is_dev_mode', 'false' );
+	if ( 'true' === $is_dev_mode || is_development()  ) {
+		echo '<meta name="robots" content="noindex" />' . "\n";
+	}
 
+}
+add_action( 'wp_head', 'add_meta_tags' , 2 );
 
 
 

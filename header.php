@@ -40,12 +40,6 @@
     <!--[if lt IE 10]>
         <link href="https://webcore.fais.wsu.edu/resources/flexwork/<?php echo $flex_dev;?>extra/flexwork-ie9-.support.css" rel="stylesheet" type="text/css" />
     <![endif]-->
-<?php
-	if ( 'true' === $is_dev_mode || is_development()  ) {
-		?><meta name="robots" content="noindex"><?php
-	}
-?>
-
 
 	<?php wp_head(); ?>
 
