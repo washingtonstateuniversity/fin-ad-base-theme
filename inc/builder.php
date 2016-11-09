@@ -1553,9 +1553,9 @@ function fb_mce_before_init( $settings ) {
 					'classes' => 'list-blank',
 				),
 				array(
-					'title' => 'nice-numbers (ul/ol)',
+					'title' => 'nice-number (ul/ol)',
 					'selector' => 'ul,ol',
-					'classes' => 'nice-numbers',
+					'classes' => 'nice-number',
 				),
 			),
 		),
