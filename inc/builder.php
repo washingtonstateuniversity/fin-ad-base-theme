@@ -587,6 +587,7 @@ class Fais_Spine_Builder_Custom
 					$classes = $item['column-type'];
 					$classes = str_replace( array( 'grid-part', 'gutter' ), '', $classes );
 					if ( 'faiswsuwpsingle' === $data['section-type'] ) {
+
 						$classes = str_replace( array( 'flex-column', 'fourths-4', 'items-start', 'pad-tight', 'pad-airy', 'pad-ends', 'full-width-at-667' ), '', $classes );
 					}
 					$clean_data['columns'][ $id ]['column-type'] = $this->clean_type( $classes );
@@ -610,7 +611,8 @@ class Fais_Spine_Builder_Custom
 		if ( isset( $data['section-classes'] ) ) {
 			$classes = $data['section-classes'];
 			if ( 'faiswsuwpsingle' === $data['section-type'] ) {
-				$classes = str_replace( array( 'flex-row', 'items-start', 'pad-tight', 'pad-airy', 'gutter', 'pad-ends' ), '', $classes );
+
+				$classes = str_replace( array( 'flex-row', 'items-start', 'pad-tight', 'gutter', 'pad-ends' ), '', $classes );
 			}
 			$clean_data['section-classes'] = $this->clean_classes( $classes );
 		}
@@ -1160,6 +1162,50 @@ class Fais_Spine_Builder_Custom
 new Fais_Spine_Builder_Custom();
 
 
+
+function get_pad_types() {
+	return[ 'pad-tight', 'pad-airy', 'pad-hair' ];//super light, should be full list
+}
+
+
+function get_pads( $type, $part, $order = false ) {
+	$pad_defaults = [
+		'banner' => [
+			'section' => '',
+			'columns' => '', // [ 1=>"",2=>""]
+		],
+		'faiswsuwpsingle' => [
+			'section' => 'pad-airy',
+			'columns' => '', // [ 1=>"",2=>""]
+		],
+		'faiswsuwpsidebarright' => [
+			'section' => 'pad-tight',
+			'columns' => 'pad-tight', // [ 1=>"",2=>""]
+		],
+		'faiswsuwpsidebarleft' => [
+			'section' => 'pad-tight',
+			'columns' => 'pad-tight', // [ 1=>"",2=>""]
+		],
+		'faiswsuwphalves' => [
+			'section' => 'pad-tight',
+			'columns' => 'pad-tight', // [ 1=>"",2=>""]
+		],
+
+		'faiswsuwpthirds' => [
+			'section' => 'pad-tight',
+			'columns' => 'pad-tight', // [ 1=>"",2=>""]
+		],
+		'faiswsuwpquarters' => [
+			'section' => 'pad-tight',
+			'columns' => 'pad-tight', // [ 1=>"",2=>""]
+		],
+	];
+	return false !== $order ? $pad_defaults[ $type ][ $part ][ $order ] : $pad_defaults[ $type ][ $part ];
+}
+
+
+
+
 /**
  * Retrieve data for display in a column format for use in any front end
  * template.
@@ -1335,7 +1381,7 @@ function fais_spine_output_builder_column_type( $column_name, $section_data, $co
 		$column_size_defaults = [ 0 => 'fourths-1', 1 => 'fourths-1', 2 => 'fourths-1', 3 => 'fourths-1' ];
 	}
 	if ( false !== $column && false !== $column_order && isset( $column_size_defaults[ $column_order ] ) ) {
-		$column_type_default .= $column_size_defaults[ $column_order ] .'  order-' . $column_order;
+		$column_type_default .= ' ' . $column_size_defaults[ $column_order ] .'  order-' . $column_order;
 	}
 	if ( count( $column_size_defaults ) > 1 ) {
 		$fw_column_response_width_default = fais_spine_get_option( 'fw_column_response_width_default', 'full-width-at-667' );
@@ -1354,6 +1400,12 @@ function fais_spine_output_builder_column_type( $column_name, $section_data, $co
 	$column_type = str_replace( array( 'grid-part', 'gutter', 'pad-ends' ), '', $column_type );
 	if ( 'faiswsuwpsingle' === $section_type ) {
 		$column_type = str_replace( array( 'flex-column', 'fourths-4', 'items-start', 'pad-ends', 'full-width-at-667' ), '', $column_type );
+	}
+		$force_pads = fais_spine_get_option( 'force_pads', true );
+
+	if ( $force_pads ) {
+		$column_type = str_replace( get_pad_types(), '', $column_type );
+		$column_type .= ' ' . get_pads( $section_type , 'columns' ); // switch to when ready, $column_order );
 	}
 
 ?>
@@ -1375,11 +1427,19 @@ function fais_spine_output_builder_section_flextree( $section_name, $ttfmake_sec
 
 	$current = '';
 	if ( empty( $ttfmake_section_data['data'] ) && 'faiswsuwpsingle' !== $ttfmake_section_data['section']['id'] && 'banner' !== $ttfmake_section_data['section']['id'] ) {
-		$current = 'flex-row items-start pad-tight ';
+		$current = 'flex-row items-start';
+		$current .= ' ' . get_pads( $ttfmake_section_data['section']['id'] , 'section' );
 	}
+
+	$force_pads = fais_spine_get_option( 'force_pads', true );
 
 	if ( isset( $ttfmake_section_data['data']['section-flextype'] ) && '' !== $ttfmake_section_data['data']['section-flextype'] ) {
 		$current = $ttfmake_section_data['data']['section-flextype'];
+	}
+
+	if ( $force_pads ) {
+		$current = str_replace( get_pad_types(), '', $current );
+		$current .= ' ' . get_pads( $ttfmake_section_data['section']['id'] , 'section' );
 	}
 
 	$current = str_replace( array( 'grid-part', 'gutter', 'pad-ends' ), '', $current );
@@ -1403,11 +1463,7 @@ function fais_spine_output_builder_section_flextree( $section_name, $ttfmake_sec
 	}
 
 	?>
-<style>
-	ul.tagit {
-		clear: both;
-	}
-</style>
+
 <?php //var_dump( $ttfmake_section_data ); ?>
 	<div class="wsuwp-builder-meta">
 		<label for="<?php esc_attr_e( $section_name ); ?>[section-active]">Active</label>
