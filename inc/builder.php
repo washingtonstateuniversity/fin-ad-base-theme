@@ -485,7 +485,7 @@ class Fais_Spine_Builder_Custom
 		}
 
 		if ( isset( $data['section-flextype'] ) ) {
-			$section_classes = $clean_data['section-flextype'];
+			$section_classes = $data['section-flextype'];
 			$section_classes = str_replace( array( 'flex-row', 'items-start', 'pad-tight', 'pad-airy', 'gutter', 'pad-ends' ), '', $section_classes );
 			$clean_data['section-flextype'] = $this->clean_classes( $section_classes );
 		}
