@@ -485,7 +485,9 @@ class Fais_Spine_Builder_Custom
 		}
 
 		if ( isset( $data['section-flextype'] ) ) {
-			$clean_data['section-flextype'] = $this->clean_classes( $data['section-flextype'] );
+			$section_classes = $clean_data['section-flextype'];
+			$section_classes = str_replace( array( 'flex-row', 'items-start', 'pad-tight', 'pad-airy', 'gutter', 'pad-ends' ), '', $section_classes );
+			$clean_data['section-flextype'] = $this->clean_classes( $section_classes );
 		}
 
 		if ( isset( $data['section-position'] ) ) {
@@ -1174,6 +1176,10 @@ function get_pads( $type, $part, $order = false ) {
 			'section' => '',
 			'columns' => '', // [ 1=>"",2=>""]
 		],
+		'faiswsuwpheader' => [
+			'section' => 'pad-airy',
+			'columns' => '', // [ 1=>"",2=>""]
+		],
 		'faiswsuwpsingle' => [
 			'section' => 'pad-airy',
 			'columns' => '', // [ 1=>"",2=>""]
@@ -1426,7 +1432,7 @@ function fais_spine_output_builder_column_type( $column_name, $section_data, $co
 function fais_spine_output_builder_section_flextree( $section_name, $ttfmake_section_data ) {
 
 	$current = '';
-	if ( empty( $ttfmake_section_data['data'] ) && 'faiswsuwpsingle' !== $ttfmake_section_data['section']['id'] && 'banner' !== $ttfmake_section_data['section']['id'] ) {
+	if ( empty( $ttfmake_section_data['data'] ) && 'faiswsuwpheader' !== $ttfmake_section_data['section']['id'] && 'faiswsuwpsingle' !== $ttfmake_section_data['section']['id'] && 'banner' !== $ttfmake_section_data['section']['id'] ) {
 		$current = 'flex-row items-start';
 		$current .= ' ' . get_pads( $ttfmake_section_data['section']['id'] , 'section' );
 	}
@@ -1443,7 +1449,7 @@ function fais_spine_output_builder_section_flextree( $section_name, $ttfmake_sec
 	}
 
 	$current = str_replace( array( 'grid-part', 'gutter', 'pad-ends' ), '', $current );
-	if ( 'faiswsuwpsingle' === $ttfmake_section_data['section']['id']  ) {
+	if ( 'faiswsuwpsingle' === $ttfmake_section_data['section']['id'] && 'faiswsuwpheader' === $ttfmake_section_data['section']['id']  ) {
 		$current = str_replace( array( 'flex-row', 'items-start', 'gutter', 'pad-ends' ), '', $current );
 	}
 
