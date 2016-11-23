@@ -1,4 +1,6 @@
-
+body.admin-bar #binder header.main-header {
+    top: 26px;
+}
 /* Admin Bar */
 @media (min-width: 990px) {
 	.admin-bar #spine #glue {
@@ -9,7 +11,22 @@
 		/*padding-top: 32px !important;*/
 	}
 }
-
+@media (max-width: 810px){
+	body.admin-bar #binder header.main-header {
+		top: -20px;
+	}
+	body.admin-bar .type-page>section.banner-section {
+		margin-top: 109px;
+	}
+}
+@media (max-width: 989px) and (min-width: 811px){
+	body.admin-bar #binder header.main-header {
+		top: -20px;
+	}
+	body.admin-bar .type-page>section.banner-section {
+		margin-top: 60px;
+	}
+}
 @media (max-width: 989px) {
 	body.admin-bar {
 		margin-top: 18px !important;
@@ -48,3 +65,12 @@
 
 }
 
+
+@media (max-width: 667px){
+	body.admin-bar #binder header.main-header {
+		top:30px;
+	}
+	body.admin-bar .type-page>section.banner-section {
+		margin-top: 30px;
+	}
+}
