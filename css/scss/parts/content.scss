@@ -237,6 +237,12 @@ _::-webkit-full-page-media, _:future, :root body div#border_top {
 dl.flex-row, ol.flex-row, ul.flex-row{
     margin: 0;
 }
+@media screen and (max-width: 693px){
+    .type-page>section.banner-section {
+        margin-top: 0px;
+    }
+    div#content_area {margin-top: 15px;}
+}
 
 @media (min-width: 668px ) and (max-width: 989px){
 	.main-header .header-group{
