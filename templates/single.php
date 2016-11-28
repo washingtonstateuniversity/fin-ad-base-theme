@@ -9,9 +9,9 @@
 <?php get_template_part( 'parts/headers' ); ?>
 <?php get_template_part( 'parts/featured-images' ); ?>
 
-<section class="flex-row">
+<section class="pad-airy">
 
-	<div class="grid-part full-width">
+	<div class="full-width">
 
 		<?php get_template_part( 'articles/article' ); ?>
 
