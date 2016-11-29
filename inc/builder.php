@@ -87,7 +87,7 @@ class Fais_Spine_Builder_Custom
 					$section['section-classes'] = implode( '',explode( 'gutter pad-top',$section['section-classes'] ) );
 				}
 				if ( 'faiswsuwpsingle' !== $section['section-type'] ) {
-					$section['section-classes'] = 'flex-row items-start pad-tight '.$section['section-classes'];
+					$section['section-classes'] = 'flex-row items-start pad-airy kids-full-width-at-667 '.$section['section-classes'];
 				}
 
 				$section['section-layout'] = null;
@@ -1433,7 +1433,7 @@ function fais_spine_output_builder_section_flextree( $section_name, $ttfmake_sec
 
 	$current = '';
 	if ( empty( $ttfmake_section_data['data'] ) && 'faiswsuwpheader' !== $ttfmake_section_data['section']['id'] && 'faiswsuwpsingle' !== $ttfmake_section_data['section']['id'] && 'banner' !== $ttfmake_section_data['section']['id'] ) {
-		$current = 'flex-row items-start';
+		$current = 'flex-row items-start kids-full-width-at-667';
 		$current .= ' ' . get_pads( $ttfmake_section_data['section']['id'] , 'section' );
 	}
 
