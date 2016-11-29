@@ -41,7 +41,7 @@ h3 {
 }
 
 
-.flex-column-reverse:not([class*=pad-kids])>*:not([class*=pad-]),
+/*.flex-column-reverse:not([class*=pad-kids])>*:not([class*=pad-]),
 .flex-column-reverse:not([class*=pad-kids])>:not([class*=pad-]),
 .flex-column:not([class*=pad-kids])>*:not([class*=pad-]),
 .flex-column:not([class*=pad-kids])>:not([class*=pad-]),
@@ -51,7 +51,16 @@ h3 {
 .flex-row:not([class*=pad-kids])>:not([class*=pad-]),
 .grid-part{
     padding: inherit;//initial;
-}
+}*/
+
+.flex-column-reverse:not([class*=pad-kids]) > *:not([class*=pad-]):not(*:first-child:last-child),
+.flex-column:not([class*=pad-kids]) > *:not([class*=pad-]):not(*:first-child:last-child),
+.flex-row-reverse:not([class*=pad-kids]) > *:not([class*=pad-]):not(*:first-child:last-child),
+.flex-row:not([class*=pad-kids]) > *:not([class*=pad-]):not(*:first-child:last-child),
+.grid-part {
+  padding: inherit; }
+
+
 .h4, .h5, .h6, h4, h5, h6 {
     margin-top: .3rem;
     margin-bottom: .3rem;
