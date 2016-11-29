@@ -80,9 +80,38 @@
 							type: 'textbox',
 							name: 'profile_url',
 							label: 'Profile Url',
-							value: ''
+							value: '',
+							placeholder:'url to image'
 						},
+						{
+							type: 'button',
+							name: 'select-image',
+							text: 'Select Image',
+							onclick: function() {
+								window.mb = window.mb || {};
 
+								window.mb.frame = wp.media({
+									frame: 'post',
+									state: 'insert',
+									library : {
+										type : 'image'
+									},
+									multiple: false
+								});
+
+								window.mb.frame.on('insert', function() {
+									var json = window.mb.frame.state().get('selection').first().toJSON();
+									console.log(json);
+									if (0 > $.trim(json.url.length)) {
+										return;
+									}
+
+									$('[placeholder="url to image"]').val(json.url);
+								});
+
+								window.mb.frame.open();
+							}
+						}
 
 						/*{
 							type: 'textbox',
