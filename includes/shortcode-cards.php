@@ -39,7 +39,7 @@ function cards_shortcode( $atts, $content ) {
 		<?php if ( false !== $att['name'] && '' !== $att['name'] ) :  ?>
 			<h4><?php esc_attr_e( $att['name'] ); ?></h4>
 		<?php endif; ?>
-        <span class="flex-row justify-between full-width no-pad">
+        <span class="full-width no-pad">
 			<?php if ( false !== $att['tel'] && '' !== $att['tel'] ) :  ?>
 				<h5 class=" pad-no"  style="margin: 0;"><?php esc_attr_e( $att['tel'] ); ?></h5>
 			<?php endif; ?>
