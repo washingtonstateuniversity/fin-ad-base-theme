@@ -73,7 +73,7 @@ class Fais_Spine_Builder_Custom
 						// 'column-type' => string 'flex-column  fifths-3  order-1'
 						$order = array_flip( $section['columns-order'] )[ $cid ] + 1;
 						if ( 'faiswsuwpsingle' !== $section['section-type'] ) {
-							$object['column-type'] = 'flex-column '.$this->get_column_default_size( $section['section-type'] )[ $cid ].' pad-tight  order-'. $order .'  full-width-at-667';
+							$object['column-type'] = 'flex-column '.$this->get_column_default_size( $section['section-type'] )[ $cid ].' pad-tight  order-'. $order .' ';
 						}
 						$section['columns'][ $cid ] = $object;
 					}
@@ -1390,7 +1390,7 @@ function fais_spine_output_builder_column_type( $column_name, $section_data, $co
 		$column_type_default .= ' ' . $column_size_defaults[ $column_order ] .'  order-' . $column_order;
 	}
 	if ( count( $column_size_defaults ) > 1 ) {
-		$fw_column_response_width_default = fais_spine_get_option( 'fw_column_response_width_default', 'full-width-at-667' );
+		$fw_column_response_width_default = fais_spine_get_option( 'fw_column_response_width_default', '' );
 		$column_type_default .= ' '.$fw_column_response_width_default;
 	}
 
