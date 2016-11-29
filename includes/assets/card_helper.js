@@ -124,7 +124,7 @@
 
 
 
-						if( "" !== e.data.email ){
+						if( "" !== e.data.profile_url ){
 							card_data += ' profile_url="' + e.data.profile_url + '" ';
 						}
 							card_data += ' ]';
