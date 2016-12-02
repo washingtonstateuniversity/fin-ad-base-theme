@@ -31,6 +31,7 @@ a[href^='mailto:']::before {
     content: "\f003";
     font-size: 0.35rem;
 }
-.profile-summary .list-throwback {
+.profile-summary .list-throwback,
+.profile-summary .strong {
     margin-bottom: 0;
 }

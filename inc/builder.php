@@ -1605,9 +1605,14 @@ function fb_mce_before_init( $settings ) {
 			'title' => 'Lists',
 			'items' => array(
 				array(
-					'title' => 'list-throwback',
+					'title' => 'Strong',
 					'selector' => 'ul',
-					'classes' => 'list-throwback',
+					'classes' => 'strong',
+				),
+				array(
+					'title' => 'Weak',
+					'selector' => 'ul',
+					'classes' => 'weak',
 				),
 				array(
 					'title' => 'list-blank',

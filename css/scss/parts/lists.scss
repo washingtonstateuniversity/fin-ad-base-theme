@@ -20,6 +20,15 @@ ul[style*="list-style-type"] > li:before {
 	content:none;
 }
 
+ol[style*="list-style-type"], ul[style*="list-style-type"] {
+	list-style-type: none;
+	margin-left: 1.7rem;
+	//font-size:#{$root-font-list};
+	padding: 0 2rem 1rem 1rem;
+}
+
+
+
 form ol, form ul{
 	padding:0;
 }
@@ -35,6 +44,16 @@ address ul li {
     margin: 0;
 }
 
+ol.weak > li:before,ul.weak > li:before{
+    content: '\00ba';
+    position: relative;
+    left: -5px;
+    font-size: 1.8rem;
+    top: 0.5rem;
+}
+
+
+ol.strong > li:before,ul.strong > li:before,
 ol.list-throwback > li:before,ul.list-throwback > li:before {
     content: '\2022';
     position: relative;
@@ -44,24 +63,3 @@ ol.list-throwback > li:before,ul.list-throwback > li:before {
 }
 
 
-
-/*
-.list-throwback {
-    margin-bottom: 1.5rem;
-    margin-left: 1.4rem;
-}
-
-.list-throwback > li, li.list-throwback {
-    margin-bottom: 0;
-    padding-bottom: 0;
-    padding-left: 0;
-    list-style: outside;
-}
-
-ul .list-throwback, ol .list-throwback,
-ul ul, ol ol,
-ul ol, ol ul  {
-    margin-left: 0;
-	padding-left:2rem;
-}
-*/
