@@ -17,7 +17,7 @@ $spine_classes = implode( ' ', $spine_classes );
 
 <?php get_template_part( 'spine/header' ); ?>
 
-	<section id="spine-navigation" class="spine-navigation">
+	<section id="spine-navigation" class="spine-navigation" role="navigation">
 
 		<?php get_template_part( 'spine/site-navigation' ); ?>
 

@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<main class="spine-page-default">
+<main class="spine-page-default" role="main">
 
 	<?php get_template_part( 'parts/headers' ); ?>
 	<?php get_template_part( 'parts/featured-images' ); ?>
