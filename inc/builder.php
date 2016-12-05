@@ -1627,6 +1627,61 @@ function fb_mce_before_init( $settings ) {
 			),
 		),
 		array(
+			'title' => 'as a Label',
+			'items' => array(
+				array(
+					'title' => 'as a Primary',
+					'selector' => 'p,div,span,li,a,i,b',
+					'classes' => 'label label-primary',
+				),
+				array(
+					'title' => 'as a Success',
+					'selector' => 'p,div,span,li,a,i,b',
+					'classes' => 'label label-success',
+				),
+				array(
+					'title' => 'as Info',
+					'selector' => 'p,div,span,li,a,i,b',
+					'classes' => 'label label-info',
+				),
+				array(
+					'title' => 'as a Warning',
+					'selector' => 'p,div,span,li,a,i,b',
+					'classes' => 'label label-warning',
+				),
+				array(
+					'title' => 'as a Danger',
+					'selector' => 'p,div,span,li,a,i,b',
+					'classes' => 'label label-danger',
+				),
+			),
+		),
+		array(
+			'title' => 'Section Highlighter',
+			'items' => array(
+				array(
+					'title' => 'as for a Success',
+					'selector' => 'p,div,span,li,a,i,b',
+					'classes' => 'alert alert-success',
+				),
+				array(
+					'title' => 'for your Info',
+					'selector' => 'p,div,span,li,a,i,b',
+					'classes' => 'alert alert-info',
+				),
+				array(
+					'title' => 'as a Warning',
+					'selector' => 'p,div,span,li,a,i,b',
+					'classes' => 'alert alert-warning',
+				),
+				array(
+					'title' => 'in Danger',
+					'selector' => 'p,div,span,li,a,i,b',
+					'classes' => 'alert alert-danger',
+				),
+			),
+		),
+		array(
 			'title' => 'Theme colors',
 			'items' => array(
 				array(
@@ -1651,6 +1706,7 @@ function fb_mce_before_init( $settings ) {
 				),
 			),
 		),
+
 		/* Theme UI should go here
 		.folding {}
 		*/
