@@ -78,11 +78,13 @@ add_filter( 'mce_buttons', 'contactCard_mce_buttons', 15 );
 
 function contactCard_mce_external_plugins( $plugins ) {
 	$plugins['contactCard'] = get_stylesheet_directory_uri() . '/includes/assets/card_helper.js';
+	$plugins['iconPicker'] = get_stylesheet_directory_uri() . '/includes/assets/icon_picker.js';
 	return $plugins;
 }
 
 function contactCard_mce_buttons( $mce_buttons ) {
 	array_push( $mce_buttons, 'separator', 'contactCard' );
+	array_push( $mce_buttons, 'separator', 'iconPicker' );
 	return $mce_buttons;
 }
 
