@@ -1663,21 +1663,25 @@ function fb_mce_before_init( $settings ) {
 					'title' => 'as for a Success',
 					'selector' => 'h1,h2,h3,h4,h5,h6,p,div,span,li,a,i,b',
 					'classes' => 'alert alert-success',
+					"attributes" => [ "role" => "alert" ]
 				),
 				array(
 					'title' => 'for your Info',
 					'selector' => 'h1,h2,h3,h4,h5,h6,p,div,span,li,a,i,b',
 					'classes' => 'alert alert-info',
+					"attributes" => [ "role" => "alert"]
 				),
 				array(
 					'title' => 'as a Warning',
 					'selector' => 'h1,h2,h3,h4,h5,h6,p,div,span,li,a,i,b',
 					'classes' => 'alert alert-warning',
+					"attributes" => [ "role" => "alert" ]
 				),
 				array(
 					'title' => 'in Danger',
 					'selector' => 'h1,h2,h3,h4,h5,h6,p,div,span,li,a,i,b',
 					'classes' => 'alert alert-danger',
+					"attributes" => [ "role" => "alert"]
 				),
 			),
 		),
