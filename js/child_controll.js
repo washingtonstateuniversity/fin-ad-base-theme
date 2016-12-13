@@ -30,13 +30,74 @@ function eraseCookie(name) {
     createCookie(name,"",-1);
 }
 */
-(function($){
+
+
+
+(function ($) {
+    "use strict";
+
+	jQuery.ui.spine.prototype.search_options={
+		data:[],
+		providers:{
+			wp:{
+				name:"SiteInternal",
+				url: "/wp-json/wsuwp_search/v1/byterm/search/?_jsonp=?",
+				urlSpaces:"+",
+				dataType: "json",
+				featureClass: "s",
+				style: "full",
+				maxRows: 12,
+				termTemplate:"<strong><%this.term%></strong>",
+				resultTemplate:""
+			},
+			nav:{
+				name:"From Navigation",
+				nodes: ".spine-navigation",
+				dataType: "html",
+				maxRows: 12,
+				urlSpaces:"%20"
+			},
+			atoz:{
+				name:"WSU A to Z index",
+				url: "https://search.wsu.edu/2013service/searchservice/search.asmx/AZSearch",
+				urlSpaces:"+",
+				dataType: "jsonp",
+				featureClass: "P",
+				style: "full",
+				maxRows: 12,
+				termTemplate:"<strong><%this.term%></strong>",
+				resultTemplate:""
+			},/**/
+
+		},
+		search:{
+			minLength: 2,
+			maxRows: 12,
+			getRelated:true,
+			urlSpaces:"+",
+			tabTemplate: "<section id='wsu-search' class='spine-search spine-action closed'>" +
+							"<form id='default-search'>" +
+								"<input name='term' type='text' value='' placeholder='search'>" +
+								"<button type='submit'>Submit</button>" +
+							"</form>" +
+							"<div id='spine-shortcuts' class='spine-shortcuts'></div>" +
+						"</section>"
+		},
+		result:{
+			appendTo: "#spine-shortcuts",
+			showRelated:true,
+			target:"_blank",
+			relatedHeader:"<b class='related_sep'>Related</b><hr/>",
+			providerHeader:"<b class='provider_header'><%this.provider_name%></b><hr/>",
+			termTemplate:"<b><%this.term%></b>",
+			template:"<li><%this.searchitem%></li>"
+		}
+	};
+
     var init, setupExamples, setupHeroSelect, navSetup, setupDrops, _Drop;
     /*_Drop = Drop.createContext({
         classPrefix: "drop"
     });*/
-
-
 
 /*
 

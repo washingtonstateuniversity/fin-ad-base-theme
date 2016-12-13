@@ -291,3 +291,71 @@ function background_hook_css() {
 </style>
 <?php
 }
+
+/*
+function wsu_wp_post_search() {
+		$term = strtolower( $_GET['term'] );
+		$suggestions = array();
+
+		$loop = new WP_Query( 's=' . $term );
+
+
+//{"label":"Business Policies & Procedures Manual","value":"http://www.wsu.edu/~forms/manuals.html","searchKeywords":"","related":"false"}
+		wp_reset_query();
+
+
+    	$response = json_encode( $suggestions );
+		//wp_send_json( $response );
+		wp_send_json_success( $response );
+    	//echo $response;
+    	exit();
+
+}
+add_action( 'wp_ajax_wsu_wp_post_search', 'wsu_wp_post_search' );
+add_action( 'wp_ajax_nopriv_wsu_wp_post_search', 'wsu_wp_post_search' );
+*/
+
+
+
+
+add_action( 'rest_api_init', 'myplugin_register_routes' );
+
+/**
+ * Register the /wp-json/myplugin/v1/foo route
+ */
+function myplugin_register_routes() {
+    register_rest_route( 'wsuwp_search/v1', 'byterm/(?P<s>.*)', array(
+        'methods'  => WP_REST_Server::READABLE,
+        'callback' => 'wsuwp_search_serve_route',
+    ) );
+}
+
+/**
+ * Generate results for the /wp-json/myplugin/v1/foo route.
+ *
+ * @param WP_REST_Request $request Full details about the request.
+ *
+ * @return WP_REST_Response|WP_Error The response for the request.
+ */
+function wsuwp_search_serve_route( WP_REST_Request $request ) {
+		$items = array(); //do a query, call another class, etc
+		$data = array();
+		$params = $request->get_params();
+		$args = array('s' => $params['name_startsWith']);
+
+		$loop = new WP_Query( $args );
+		$suggestions = array();
+
+		while( $loop->have_posts() ) {
+			$loop->the_post();
+			$suggestion = array();
+			$suggestion['label'] = get_the_title();
+			$suggestion['value'] = get_permalink();
+			$suggestion['searchKeywords'] = "";
+			$suggestion['related'] = "false";
+
+			$suggestions[] = (object)$suggestion;
+		}
+
+		return new WP_REST_Response( $suggestions, 200 );
+}
