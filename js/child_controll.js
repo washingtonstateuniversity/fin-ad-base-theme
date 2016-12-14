@@ -35,6 +35,35 @@ function eraseCookie(name) {
 
 (function ($) {
     "use strict";
+		jQuery.ui.spine.prototype.start_search = function( request, callback ) {
+			var self, term, queries = [];
+			self = this;//Hold to preserve scop
+
+			term = $.trim( request.term );
+			self.search_options.data = [];
+			$.each( self.search_options.providers, function( i, provider ) {
+				$.ui.autocomplete.prototype.options.termTemplate = ( typeof( provider.termTemplate ) !== undefined && provider.termTemplate !== "" ) ? provider.termTemplate : undefined;
+				queries.push( self.run_query( term, provider ) );
+			} );
+
+			$.when.apply( $, queries ).done(
+			function() {
+				$.each( arguments, function( i, v ) {
+					var data, proData;
+					if ( v !== undefined ) {
+						data = v[ 0 ];
+						if( data.length > 0 && "undefined" !== typeof data[ "0" ].error){
+							data = [ ];
+						}
+						if ( data !== undefined && data.length > 0 ) {
+							proData = self.setup_result_obj( term, data );
+							self.search_options.data = $.merge( self.search_options.data, proData );
+						}
+					}
+				} );
+				self._call( callback, self.search_options.data );
+			} );
+		};
 
 	jQuery.ui.spine.prototype.search_options={
 		data:[],
@@ -50,7 +79,7 @@ function eraseCookie(name) {
 				termTemplate:"<strong><%this.term%></strong>",
 				resultTemplate:""
 			},
-			nav:{
+            nav:{
 				name:"From Navigation",
 				nodes: ".spine-navigation",
 				dataType: "html",
@@ -87,12 +116,13 @@ function eraseCookie(name) {
 			appendTo: "#spine-shortcuts",
 			showRelated:true,
 			target:"_blank",
-			relatedHeader:"<b class='related_sep'>Related</b><hr/>",
+			relatedHeader:"",//"<b class='related_sep'>Related</b><hr/>",
 			providerHeader:"<b class='provider_header'><%this.provider_name%></b><hr/>",
 			termTemplate:"<b><%this.term%></b>",
 			template:"<li><%this.searchitem%></li>"
 		}
 	};
+
 
     var init, setupExamples, setupHeroSelect, navSetup, setupDrops, _Drop;
     /*_Drop = Drop.createContext({

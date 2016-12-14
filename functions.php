@@ -352,7 +352,7 @@ function wsuwp_search_serve_route( WP_REST_Request $request ) {
 			$suggestion['label'] = get_the_title();
 			$suggestion['value'] = get_permalink();
 			$suggestion['searchKeywords'] = "";
-			$suggestion['related'] = "false";
+			$suggestion['related'] = "true";
 
 			$suggestions[] = (object)$suggestion;
 		}
