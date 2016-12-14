@@ -78,7 +78,7 @@ function fais_customizer_enqueue_scripts() {
 		$flex_dev = 'dev/';
 	}
 	//will add picker and alt path shortly, just need it out.
-	wp_enqueue_style( 'jQueryUICSS', '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css', array(), false );
+	wp_enqueue_style( 'jQueryUICSS', '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css', array('wsu-spine'), '1.12.1' );
 	wp_enqueue_style( 'fais_spine-theme',       get_template_directory_uri()   . '/style.css', array( 'wsu-spine' ), spine_get_script_version() );
 
 	if ( 'skeletal' !== spine_get_option( 'theme_style' ) ) {
