@@ -55,7 +55,20 @@ function add_meta_tags() {
 add_action( 'wp_head', 'add_meta_tags' , 2 );
 
 
+add_action( 'wp_enqueue_scripts', 'fais_customizer_enqueue_jQueryUICSS', 20 );
+/**
+ * Enqueue the styles and scripts used inside the Customizer.
+ */
+function fais_customizer_enqueue_jQueryUICSS() {
 
+	$is_dev_mode = fais_spine_get_option( 'is_dev_mode', 'false' ); // yeah wil come base to case correctly, in rush ``/ lol
+	$flex_dev = '';
+	if ( 'true' === $is_dev_mode || is_development() ) {
+		$flex_dev = 'dev/';
+	}
+	//will add picker and alt path shortly, just need it out.
+	wp_enqueue_style( 'jQueryUICSS', '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css', array(), '1.12.1' );
+}
 
 
 add_action( 'wp_enqueue_scripts', 'fais_customizer_enqueue_scripts', 21 );
@@ -79,7 +92,7 @@ function fais_customizer_enqueue_scripts() {
 	}
 	//will add picker and alt path shortly, just need it out.
 	wp_enqueue_style( 'jQueryUICSS', '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css', array('wsu-spine'), '1.12.1' );
-	wp_enqueue_style( 'fais_spine-theme',       get_template_directory_uri()   . '/style.css', array( 'wsu-spine' ), spine_get_script_version() );
+	wp_enqueue_style( 'fais_spine-theme',       get_template_directory_uri()   . '/style.css', array( 'jQueryUICSS' ), spine_get_script_version() );
 
 	if ( 'skeletal' !== spine_get_option( 'theme_style' ) ) {
 		wp_enqueue_style( 'fais_spine-theme-extra', get_template_directory_uri()   . '/styles/' . spine_get_option( 'theme_style' ) . '.css', array( 'fais_spine-theme' ), spine_get_script_version() );
