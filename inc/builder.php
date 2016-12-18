@@ -53,54 +53,57 @@ class Fais_Spine_Builder_Custom
 	 * @return string                   altered html string.
 	 */
 	public function builder_convertion_utility( $content, $post_id ) {
-		// Process content here
-		if ( ! ttfmake_post_type_supports_builder( get_post_type() ) ) {
-			return $content;
-		}
+		$in_conversion = true; // provide a way to skip
+		if( true === $in_conversion ){
+			// Process content here
+			if ( ! ttfmake_post_type_supports_builder( get_post_type() ) ) {
+				return $content;
+			}
 
-		$old_wsu_items = [ 'wsuwpheader', 'wsuwpsingle', 'wsuwphalves', 'wsuwpsidebarleft', 'wsuwpsidebarright', 'wsuwpthirds', 'wsuwpquarters' ];
-		$section_data = ttfmake_get_section_data( $post_id );
+			$old_wsu_items = [ 'wsuwpheader', 'wsuwpsingle', 'wsuwphalves', 'wsuwpsidebarleft', 'wsuwpsidebarright', 'wsuwpthirds', 'wsuwpquarters' ];
+			$section_data = ttfmake_get_section_data( $post_id );
 
-		$needed_conversion = false;
-		$would_update = [];
-		foreach ( $section_data as $id => $section ) {
-			if ( in_array( $section['section-type'], $old_wsu_items, true ) ) {
+			$needed_conversion = false;
+			$would_update = [];
+			foreach ( $section_data as $id => $section ) {
+				if ( in_array( $section['section-type'], $old_wsu_items, true ) ) {
 
-				$section['section-type'] = 'fais'.$section['section-type'];
+					$section['section-type'] = 'fais'.$section['section-type'];
 
-				if ( isset( $section['columns'] ) && ! empty( $section['columns'] ) ) {
-					foreach ( $section['columns'] as $cid => $object ) {
-						// 'column-type' => string 'flex-column  fifths-3  order-1'
-						$order = array_flip( $section['columns-order'] )[ $cid ] + 1;
-						if ( 'faiswsuwpsingle' !== $section['section-type'] ) {
-							$object['column-type'] = 'flex-column '.$this->get_column_default_size( $section['section-type'] )[ $cid ].' pad-tight  order-'. $order .' ';
+					if ( isset( $section['columns'] ) && ! empty( $section['columns'] ) ) {
+						foreach ( $section['columns'] as $cid => $object ) {
+							// 'column-type' => string 'flex-column  fifths-3  order-1'
+							$order = array_flip( $section['columns-order'] )[ $cid ] + 1;
+							if ( 'faiswsuwpsingle' !== $section['section-type'] ) {
+								$object['column-type'] = 'flex-column '.$this->get_column_default_size( $section['section-type'] )[ $cid ].' pad-tight  order-'. $order .' ';
+							}
+							$section['columns'][ $cid ] = $object;
 						}
 						$section['columns'][ $cid ] = $object;
 					}
-					$section['columns'][ $cid ] = $object;
+
+					$section['section-position'] = 'banner' === $section['section-type'] ? '' : 'content';
+					$section['section-active'] = 'true';
+
+					if ( false !== strpos( trim( $section['section-classes'] ), 'gutter pad-top' ) ) {
+						$section['section-classes'] = implode( '',explode( 'gutter pad-top',$section['section-classes'] ) );
+					}
+					if ( 'faiswsuwpsingle' !== $section['section-type'] ) {
+						$section['section-classes'] = 'flex-row items-start pad-airy kids-full-width-at-667 '.$section['section-classes'];
+					}
+
+					$section['section-layout'] = null;
+
+					$needed_conversion = true;
+					$section_data[ $id ] = $section;
 				}
-
-				$section['section-position'] = 'banner' === $section['section-type'] ? '' : 'content';
-				$section['section-active'] = 'true';
-
-				if ( false !== strpos( trim( $section['section-classes'] ), 'gutter pad-top' ) ) {
-					$section['section-classes'] = implode( '',explode( 'gutter pad-top',$section['section-classes'] ) );
-				}
-				if ( 'faiswsuwpsingle' !== $section['section-type'] ) {
-					$section['section-classes'] = 'flex-row items-start pad-airy kids-full-width-at-667 '.$section['section-classes'];
-				}
-
-				$section['section-layout'] = null;
-
-				$needed_conversion = true;
-				$section_data[ $id ] = $section;
 			}
-		}
-		if ( $needed_conversion ) {
-			$var_data = array( 'ID' => $post_id );
-			$this->wp_insert_post_data( $var_data, $section_data );
-			$url = admin_url().'post.php?post='.$post_id.'&action=edit';
-			wp_redirect( $url );
+			if ( $needed_conversion ) {
+				$var_data = array( 'ID' => $post_id );
+				$this->wp_insert_post_data( $var_data, $section_data );
+				$url = admin_url().'post.php?post='.$post_id.'&action=edit';
+				wp_redirect( $url );
+			}
 		}
 		return $content;
 	}
