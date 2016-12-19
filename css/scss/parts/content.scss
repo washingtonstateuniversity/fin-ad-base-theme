@@ -81,6 +81,15 @@ main {
 	padding: .5rem 1.5rem;
 }
 
+.banner-section h2,
+.banner-section span,
+.banner-section a,
+
+.banner-section .cycle-pager > .cycle-pager-active
+.banner-section .cycle-pager > span:nth-of-type(2) {
+	text-shadow: 0 0 5px rgba(41,41,41,0.9), 0 0 10px rgba(41,41,41,0.9);
+}
+
 #content_area, [id^='builder-section'].row, [id$=""]:not(#content_area) [id^='builder-section'].flex-row, .content_less [id^='builder-section'] {margin-top: 3.7rem;}
 .type-page > .banner-section + #content_area {margin-top: -3.5rem;}
 
