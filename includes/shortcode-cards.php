@@ -24,7 +24,7 @@ function cards_shortcode( $atts, $content ) {
 <div class="flex-row items-start no-pad content-card">
     <div class="thirds-1 profile-image"> <!--flex-column items-start -->
 		<?php if ( false !== $att['profile_url'] && '' !== $att['profile_url'] ) :  ?>
-			<img src="<?php esc_attr_e( $att['profile_url'] ); ?>" />
+			<img src="<?php esc_attr_e( $att['profile_url'] ); ?>" alt="<?php if ( false !== $att['name'] && '' !== $att['name'] ) :  ?><?php esc_attr_e( $att['name'] ); ?><?php endif; ?>" />
 		<?php else : ?>
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 463 562">
 				<path d="M2,2V564H465V2H2ZM448,547H399.37c23.85-11,38.44-34.14,38.44-65.87,0-64.2-15.05-162.77-98.28-162.77-8.81,0-46,39.48-101.69,39.48s-92.89-39.48-101.69-39.48c-83.23,0-98.28,98.57-98.28,162.77,0,31.72,14.58,54.87,38.44,65.87H19V19H448V547Z" transform="translate(-2 -2)"/>
