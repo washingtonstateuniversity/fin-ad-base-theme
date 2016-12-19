@@ -428,7 +428,7 @@ div#side_right h4{
 }
 .inline-img {
     width: auto;
-    height: 1em;
+    height: 1em; // to be at line height of content it is in.
     vertical-align: middle;
     margin-top: -2px;
     padding: 0 2px;
