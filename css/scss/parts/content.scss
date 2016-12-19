@@ -426,7 +426,13 @@ div#side_right h4{
 	margin-right: 1rem;
 	margin-bottom: .7rem;
 }
-
+.inline-img {
+    width: auto;
+    height: 1em;
+    vertical-align: middle;
+    margin-top: -2px;
+    padding: 0 2px;
+}
 #new_home_page p{
 	//font-size: 1rem;
 	font-weight:400;

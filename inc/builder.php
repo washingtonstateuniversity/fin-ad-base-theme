@@ -1659,6 +1659,22 @@ function fb_mce_before_init( $settings ) {
 				),
 			),
 		),
+
+		array(
+			'title' => 'images',
+			'items' => array(
+				array(
+					'title' => 'inline image',
+					'selector' => 'img',
+					'classes' => 'inline-img',
+				),
+				array(
+					'title' => 'fill area with image',
+					'selector' => 'img',
+					'classes' => 'full-width',
+				),
+			),
+		),
 		array(
 			'title' => 'Section Highlighter',
 			'items' => array(
