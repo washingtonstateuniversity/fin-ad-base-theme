@@ -71,7 +71,7 @@ if ( '' === $section_id ) {
 }
 ?>
 
-<section id="<?php esc_attr_e( $section_id ); ?>" role="banner" data-type="banner" data-background="<?php esc_attr_e( $section_background_data ); ?>" data-background-mobile="<?php esc_attr_e( $section_background_mobile_data ); ?>" class="banner-section full-width  <?php esc_attr_e( $section_background_class ); ?>">
+<section id="<?php esc_attr_e( $section_id ); ?>" role="banner" data-type="banner" data-background="<?php esc_attr_e( $section_background_data ); ?>" data-background-mobile="<?php esc_attr_e( $section_background_mobile_data ); ?>" class="banner-section full-width  <?php esc_attr_e( $section_background_class ); ?>" role="presentation">
 
 
 	<div class="banner-column <?php esc_attr_e( $column_classes ); ?>">
