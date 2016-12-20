@@ -385,3 +385,28 @@ div.WSU_MAPS_NS {
 		display:none;
 	}
 }
+
+
+
+//Styles to clear a11y issues
+
+#spine .spine-share li a {
+    color: #272727;
+}
+.spine-share ul {
+    padding: 0.75em;
+    margin: 0 !important;
+}
+
+#builder-section-1469037919978 > .banner-column > .builder-section-content.cycle-slideshow > .cycle-pager > .cycle-pager-active,
+
+#wsu-contact > .hcard > .email > A,
+body #default-search > BUTTON {
+        color: #000000 !important;
+}
+
+#builder-section-1469037919978 > .banner-column > .builder-section-content.cycle-slideshow > .cycle-pager > SPAN:nth-of-type(2),
+#wsu-signature{
+        color: #FFF !important;
+}
+.sr-only{font-size:0px !important;}

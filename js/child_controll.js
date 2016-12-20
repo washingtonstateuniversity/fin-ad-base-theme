@@ -35,6 +35,11 @@ function eraseCookie(name) {
 
 (function ($) {
     "use strict";
+		// to clear a11y issues
+        jQuery("#wsu-global-links > UL > .copyright-link > A").attr("title", "Copyright information");
+        jQuery("#wsu-global-links > UL > .copyright-link > A").append("<span class='sr-only'>Copyright information</sapn>");
+
+
 		jQuery.ui.spine.prototype.start_search = function( request, callback ) {
 			var self, term, queries = [];
 			self = this;//Hold to preserve scop
