@@ -45,7 +45,9 @@ body:not(#tinymce) .folding.as-more > * {
 		}
 	}
 }
-
+.accordion .ui-accordion-header .ui-icon{
+	display:none;
+}
 .accordion .ui-accordion-header:before {
     content:"\f196";
     display: inline-block;
