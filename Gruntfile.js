@@ -19,7 +19,7 @@ module.exports = function(grunt) {
                 "js/**/*",
                 "**/**/*.php"
             ],
-            tasks: [/*"concat",*/ "sass", "postcss", "cssmin", "copy", "csslint", "clean", "phpcbf", "phpcs"]
+            tasks: [/*"concat",*/ "phpcbf", "phpcs", "sass", "postcss", "cssmin", "copy", "csslint", "clean"]
         },
 		sass: {
             options: {
