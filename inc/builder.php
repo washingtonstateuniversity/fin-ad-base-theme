@@ -54,7 +54,7 @@ class Fais_Spine_Builder_Custom
 	 */
 	public function builder_convertion_utility( $content, $post_id ) {
 		$in_conversion = true; // provide a way to skip
-		if( true === $in_conversion ){
+		if ( true === $in_conversion ) {
 			// Process content here
 			if ( ! ttfmake_post_type_supports_builder( get_post_type() ) ) {
 				return $content;
@@ -1682,25 +1682,25 @@ function fb_mce_before_init( $settings ) {
 					'title' => 'as for a Success',
 					'selector' => 'h1,h2,h3,h4,h5,h6,p,div,span,li,a,i,b',
 					'classes' => 'alert alert-success',
-					"attributes" => [ "role" => "alert" ]
+					'attributes' => [ 'role' => 'alert' ],
 				),
 				array(
 					'title' => 'for your Info',
 					'selector' => 'h1,h2,h3,h4,h5,h6,p,div,span,li,a,i,b',
 					'classes' => 'alert alert-info',
-					"attributes" => [ "role" => "alert"]
+					'attributes' => [ 'role' => 'alert' ],
 				),
 				array(
 					'title' => 'as a Warning',
 					'selector' => 'h1,h2,h3,h4,h5,h6,p,div,span,li,a,i,b',
 					'classes' => 'alert alert-warning',
-					"attributes" => [ "role" => "alert" ]
+					'attributes' => [ 'role' => 'alert' ],
 				),
 				array(
 					'title' => 'in Danger',
 					'selector' => 'h1,h2,h3,h4,h5,h6,p,div,span,li,a,i,b',
 					'classes' => 'alert alert-danger',
-					"attributes" => [ "role" => "alert"]
+					'attributes' => [ 'role' => 'alert' ],
 				),
 			),
 		),

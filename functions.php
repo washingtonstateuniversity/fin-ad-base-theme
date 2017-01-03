@@ -91,7 +91,7 @@ function fais_customizer_enqueue_scripts() {
 		$flex_dev = 'dev/';
 	}
 	//will add picker and alt path shortly, just need it out.
-	wp_enqueue_style( 'jQueryUICSS', '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css', array('wsu-spine'), '1.12.1' );
+	wp_enqueue_style( 'jQueryUICSS', '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css', array( 'wsu-spine' ), '1.12.1' );
 	wp_enqueue_style( 'fais_spine-theme',       get_template_directory_uri()   . '/style.css', array( 'jQueryUICSS' ), spine_get_script_version() );
 
 	if ( 'skeletal' !== spine_get_option( 'theme_style' ) ) {
@@ -108,8 +108,6 @@ function fais_customizer_enqueue_scripts() {
 
 	wp_deregister_style( 'open-sans' );
 	wp_enqueue_style( 'open-sans', '//fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,500,600,700,800,900', array(), false );
-
-
 
 	// All theme styles have been output at this time. Plugins and other themes should print styles here, before blocking
 	// Javascript resources are output.
@@ -340,10 +338,10 @@ add_action( 'rest_api_init', 'myplugin_register_routes' );
  * Register the /wp-json/myplugin/v1/foo route
  */
 function myplugin_register_routes() {
-    register_rest_route( 'wsuwp_search/v1', 'byterm/(?P<s>.*)', array(
-        'methods'  => WP_REST_Server::READABLE,
-        'callback' => 'wsuwp_search_serve_route',
-    ) );
+	register_rest_route( 'wsuwp_search/v1', 'byterm/(?P<s>.*)', array(
+		'methods'  => WP_REST_Server::READABLE,
+		'callback' => 'wsuwp_search_serve_route',
+	) );
 }
 
 /**
@@ -357,20 +355,20 @@ function wsuwp_search_serve_route( WP_REST_Request $request ) {
 		$items = array(); //do a query, call another class, etc
 		$data = array();
 		$params = $request->get_params();
-		$args = array('s' => $params['name_startsWith']);
+		$args = array( 's' => $params['name_startsWith'] );
 
 		$loop = new WP_Query( $args );
 		$suggestions = array();
 
-		while( $loop->have_posts() ) {
+		while ( $loop->have_posts() ) {
 			$loop->the_post();
 			$suggestion = array();
 			$suggestion['label'] = get_the_title();
 			$suggestion['value'] = get_permalink();
-			$suggestion['searchKeywords'] = "";
-			$suggestion['related'] = "true";
+			$suggestion['searchKeywords'] = '';
+			$suggestion['related'] = 'true';
 
-			$suggestions[] = (object)$suggestion;
+			$suggestions[] = (object) $suggestion;
 		}
 
 		return new WP_REST_Response( $suggestions, 200 );
