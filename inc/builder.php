@@ -1865,6 +1865,10 @@ function fb_mce_before_init( $settings ) {
 					'format'  => 'blockquote',
 				),
 				array(
+					'title'   => 'Address',
+					'format'  => 'address',
+				),
+				array(
 					'title'   => 'Div',
 					'format'  => 'div',
 				),
