@@ -15,6 +15,8 @@ ol > li:before,ul > li:before {
 .spine-navigation ul > li:before,
 ul.list-blank > li:before,
 ol.list-blank > li:before,
+ul.blank > li:before,
+ol.blank > li:before,
 ul.ui-tabs-nav>li:before, //account for jQuery UI
 ol[style*="list-style-type"] > li:before, //accounting for WP tinyMCE
 ul[style*="list-style-type"] > li:before {
@@ -28,7 +30,14 @@ ol[style*="list-style-type"], ul[style*="list-style-type"] {
 	padding: 0 2rem 1rem 1rem;
 }
 
-
+ol.strong > li,
+ul.strong > li,
+ol.list-throwback > li,
+ul.list-throwback > li,
+ol.weak > li,
+ul.weak > li{
+	position: relative;
+}
 
 form ol, form ul{
 	padding:0;
@@ -47,20 +56,22 @@ address ul li {
 
 ol.weak > li:before,ul.weak > li:before{
     content: '\00ba';
-    position: relative;
-    left: -5px;
+    position: absolute;
+    left: -1rem;
     font-size: 1.8rem;
-    top: 0.5rem;
+    top: 0;
+
 }
 
 
 ol.strong > li:before,ul.strong > li:before,
 ol.list-throwback > li:before,ul.list-throwback > li:before {
     content: '\2022';
-    position: relative;
-    left: -5px;
+    position: absolute;
+    left: -1rem;
     font-size: 1.8rem;
-    top: .3rem;
+    top: 0;
+
 }
 
 

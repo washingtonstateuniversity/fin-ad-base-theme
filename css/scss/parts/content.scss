@@ -20,7 +20,10 @@ address {
     margin: 15px 15px 15px 25px;
     font-style: italic;
 }
-
+// temp check that it is still needed
+.nice-number>dd:before, .nice-number>li:before{
+	left: -2rem;
+}
 
 
 .nice-table {
