@@ -58,7 +58,12 @@ body:not(#tinymce) .folding.as-more > * {
     -moz-osx-font-smoothing: grayscale;
     padding-right:.5rem;
 }
-
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {
+    border: 1px solid #630c1c;
+    background: #9b1e34;
+    font-weight: normal;
+    color: #ffffff;
+}
 .accordion .ui-accordion-header:hover {
     cursor:pointer;
     color: #9d060b;
@@ -69,6 +74,13 @@ body:not(#tinymce) .folding.as-more > * {
     padding-right:.35rem;
 }
 
+.accordion .ui-accordion-header.ui-state-active:hover {
+    color: #c7c7c7;
+}
+
+.accordion .ui-accordion-header.ui-state-active:hover:before {
+    color: #c7c7c7;
+}
 .accordion .ui-accordion-header.ui-accordion-header-active:before{
      content:"\f147";
 }
