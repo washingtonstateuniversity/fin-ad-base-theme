@@ -77,7 +77,6 @@ body:not(#tinymce) .folding.as-more > * {
 .accordion .ui-accordion-header.ui-state-active:hover {
     color: #c7c7c7;
 }
-
 .accordion .ui-accordion-header.ui-state-active:hover:before {
     color: #c7c7c7;
 }
@@ -88,8 +87,12 @@ body:not(#tinymce) .folding.as-more > * {
      content:"\f146";
 }
 
-
-
+.ui-widget-content a{
+	color: #9d060b !important;
+}
+.ui-widget-content a:hover {
+    color: #c60c30 !important;
+}
 /*body:not(#tinymce) .folding > *:nth-child(1) + *  {
 		height: 0;
 		overflow: hidden;

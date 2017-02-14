@@ -29,7 +29,10 @@ main section{
 }
 a {
     text-decoration: none;
-    color: #981e32;
+    color: #981e32 !important;
+}
+a:hover {
+    color: #c60c30 !important;
 }
 h1,h2,h3{margin-top: 0;padding: 0;}
 
