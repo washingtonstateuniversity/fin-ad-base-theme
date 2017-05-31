@@ -1,4 +1,4 @@
-<nav id="spine-offsitenav" class="spine-offsitenav">
+<nav id="spine-offsitenav-fa-global" class="spine-offsitenav">
 	<?php
 	$spine_offsite_args = array(
 		'theme_location'  => 'fais_global',
