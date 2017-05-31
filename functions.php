@@ -238,7 +238,7 @@ class WSU_FinAd_BaseTheme
 			) );
 
 			wp_update_nav_menu_item( $menu_id, 0, array(
-				'menu-item-title' => __( 'F&A Home Page' ),
+				'menu-item-title' => __( 'Home Page' ),
 				'menu-item-url' => 'https://baf.wsu.edu',
 				'menu-item-attr-title' => 'F-n-A-Home-Page',
 				'menu-item-status' => 'publish',
