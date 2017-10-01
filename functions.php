@@ -131,13 +131,12 @@ function fais_customizer_enqueue_scripts() {
 	wp_enqueue_style( 'vendors-bootstrap', $vendor_path . 'bootstrap/dist/css/bootstrap.min.css', array( 'fais_spine-theme-print' ), $script_version );
 	wp_enqueue_style( 'vendors-bootstrap-dialog', $vendor_path . 'bootstrap3-dialog/dist/css/bootstrap-dialog.min.css', array( 'fais_spine-theme-print' ), $script_version );
 
-	wp_enqueue_style( 'flexed-typography', $flexed_path . 'extra/flexed-typography.css', array( 'fais_spine-theme-print' ), $script_version );
-
 	wp_enqueue_style( 'vendors-icons-solid', $icons_path . 'fontawesome-pro-solid.css', array( 'fais_spine-theme-print' ), $script_version );
 	wp_enqueue_style( 'vendors-icons-light', $icons_path . 'fontawesome-pro-light.css', array( 'fais_spine-theme-print' ), $script_version );
 	wp_enqueue_style( 'vendors-icons-regular', $icons_path . 'fontawesome-pro-regular.css', array( 'fais_spine-theme-print' ), $script_version );
 	wp_enqueue_style( 'vendors-icons-core', $icons_path . 'fontawesome-pro-core.css', array( 'fais_spine-theme-print' ), $script_version );
 
+	wp_enqueue_style( 'flexed-typography', $flexed_path . 'extra/flexed-typography.css', array( 'fais_spine-theme-print' ), $script_version );
 	wp_enqueue_style( 'flexed-ui', $flexed_path . 'extra/flexed-ui.css', array( 'fais_spine-theme-print' ), $script_version );
 	wp_enqueue_style( 'flexed-datatables', $flexed_path . 'extra/datatables/dataTables.flexed.css', array( 'fais_spine-theme-print' ), $script_version );
 	wp_enqueue_style( 'flexed-custom', $flexed_path . 'custom.css', array( 'fais_spine-theme-print' ), $script_version );
