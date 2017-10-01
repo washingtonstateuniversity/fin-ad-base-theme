@@ -42,7 +42,25 @@
     <![endif]-->
 
 	<?php wp_head(); ?>
+	<?php // this is temp ?>
 
+
+
+	        <script type="text/javascript" src="//webcore.fais.wsu.edu/resources/wsu.global.ns/0.1.0/vendors/PapaParse/4/papaparse.min.js"></script>
+        <script type="text/javascript" src="//webcore.fais.wsu.edu/resources/wsu.global.ns/0.1.0/vendors/moment/moment.js"></script>
+        <script type="text/javascript" src="//webcore.fais.wsu.edu/resources/wsu.global.ns/0.1.0/vendors/accounting/accounting.js"></script>
+
+        <script type="text/javascript" src="//webcore.fais.wsu.edu/resources/wsu.global.ns/0.1.0/vendors/bootstrap/dist/js/bootstrap.js"></script>
+        <script type="text/javascript" src="//webcore.fais.wsu.edu/resources/wsu.global.ns/0.1.0/vendors/datatables/1.10.13/media/js/jquery.dataTables.min.js"></script>
+
+        <script type="text/javascript" src="//webcore.fais.wsu.edu/resources/wsu.global.ns/0.1.0/vendors/bootstrap3-dialog/dist/js/bootstrap-dialog.min.js"></script>
+        <script type="text/javascript" src="//webcore.fais.wsu.edu/resources/wsu.global.ns/0.1.0/vendors/typeahead.bundle/typeahead.bundle.js"></script>
+
+        <script type="text/javascript" src="//webcore.fais.wsu.edu/resources/wsu.global.ns/0.1.0/vendors/hotkeys/0.2.0/jquery.hotkeys.js"></script>
+        <script src="//webcore.fais.wsu.edu/resources/wsu.global.ns/1/js/mainline.js"></script>
+
+        <script type="text/javascript" src="//webcore.fais.wsu.edu/resources/flexed/0.3.0/extra/tether.min.js"></script>
+        <script type="text/javascript" src="//webcore.fais.wsu.edu/resources/flexed/0.3.0/extra/datatables/dataTables.flexed.js"></script>
 
 	<noscript><style>#spine #spine-sitenav ul ul li { display: block !important; }</style></noscript>
 </head>
