@@ -147,6 +147,7 @@ img {
     position: absolute;
     left: 0.4rem;
 	top: 0.27rem;
+	font-family: 'Font Awesome 5 Regular';
 };
 
 @include map-to-selectors($file_map, ":before", "#spine-navigation", "#spine-navigation a[href^='mailto']:not(.not-autostyle):before, .gen_doc:before, #feedback_back_btn:before") {
