@@ -5,6 +5,36 @@ ol:not(.lists), ul:not(.lists) {
 	padding: 0 2rem 1rem 1rem;
 }
 
+ul.lists{
+    padding:0;
+    margin:0;
+}
+ul.lists:not([class='pad-'])>li:not([class='pad-']) {
+    padding:0;
+	margin:0;
+	overflow: hidden;
+}
+ul.lists>li>a[href]:not(.not-autostyle):before {
+    width: 100%;
+    height: 100%;
+    font-size:1.7rem;
+    padding-top:.45rem;
+}
+ul.lists>li>a[href]:not(.not-autostyle) {
+    width: 100%;
+    height: 100%;
+	padding: .85rem 1rem .85rem 2.2rem;
+	display: block;
+}
+ul.lists>li:hover,ul.lists>li:hover>a{
+    background:rgba(206, 206, 206, 0.88);
+}
+
+
+
+
+
+
 ol > li:before,ul > li:before {
 	content: "-";
 	position: relative;
