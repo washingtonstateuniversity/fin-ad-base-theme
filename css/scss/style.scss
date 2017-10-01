@@ -49,6 +49,9 @@ h3 {
     border-bottom: .1rem solid #272727;
 }
 
+#glue, #binder {
+    min-height: 100vh;
+}
 #spine .spine-actions ul.spine-actions-tabs {
     li {
 		width: calc( 1 / 3 );
