@@ -1,4 +1,4 @@
-ol, ul {
+ol:not(.lists), ul:not(.lists) {
 	list-style-type: none;
 	margin-left: 1.7rem;
 	//font-size:#{$root-font-list};
