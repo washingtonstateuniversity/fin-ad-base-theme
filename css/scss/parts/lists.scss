@@ -31,7 +31,37 @@ ul.lists>li:hover,ul.lists>li:hover>a{
 }
 
 
-
+ul.list-index {
+    /*position: absolute;
+    right: 1.3rem;
+    top: 4.8rem;*/
+    float:right;
+    width: 25rem;
+    background: #a7a7a7;
+    padding: .7rem 0;
+    border-radius: 1.5rem 0 0 1.5rem;
+}
+ul.list-index li:before {
+    content:""; /*reset the default style*/
+}
+.list-index li h5 {
+    padding-left: 1.7rem;
+    font-weight: 600;
+    border-bottom: 1px solid #7b7b7b;
+}
+ul.list-index li a[href]{
+    color:#E9E9E9;
+    font-weight:700;
+    font-size:1.3rem;
+    border-bottom: 1px solid #7b7b7b;
+    width:100%;
+    display:block;
+    padding:.3rem 1.5rem;
+}
+ul.list-index li a[href]:hover{
+    color:#353535;
+    background: #d8d8d8;
+}
 
 
 
