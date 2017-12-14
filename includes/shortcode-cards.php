@@ -30,6 +30,7 @@ function cards_shortcode( $atts, $content ) {
 				<path d="M2,2V564H465V2H2ZM448,547H399.37c23.85-11,38.44-34.14,38.44-65.87,0-64.2-15.05-162.77-98.28-162.77-8.81,0-46,39.48-101.69,39.48s-92.89-39.48-101.69-39.48c-83.23,0-98.28,98.57-98.28,162.77,0,31.72,14.58,54.87,38.44,65.87H19V19H448V547Z" transform="translate(-2 -2)"/>
 				<path d="M237.83,336.55A109.08,109.08,0,1,0,128.75,227.47,109.11,109.11,0,0,0,237.83,336.55Z" transform="translate(-2 -2)"/>
 			</svg>
+			<!--<span class="fa-10x"><i class="fal fa-portrait large"></i></span>-->
 		<?php endif; ?>
     </div>
     <div class="flex-column items-start thirds-2 pad-tight-l profile-summary">

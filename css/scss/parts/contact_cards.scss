@@ -19,16 +19,16 @@
 }
 /*media all*/
 a[href^='mailto:']::before {
-    content: "\f003";
+    content: "\f0e0";
     font-size: 1.65rem;
     left: 0.3rem;
 }
 .profile-summary a[href^='mailto:']::before {
-    content: "\f003";
+    content: "\f0e0";
     font-size: 1.65rem;
 }
 .ie9 .profile-summary a[href^='mailto:']::before {
-    content: "\f003";
+    content: "\f0e0";
     font-size: 0.35rem;
 }
 .profile-summary .list-throwback,
