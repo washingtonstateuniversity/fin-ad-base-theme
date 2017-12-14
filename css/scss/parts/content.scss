@@ -537,3 +537,52 @@ main .spine-blank-template {
 .contact-us div {
     padding: 0;
 }
+
+
+/* @todo fix this, from hotfix */
+main a:hover {
+	color: black;
+}
+
+/* framework typography overrides */
+h4 a[href^=mailto]:not(.not-autostyle) {
+	padding: 0 .5rem 0 2.6rem;
+}
+
+h4 a[href^=mailto]:not(.not-autostyle):before {
+	top: .47rem;
+}
+
+#shelve {
+	height: 40px;
+	box-shadow: none;
+}
+
+.spine-actions button {
+	box-shadow: none;
+}
+
+#spine.dark #shelve, #spine.dark #shelve:after, #spine.dark #shelve:before,
+#spine.darker #shelve, #spine.darker #shelve:after, #spine.darker #shelve:before {
+	box-sizing: unset;
+}
+
+.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content.ui-corner-all {
+	left: 11px !important;
+	width: 180px !important;
+}
+
+.spine-search input.ui-autocomplete-input[type=text] {
+	font-size: 1.15em;
+	color: #717171;
+	background-color: transparent;
+	border-radius: 0;
+	padding: 0;
+	text-indent: 0;
+	height: 1.55em;
+	width: 100%;
+	margin: 2px 0 0;
+	border: none;
+	box-shadow: none;
+	border-bottom: 1px #b6bcbf solid;
+}

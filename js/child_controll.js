@@ -127,7 +127,151 @@ function eraseCookie(name) {
 			template:"<li><%this.searchitem%></li>"
 		}
 	};
+	jQuery.ui.spine.prototype.setup_search=function() {
+        var self, wsu_search, search_input, focuseitem = {};
 
+        self = this;//Hold to preserve scop
+        wsu_search = self._get_globals( "wsu_search" ).refresh();
+        search_input = self._get_globals( "search_input" ).refresh();
+        focuseitem = {};
+
+        search_input.autosearch( {
+
+            appendTo:			self.search_options.result.appendTo,
+            showRelated:		self.search_options.result.showRelated,
+            relatedHeader:		self.search_options.result.relatedHeader,
+            minLength:			self.search_options.search.minLength,
+
+            source: function( request, response )  {
+                self.start_search( request, function( data ) {
+                    response( data );
+                } );
+            },
+            search: function( ) {
+                focuseitem = {};
+            },
+            select: function( e, ui ) {
+                var id, term;
+                id = ui.item.searchKeywords;
+                term = $( ui.item.label ).text();
+                search_input.val( term );
+                search_input.autosearch( "close" );
+                return false;
+            },
+            focus: function( e, ui ) {
+                search_input.val( $( ui.item.label ).text() );
+                focuseitem = {
+                    label:ui.item.label
+                };
+                e.preventDefault();
+            },
+            open: function( ) {},
+            close: function( e ) {
+                e.preventDefault();
+                return false;
+            }
+        } ).data( "autosearch" );
+
+        search_input.on( "keydown", function( e ) {
+            if ( e.keyCode === $.ui.keyCode.TAB && search_input.is( $( ":focus" ) ) ) {
+                e.preventDefault();
+            }
+            if ( e.which === 13 ) {
+                search_input.autosearch( "close" );
+            }
+        } );
+
+        $( "#wsu-search form" ).submit( function() {
+            var scope, site, cx, cof, search_term, search_url;
+            scope = wsu_search.attr( "data-default" );
+            site = " site:" + window.location.hostname;
+            if ( scope === "wsu.edu" ) {
+                site = "";
+            }
+            cx = "cx=004677039204386950923:xvo7gapmrrg";
+            cof = "cof=FORID%3A11";
+            search_term = search_input.val();
+            search_url = window.location.origin+window.location.pathname.split( '/' )[0] + "/?s=" + search_term
+            window.location.href = search_url;
+            return false;
+        } );
+    }
+
+
+var MODAL = {};
+
+    MODAL.initalize_inline_link = function(){
+        $("img[class*='wp-image-']").each(function(idx,itm){
+            $(itm).on("click",function(e){
+                e.preventDefault();
+                var url = $(this).attr("src");
+                var srcset = $(this).attr("srcset");
+                if(srcset !==""){
+                    url = srcset.split(", ").pop();
+                    if(url.split(".png").length>1){//just temp for POC
+                        url = url.split(".png")[0] + ".png";
+                    }
+                    if(url.split(".jpg").length>1){
+                        url = url.split(".jpg")[0] + ".jpg";
+                    }
+                    if(url.split(".gif").length>1){
+                        url = url.split(".gif")[0] + ".gif";
+                    }
+                }
+                var title = $(itm).attr("alt");
+                MODAL.general('<img src="'+url+'" class="full-width"/>', title, {});
+            });
+        });
+    };
+
+
+    MODAL.general = function (content,title,object) {
+        if ($("#gen_modal").length == 0) {
+            $("body").append("<div class='display-none'><div id='gen_modal'>");
+        }
+        $("#gen_modal").html(content);
+
+        var buttons = {
+            "Close": function () {
+                _tmp_dialog.dialog("close");
+            }
+        };
+
+        if (typeof object.following !== "undefined" && "" !== object.following) {
+            $.extend(buttons, {
+                "Go To": function( ) {
+                    window.location = object.following;
+                }
+            });
+        }
+        window._tmp_dialog = $("#gen_modal").dialog($.extend(true,{
+            autoOpen: true,
+            width: $(window).width() * 0.8,
+            modal: false,
+            draggable: false,
+            create: function () {
+                if (typeof title !== "undefined" && title !== "") {
+                    $("[aria-describedby='gen_modal'] .ui-dialog-title").text(title);
+                }
+                $("[aria-describedby='gen_modal'] .ui-dialog-buttonset button:last").addClass("info");
+            },
+            open: function () {
+                $("#jacket").css("filter", "blur(1.5px) contrast(1.2) brightness(.75)");
+                $("#gen_modal").dialog("option", "position", { my: "top", at: "center top+150px", of: $(window) });
+            },
+            position: { my: "top", at: "center top+150px", of: $(window) },
+            buttons: buttons,
+            close: function () {
+                $("#jacket").css("filter", "none");
+                $("#doc_wrap").css("filter", "none");
+
+            }
+        },object));
+    };
+	$(document).ready(function(){
+		MODAL.initalize_inline_link();
+		$("a[href*='.pdf']").attr("target","_blank");
+	});
 
     var init, setupExamples, setupHeroSelect, navSetup, setupDrops, _Drop;
     /*_Drop = Drop.createContext({
